@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@source "../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
+
+@theme {
+  /* Brand Colors */
+  --color-primary: #030050;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #0d0489;
+  --color-on-primary-container: #7e82f4;
+  --color-inverse-primary: #c0c1ff;
+  --color-navy-deep: #0f0f3a;
+  --color-navy: #16165a;
+  --color-violet: #5b5bd6;
+  --color-violet-soft: #eef0fc;
+  --color-lav: #f4f5fd;
+  --color-sky: #eaf4fd;
+  --color-fg: #1a1a2e;
+  --color-muted: #6b7280;
+  --color-line: #e6e7f2;
+  
+  --color-secondary: #5c5d6c;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #e1e1f3;
+  --color-on-secondary-container: #626372;
+  
+  --color-tertiary: #2e0100;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #550200;
+  --color-on-tertiary-container: #e16957;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-background: #ffffff;
+  --color-on-background: #1b1b22;
+  
+  --color-surface: #fcf8ff;
+  --color-surface-dim: #dbd8e3;
+  --color-surface-bright: #fcf8ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f5f2fc;
+  --color-surface-container: #f0ecf6;
+  --color-surface-container-high: #eae7f1;
+  --color-surface-container-highest: #e4e1eb;
+  --color-on-surface: #1b1b22;
+  --color-on-surface-variant: #464553;
+  --color-inverse-surface: #303037;
+  --color-inverse-on-surface: #f2eff9;
+  
+  --color-outline: #777684;
+  --color-outline-variant: #c7c5d5;
+  --color-surface-tint: #4e51c0;
+
+  --color-primary-fixed: #e1e0ff;
+  --color-primary-fixed-dim: #c0c1ff;
+  --color-on-primary-fixed: #06006c;
+  --color-on-primary-fixed-variant: #3536a7;
+  
+  --color-secondary-fixed: #e1e1f3;
+  --color-secondary-fixed-dim: #c5c5d6;
+  --color-on-secondary-fixed: #191b27;
+  --color-on-secondary-fixed-variant: #444654;
+
+  --color-tertiary-fixed: #ffdad4;
+  --color-tertiary-fixed-dim: #ffb4a7;
+  --color-on-tertiary-fixed: #400100;
+  --color-on-tertiary-fixed-variant: #832518;
+
+  --color-surface-variant: #e4e1eb;
+  --color-surface-muted: #F8F9FF;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #4A4A4A;
+  --color-success-green: #107C10;
+  --color-border-subtle: #DDE0F5;
+
+  /* Custom Light Blue background wash variable */
+  --color-light-blue-wash: #ECECFE;
+
+  /* Base Fonts */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Hanken Grotesk", sans-serif;
+
+  /* Borders & Divisions */
+  --color-hairline: #e5e7eb;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Custom Configurations from DESIGN.md */
+
+.text-headline-xl {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+}
+
+.text-headline-xl-mobile {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.text-headline-lg {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.text-headline-md {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.text-body-lg {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.text-body-md {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.text-label-md {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+}
+
+/* Scrollbars & Ambient Shadows */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.shadow-ambient {
+  box-shadow: 0 10px 25px -5px rgba(3, 0, 80, 0.04), 0 8px 10px -6px rgba(3, 0, 80, 0.04);
+}
+
+.shadow-ambient-hover {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shadow-ambient-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(3, 0, 80, 0.08), 0 10px 10px -6px rgba(3, 0, 80, 0.06);
+}
+
+/* Custom Checkmark List Support */
+.checkmark-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.checkmark-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.checkmark-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0.125rem;
+  color: var(--color-success-green);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-container);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline-variant);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline);
+}
+
+:root {
+  --shadow-card: 0 10px 30px -18px rgba(21, 21, 92, 0.18);
+  --shadow-lg: 0 24px 50px -20px rgba(21, 21, 92, 0.30);
+  --shadow-soft: 0 8px 22px -10px rgba(0, 0, 0, 0.16);
+}
+
+/* opacity-only fade — safe, no lingering transform */
+@keyframes figFade { from { opacity: 0; } to { opacity: 1; } }
+.anim-fade { animation: figFade 0.6s ease-out both; }
+
+@keyframes figRise { from { opacity: 0; } to { opacity: 1; } }
+.anim-rise { animation: figRise 0.7s ease-out both; }
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+
+/* soft blue dotted background — the texture the user liked */
+.bg-dots {
+  background-color: var(--color-sky);
+  background-image: radial-gradient(rgba(91, 91, 214, 0.13) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.bg-dots-light {
+  background-color: var(--color-lav);
+  background-image: radial-gradient(rgba(91, 91, 214, 0.10) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* slow orbit drift on the dashed ring only (decorative element) */
+@keyframes figSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.anim-orbit { animation: figSpin 60s linear infinite; }
+.delay-4 { animation-delay: 0.32s; }
+
+/* Service Page Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+

@@ -1,0 +1,582 @@
+[
+  {
+    "id": "TC001",
+    "title": "Submit a contact inquiry successfully",
+    "description": "A visitor can complete the contact form and receive a success confirmation after submitting required details.",
+    "category": "Site Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the full name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the phone field with a valid phone number"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the organization field with a valid organization name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a valid inquiry message"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Browse the homepage and reach key public pages",
+    "description": "A visitor can use the main navigation from the homepage to reach the core public pages and return home.",
+    "category": "Homepage Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Verify the homepage hero content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the About page"
+      },
+      {
+        "type": "action",
+        "description": "Verify the About page content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the Patient Support Programs page"
+      },
+      {
+        "type": "action",
+        "description": "Verify the patient support programs content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the Blog page"
+      },
+      {
+        "type": "action",
+        "description": "Verify the blog listing is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the Contact page"
+      },
+      {
+        "type": "action",
+        "description": "Verify the contact form is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the Privacy Policy page"
+      },
+      {
+        "type": "action",
+        "description": "Verify the privacy policy content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the site logo to return home"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the homepage is displayed again"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Navigate between public pages from the homepage",
+    "description": "A visitor can move from the homepage to other public pages and return home through site navigation.",
+    "category": "Site Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the About page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the About page content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the Patient Support Programs page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the Patient Support Programs content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the site logo to return home"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the homepage content is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Submit a complete contact inquiry",
+    "description": "A visitor can fill out the contact form and see a successful submission confirmation.",
+    "category": "Contact Inquiry Submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the full name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the phone number field with a valid phone number"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the organization field with a valid organization name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a valid message"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Open the contact page from blog navigation",
+    "description": "A visitor can use site navigation from the blog page to reach the contact form page.",
+    "category": "Site Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /blogs"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the contact page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact form is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Browse blogs and open a post",
+    "description": "A visitor can browse the blog listing, open a post, and return to continue exploring more content.",
+    "category": "Blog Browsing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /blogs"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the blog listing"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify blog posts are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Open a blog post"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the blog post details are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Review the homepage hero and overview sections",
+    "description": "A visitor can land on the homepage and scroll through the primary informational sections.",
+    "category": "Homepage Browsing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the hero section is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the homepage content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the service overview, patient support, testimonials, FAQ, and call-to-action content are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Review the homepage sections",
+    "description": "A visitor can scan the homepage and see the main informational sections that explain the service.",
+    "category": "Homepage Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the homepage content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the service overview content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the patient support content is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Search blog content and review filtered results",
+    "description": "A visitor can search for a health topic on the blog page and see the results update accordingly.",
+    "category": "Blog Browsing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /blogs"
+      },
+      {
+        "type": "action",
+        "description": "Enter a healthcare topic in the blog search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the filtered blog results are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Continue browsing the homepage after reading other pages",
+    "description": "A visitor can return to the homepage through navigation after viewing another public page.",
+    "category": "Site Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /about"
+      },
+      {
+        "type": "action",
+        "description": "Click the site logo to return home"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the homepage content is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Browse patient support program details and enrollment call to action",
+    "description": "A visitor can review patient support program information and reach the enrollment call to action.",
+    "category": "Site Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /patient-support-programs"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the patient support program content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the eligibility and benefits content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the enrollment call to action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the enrollment call to action is reachable"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC012",
+    "title": "Read patient support program details and enrollment prompt",
+    "description": "A visitor can review the patient support program information, eligibility, benefits, and enrollment call to action.",
+    "category": "Patient Support Programs",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /patient-support-programs"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the program content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the program details are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the enrollment call to action is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC013",
+    "title": "Read the company overview and mission content",
+    "description": "A visitor can open the About page and review the organization story and purpose.",
+    "category": "About Us Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /about"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the company overview content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the About page content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the mission, vision, and core values content is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC014",
+    "title": "View the team and care commitment information",
+    "description": "A visitor can scroll through the About page and see the team and healthcare commitment content.",
+    "category": "About Us Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /about"
+      },
+      {
+        "type": "action",
+        "description": "Scroll through the About page content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the team information and healthcare commitment content are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC015",
+    "title": "Open and return from an about page",
+    "description": "A visitor can open the About page from the homepage and return to the home page afterward.",
+    "category": "Homepage Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the About page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the About page content is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Click the site logo to return home"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the homepage is displayed again"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC016",
+    "title": "View the privacy policy content",
+    "description": "A visitor can open the privacy policy page and review the policy content successfully.",
+    "category": "Privacy Policy Viewing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /privacy-policy"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the privacy policy content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the page presents readable policy sections"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC017",
+    "title": "Open the privacy policy from site navigation",
+    "description": "A visitor can reach the privacy policy page through the public site navigation and view its content.",
+    "category": "Site Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the navigation link to the privacy policy page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the privacy policy content is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC018",
+    "title": "View the privacy policy from site navigation",
+    "description": "A visitor can reach the Privacy Policy page from the homepage and view its content.",
+    "category": "Homepage Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the Privacy Policy page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the privacy policy content is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC019",
+    "title": "See required field validation on an empty contact form",
+    "description": "A visitor sees validation feedback when attempting to submit the contact form without completing required fields.",
+    "category": "Site Navigation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form without entering details"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify required field validation errors are visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC020",
+    "title": "Show validation when a required contact field is missing",
+    "description": "A visitor who submits the contact form with a required field left empty sees validation feedback.",
+    "category": "Contact Inquiry Submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /contact"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the full name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the phone number field with a valid phone number"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the organization field with a valid organization name"
+      },
+      {
+        "type": "action",
+        "description": "Leave the message field empty"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a form validation error is visible"
+      }
+    ],
+    "priority": "Low"
+  }
+]
