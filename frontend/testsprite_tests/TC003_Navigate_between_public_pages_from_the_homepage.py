@@ -40,43 +40,35 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'About' navigation link and verify the About page content is displayed.
-        # About link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/div/div[2]/a')
-        await elem.click(timeout=10000)
+        # -> Wait for the homepage to finish loading and then reload the homepage if navigation links are not visible.
+        await page.goto("http://localhost:5173/")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Click the 'Patient Support Programs' navigation link and verify the Patient Support Programs page content is displayed.
-        # Patient Support Programs link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/div/div[4]/a')
-        await elem.click(timeout=10000)
+        # -> Open the site's static HTML at 'http://localhost:5173/index.html' to check whether prerendered content or navigation links are present.
+        await page.goto("http://localhost:5173/index.html")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Click the site logo to return to the homepage and verify the homepage content is displayed.
-        # link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/a')
-        await elem.click(timeout=10000)
-        
-        # -> Click the site logo in the header to return to the homepage and verify the homepage hero text is displayed.
-        # link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/a')
-        await elem.click(timeout=10000)
+        # -> Open the 'About' page (navigate to the About page) and check whether About page content is displayed.
+        await page.goto("http://localhost:5173/about")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
         # --> Assertions to verify final state
+        # Assert-outcome: failed
+        # Assert: reproduce the recorded failure (no generated assertion fails on the final page)
+        assert False, "Test failed during execution: see the run log"
         
-        # --> Verify the Patient Support Programs content is displayed
-        await page.locator("xpath=/html/body/div[1]/div/nav/div/div[1]/div[4]/a").nth(0).scroll_into_view_if_needed()
-        # Assert: Patient Support Programs navigation item is visible.
-        await expect(page.locator("xpath=/html/body/div[1]/div/nav/div/div[1]/div[4]/a").nth(0)).to_be_visible(timeout=15000), "Patient Support Programs navigation item is visible."
-        
-        # --> Verify the homepage content is displayed
-        # Assert: The 'Check Prices' button is visible on the homepage.
-        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[1]/a[1]").nth(0)).to_have_text("Check Prices", timeout=15000), "The 'Check Prices' button is visible on the homepage."
-        # Assert: The 'Talk to a doctor' button is visible on the homepage.
-        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[1]/a[2]").nth(0)).to_have_text("Talk to a doctor", timeout=15000), "The 'Talk to a doctor' button is visible on the homepage."
-        # Assert: The 'Home' navigation item is present in the header, confirming the homepage is displayed.
-        await expect(page.locator("xpath=/html/body/div[1]/div/nav/div/div[1]/div[1]/a").nth(0)).to_have_text("Home", timeout=15000), "The 'Home' navigation item is present in the header, confirming the homepage is displayed."
-        current_url = await page.evaluate("() => window.location.href")
-        # Assert: page loaded with a URL (final outcome verified by the AI judge during the run)
-        assert current_url, 'Page should have loaded with a URL'
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The test could not be run — the application's public navigation cannot be reached because the SPA is not rendering and no navigation elements are available to interact with. Observations: - The page at http://localhost:5173/about is blank and shows no interactive elements. - Previous attempts to load http://localhost:5173/ and http://localhost:5173/index.html also returned blank pa...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The test could not be run \u2014 the application's public navigation cannot be reached because the SPA is not rendering and no navigation elements are available to interact with. Observations: - The page at http://localhost:5173/about is blank and shows no interactive elements. - Previous attempts to load http://localhost:5173/ and http://localhost:5173/index.html also returned blank pa..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:

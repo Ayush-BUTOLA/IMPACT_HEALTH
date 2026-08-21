@@ -40,32 +40,30 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'About' link in the top navigation bar to open the About page.
-        # About link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/div/div[2]/a')
-        await elem.click(timeout=10000)
+        # -> Open the About page by navigating to the '/about' path and check for the company overview, mission, vision, and core values content.
+        await page.goto("http://localhost:5173/about")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Dismiss the visible services dropdown, scroll the About page, and verify the 'Our Origin Story' company overview is displayed.
-        # Home About Services Patient Support Programs...
-        elem = page.locator('[id="root"]')
-        await elem.click(timeout=10000)
-        
-        # -> Dismiss the visible services dropdown, scroll the About page, and verify the 'Our Origin Story' company overview is displayed.
-        await page.mouse.wheel(0, 300)
+        # -> Reload the About page and verify the page displays the company overview, mission, vision, and core values.
+        await page.goto("http://localhost:5173/about")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
         # --> Assertions to verify final state
         
-        # --> Verify the company overview content is displayed
-        # Assert: Company overview (Our Origin Story) text is visible on the About page.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[2]/div/div/div[2]/div[3]/div[1]/div").nth(0)).to_contain_text("Impact Health was born out of a major issue: a lack of access to quality and affordable care on time. Even when India has numerous good hospitals, affordability for basic medical care or primary care is a challenge for many.", timeout=15000), "Company overview (Our Origin Story) text is visible on the About page."
+        # --> The About page failed to render, so the company overview and the mission, vision, and core values content are not visible.
+        # Assert-outcome: failed
+        # Assert: Expected the browser to be on the /about URL so the About content could be displayed.
+        await expect(page).to_have_url(re.compile("/about"), timeout=15000), "Expected the browser to be on the /about URL so the About content could be displayed."
         
-        # --> Verify the mission, vision, and core values content is displayed
-        # Assert: The core value 'Accessible' is displayed on the About page.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[2]/div/div/div[2]/div[3]/div[1]/div").nth(0)).to_contain_text("Accessible", timeout=15000), "The core value 'Accessible' is displayed on the About page."
-        # Assert: The core value 'Affordable' is displayed on the About page.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[2]/div/div/div[2]/div[3]/div[2]/div").nth(0)).to_contain_text("Affordable", timeout=15000), "The core value 'Affordable' is displayed on the About page."
-        # Assert: The core value 'Convenient' is displayed on the About page.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[2]/div/div/div[2]/div[3]/div[3]/div").nth(0)).to_contain_text("Convenient", timeout=15000), "The core value 'Convenient' is displayed on the About page."
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The About page could not be verified because the page failed to render any visible content. Observations: - The About page (http://localhost:5173/about) rendered as a blank white page with no visible text or images. - The page shows 0 interactive elements and no content in the DOM visible to the tester. - Multiple attempts were made (initial navigation, a 3s wait, a 5s wait and rel...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The About page could not be verified because the page failed to render any visible content. Observations: - The About page (http://localhost:5173/about) rendered as a blank white page with no visible text or images. - The page shows 0 interactive elements and no content in the DOM visible to the tester. - Multiple attempts were made (initial navigation, a 3s wait, a 5s wait and rel..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:

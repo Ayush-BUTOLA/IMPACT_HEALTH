@@ -40,41 +40,35 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Create a todo list for the verification steps and verify the hero section 'Consult a doctor from your couch.' is present on the page.
-        await page.mouse.wheel(0, 300)
+        # -> Reload the homepage and wait for the hero section to appear.
+        await page.goto("http://localhost:5173/")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Verify the hero headline 'Health support for aging parents.' is visible on the homepage.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll up to reveal the top of the homepage and verify the hero headline and primary CTA (e.g., 'Health support for aging parents.' and 'Speak to a Doctor' or 'Check Prices') are visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll the homepage to reveal the 'Our Platform' and 'Patient Support Programs' sections and then verify the main informational sections are present.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll the homepage to reveal additional sections and verify the presence of 'Our Platform', 'Patient Support Programs', 'Testimonials', 'FAQ', and the call-to-action content like 'Book Consultation' or 'Talk to a doctor'.
-        await page.mouse.wheel(0, 300)
+        # -> Reload the homepage and wait to see if the hero section appears on the page.
+        await page.goto("http://localhost:5173/")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
         # --> Assertions to verify final state
         
-        # --> Verify the hero section is displayed
-        await page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[1]/a[1]").nth(0).scroll_into_view_if_needed()
-        # Assert: Hero CTA 'Check Prices' is visible.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[1]/a[1]").nth(0)).to_be_visible(timeout=15000), "Hero CTA 'Check Prices' is visible."
-        await page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[1]/a[2]").nth(0).scroll_into_view_if_needed()
-        # Assert: Hero CTA 'Talk to a doctor' is visible.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[1]/a[2]").nth(0)).to_be_visible(timeout=15000), "Hero CTA 'Talk to a doctor' is visible."
-        await page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[3]/div[2]/div[1]").nth(0).scroll_into_view_if_needed()
-        # Assert: Hero statistic '40+' is visible, confirming the hero section is displayed.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[3]/div[2]/div[1]").nth(0)).to_be_visible(timeout=15000), "Hero statistic '40+' is visible, confirming the hero section is displayed."
+        # --> The hero section is not visible on the homepage.
+        # Assert-outcome: failed
+        # Assert: Expected the hero section to be visible on the homepage.
+        await expect(page.locator("xpath=//*[@id=\"hero\"]")).to_have_count(1, timeout=15000), "Expected the hero section to be visible on the homepage."
         
-        # --> Verify the service overview, patient support, testimonials, FAQ, and call-to-action content are displayed
-        # Assert: Service overview section (One-Stop Solution) is visible.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[2]/div/div[2]/div[1]").nth(0)).to_contain_text("One-Stop Solution", timeout=15000), "Service overview section (One-Stop Solution) is visible."
-        # Assert: Patient Support Programs navigation link is visible.
-        await expect(page.locator("xpath=/html/body/div/div/nav/div/div[1]/div[4]/a").nth(0)).to_have_text("Patient Support Programs", timeout=15000), "Patient Support Programs navigation link is visible."
-        # Assert: Call-to-action 'Book Consultation Now' is visible.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[2]/div/div[2]/div[4]/a").nth(0)).to_have_text("Book Consultation Now", timeout=15000), "Call-to-action 'Book Consultation Now' is visible."
+        # --> The service overview, patient support, testimonials, FAQ, and call-to-action sections are not visible on the homepage.
+        # Assert-outcome: failed
+        # Assert: Expected the service overview, patient support, testimonials, FAQ, and call-to-action content to be visible on the homepage.
+        await expect(page.locator("xpath=//*[@id=\"services\"]")).to_have_count(1, timeout=15000), "Expected the service overview, patient support, testimonials, FAQ, and call-to-action content to be visible on the homepage."
+        
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The homepage could not be rendered in the browser session, so the required UI checks could not be performed. Observations: - The page at http://localhost:5173 loaded as a blank white page with no visible content. - Browser state shows 0 interactive elements and the screenshot is empty white after three load/reload attempts. - After multiple waits and reloads the SPA never rendered;...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The homepage could not be rendered in the browser session, so the required UI checks could not be performed. Observations: - The page at http://localhost:5173 loaded as a blank white page with no visible content. - Browser state shows 0 interactive elements and the screenshot is empty white after three load/reload attempts. - After multiple waits and reloads the SPA never rendered;..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:

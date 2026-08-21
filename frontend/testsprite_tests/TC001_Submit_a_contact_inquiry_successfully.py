@@ -40,52 +40,78 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'Contact' link in the header to open the contact page.
-        # Contact link
-        elem = page.get_by_role('link', name='Contact', exact=True)
-        await elem.click(timeout=10000)
+        # -> Open the Contact page (navigate to '/contact') and wait for the page to render.
+        await page.goto("http://localhost:5173/contact")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Fill the 'Full Name', 'Email Address', 'Phone Number', 'Organization', and 'Message' fields with valid values.
-        # Full Name text field
-        elem = page.get_by_test_id('contact-name-input')
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("Test User")
+        # -> Wait for the Contact page to finish loading and display the contact form.
+        await page.goto("http://localhost:5173/contact")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Fill the 'Full Name', 'Email Address', 'Phone Number', 'Organization', and 'Message' fields with valid values.
-        # Email Address email field
-        elem = page.get_by_test_id('contact-email-input')
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("test.user@example.com")
+        # -> Reload the Contact page and wait for the contact form to appear (ensure the SPA has time to render).
+        await page.goto("http://localhost:5173/contact")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Fill the 'Full Name', 'Email Address', 'Phone Number', 'Organization', and 'Message' fields with valid values.
-        # Phone Number text field
-        elem = page.get_by_test_id('contact-phone-input')
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("+911234567890")
+        # -> Open the site entry page (http://localhost:5173/index.html) in a new tab and wait for the page to render so the contact form can be located.
+        await page.goto("http://localhost:5173/index.html")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Fill the 'Full Name', 'Email Address', 'Phone Number', 'Organization', and 'Message' fields with valid values.
-        # Organization text field
-        elem = page.get_by_test_id('contact-org-input')
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("Acme Corp")
+        # -> Open the Contact page at http://127.0.0.1:5173/contact and wait for the contact form to render.
+        await page.goto("http://127.0.0.1:5173/contact")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Fill the 'Full Name', 'Email Address', 'Phone Number', 'Organization', and 'Message' fields with valid values.
-        # Message text area
-        elem = page.get_by_test_id('contact-message-input')
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("Hello, I would like more information about your services and partnership opportunities.")
+        # -> Open the site index page (Impact Health landing page) at http://127.0.0.1:5173/index.html and wait for the content to render.
+        await page.goto("http://127.0.0.1:5173/index.html")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Click the 'Send Message' button to submit the contact form.
-        # Send Message button
-        elem = page.get_by_test_id('contact-submit-btn')
-        await elem.click(timeout=10000)
+        # -> Open the contact page using the hash-based route ('#/contact') and wait for the page to render so the contact form can be located.
+        await page.goto("http://127.0.0.1:5173/#/contact")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
+        
+        # -> Switch to the 'Impact Health | Reduce Healthc' index page tab (the site landing page) and inspect its content for the contact form.
+        # Switch to tab 8C9D
+        page = context.pages[-1]  # switch to most recently active tab
+        
+        # -> Switch to the contact page tab titled 'Impact Health | Reduce Healthc' (the tab opened for http://127.0.0.1:5173/#/contact) and inspect whether the contact form is present.
+        # Switch to tab 4912
+        page = context.pages[-1]  # switch to most recently active tab
         
         # --> Assertions to verify final state
         
-        # --> Verify a success confirmation is visible
-        await page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[3]/div/div[1]/div/button").nth(0).scroll_into_view_if_needed()
-        # Assert: The success confirmation is visible via the 'Send another message' button.
-        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[3]/div/div[1]/div/button").nth(0)).to_be_visible(timeout=15000), "The success confirmation is visible via the 'Send another message' button."
+        # --> The browser reached the contact route (#/contact) but the contact flow did not render.
+        # Assert-outcome: failed
+        # Assert: Expected the test to navigate to the contact page (#/contact).
+        await expect(page).to_have_url(re.compile("\\#/contact"), timeout=15000), "Expected the test to navigate to the contact page (#/contact)."
+        
+        # --> A success confirmation was not visible because the contact form never rendered (page had no interactive elements).
+        # Assert-outcome: failed
+        # Assert: Expected a success confirmation (contact form / confirmation) to be visible on the contact page.
+        await expect(page.locator("xpath=//form").nth(0)).not_to_be_visible(timeout=15000), "Expected a success confirmation (contact form / confirmation) to be visible on the contact page."
+        
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The contact form could not be reached — the site renders a blank page and the contact flow cannot be executed in this session. Observations: - The page screenshot is blank and no contact form is visible. - The page reports 0 interactive elements and repeated DOM scans returned only a minimal body (2–3 elements). - Multiple navigation attempts were made (/, /index.html, /contact, an...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The contact form could not be reached \u2014 the site renders a blank page and the contact flow cannot be executed in this session. Observations: - The page screenshot is blank and no contact form is visible. - The page reports 0 interactive elements and repeated DOM scans returned only a minimal body (2\u20133 elements). - Multiple navigation attempts were made (/, /index.html, /contact, an..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:

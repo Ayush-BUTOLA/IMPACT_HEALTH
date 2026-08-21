@@ -40,34 +40,34 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'Blogs' link in the top navigation to open the blog listing page.
-        # Blogs link
-        elem = page.get_by_role('link', name='Blogs', exact=True)
+        # -> Navigate to the Blogs listing page by opening the path /blogs and check whether blog posts are displayed.
+        await page.goto("http://localhost:5173/blogs")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
+        
+        # -> Click the "Read Article" link for the "Essential Childhood Immunization & Nutrition Guide" post to open its detail page.
+        # Read Article link
+        elem = page.locator('xpath=/html/body/div/div/main/div[2]/div/div/div[3]/div/div[2]/a')
         await elem.click(timeout=10000)
         
-        # -> Scroll down the blog listing and verify that posts such as 'Complete Hemogram (CBC) Test: Purpose, Cost, and Conditions It Can Detect' are visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Open the 'Complete Hemogram (CBC) Test: Purpose, Cost, and Conditions It Can Detect' blog post from the listing.
-        # Disease and Diagnosis ★ Featured Complete... link
-        elem = page.locator('a[href="/blogs/complete-hemogram-cbc-test"]')
-        await elem.click(timeout=10000)
-        
-        # -> Click the 'Back to Articles' link to return to the blog listing.
-        # Back to Articles link
-        elem = page.get_by_role('link', name='Back to Articles', exact=True)
+        # -> Click the "Back to All Articles" link to return to the blog listing.
+        # Back to All Articles link
+        elem = page.get_by_role('link', name='Back to All Articles', exact=True)
         await elem.click(timeout=10000)
         
         # --> Assertions to verify final state
         
-        # --> Verify blog posts are displayed
-        # Assert: The featured blog post 'Complete Hemogram (CBC) Test' is visible in the listing.
-        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[3]/div/div[1]/a").nth(0)).to_contain_text("Complete Hemogram (CBC) Test", timeout=15000), "The featured blog post 'Complete Hemogram (CBC) Test' is visible in the listing."
-        # Assert: The blog post 'Understanding Diabetes Management' is visible in the listing.
-        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[3]/div/div[2]/a").nth(0)).to_contain_text("Understanding Diabetes Management", timeout=15000), "The blog post 'Understanding Diabetes Management' is visible in the listing."
-        current_url = await page.evaluate("() => window.location.href")
-        # Assert: page loaded with a URL (final outcome verified by the AI judge during the run)
-        assert current_url, 'Page should have loaded with a URL'
+        # --> The Blogs page shows the posts 'Essential Childhood Immunization & Nutrition Guide' and 'Understanding Cardiovascular Health in Modern Times'.
+        await page.locator("xpath=/html/body/div/div/main/div[2]/div/div/div[3]/div[1]/div[1]/div[2]/h3/a").nth(0).scroll_into_view_if_needed()
+        # Assert-outcome: passed
+        # Assert: The 'Essential Childhood Immunization & Nutrition Guide' post title is visible on the listing.
+        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/div/div[3]/div[1]/div[1]/div[2]/h3/a").nth(0)).to_be_visible(timeout=15000), "The 'Essential Childhood Immunization & Nutrition Guide' post title is visible on the listing."
+        await page.locator("xpath=/html/body/div/div/main/div[2]/div/div/div[3]/div[2]/div[1]/div[2]/h3/a").nth(0).scroll_into_view_if_needed()
+        # Assert-outcome: passed
+        # Assert: The 'Understanding Cardiovascular Health in Modern Times' post title is visible on the listing.
+        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/div/div[3]/div[2]/div[1]/div[2]/h3/a").nth(0)).to_be_visible(timeout=15000), "The 'Understanding Cardiovascular Health in Modern Times' post title is visible on the listing."
         await asyncio.sleep(5)
 
     finally:

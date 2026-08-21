@@ -40,49 +40,42 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'About' link in the top navigation to open the About page.
-        # About link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/div/div[2]/a')
-        await elem.click(timeout=10000)
+        # -> Open the About page by navigating to the '/about' URL and wait for it to load so the About content can be inspected.
+        await page.goto("http://localhost:5173/about")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Dismiss the Services dropdown (if present) then scroll the About page to reveal the 'team' and healthcare commitment content.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Dismiss the Services dropdown by clicking the 'Services' button in the header so the About page content is no longer blocked.
-        # Services button
-        elem = page.get_by_role('button', name='Services', exact=True)
-        await elem.click(timeout=10000)
-        
-        # -> Scroll the About page to reveal the 'Team' section and then locate the 'Team' and healthcare-related content on the page.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Click the 'Services' button to close the Services dropdown, then scroll the About page and search for 'Team' and 'healthcare' content to verify they are visible.
-        # Services button
-        elem = page.get_by_role('button', name='Services', exact=True)
-        await elem.click(timeout=10000)
-        
-        # -> Click the 'Services' button to close the Services dropdown, then scroll the About page and search for 'Team' and 'healthcare' content to verify they are visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll the About page to reveal the 'Team' section and verify the Team and healthcare-commitment content are visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll the About page to reveal the 'Team' section and verify the Team and healthcare commitment content are visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll to the bottom of the About page to reveal the 'Team' section and confirm the team information is visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll down the About page so the 'Founder & CEO' founder card (team) and the 'Our Impact & Scale' (healthcare) section are visible for verification.
-        await page.mouse.wheel(0, 300)
+        # -> Open the About page in a new browser tab and wait for the page to render so the 'Team' and 'Healthcare commitment' sections can be inspected.
+        # Open URL in new tab
+        page = await context.new_page()
+        await page.goto("http://localhost:5173/about")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
         # --> Assertions to verify final state
         
-        # --> Verify the team information and healthcare commitment content are displayed
-        # Assert: Team information showing 'Anshuman Sahoo Founder & CEO' is visible.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[6]/div/div/div/div[1]/div").nth(0)).to_contain_text("Anshuman Sahoo Founder & CEO", timeout=15000), "Team information showing 'Anshuman Sahoo Founder & CEO' is visible."
-        # Assert: Healthcare-related content ("Patient Care") is visible on the page.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[5]/div/div[2]/div[3]").nth(0)).to_contain_text("Patient Care", timeout=15000), "Healthcare-related content (\"Patient Care\") is visible on the page."
+        # --> The About page did not render the 'Team' section.
+        # Assert-outcome: failed
+        # Assert: Expected the 'Team' heading to be visible on the About page.
+        await expect(page.locator("xpath=//h2[normalize-space(.) = 'Team']").nth(0)).not_to_be_visible(timeout=15000), "Expected the 'Team' heading to be visible on the About page."
+        
+        # --> The About page did not render the 'Healthcare commitment' section.
+        # Assert-outcome: failed
+        # Assert: Expected the 'Healthcare commitment' heading to be visible on the About page.
+        await expect(page.locator("xpath=//h2[normalize-space(.) = 'Healthcare commitment']").nth(0)).not_to_be_visible(timeout=15000), "Expected the 'Healthcare commitment' heading to be visible on the About page."
+        
+        # --> The /about URL was reached but the page did not render any content.
+        # Assert-outcome: failed
+        # Assert: Expected the browser to be on a URL containing '/about'.
+        await expect(page).to_have_url(re.compile("/about"), timeout=15000), "Expected the browser to be on a URL containing '/about'."
+        
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The About page could not be inspected because it did not render; the test cannot proceed. Observations: - The /about page displays a blank white screen with no interactive elements. - Multiple navigation and wait attempts (navigate to /about, wait 5s, open /about in a new tab) did not cause the SPA or page content to render. - The expected 'Team' and 'Healthcare commitment' section...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The About page could not be inspected because it did not render; the test cannot proceed. Observations: - The /about page displays a blank white screen with no interactive elements. - Multiple navigation and wait attempts (navigate to /about, wait 5s, open /about in a new tab) did not cause the SPA or page content to render. - The expected 'Team' and 'Healthcare commitment' section..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:

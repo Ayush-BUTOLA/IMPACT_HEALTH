@@ -40,81 +40,30 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'About' link in the navbar to open the About page.
-        # About link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/div/div[2]/a')
-        await elem.click(timeout=10000)
-        
-        # -> Navigate to the homepage (visit the site root at http://localhost:5173/).
+        # -> Reload the homepage and wait for navigation links such as the 'About' link to appear.
         await page.goto("http://localhost:5173/")
         try:
             await page.wait_for_load_state("domcontentloaded", timeout=5000)
         except Exception:
             pass
         
-        # -> Click the 'About' link in the navbar to open the About page.
-        # About link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/div/div[2]/a')
-        await elem.click(timeout=10000)
-        
-        # -> Click the site logo (top-left logo) to return to the homepage
-        # link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/a')
-        await elem.click(timeout=10000)
-        
-        # -> Click the top-left site logo to return to the homepage and verify the homepage is displayed.
-        # link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/a')
-        await elem.click(timeout=10000)
-        
-        # -> Click the top-left site logo to return to the homepage and verify the homepage is displayed.
-        # link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/a')
-        await elem.click(timeout=10000)
-        
-        # -> Click the site logo (top-left) to return to the homepage and verify the homepage is displayed
-        # link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/a')
-        await elem.click(timeout=10000)
-        
-        # -> Click the site logo (top-left) to return to the homepage and verify the homepage is displayed again.
-        # link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/a')
-        await elem.click(timeout=10000)
-        
-        # -> Click the top-left site logo to return to the homepage and verify the homepage is displayed.
-        # link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/a')
-        await elem.click(timeout=10000)
-        
-        # -> Click the top-left site logo (the logo in the navbar) to return to the homepage and verify the homepage hero content is displayed.
-        # link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/a')
-        await elem.click(timeout=10000)
-        
-        # -> Click the 'About' link in the navbar to open the About page.
-        # About link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/div/div[2]/a')
-        await elem.click(timeout=10000)
-        
-        # -> Click the site logo (top-left logo in the navbar) to return to the homepage and verify the homepage is displayed.
-        # link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/a')
-        await elem.click(timeout=10000)
+        # -> Open the 'About' page (navigate to the site's About route) so the About content can be verified.
+        await page.goto("http://localhost:5173/about")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
         # --> Assertions to verify final state
         
-        # --> Verify the homepage is displayed again
-        await page.locator("xpath=/html/body/div[1]/div/nav/div/a").nth(0).scroll_into_view_if_needed()
-        # Assert: The top-left site logo is visible, confirming the site returned to the homepage.
-        await expect(page.locator("xpath=/html/body/div[1]/div/nav/div/a").nth(0)).to_be_visible(timeout=15000), "The top-left site logo is visible, confirming the site returned to the homepage."
-        # Assert: The navigation 'Home' link is present, indicating the homepage is displayed.
-        await expect(page.locator("xpath=/html/body/div[1]/div/nav/div/div[1]/div[1]/a").nth(0)).to_have_text("Home", timeout=15000), "The navigation 'Home' link is present, indicating the homepage is displayed."
-        # Assert: The homepage hero metric '40+' is shown, verifying the homepage content is visible.
-        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[3]/div[2]/div[1]").nth(0)).to_have_text("40+", timeout=15000), "The homepage hero metric '40+' is shown, verifying the homepage content is visible."
-        current_url = await page.evaluate("() => window.location.href")
-        # Assert: page loaded with a URL (final outcome verified by the AI judge during the run)
-        assert current_url, 'Page should have loaded with a URL'
+        # --> Could not verify the About page content or return to the homepage because the site UI did not render (blank viewport).
+        # Assert-outcome: failed
+        # Assert: Expected the URL to contain '/about' to confirm navigation to the About page, but the page content did not render.
+        await expect(page).to_have_url(re.compile("/about"), timeout=15000), "Expected the URL to contain '/about' to confirm navigation to the About page, but the page content did not render."
+        
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The About-page navigation test could not be run because the site UI did not render in the browser. Observations: - The app stayed blank after multiple attempts: the page shows a white/empty viewport and the screenshot is blank. - The page reports 0 interactive elements on both the homepage and /about, so navigation links and content are not available. - Navigating directly to /abou...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The About-page navigation test could not be run because the site UI did not render in the browser. Observations: - The app stayed blank after multiple attempts: the page shows a white/empty viewport and the screenshot is blank. - The page reports 0 interactive elements on both the homepage and /about, so navigation links and content are not available. - Navigating directly to /abou..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:

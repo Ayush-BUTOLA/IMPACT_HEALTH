@@ -40,24 +40,36 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'Blogs' link in the top navigation to open the blog listing page.
-        # Blogs link
-        elem = page.get_by_role('link', name='Blogs', exact=True)
-        await elem.click(timeout=10000)
+        # -> Open the public 'Blogs' page by navigating to /blogs so the blog search field and results can be inspected.
+        await page.goto("http://localhost:5173/blogs")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Type 'diabetes' into the 'Search articles by title or content...' field and wait for the blog results to update.
-        # Search articles by title or content... text field
-        elem = page.get_by_placeholder('Search articles by title or content...', exact=True)
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("diabetes")
+        # -> Open the Blogs page using the hash route (navigate to '/#/blogs') so the blog search field and results can be inspected.
+        await page.goto("http://localhost:5173/#/blogs")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
+        
+        # -> Switch to the 'Impact Health | Reduce Healthc' tab for /blogs and wait to see if the blog UI (search field and results) appears.
+        # Switch to tab F291
+        page = context.pages[-1]  # switch to most recently active tab
+        
+        # -> Switch to the tab showing 'http://localhost:5173/#/blogs' (the /#/blogs tab) and wait to see if the blog UI (search field and results) appears.
+        # Switch to tab 8D1F
+        page = context.pages[-1]  # switch to most recently active tab
         
         # --> Assertions to verify final state
+        # Assert-outcome: failed
+        # Assert: reproduce the recorded failure (no generated assertion fails on the final page)
+        assert False, "Test failed during execution: see the run log"
         
-        # --> Verify the filtered blog results are displayed
-        # Assert: The blog search input contains 'diabetes'.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[2]/div/div[2]/input").nth(0)).to_have_value("diabetes", timeout=15000), "The blog search input contains 'diabetes'."
-        # Assert: A blog result matching the diabetes query is displayed.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[3]/div/div/a").nth(0)).to_contain_text("Understanding Diabetes Management", timeout=15000), "A blog result matching the diabetes query is displayed."
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The blog search feature could not be tested because the public Blogs page did not render. Observations: - The page at http://localhost:5173/blogs (and http://localhost:5173/#/blogs) is blank with no interactive elements visible. - Two tabs were opened and both routes rendered as empty pages (confirmed by screenshot). - No search input or blog results list was present on the page, s...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The blog search feature could not be tested because the public Blogs page did not render. Observations: - The page at http://localhost:5173/blogs (and http://localhost:5173/#/blogs) is blank with no interactive elements visible. - Two tabs were opened and both routes rendered as empty pages (confirmed by screenshot). - No search input or blog results list was present on the page, s..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:

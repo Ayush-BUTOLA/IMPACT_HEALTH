@@ -40,52 +40,44 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'Patient Support Programs' navigation link to open the Patient Support Programs page.
-        # Patient Support Programs link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/div/div[4]/a')
-        await elem.click(timeout=10000)
+        # -> Open the 'Patient Support Programs' page (navigate to /patient-support-programs) so its program details and enrollment CTA can be inspected.
+        await page.goto("http://localhost:5173/patient-support-programs")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Scroll the Patient Support Programs page and locate the 'Eligibility', 'Benefits', and the 'Schedule Consultation' enrollment call-to-action text on the page.
-        await page.mouse.wheel(0, 300)
+        # -> Reload the 'Patient Support Programs' page and wait for it to render so the program content and enrollment CTA can be inspected.
+        await page.goto("http://localhost:5173/patient-support-programs")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Scroll the Patient Support Programs page to find the 'Eligibility' and 'Benefits' sections and confirm the 'Schedule Consultation' enrollment call-to-action is visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll down the Patient Support Programs page to reveal the 'Eligibility' and 'Benefits' sections and confirm the 'Schedule Consultation' call-to-action is visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll up to reveal the page hero and verify the 'Schedule Consultation' enrollment call-to-action is visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll down the 'Patient Support Programs' page to reveal the 'Eligibility' and 'Benefits' sections and confirm the 'Schedule Consultation' call-to-action is visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll down the 'Patient Support Programs' page to reveal the 'Eligibility' and 'Benefits' sections and confirm the 'Schedule Consultation' call-to-action is visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Search the page for the text 'Eligibility', 'Benefits', and 'Schedule Consultation' to confirm those sections exist, then scroll to reveal them.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll up to reveal the page hero and confirm the 'Schedule Consultation' call-to-action is visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Reveal the 'Eligibility' and 'Benefits' sections and confirm the 'Schedule Consultation' enrollment call-to-action is visible.
-        await page.mouse.wheel(0, 300)
+        # -> Reload the 'Patient Support Programs' page and wait for the site to render so the program content and enrollment CTA can be inspected.
+        await page.goto("http://localhost:5173/patient-support-programs")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
         # --> Assertions to verify final state
         
-        # --> Verify the program details are displayed
-        await page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[4]/div/div[2]/div/div/span").nth(0).scroll_into_view_if_needed()
-        # Assert: The program description text is visible on the Patient Support Programs page.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[4]/div/div[2]/div/div/span").nth(0)).to_be_visible(timeout=15000), "The program description text is visible on the Patient Support Programs page."
-        await page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[4]/div/div[1]/div[2]/a[2]").nth(0).scroll_into_view_if_needed()
-        # Assert: The 'Explore Delivery Model' link is visible, indicating program details are displayed.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[4]/div/div[1]/div[2]/a[2]").nth(0)).to_be_visible(timeout=15000), "The 'Explore Delivery Model' link is visible, indicating program details are displayed."
+        # --> Program details could not be verified because the page did not render and no program content was visible.
+        await page.locator("xpath=//main").nth(0).scroll_into_view_if_needed()
+        # Assert-outcome: failed
+        # Assert: Expected the main program content (program details) to be visible so the visitor can review program information.
+        await expect(page.locator("xpath=//main").nth(0)).to_be_visible(timeout=15000), "Expected the main program content (program details) to be visible so the visitor can review program information."
         
-        # --> Verify the enrollment call to action is visible
-        await page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[4]/div/div[1]/div[2]/a[1]").nth(0).scroll_into_view_if_needed()
-        # Assert: The 'Schedule Consultation' enrollment call-to-action is visible.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[1]/div[4]/div/div[1]/div[2]/a[1]").nth(0)).to_be_visible(timeout=15000), "The 'Schedule Consultation' enrollment call-to-action is visible."
+        # --> The enrollment call to action could not be found because the page did not render and no interactive elements were available.
+        await page.locator("xpath=//button").nth(0).scroll_into_view_if_needed()
+        # Assert-outcome: failed
+        # Assert: Expected an enrollment call-to-action (button) to be visible so a visitor can enroll.
+        await expect(page.locator("xpath=//button").nth(0)).to_be_visible(timeout=15000), "Expected an enrollment call-to-action (button) to be visible so a visitor can enroll."
+        
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The Patient Support Programs page could not be reached — the SPA did not render and no interactive elements were available, so the verification steps cannot be executed. Observations: - The page screenshot is blank (white) with no visible content. - Browser reports '0 interactive elements' on /patient-support-programs after multiple reloads and waits. - Three attempts (navigate + w...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The Patient Support Programs page could not be reached \u2014 the SPA did not render and no interactive elements were available, so the verification steps cannot be executed. Observations: - The page screenshot is blank (white) with no visible content. - Browser reports '0 interactive elements' on /patient-support-programs after multiple reloads and waits. - Three attempts (navigate + w..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:

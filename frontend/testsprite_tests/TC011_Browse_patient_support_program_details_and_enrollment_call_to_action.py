@@ -40,56 +40,44 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'Patient Support Programs' link in the top navigation to open the patient support programs page.
-        # Patient Support Programs link
-        elem = page.locator('xpath=/html/body/div/div/nav/div/div/div[4]/a')
-        await elem.click(timeout=10000)
+        # -> Open the 'Patient Support Programs' page by navigating to /patient-support-programs.
+        await page.goto("http://localhost:5173/patient-support-programs")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Scroll down the 'Patient Support Programs' page to reveal eligibility and benefits content.
-        await page.mouse.wheel(0, 300)
+        # -> Open the Patient Support Programs page in a new browser tab and wait for content to render so the eligibility/benefits and enrollment CTA can be inspected.
+        # Open URL in new tab
+        page = await context.new_page()
+        await page.goto("http://localhost:5173/patient-support-programs")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Scroll down the 'Patient Support Programs' page to reveal eligibility and benefits content.
-        # Schedule Consultation link
-        elem = page.get_by_text('Explore Delivery Model', exact=True).locator("xpath=ancestor-or-self::*[.//a][1]").get_by_role('link', name='Schedule Consultation', exact=True)
-        await elem.click(timeout=10000)
-        
-        # -> Switch to the 'Patient Support Programs' tab and then scroll the page to reveal and verify the 'Eligibility' and 'Benefits' sections.
-        # Switch to tab FA21
-        page = context.pages[-1]  # switch to most recently active tab
-        
-        # -> Scroll the Patient Support Programs page and verify the 'Eligibility' and 'Benefits' sections are visible, then click the 'Schedule Consultation' enrollment call-to-action.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll the Patient Support Programs page and verify the 'Eligibility' and 'Benefits' sections are visible, then click the 'Schedule Consultation' enrollment call-to-action.
-        # Schedule Consultation link
-        elem = page.get_by_text('Explore Delivery Model', exact=True).locator("xpath=ancestor-or-self::*[.//a][1]").get_by_role('link', name='Schedule Consultation', exact=True)
-        await elem.click(timeout=10000)
-        
-        # -> Verify the 'Eligibility' and 'Benefits' sections are visible on the Patient Support Programs page, then open the enrollment target page (Impact Health) to confirm the enrollment CTA reached its destination.
-        # Switch to tab 4A8F
-        page = context.pages[-1]  # switch to most recently active tab
-        
-        # -> Switch to the 'Patient Support Programs' tab and then verify the page is visible and settled.
-        # Switch to tab FA21
-        page = context.pages[-1]  # switch to most recently active tab
-        
-        # -> Scroll the 'Patient Support Programs' page and verify the 'Eligibility' and 'Benefits' sections are visible.
-        await page.mouse.wheel(0, 300)
-        
-        # -> Scroll through the Patient Support Programs page and verify the 'Eligibility' and 'Benefits' sections are visible.
-        await page.mouse.wheel(0, 300)
+        # -> Reload the 'Patient Support Programs' page and wait for content to render so eligibility, benefits, and the enrollment CTA can be inspected.
+        await page.goto("http://localhost:5173/patient-support-programs")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
         # --> Assertions to verify final state
         
-        # --> Verify the eligibility and benefits content is displayed
-        # Assert: The Eligibility section is visible on the Patient Support Programs page.
-        await expect(page.locator("xpath=/html/body/div").nth(0)).to_contain_text("Eligibility", timeout=15000), "The Eligibility section is visible on the Patient Support Programs page."
-        # Assert: The Benefits section is visible on the Patient Support Programs page.
-        await expect(page.locator("xpath=/html/body/div").nth(0)).to_contain_text("Benefits", timeout=15000), "The Benefits section is visible on the Patient Support Programs page."
+        # --> Eligibility and benefits content was not displayed because the Patient Support Programs page did not render.
+        # Assert-outcome: failed
+        # Assert: Expected eligibility and benefits content to be visible on /patient-support-programs.
+        await expect(page).to_have_url(re.compile("/patient\\-support\\-programs"), timeout=15000), "Expected eligibility and benefits content to be visible on /patient-support-programs."
         
-        # --> Verify the enrollment call to action is reachable
-        # Assert: The enrollment call-to-action points to the Impact Health enrollment URL.
-        await expect(page.locator("xpath=/html/body/div/div/nav/div/div[2]/a[1]").nth(0)).to_have_attribute("href", "https://www.threephih.in/threephih/index.html", timeout=15000), "The enrollment call-to-action points to the Impact Health enrollment URL."
+        # --> The enrollment call to action was not reachable because the Patient Support Programs page did not render.
+        # Assert-outcome: failed
+        # Assert: Expected the enrollment call to action to be reachable on /patient-support-programs.
+        await expect(page).to_have_url(re.compile("/patient\\-support\\-programs"), timeout=15000), "Expected the enrollment call to action to be reachable on /patient-support-programs."
+        
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The Patient Support Programs page could not be reached — the SPA did not render any content, preventing verification of eligibility, benefits, and the enrollment call to action. Observations: - The page displays a blank white screen with no interactive elements visible. - Multiple navigation attempts to /patient-support-programs (including opening the page in a new tab) plus waits ...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The Patient Support Programs page could not be reached \u2014 the SPA did not render any content, preventing verification of eligibility, benefits, and the enrollment call to action. Observations: - The page displays a blank white screen with no interactive elements visible. - Multiple navigation attempts to /patient-support-programs (including opening the page in a new tab) plus waits ..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:

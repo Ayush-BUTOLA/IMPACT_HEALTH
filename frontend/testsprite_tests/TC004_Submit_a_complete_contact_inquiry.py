@@ -40,54 +40,46 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Click the 'Contact' link in the header to open the Contact page.
-        # Contact link
-        elem = page.get_by_role('link', name='Contact', exact=True)
-        await elem.click(timeout=10000)
+        # -> Open the 'Contact' page by navigating to /contact and check whether the contact form appears.
+        await page.goto("http://localhost:5173/contact")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Fill the contact form fields: Full Name, Email Address, Phone Number, and Organization (leave Message for the next step).
-        # Full Name text field
-        elem = page.get_by_test_id('contact-name-input')
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("Test User")
+        # -> Reload the Contact page and wait for the contact form to render so the form fields become visible.
+        await page.goto("http://localhost:5173/contact")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Fill the contact form fields: Full Name, Email Address, Phone Number, and Organization (leave Message for the next step).
-        # Email Address email field
-        elem = page.get_by_test_id('contact-email-input')
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("test.user@example.com")
+        # -> Open the 'Contact' page (http://localhost:5173/contact) in a new tab and wait for the contact form or any interactive elements to appear.
+        # Open URL in new tab
+        page = await context.new_page()
+        await page.goto("http://localhost:5173/contact")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
-        # -> Fill the contact form fields: Full Name, Email Address, Phone Number, and Organization (leave Message for the next step).
-        # Phone Number text field
-        elem = page.get_by_test_id('contact-phone-input')
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("+919876543210")
-        
-        # -> Fill the contact form fields: Full Name, Email Address, Phone Number, and Organization (leave Message for the next step).
-        # Organization text field
-        elem = page.get_by_test_id('contact-org-input')
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("Acme Health")
-        
-        # -> Fill the 'Message' field with a valid message and click the 'Send Message' button
-        # Message text area
-        elem = page.get_by_test_id('contact-message-input')
-        await elem.wait_for(state="visible", timeout=10000)
-        await elem.fill("Hello \u2014 I'm interested in learning more about your patient support programs and possible partnership opportunities. Please contact me with next steps.")
-        
-        # -> Fill the 'Message' field with a valid message and click the 'Send Message' button
-        # Send Message button
-        elem = page.get_by_test_id('contact-submit-btn')
-        await elem.click(timeout=10000)
+        # -> Reload the Contact page and wait for the contact form to render (navigate to the Contact page using 127.0.0.1 and observe whether the form appears).
+        await page.goto("http://127.0.0.1:5173/contact")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
         # --> Assertions to verify final state
         
-        # --> Verify a success confirmation is visible
-        # Assert: The confirmation 'Send another message' button is visible.
-        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[3]/div/div[1]/div/button").nth(0)).to_have_text("Send another message", timeout=15000), "The confirmation 'Send another message' button is visible."
-        await page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[3]/div/div[1]/div/div[1]/svg").nth(0).scroll_into_view_if_needed()
-        # Assert: A success confirmation icon is visible.
-        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[3]/div/div[1]/div/div[1]/svg").nth(0)).to_be_visible(timeout=15000), "A success confirmation icon is visible."
+        # --> Could not verify a success confirmation because the contact page rendered blank and the contact form did not appear.
+        # Assert-outcome: failed
+        # Assert: Expected URL to contain /contact so the contact page would be loaded and the confirmation could be shown.
+        await expect(page).to_have_url(re.compile("/contact"), timeout=15000), "Expected URL to contain /contact so the contact page would be loaded and the confirmation could be shown."
+        
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The contact form could not be reached because the single-page app did not render in the browser. Observations: - The page at http://127.0.0.1:5173/contact rendered blank with no interactive elements visible. - Multiple navigation attempts and a reload (localhost, /contact, new tab, and 127.0.0.1) all showed an empty page. - The screenshot is a blank white page and browser_state rep...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The contact form could not be reached because the single-page app did not render in the browser. Observations: - The page at http://127.0.0.1:5173/contact rendered blank with no interactive elements visible. - Multiple navigation attempts and a reload (localhost, /contact, new tab, and 127.0.0.1) all showed an empty page. - The screenshot is a blank white page and browser_state rep..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:

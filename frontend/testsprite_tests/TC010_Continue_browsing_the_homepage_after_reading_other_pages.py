@@ -40,27 +40,27 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Open the 'About' page (navigate to the About page).
+        # -> Navigate to the '/about' page (open the About page).
         await page.goto("http://localhost:5173/about")
         try:
             await page.wait_for_load_state("domcontentloaded", timeout=5000)
         except Exception:
             pass
         
-        # -> Click the 'IMPACT HEALTH' site logo in the header to return to the homepage.
+        # -> Click the site logo (the 'IMPACT HEALTH' logo at the top-left of the page) to return to the homepage.
         # link
         elem = page.locator('xpath=/html/body/div/div/nav/div/a')
         await elem.click(timeout=10000)
         
         # --> Assertions to verify final state
         
-        # --> Verify the homepage content is displayed
-        await page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[1]/a[2]").nth(0).scroll_into_view_if_needed()
-        # Assert: The 'Talk to a doctor' link in the homepage hero is visible.
-        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[1]/a[2]").nth(0)).to_be_visible(timeout=15000), "The 'Talk to a doctor' link in the homepage hero is visible."
-        await page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[2]/div/div[2]/div[4]/a").nth(0).scroll_into_view_if_needed()
-        # Assert: The 'Book Consultation Now' call-to-action is visible on the homepage.
-        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[2]/div/div[2]/div[4]/a").nth(0)).to_be_visible(timeout=15000), "The 'Book Consultation Now' call-to-action is visible on the homepage."
+        # --> Clicking the site logo returns the visitor to the homepage and homepage content is visible.
+        # Assert-outcome: passed
+        # Assert: The browser URL contains the site root, confirming the homepage was loaded.
+        await expect(page).to_have_url(re.compile("http://localhost:5173/"), timeout=15000), "The browser URL contains the site root, confirming the homepage was loaded."
+        # Assert-outcome: passed
+        # Assert: The homepage 'Check Prices' link is visible with the expected text.
+        await expect(page.locator("xpath=/html/body/div[1]/div/main/div[2]/div/section[1]/div[3]/div[1]/div[2]/div[1]/a[1]").nth(0)).to_have_text("Check Prices", timeout=15000), "The homepage 'Check Prices' link is visible with the expected text."
         await asyncio.sleep(5)
 
     finally:

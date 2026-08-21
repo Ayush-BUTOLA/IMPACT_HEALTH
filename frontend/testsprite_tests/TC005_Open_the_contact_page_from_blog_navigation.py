@@ -40,33 +40,28 @@ async def run_test():
         except Exception:
             pass
         
-        # -> Open the 'Blogs' page by navigating to /blogs.
+        # -> Open the 'Blogs' page (go to /blogs) and look for a 'Contact' navigation link to reach the contact form page.
         await page.goto("http://localhost:5173/blogs")
         try:
             await page.wait_for_load_state("domcontentloaded", timeout=5000)
         except Exception:
             pass
         
-        # -> Click the 'Contact' link in the top navigation to open the Contact page.
-        # Contact link
-        elem = page.get_by_role('link', name='Contact', exact=True)
-        await elem.click(timeout=10000)
+        # -> Open the Contact page ('/contact') and check whether the contact form is displayed.
+        await page.goto("http://localhost:5173/contact")
+        try:
+            await page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
         
         # --> Assertions to verify final state
+        # Assert-outcome: failed
+        # Assert: reproduce the recorded failure (no generated assertion fails on the final page)
+        assert False, "Test failed during execution: see the run log"
         
-        # --> Verify the contact form is displayed
-        await page.locator("xpath=/html/body/div/div/main/div[2]/div/section[3]/div/div[1]/form/div[1]/input[1]").nth(0).scroll_into_view_if_needed()
-        # Assert: The Full Name input is visible in the contact form.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[3]/div/div[1]/form/div[1]/input[1]").nth(0)).to_be_visible(timeout=15000), "The Full Name input is visible in the contact form."
-        await page.locator("xpath=/html/body/div/div/main/div[2]/div/section[3]/div/div[1]/form/div[1]/input[2]").nth(0).scroll_into_view_if_needed()
-        # Assert: The Email Address input is visible in the contact form.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[3]/div/div[1]/form/div[1]/input[2]").nth(0)).to_be_visible(timeout=15000), "The Email Address input is visible in the contact form."
-        await page.locator("xpath=/html/body/div/div/main/div[2]/div/section[3]/div/div[1]/form/textarea").nth(0).scroll_into_view_if_needed()
-        # Assert: The Message textarea is visible in the contact form.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[3]/div/div[1]/form/textarea").nth(0)).to_be_visible(timeout=15000), "The Message textarea is visible in the contact form."
-        await page.locator("xpath=/html/body/div/div/main/div[2]/div/section[3]/div/div[1]/form/button").nth(0).scroll_into_view_if_needed()
-        # Assert: The Send Message button is visible on the contact form.
-        await expect(page.locator("xpath=/html/body/div/div/main/div[2]/div/section[3]/div/div[1]/form/button").nth(0)).to_be_visible(timeout=15000), "The Send Message button is visible on the contact form."
+        # --> Test blocked by environment/access constraints during agent run
+        # Reason: TEST BLOCKED The test could not be run — the site's SPA content did not render, so navigation and the contact form could not be verified. Observations: - The root page (http://localhost:5173) rendered with no interactive elements. - The Blogs page (http://localhost:5173/blogs) rendered with no interactive elements. - The Contact page (http://localhost:5173/contact) rendered with no interactive ...
+        raise AssertionError("Test blocked during agent run: " + "TEST BLOCKED The test could not be run \u2014 the site's SPA content did not render, so navigation and the contact form could not be verified. Observations: - The root page (http://localhost:5173) rendered with no interactive elements. - The Blogs page (http://localhost:5173/blogs) rendered with no interactive elements. - The Contact page (http://localhost:5173/contact) rendered with no interactive ..." + " — the exported script cannot reproduce a PASS in this environment.")
         await asyncio.sleep(5)
 
     finally:
