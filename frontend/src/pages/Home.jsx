@@ -156,12 +156,6 @@ const faqs = [
 ];
 
 export default function Home() {
-  const solutionsRef = useScrollAnimation('staggerUp', { staggerAmount: 0.1 });
-  const statsRef = useScrollAnimation('staggerUp', { staggerAmount: 0.08 });
-  const servicesHeaderRef = useScrollAnimation('fadeUp');
-  const teamHeaderRef = useScrollAnimation('fadeUp');
-  const ctaRef = useScrollAnimation('scaleIn');
-
   return (
     <div id="home" className="w-full bg-white relative overflow-hidden">
 
@@ -349,7 +343,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
 
           <motion.div
-            ref={servicesHeaderRef}
             className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 text-left"
             initial="hidden"
             whileInView="visible"
