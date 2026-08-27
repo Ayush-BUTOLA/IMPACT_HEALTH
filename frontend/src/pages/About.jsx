@@ -16,7 +16,6 @@ import cert2 from '../assets/2.png';
 import yourStoryLogo from '../assets/5bee83f7a69edda26bc5b891_YourStory_Logo-New-01-1024x346.png';
 import missionGirlImg from '../assets/mission_healthcare_impact.jpg';
 import Aurora from '../components/backgrounds/Aurora';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const fadeInUp = {
   hidden: { opacity: 1, y: 0 },
@@ -35,8 +34,6 @@ export default function About() {
     // Smooth scroll to top on mount
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
-
-  const valuesRef = useScrollAnimation('staggerUp', { staggerAmount: 0.12 });
 
   const coreValues = [
     {

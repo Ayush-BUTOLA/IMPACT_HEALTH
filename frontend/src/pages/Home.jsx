@@ -6,7 +6,6 @@ import ShinyText from '../components/ShinyText';
 import HeroSlideshow from '../components/HeroSlideshow';
 import Aurora from '../components/backgrounds/Aurora';
 import DotGrid from '../components/backgrounds/DotGrid';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 import carouselDoctor from '../assets/carousel_doctor_stethoscope.jpg';
 import carouselBloodTest from '../assets/carousel_blood_test_home.jpg';
@@ -670,7 +669,6 @@ export default function Home() {
       <section id="contact" className="py-20 lg:py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <motion.div
-            ref={ctaRef}
             className="relative rounded-[32px] overflow-hidden p-8 md:p-12 lg:p-16 shadow-ambient"
             style={{ backgroundColor: '#EDF3FF' }}
           >
