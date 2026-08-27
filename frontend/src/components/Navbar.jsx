@@ -417,13 +417,13 @@ function ClientNavbar() {
   };
 
   return (
-    <nav ref={navRef} className="sticky top-0 z-50 w-full h-[72px] bg-white/95 backdrop-blur-md border-b border-[#e5e7eb] transition-all duration-200 shadow-sm">
+    <nav ref={navRef} className="sticky top-0 z-50 w-full h-20 bg-white/95 backdrop-blur-sm border-b border-[#e5e7eb] transition-all duration-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-full flex items-center justify-between">
         <a href="#home" onClick={(e) => handleNavClick(e, { id: 'home' })} className="flex items-center gap-2.5 group">
           <img
             src={logoImg}
             alt="Impact Health"
-            className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+            className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             onError={(e) => { e.target.style.display = 'none'; }}
           />
         </a>
