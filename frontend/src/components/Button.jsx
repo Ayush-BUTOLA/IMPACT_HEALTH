@@ -6,13 +6,13 @@ export default function Button({
   type = 'button',
   ...props
 }) {
-  const baseStyles = 'inline-flex items-center justify-center font-sans font-semibold text-sm transition-all duration-150 rounded-lg cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary select-none';
+  const baseStyles = 'inline-flex items-center justify-center font-sans font-semibold text-sm transition-all duration-200 rounded-xl cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-violet select-none whitespace-nowrap active:scale-[0.98]';
 
   const variants = {
-    primary: 'bg-primary text-on-primary hover:opacity-90 active:opacity-95',
-    secondary: 'bg-white text-primary border border-border-subtle hover:bg-[#ECECFE]/30 active:bg-[#ECECFE]/50',
-    ghost: 'bg-transparent text-primary hover:bg-[#ECECFE]/30',
-    accent: 'bg-surface-tint text-white hover:opacity-90',
+    primary: 'bg-navy text-white hover:bg-navy-deep shadow-sm',
+    secondary: 'bg-white text-navy border border-[#e6e7f2] hover:bg-slate-50 shadow-sm',
+    ghost: 'bg-transparent text-navy hover:bg-violet-soft/50',
+    accent: 'bg-violet text-white hover:bg-violet/90 shadow-sm',
   };
 
   return (

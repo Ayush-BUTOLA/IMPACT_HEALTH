@@ -138,7 +138,7 @@ export default function HeroSlideshow() {
 
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative overflow-hidden min-h-[calc(100dvh-72px)] flex items-center"
       onMouseEnter={() => (paused.current = true)}
       onMouseLeave={() => (paused.current = false)}
     >
