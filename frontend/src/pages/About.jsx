@@ -57,7 +57,7 @@ export default function About() {
     <div id="about-page" className="w-full bg-white relative overflow-hidden">
       
       {/* ═══════════════════════════════════════════
-          HERO BANNER — with Aurora Background
+          HERO BANNER with Aurora Background
        ═══════════════════════════════════════════ */}
       <section className="relative h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
         {/* Aurora background */}

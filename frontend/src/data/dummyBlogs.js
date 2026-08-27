@@ -80,7 +80,7 @@ export const dummyBlogs = [
     shortDescription: "Explaining how continuous glucose monitoring (CGM) is reshaping type 2 diabetes management and how to interpret ambulatory glucose profiles.",
     content: `
       <h2>The Shift in Glycemic Management</h2>
-      <p>For decades, HbA1c has been the gold standard for assessing long-term glycemic control. However, HbA1c is a mean value that hides critical fluctuations—such as dangerous nocturnal hypoglycemia and postprandial glycemic spikes. Continuous Glucose Monitoring (CGM) changes this by providing real-time data and trends.</p>
+      <p>For decades, HbA1c has been the gold standard for assessing long-term glycemic control. However, HbA1c is a mean value that hides critical fluctuations, such as dangerous nocturnal hypoglycemia and postprandial glycemic spikes. Continuous Glucose Monitoring (CGM) changes this by providing real-time data and trends.</p>
       
       <h2>Understanding Time-in-Range (TIR)</h2>
       <p>The primary metric of CGM interpretation is Time-in-Range. For most non-pregnant adults with type 2 diabetes, the clinical targets are:</p>

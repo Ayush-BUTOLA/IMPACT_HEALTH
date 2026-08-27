@@ -84,7 +84,7 @@ export default function Footer() {
             </p>
             <div className="flex items-start gap-2 text-[12.5px] text-white/50 font-sans">
               <MapPin className="w-4 h-4 mt-0.5 shrink-0" strokeWidth={1.75} />
-              <span>473/B1/P, Kokila Lane-4, Pokhariput, Bhubaneswar — 751020</span>
+              <span>473/B1/P, Kokila Lane-4, Pokhariput, Bhubaneswar, 751020</span>
             </div>
           </div>
 

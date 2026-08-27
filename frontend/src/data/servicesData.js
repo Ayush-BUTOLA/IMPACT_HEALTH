@@ -391,7 +391,7 @@ export const servicesData = {
         { step: "04", title: "Follow-Up & Referrals", desc: "Connect parents of flagged children with subspecialist consultation support.", icon: "PhoneCall" }
       ],
       faqs: [
-        { question: "How long does screening take for a single student?", answer: "Each student navigates through the pediatric, vision, dental, and vitals stations within 15–20 minutes, minimizing academic disruption." },
+        { question: "How long does screening take for a single student?", answer: "Each student navigates through the pediatric, vision, dental, and vitals stations within 15-20 minutes, minimizing academic disruption." },
         { question: "How do parents access the report?", answer: "Parents receive a secure SMS/Email link leading to a private health card containing all parameters, visual graphs, and specialist comments." },
         { question: "What happens if a significant health concern is discovered?", answer: "Our pediatrician contacts the school's head coordinator immediately to pass a confidential message and recommendation directly to the child's parents." },
         { question: "Is the data stored securely?", answer: "Yes, all health data is encrypted end-to-end and stored in compliance with Indian healthcare regulations and international privacy laws." }
@@ -887,7 +887,7 @@ export const servicesData = {
         },
         {
           title: "Data Security & Privacy",
-          description: "Strict compliance with data protection standards—employers receive fitness outcomes while candidate medical privacy remains safeguarded.",
+          description: "Strict compliance with data protection standards, employers receive fitness outcomes while candidate medical privacy remains safeguarded.",
           icon: "Lock",
           image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop&q=80"
         }
@@ -1130,7 +1130,7 @@ export const servicesData = {
         { text: "Up to 60% Cost Reduction", icon: "TrendingDown" },
         { text: "24/7 Dedicated Care Team", icon: "PhoneCall" }
       ],
-      overviewText: "Modern workplaces demand more than basic insurance—they require continuous, accessible care. Impact Health seamlessly combines health technology, on-field logistics, and dedicated medical support across 200+ Indian cities to keep your team healthy, engaged, and productive.",
+      overviewText: "Modern workplaces demand more than basic insurance, requiring continuous, accessible care. Impact Health seamlessly combines health technology, on-field logistics, and dedicated medical support across 200+ Indian cities to keep your team healthy, engaged, and productive.",
       whyMatters: {
         title: "Key Metrics & Corporate Value Proposition",
         description: "Lower out-of-pocket medical expenses, reduce emergency claims, and provide round-the-clock access to dedicated care managers and medical professionals for your entire workforce.",

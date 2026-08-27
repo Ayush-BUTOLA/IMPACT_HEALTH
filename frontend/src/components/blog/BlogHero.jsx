@@ -8,7 +8,7 @@ import { Activity, ShieldCheck, HeartHandshake, BookOpen, ClipboardList } from '
 export default function BlogHero() {
   return (
     <section className="relative bg-[#ECECFE]/40 overflow-hidden py-20 lg:py-28 border-b border-[#DDE0F5]/50">
-      {/* Decorative background elements — matches homepage pattern */}
+      {/* Decorative background elements matches homepage pattern */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-container/5 rounded-full filter blur-3xl opacity-60"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-surface-tint/5 rounded-full filter blur-3xl opacity-60"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/[0.02] rounded-full filter blur-3xl"></div>
@@ -21,7 +21,7 @@ export default function BlogHero() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          {/* Badge — same pattern as homepage hero badge */}
+          {/* Badge same pattern as homepage hero badge */}
           <div
             className="inline-flex items-center gap-2 bg-[#107C10]/10 border border-[#107C10]/20 text-[#107C10] px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider font-sans"
           >

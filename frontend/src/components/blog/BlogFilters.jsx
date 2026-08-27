@@ -5,10 +5,10 @@ import { Search, X } from 'lucide-react';
  * Blog Category Filters + Search Bar
  *
  * Props:
- *  - categories:       string[]       — dynamic list from CMS data
+ *  - categories:       string[] (dynamic list from CMS data)
  *  - activeCategory:   string
  *  - setActiveCategory: (cat) => void
- *  - onSearch:         (query) => void — debounced handler from useBlogData
+ *  - onSearch:         (query) => void (debounced handler from useBlogData)
  */
 export default function BlogFilters({
   categories,

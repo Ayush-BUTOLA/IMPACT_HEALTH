@@ -22,8 +22,8 @@ const REASONS = [
 const INFO = [
   { label: "Phone", value: "+91 9667835909", href: "tel:+919667835909", icon: Phone },
   { label: "Email", value: "connect@impacthealth.co.in", href: "mailto:connect@impacthealth.co.in", icon: Mail },
-  { label: "Address", value: "472/8/1/P, Kokila Lane 4, Pothariput, Bhubaneswar — 751020", icon: MapPin },
-  { label: "Office Hours", value: "Mon – Fri: 9:00 AM – 6:00 PM IST", icon: Clock },
+  { label: "Address", value: "472/8/1/P, Kokila Lane 4, Pothariput, Bhubaneswar, 751020", icon: MapPin },
+  { label: "Office Hours", value: "Mon - Fri: 9:00 AM - 6:00 PM IST", icon: Clock },
 ];
 
 const fadeInUp = {
@@ -66,7 +66,7 @@ export default function Contact() {
   return (
     <div className="w-full bg-white relative overflow-hidden">
 
-      {/* HERO — Interactive DotGrid background */}
+      {/* HERO Interactive DotGrid background */}
       <section className="relative border-b border-[#e6e7f2] overflow-hidden" style={{ backgroundColor: '#eaf4fd' }}>
         <DotGrid
           dotColor="rgba(91, 91, 214, 0.15)"
@@ -100,8 +100,8 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            Whether you're a patient, healthcare provider, pharmaceutical company, or
-            partner organization — we're here to help.
+            Whether you are a patient, healthcare provider, pharmaceutical company, or
+            partner organization, we are here to help.
           </motion.p>
         </div>
       </section>

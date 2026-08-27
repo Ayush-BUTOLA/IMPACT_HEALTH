@@ -110,7 +110,7 @@ export default function DataTable({
 
                 {/* Date */}
                 <td className="px-6 py-4 whitespace-nowrap text-xs text-slate-400 font-bold">
-                  {blog.publishedDate || blog.lastEdited || '—'}
+                  {blog.publishedDate || blog.lastEdited || '-'}
                 </td>
 
                 {/* Views */}

@@ -1,11 +1,11 @@
 import { BookOpen } from 'lucide-react';
 
 /**
- * Empty State — displayed when no blog articles exist in the CMS.
+ * Empty State (displayed when no blog articles exist in the CMS).
  * Premium healthcare empty state card.
  *
  * Props:
- *  - show: boolean — true if there are zero articles total (not just filtered)
+ *  - show: boolean (true if there are zero articles total)
  */
 export default function BlogEmpty({ show }) {
   if (!show) return null;

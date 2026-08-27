@@ -111,7 +111,7 @@ export default function PrivacyPolicy() {
 
     const grievance = {
         name: 'Ashish Rawat',
-        addressLines: ['Mayur Vihar Phase III', 'New Delhi – 110096, India'],
+        addressLines: ['Mayur Vihar Phase III', 'New Delhi - 110096, India'],
         phone: '+91 9667835909',
         email: 'ashish.rawat@impacthealth.co.in'
     };
@@ -252,7 +252,7 @@ export default function PrivacyPolicy() {
                                             <div className="mt-4 rounded-2xl border border-[#DDE0F5]/70 bg-[#F8F9FF] p-4">
                                                 <p className="text-xs font-bold text-[#030050] font-sans">Registered Office:</p>
                                                 <p className="text-xs text-text-secondary leading-relaxed font-sans mt-1">
-                                                    473/B1/P, Kokila Lane-4, Pokhariput, Bhubaneswar, Odisha – 751020, India
+                                                    473/B1/P, Kokila Lane-4, Pokhariput, Bhubaneswar, Odisha - 751020, India
                                                 </p>
                                             </div>
                                             <hr className="border-[#DDE0F5] mt-8" />

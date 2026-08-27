@@ -354,8 +354,9 @@ function ClientNavbar() {
   }, []);
 
   const handleNavClick = (e, link) => {
+    e?.preventDefault();
+
     if (link.isMegaMenu) {
-      e?.preventDefault();
       setIsServicesOpen(!isServicesOpen);
       return;
     }
@@ -365,11 +366,11 @@ function ClientNavbar() {
 
     if (link.path) {
       navigate(link.path);
+      window.scrollTo({ top: 0, behavior: 'instant' });
       return;
     }
 
     if (location.pathname !== '/') {
-      e?.preventDefault();
       navigate('/');
       setTimeout(() => {
         const el = document.getElementById(link.id);
@@ -385,7 +386,6 @@ function ClientNavbar() {
 
     const el = document.getElementById(link.id);
     if (el) {
-      e?.preventDefault();
       const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = el.getBoundingClientRect().top;

@@ -28,7 +28,7 @@ function ArticleSkeleton() {
 }
 
 /**
- * Single Article Card — text-first, no images.
+ * Single Article Card (text-first, no images).
  */
 function ArticleCard({ article }) {
   const readingTime = article.readingTime || calcReadingTime(article.content);

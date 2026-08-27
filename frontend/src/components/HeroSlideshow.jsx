@@ -26,8 +26,8 @@ const SLIDES = [
     lead: "Inclinic & Virtual",
     accent: "Doctor Consultations",
     tail: ".",
-    sub: "Connect with verified doctors anytime — whether virtually from home or at top network clinics across 200+ cities.",
-    caption: "Doctor with stethoscope",
+    sub: "Connect with verified doctors anytime, whether virtually from home or at top network clinics across 200+ cities.",
+    caption: "Primary Care Physician",
     image: carouselDoctor,
     toastIcon: Stethoscope,
     toastTitle: "Doctor Consult Active",
@@ -39,7 +39,7 @@ const SLIDES = [
     accent: "Expert Nurses",
     tail: ".",
     sub: "Compassionate bedside nursing care, regular vitals checkups, and post-hospitalization support tailored for patient recovery.",
-    caption: "Patient attended by nurse",
+    caption: "Home & Bedside Nursing",
     image: carouselNurse,
     toastIcon: HeartPulse,
     toastTitle: "Nurse Care Visit",
@@ -50,8 +50,8 @@ const SLIDES = [
     lead: "Tailored patient first",
     accent: "Medical Services",
     tail: ".",
-    sub: "One smart membership for your whole family. Unlimited doctor consultations, free at-home blood tests, and dedicated care teams.",
-    caption: "Happy family health",
+    sub: "One smart health membership for your family with unlimited consultations, lab tests, and dedicated care teams.",
+    caption: "Family Health Plan",
     image: carouselFamily,
     toastIcon: ShieldCheck,
     toastTitle: "Care plan active",
@@ -62,8 +62,8 @@ const SLIDES = [
     lead: "Connect with a doctor",
     accent: "over call (Telemedicine)",
     tail: ".",
-    sub: "Instant video visits, instant digital prescriptions, and follow-ups with experienced physicians from the comfort of your home.",
-    caption: "Telemedicine consultation",
+    sub: "Instant video visits, digital prescriptions, and follow-up consultations with experienced physicians from your home.",
+    caption: "24/7 Tele-Consultation",
     image: carouselTelemedicine,
     toastIcon: Video,
     toastTitle: "Video call active",
@@ -74,8 +74,8 @@ const SLIDES = [
     lead: "Patient getting blood test",
     accent: "at home",
     tail: ".",
-    sub: "Book lab tests at home — trained certified phlebotomists visit your doorstep, and verified reports arrive directly on your phone.",
-    caption: "Blood test at home",
+    sub: "Book lab tests at home with doorstep sample collection and digital report delivery directly to your phone.",
+    caption: "Doorstep Blood Sample Collection",
     image: carouselBloodTest,
     toastIcon: Droplet,
     toastTitle: "Home Blood Sample",
@@ -155,7 +155,7 @@ export default function HeroSlideshow() {
       <div className="absolute inset-0 bg-gradient-to-br from-[#f4f5fd]/80 via-[#eaf4fd]/60 to-transparent pointer-events-none z-[1]" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-12 py-16 lg:py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        {/* LEFT — rotating message + fixed controls */}
+        {/* LEFT: rotating message and controls */}
         <div className="flex flex-col text-left">
           <AnimatePresence mode="wait">
             <motion.div
@@ -196,7 +196,7 @@ export default function HeroSlideshow() {
             </motion.div>
           </AnimatePresence>
 
-          {/* FIXED — CTAs, dots, metrics */}
+          {/* FIXED: CTAs, dots, metrics */}
           <div className="flex flex-col gap-7 mt-2">
             <div className="flex flex-wrap gap-3.5">
               <Link
@@ -244,7 +244,7 @@ export default function HeroSlideshow() {
           </div>
         </div>
 
-        {/* RIGHT — GSAP-powered crossfading image panels */}
+        {/* RIGHT: GSAP-powered crossfading image panels */}
         <div ref={imageContainerRef} className="relative h-[440px] lg:h-[480px]">
           {SLIDES.map((s, i) => {
             const ToastIcon = s.toastIcon;

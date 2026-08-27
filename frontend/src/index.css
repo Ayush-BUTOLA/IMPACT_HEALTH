@@ -107,7 +107,38 @@ body {
   outline-offset: 2px;
 }
 
-/* Typography Custom Configurations from DESIGN.md */
+/* Typography Custom Configurations from /impeccable typeset */
+
+.text-display-hero {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 64px;
+  letter-spacing: -0.03em;
+}
+
+@media (max-width: 768px) {
+  .text-display-hero {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -0.02em;
+  }
+}
+
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .text-display-lg {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
 
 .text-headline-xl {
   font-family: var(--font-display);
@@ -138,6 +169,14 @@ body {
   line-height: 32px;
 }
 
+.text-body-lead {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  max-width: 65ch;
+}
+
 .text-body-lg {
   font-family: var(--font-sans);
   font-size: 18px;
@@ -150,14 +189,22 @@ body {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+  max-width: 65ch;
 }
 
 .text-label-md {
   font-family: var(--font-sans);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 20px;
   letter-spacing: 0.01em;
+}
+
+.text-caption {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
 }
 
 /* Scrollbars & Ambient Shadows */
@@ -221,7 +268,7 @@ html {
   --shadow-soft: 0 8px 22px -10px rgba(0, 0, 0, 0.16);
 }
 
-/* opacity-only fade — safe, no lingering transform */
+/* opacity-only fade (safe, no lingering transform) */
 @keyframes figFade { from { opacity: 0; } to { opacity: 1; } }
 .anim-fade { animation: figFade 0.6s ease-out both; }
 
@@ -232,7 +279,7 @@ html {
 .delay-3 { animation-delay: 0.24s; }
 .delay-4 { animation-delay: 0.32s; }
 
-/* soft blue dotted background — the texture the user liked */
+/* soft blue dotted background (the texture for health platforms) */
 .bg-dots {
   background-color: var(--color-sky);
   background-image: radial-gradient(rgba(91, 91, 214, 0.13) 1px, transparent 1px);

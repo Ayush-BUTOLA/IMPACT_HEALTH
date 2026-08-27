@@ -164,7 +164,7 @@ export default function Home() {
       <HeroSlideshow />
 
       {/* ═══════════════════════════════════════════
-          SMART SOLUTIONS — BENTO GRID
+          SMART SOLUTIONS BENTO GRID
        ═══════════════════════════════════════════ */}
       <section id="solutions" className="py-24 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -176,9 +176,8 @@ export default function Home() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Our Platform</span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Smart Healthcare Solutions</h2>
-            <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-4">
+            <p className="text-body-md text-[#4A4A4A] leading-relaxed font-sans mt-4">
               Experience high quality disease management with our tailored patient first medical services.
             </p>
           </motion.div>
@@ -275,7 +274,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          QUOTE / STATS SECTION — with DotGrid Background
+          QUOTE / STATS SECTION with DotGrid Background
        ═══════════════════════════════════════════ */}
       <section id="about" className="py-24 lg:py-28 relative border-y border-[#DDE0F5] overflow-hidden" style={{ backgroundColor: '#F8F9FF' }}>
         <DotGrid
@@ -664,7 +663,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          CONTACT CTA SECTION — with Aurora Background
+          CONTACT CTA SECTION with Aurora Background
        ═══════════════════════════════════════════ */}
       <section id="contact" className="py-20 lg:py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
