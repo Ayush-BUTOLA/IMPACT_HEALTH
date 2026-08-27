@@ -13,72 +13,78 @@ import {
 } from "lucide-react";
 import Aurora from "./backgrounds/Aurora";
 
+import carouselDoctor from '../assets/carousel_doctor_stethoscope.jpg';
+import carouselNurse from '../assets/carousel_nurse_patient.jpg';
+import carouselFamily from '../assets/carousel_happy_family.jpg';
+import carouselTelemedicine from '../assets/carousel_telemedicine_call.jpg';
+import carouselBloodTest from '../assets/carousel_blood_test_home.jpg';
+
 const SLIDES = [
   {
-    badge: "Care that fits your schedule",
-    lead: "Consult a doctor",
-    accent: "from your couch",
+    badge: "Pan-India Experienced Physicians",
+    lead: "Inclinic & Virtual",
+    accent: "Doctor Consultations",
     tail: ".",
-    sub: "Video visits, instant prescriptions, and follow-ups with the same physician — so care never waits for a clinic visit.",
-    caption: "Doctor consultation",
-    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=600&fit=crop&q=80",
-    toastIcon: Video,
-    toastTitle: "Video call active",
-    toastSub: "Dr. Mehta · waits less than 1 min",
+    sub: "Connect with verified doctors anytime — whether virtually from home or at top network clinics across 200+ cities.",
+    caption: "Doctor with stethoscope",
+    image: carouselDoctor,
+    toastIcon: Stethoscope,
+    toastTitle: "Doctor Consult Active",
+    toastSub: "Dr. Gunjan D. Khare · Ready for consultation",
   },
   {
-    badge: "Gentle care for elders",
-    lead: "Health support for",
-    accent: "aging parents",
+    badge: "Dedicated Clinical Care",
+    lead: "Patient Attended by",
+    accent: "Expert Nurses",
     tail: ".",
-    sub: "Dedicated care managers coordinate checkups, medicines, and lab tests at home — keeping your parents healthy and your mind at ease.",
-    caption: "At-home wellness",
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=600&fit=crop&q=80",
+    sub: "Compassionate bedside nursing care, regular vitals checkups, and post-hospitalization support tailored for patient recovery.",
+    caption: "Patient attended by nurse",
+    image: carouselNurse,
     toastIcon: HeartPulse,
-    toastTitle: "Wellness visit done",
-    toastSub: "Monthly vitals check · next in 7 days",
+    toastTitle: "Nurse Care Visit",
+    toastSub: "Monthly vitals check · Regular monitoring",
   },
   {
-    badge: "Trusted by 50,000+ patients across 40+ Indian cities",
-    lead: "Reduce your healthcare expenditure",
-    accent: "by 60%",
+    badge: "Trusted by 2L+ patients across 200+ Indian cities",
+    lead: "Tailored patient first",
+    accent: "Medical Services",
     tail: ".",
-    sub: "One smart membership for your whole family. Unlimited doctor consultations, free at-home blood tests, and a dedicated care team for chronic conditions.",
-    caption: "Family health plan",
-    image: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&h=600&fit=crop&q=80",
+    sub: "One smart membership for your whole family. Unlimited doctor consultations, free at-home blood tests, and dedicated care teams.",
+    caption: "Happy family health",
+    image: carouselFamily,
     toastIcon: ShieldCheck,
     toastTitle: "Care plan active",
-    toastSub: "Dr. Romil reviewed your labs · 2h ago",
+    toastSub: "2L+ Patients Protected · 24/7 Support",
   },
   {
-    badge: "Unlimited consultations included",
-    lead: "Talk to a doctor",
-    accent: "anytime",
+    badge: "Care that fits your schedule",
+    lead: "Connect with a doctor",
+    accent: "over call (Telemedicine)",
     tail: ".",
-    sub: "Verified physicians, video or in-clinic — with a dedicated care manager who knows your family's history and follows up on every visit.",
-    caption: "In-clinic consult",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&h=600&fit=crop&q=80",
-    toastIcon: Stethoscope,
-    toastTitle: "Dr. Anjali available",
-    toastSub: "General physician · responds in under 2 min",
+    sub: "Instant video visits, instant digital prescriptions, and follow-ups with experienced physicians from the comfort of your home.",
+    caption: "Telemedicine consultation",
+    image: carouselTelemedicine,
+    toastIcon: Video,
+    toastTitle: "Video call active",
+    toastSub: "Doctor on call · Instant connect",
   },
   {
     badge: "Diagnostics made simple",
-    lead: "Free blood tests",
-    accent: "at your doorstep",
+    lead: "Patient getting blood test",
+    accent: "at home",
     tail: ".",
-    sub: "Book lab tests from home — a trained phlebotomist visits you, and verified reports land in your app within hours.",
-    caption: "Sample collection",
-    image: "https://images.unsplash.com/photo-1579154204601-01588f351167?w=800&h=600&fit=crop&q=80",
+    sub: "Book lab tests at home — trained certified phlebotomists visit your doorstep, and verified reports arrive directly on your phone.",
+    caption: "Blood test at home",
+    image: carouselBloodTest,
     toastIcon: Droplet,
-    toastTitle: "Sample collected",
-    toastSub: "Lipid + HbA1c · report ready in 18h",
+    toastTitle: "Home Blood Sample",
+    toastSub: "Lipid + HbA1c · Report ready in 18h",
   },
 ];
 
 const METRICS = [
-  { value: "50K+", label: "Patients" },
-  { value: "40+", label: "Cities" },
+  { value: "2L+", label: "Patients" },
+  { value: "200+", label: "Cities" },
   { value: "4.9", label: "Care Rating", star: true },
 ];
 
@@ -193,15 +199,19 @@ export default function HeroSlideshow() {
           <div className="flex flex-col gap-7 mt-2">
             <div className="flex flex-wrap gap-3.5">
               <motion.a
-                href="#solutions"
+                href="https://www.threephih.in/threephih/index.html"
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2 bg-navy text-white text-[14.5px] font-semibold px-7 py-3.5 rounded-xl hover:bg-navy-deep transition-colors font-sans shadow-sm"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Check Prices <ArrowRight className="w-4 h-4" strokeWidth={2} />
+                Explore App <ArrowRight className="w-4 h-4" strokeWidth={2} />
               </motion.a>
               <motion.a
-                href="#contact"
+                href="https://www.threephih.in/threephih/index.html"
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-navy text-[14.5px] font-semibold px-7 py-3.5 rounded-xl border-[1.5px] border-[#e6e7f2] hover:border-navy/30 transition-colors font-sans shadow-sm"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}

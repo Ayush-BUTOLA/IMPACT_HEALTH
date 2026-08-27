@@ -64,7 +64,7 @@ export default function CtaBand() {
 
             <div className="flex flex-col gap-3 shrink-0 w-full lg:w-auto">
               <motion.a
-                href="tel:+917008492909"
+                href="tel:+919667835909"
                 className="flex items-center gap-3 bg-white/90 backdrop-blur-sm border border-[#e6e7f2] rounded-xl px-4 py-3 hover:shadow-sm transition-shadow group"
                 whileHover={{ scale: 1.02 }}
               >
@@ -73,7 +73,7 @@ export default function CtaBand() {
                 </span>
                 <div>
                   <div className="text-[11px] text-[#6b7280] uppercase tracking-wide font-sans">Call us</div>
-                  <div className="text-[14px] font-semibold text-navy font-mono">+91 7008492909</div>
+                  <div className="text-[14px] font-semibold text-navy font-mono">+91 9667835909</div>
                 </div>
               </motion.a>
               <motion.a

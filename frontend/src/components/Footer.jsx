@@ -9,15 +9,15 @@ const COLS = [
       { name: "Home", to: "#home", isSection: true },
       { name: "About", to: "/about" },
       { name: "Patient Support Programs", to: "/patient-support-programs" },
-      { name: "Services", to: "#services", isSection: true }
+      { name: "Services", to: "/services" }
     ]
   },
   {
     head: "Patient Portal",
     links: [
       { name: "Privacy Policy", to: "/privacy-policy" },
-      { name: "Terms of Service", to: "#" },
-      { name: "Patient Support", to: "#" },
+      { name: "Terms of Service", to: "/privacy-policy" },
+      { name: "Patient Support", to: "/services/patient-support" },
       { name: "Doctor Login", to: "https://www.threephih.in/threephih/doctorlogin.php", isExternal: true }
     ]
   }
@@ -138,7 +138,7 @@ export default function Footer() {
             <div className="text-[12px] font-bold tracking-[0.12em] text-white/40 uppercase font-sans">Contact</div>
             <div className="flex items-center gap-2 text-[13.5px] text-white/60">
               <Phone className="w-4 h-4 shrink-0" strokeWidth={1.75} /> 
-              <a href="tel:+917008492909" className="hover:text-white transition-colors font-mono">+91 7008492909</a>
+              <a href="tel:+919667835909" className="hover:text-white transition-colors font-mono">+91 9667835909</a>
             </div>
             <div className="flex items-center gap-2 text-[13.5px] text-white/60">
               <Mail className="w-4 h-4 shrink-0" strokeWidth={1.75} /> 
@@ -152,8 +152,8 @@ export default function Footer() {
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-white/40 font-sans">
           <span>© {new Date().getFullYear()} Impact Health. All rights reserved.</span>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-white/70 transition-colors">Patient Data Protection</a>
-            <a href="#" className="hover:text-white/70 transition-colors">Regulatory Compliance</a>
+            <Link to="/privacy-policy" className="hover:text-white/70 transition-colors">Patient Data Protection</Link>
+            <Link to="/privacy-policy" className="hover:text-white/70 transition-colors">Regulatory Compliance</Link>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ const REASONS = [
 ];
 
 const INFO = [
-  { label: "Phone", value: "+91 7008492909", href: "tel:+917008492909", icon: Phone },
+  { label: "Phone", value: "+91 9667835909", href: "tel:+919667835909", icon: Phone },
   { label: "Email", value: "connect@impacthealth.co.in", href: "mailto:connect@impacthealth.co.in", icon: Mail },
   { label: "Address", value: "472/8/1/P, Kokila Lane 4, Pothariput, Bhubaneswar — 751020", icon: MapPin },
   { label: "Office Hours", value: "Mon – Fri: 9:00 AM – 6:00 PM IST", icon: Clock },
@@ -43,6 +43,25 @@ export default function Contact() {
     document.title = "Contact Us | Impact Health";
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const name = formData.get("fullName");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const org = formData.get("organization");
+    const msg = formData.get("message");
+
+    const mailtoSubject = encodeURIComponent(`Contact Inquiry from ${name}`);
+    const mailtoBody = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "N/A"}\nOrganization: ${org || "N/A"}\n\nMessage:\n${msg}`
+    );
+    
+    // Open mail client dispatch
+    window.open(`mailto:connect@impacthealth.co.in?subject=${mailtoSubject}&body=${mailtoBody}`, "_blank");
+    setSent(true);
+  };
 
   return (
     <div className="w-full bg-white relative overflow-hidden">
@@ -146,7 +165,7 @@ export default function Contact() {
               <motion.div
                 role="status"
                 aria-live="polite"
-                className="flex flex-col items-center text-center py-16 gap-3"
+                className="flex flex-col items-center text-center py-12 gap-3"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
@@ -154,9 +173,9 @@ export default function Contact() {
                 <div className="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center mx-auto text-emerald-600">
                   <Send className="w-6 h-6" strokeWidth={2} />
                 </div>
-                <div className="font-display font-bold text-[20px] text-navy">Thank you! Your message has been sent successfully.</div>
-                <p className="text-[14px] text-[#6b7280] max-w-[360px] font-sans mx-auto mt-1">
-                  Thanks for reaching out — our care team will get back to you within one business day.
+                <div className="font-display font-bold text-[20px] text-navy">Message Dispatched!</div>
+                <p className="text-[14px] text-[#6b7280] max-w-[420px] font-sans mx-auto mt-1 leading-relaxed">
+                  Your inquiry message has been sent to our support inbox at <strong className="text-navy">connect@impacthealth.co.in</strong>. A member of our patient care team will get back to you within 24 hours.
                 </p>
                 <button
                   type="button"
@@ -168,10 +187,7 @@ export default function Contact() {
               </motion.div>
             ) : (
               <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
+                onSubmit={handleSubmit}
                 className="flex flex-col gap-4"
               >
                 <div className="grid sm:grid-cols-2 gap-4">

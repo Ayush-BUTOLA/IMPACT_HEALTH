@@ -14,7 +14,7 @@ import {
 import cert1 from '../assets/1.png';
 import cert2 from '../assets/2.png';
 import yourStoryLogo from '../assets/5bee83f7a69edda26bc5b891_YourStory_Logo-New-01-1024x346.png';
-import missionGirlImg from '../assets/On-a-mission-to-impact-1-million-lives-with-quality-care-and-services-by-2025..png';
+import missionGirlImg from '../assets/mission_healthcare_impact.jpg';
 import Aurora from '../components/backgrounds/Aurora';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
@@ -448,7 +448,7 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -489,6 +489,38 @@ export default function About() {
                 Recognized as Solution based Healthcare Startup by Startup Odisha, Government of Odisha.
               </p>
             </motion.div>
+
+            {/* Award 3 */}
+            <motion.div
+              className="bg-white p-6 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col justify-between text-center"
+              variants={fadeInUp}
+              whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+            >
+              <div className="relative overflow-hidden rounded-xl bg-indigo-50/50 border border-indigo-100 p-6 flex flex-col items-center justify-center aspect-[4/3] mb-6 text-primary">
+                <ShieldCheck className="w-16 h-16 text-[#7e82f4] mb-2" />
+                <span className="font-display font-extrabold text-lg text-primary">ISO 9001:2015</span>
+                <span className="text-[11px] text-surface-tint font-bold uppercase tracking-wider">Certified Healthcare</span>
+              </div>
+              <p className="text-sm font-semibold text-primary font-sans leading-relaxed text-center">
+                ISO 9001:2015 Certified Healthcare Supply &amp; Clinical Management Standards.
+              </p>
+            </motion.div>
+
+            {/* Award 4 */}
+            <motion.div
+              className="bg-white p-6 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col justify-between text-center"
+              variants={fadeInUp}
+              whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+            >
+              <div className="relative overflow-hidden rounded-xl bg-amber-50/50 border border-amber-100 p-6 flex flex-col items-center justify-center aspect-[4/3] mb-6 text-amber-600">
+                <Activity className="w-16 h-16 text-amber-500 mb-2" />
+                <span className="font-display font-extrabold text-lg text-amber-900">Health-Tech 2024</span>
+                <span className="text-[11px] text-amber-700 font-bold uppercase tracking-wider">Excellence Award</span>
+              </div>
+              <p className="text-sm font-semibold text-primary font-sans leading-relaxed text-center">
+                National Healthcare Innovation &amp; Affordable Care Delivery Excellence Recognition.
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -510,7 +542,7 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -518,27 +550,74 @@ export default function About() {
           >
             {/* YourStory Logo */}
             <motion.div
-              className="h-44 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-8 shadow-sm cursor-pointer"
+              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
               variants={fadeInUp}
               whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
             >
               <img 
                 src={yourStoryLogo} 
                 alt="YourStory Logo"
-                className="max-h-24 w-auto object-contain"
+                className="max-h-20 w-auto object-contain"
               />
             </motion.div>
 
             {/* The Startup Lab Logo */}
             <motion.div
-              className="h-44 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-8 shadow-sm cursor-pointer"
+              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
               variants={fadeInUp}
               whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
             >
-              <div className="flex flex-col text-left font-sans font-black text-3xl md:text-[2.25rem] tracking-tight leading-none uppercase">
+              <div className="flex flex-col text-left font-sans font-black text-2xl tracking-tight leading-none uppercase">
                 <span className="text-[#000000]">THE</span>
                 <span className="text-[#E11D48] mt-1">STARTUP</span>
                 <span className="text-[#000000] mt-1">LAB<span className="text-[#E11D48]">.</span></span>
+              </div>
+            </motion.div>
+
+            {/* Economic Times */}
+            <motion.div
+              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
+              variants={fadeInUp}
+              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
+            >
+              <div className="font-serif font-black text-xl text-[#030050] tracking-tight text-center">
+                THE ECONOMIC TIMES
+                <span className="block text-[10px] font-sans font-semibold text-surface-tint uppercase tracking-widest mt-1">Health &amp; Tech</span>
+              </div>
+            </motion.div>
+
+            {/* Financial Express */}
+            <motion.div
+              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
+              variants={fadeInUp}
+              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
+            >
+              <div className="font-display font-black text-xl text-[#0d0489] tracking-tight text-center">
+                FINANCIAL EXPRESS
+                <span className="block text-[10px] font-sans font-semibold text-surface-tint uppercase tracking-widest mt-1">Healthcare Spotlight</span>
+              </div>
+            </motion.div>
+
+            {/* Inc42 */}
+            <motion.div
+              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
+              variants={fadeInUp}
+              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
+            >
+              <div className="font-sans font-black text-3xl text-[#1E293B] tracking-tight flex items-center gap-1">
+                Inc<span className="text-[#7e82f4]">42</span>
+              </div>
+            </motion.div>
+
+            {/* Business Standard */}
+            <motion.div
+              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
+              variants={fadeInUp}
+              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
+            >
+              <div className="font-serif font-bold text-lg text-[#0F172A] tracking-normal text-center">
+                Business Standard
+                <span className="block text-[10px] font-sans font-semibold text-emerald-600 uppercase tracking-widest mt-1">Startup Feature</span>
               </div>
             </motion.div>
           </motion.div>

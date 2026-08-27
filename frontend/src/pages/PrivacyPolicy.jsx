@@ -106,13 +106,13 @@ export default function PrivacyPolicy() {
     };
 
     const contactEmail = 'connect@impacthealth.co.in';
-    const contactPhone = '+91 7008492909';
+    const contactPhone = '+91 9667835909';
     const contactWebsite = 'www.impacthealth.co.in';
 
     const grievance = {
         name: 'Ashish Rawat',
         addressLines: ['Mayur Vihar Phase III', 'New Delhi – 110096, India'],
-        phone: '+91 9650980089',
+        phone: '+91 9667835909',
         email: 'ashish.rawat@impacthealth.co.in'
     };
 

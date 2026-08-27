@@ -1,4 +1,4 @@
-import { Phone, Mail, ArrowRight, HeartPulse, Clock } from 'lucide-react';
+import { Phone, Mail, ArrowRight, HeartPulse, Clock, Award, ShieldCheck, Stethoscope, UserCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 import LogoLoop from '../components/LogoLoop';
 import ShinyText from '../components/ShinyText';
@@ -7,74 +7,111 @@ import Aurora from '../components/backgrounds/Aurora';
 import DotGrid from '../components/backgrounds/DotGrid';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
+import carouselDoctor from '../assets/carousel_doctor_stethoscope.jpg';
+import carouselBloodTest from '../assets/carousel_blood_test_home.jpg';
+import medicineDelivery from '../assets/medicine_delivery_guy.jpg';
+
 const services = [
   {
-    category: "Clinical",
-    title: "Free Doctor Consultation",
-    desc: "Get unlimited and Free doctor consultation both virtually and at clinic/Hospital locations.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDtu6lNAEJGPpxqb8T1ihlGzv56CWEajh8e0kgO2chXQeXrwPvclH2gRTm3ybwm61jqUrPFmiWa-oI4NsM0N1GmCGgJS-JH8KQEYPOQtBNSuEvF3gPyq8xNaPjdQrSy9oG1lwa27XvxO84N9wqqQ_MohQmTuRJftKLRJmAMrZMTxAvIclj3PCo2-FTVG7xIW_i_BdWpCCjv8o8bizGoi_TwTrIgtTD7h-6hqZ01CNjHasGvHW5RGoclVDZ0lsA6KQRtGkYDX7r7WUM",
-    alt: "Doctor providing patient consultation"
+    category: "Consultations",
+    title: "Inclinic & Virtual Doctor Consultations",
+    desc: "Get unlimited doctor consultations both virtually over call and at clinic/hospital locations across 200+ network centers.",
+    image: carouselDoctor,
+    alt: "Inclinic & Virtual Doctor Consultations"
   },
   {
-    category: "Home Care",
-    title: "Free Blood Tests at Home",
-    desc: "Avail free blood tests at home as well as X-Rays and Scans at partnered Labs and Hospitals.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCtBNzNvn3R-kcG7JzOCHFIlQFxPZnL43vffUTRb29s1KZFWjpzDhXR9kaUtfuZu2f4NyU8nXH9KQLXYHqwHDEGbeMWRE01kHt6r9yemmzMDq2HSxeq-UF8lmfTzhQh-7OG9C8nooCGI6_6kGIJmXwMyB-oMlOfk7OCasbEgUbAUa7UkXnmquLl_Qq8KtwCueEaRpK2ESPoK2W-rKP5RTbRm9NXUlL-sVKAcmCE6wWWU7bZrYE6dLV2HO2t4oha-xxIdUDFdo7syoA",
-    alt: "Healthcare worker processing a blood test sample"
+    category: "Diagnostics Test",
+    title: "Blood Tests at home & Radiology tests at our 200+ network centres",
+    desc: "Avail free blood sample collection at home along with X-Rays, Scans and diagnostic tests at partnered labs and hospitals.",
+    image: carouselBloodTest,
+    alt: "Blood Tests at home & Radiology tests at our 200+ network centres"
   },
   {
-    category: "Personalized",
-    title: "Medical Team",
-    desc: "Get unhindered access to medical queries with a personal medical team and dedicated family doctor.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCN1mtwEOKecnGnoCOWWmoD89SzZ2JrLhNA5xlPOVxKHhXxVQlPX42LwNt2FplJPP6JMMQ7daCxuEKa277sdJl9UWU-an5L1hsIS-ggGo0wgQVoYdhE3I3qVVtcrCC20NXqUxWYCZele6W7xwyLjIgvAh4mQE5vGhvo3OZmt5Bcm8Jz8xDg8CRVbZLDFdOO1JkQ1la2iBwx0TsdXxLD1pyNMXZMrQvM0nNqOKU4h84LzZqIWejLWkSADMd7o2jIzDRhEaKtK4O41e4",
-    alt: "Medical team collaborating in a clinic setting"
+    category: "Home Delivery",
+    title: "Medicines delivered at home",
+    desc: "Get genuine prescribed medicines delivered directly to your doorstep with priority care and adherence support.",
+    image: medicineDelivery,
+    alt: "Medicines delivered at home"
   }
 ];
 
 const teamMembers = [
   {
     name: "Anshuman Sahoo",
-    role: "Founder & CEO",
+    role: "CEO",
     desc: "Bachelor's from Christ University. Product & Corporate Strategist. CSP India 2021.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfJxEo37U3qLZFlVZ_UIAkSntqR90rI0JVu1YHmNhUT9831Q9sluiEtuN7fxBLBr2JgAqZxsbwglc9QCK4xey5EEuo3076qEKDhCvH9XFcE_OrEG0obzicQvD0g9xO-Jc8ifgrxdkPWF6MXLAqsKYlFjTb9D5s0gOF2M-NR2rxMgead12dNMeCOwKJg_XrvQBv_GSrJNgxBs67RpiZvsyjbPLgdoK3OagfzCgYdEfeoMRKr_1JsI2VaB6D9ZFmr-UrLO_aPBom_DM",
     isFounder: true
   },
   {
     name: "Ashish Rawat",
-    role: "Co-founder & CIO",
+    role: "CIO",
     desc: "Data Scientist & SAS Consultant. B.Tech from GGSIPU. Ex-HSBC, EXL, AON & AMEX.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB4z1fUzs5DTNZzjO8EvbXM3dT45TOivJHZfetcuxuHUbEUPuwkVun_s4YGv6nhR5xztJGtWuV6tRQ8MgFQNY30ztWFiQjbKM3HTCVJQzKUYKtn5CwtZHHfc5YhbemtWX6gMpGp1r-j6CbBvCKSGeBix6BcyZx26i-qRzVuXyfIZZAjaEZ6FbcMEt8XSZxAfMlPiOgsfcSUir8kwT2k5ZHFfuLRPjsq6UgnPTcFIHfBYd-_ig5C8IPfAvmCpLbuVDDEmGpEk7_yEhc",
-    isFounder: false
+    isFounder: true
   },
   {
-    name: "Dr. Romil Lotta",
-    role: "Advisor & CMO",
-    desc: "MBBS from Mayo. PMO at Ministry of Housing & Urban Affairs, Govt. of India.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBtEiQwb2R_suc6-2rYt6_IblbXvLjE0aDj24NdGGaAa_sTYnB57vM9vjCW2tCx2Je3dwHiRKGqut13IHXHJrqpWulI2tHpEX4SN5t7sZPurcp393MQinICsnLmCr3y_rWXqvwuJGd1hhMftotr3io2yUsKhWoWLHP8IEGAQzh-9jQLnPE9U12B6D4WHp9znFYkX1-yRDmGFBtUvrl9-nP_MjOSUTC3XEbNlHWwNaVufTGKllnFvS3ScpYP0GfMlDEnejwfVevGuZM",
-    isFounder: false
-  },
-  {
-    name: "Ankit Negi",
-    role: "Software Engineer",
-    desc: "Masters in Computer App from GGSIPU. Bachelors from DU. Cricketer.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD1avji2_r_46RnS4cNODeZprsTHJJ7VTjqAEpBANkYby7dUzbgFbtE2AwzoIOGj1HB19ynLd8QCCkMi2vrWD7d5tNxps2GHMecwmavLKc7oip-M_31rMvSsk7t2UrGa7pG0QHEAZjtTUe5gWULmh8z4tEt7vqWd5-YFdf4g-FiTADGTCtUdx49KTxy5i71G94r0xucU3rag2vhXo_eP-eNQ4BMO4JMDF50Yn44E2OT2B-C69NzuyoRR-VGXjfByezl2uL2hlOhpWc",
+    name: "Dr. Gunjan D. Khare",
+    role: "MO",
+    desc: "Medical Officer heading clinical operations, quality assurance, and patient care protocols.",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&fit=crop&q=80",
     isFounder: false
   }
 ];
 
+const advisors = [
+  {
+    name: "Dr. Romil Lotta",
+    role: "General Physician",
+    desc: "MBBS from Mayo. PMO at Ministry of Housing & Urban Affairs, Govt. of India.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBtEiQwb2R_suc6-2rYt6_IblbXvLjE0aDj24NdGGaAa_sTYnB57vM9vjCW2tCx2Je3dwHiRKGqut13IHXHJrqpWulI2tHpEX4SN5t7sZPurcp393MQinICsnLmCr3y_rWXqvwuJGd1hhMftotr3io2yUsKhWoWLHP8IEGAQzh-9jQLnPE9U12B6D4WHp9znFYkX1-yRDmGFBtUvrl9-nP_MjOSUTC3XEbNlHWwNaVufTGKllnFvS3ScpYP0GfMlDEnejwfVevGuZM"
+  },
+  {
+    name: "Dr. Lalasa Palli",
+    role: "Pediatrician",
+    desc: "Expert Pediatric Specialist focusing on child healthcare, growth monitoring, and preventive wellness.",
+    image: "https://images.unsplash.com/photo-1594824813566-7885a3964478?w=400&fit=crop&q=80"
+  },
+  {
+    name: "Dr. Azad Dash",
+    role: "Pediatrician",
+    desc: "Senior Pediatrician specializing in campus health programs and childhood preventive healthcare.",
+    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&fit=crop&q=80"
+  },
+  {
+    name: "Dr. Abhishek Miland Deshmukh",
+    role: "Dermatologist",
+    desc: "Consultant Dermatologist providing comprehensive clinical skin health consultations.",
+    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&fit=crop&q=80"
+  },
+  {
+    name: "Dr. Sonti Kiran Kumar",
+    role: "Internal Medicine",
+    desc: "Internal Medicine Specialist dedicated to chronic disease management and adult care.",
+    image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&fit=crop&q=80"
+  }
+];
+
 const clients = [
+  { name: "Zomato", alt: "Zomato", type: "badge", bg: "#E23744", text: "#FFFFFF" },
+  { name: "Blinkit", alt: "Blinkit", type: "badge", bg: "#F7C600", text: "#000000" },
+  { name: "Bistro", alt: "Bistro", type: "badge", bg: "#1E293B", text: "#FFFFFF" },
+  { name: "Ravees International School", alt: "Ravees International School", type: "badge", bg: "#0284C7", text: "#FFFFFF" },
+  { name: "Meluha International School", alt: "Meluha International School", type: "badge", bg: "#0D9488", text: "#FFFFFF" },
+  { name: "IRIS Florets", alt: "IRIS Florets", type: "badge", bg: "#9333EA", text: "#FFFFFF" },
   { alt: "Ayu Health", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuCn0SqoFYyTCoGKvOBQS__y_Zn4Kh5_qpLuQQwcvKrnK0WhyBIA94JaihTcmOVxRlO7HX_PbdTH1wSup1MOIi39RXoyVcLWiNLXj9Hk8ZI0_a2EoRfGRcLU1ngXv2hJyZPiq6HMUUCZ2RM8pCFMYLb5L9pBEkfyR3v2mGLrtvLv8tGJAmzsb4pn6iqo2onf1mDFvMgykrtKAThQxmuyUuOE2oD2YNtnQ5Dd7OLudv7C07I-A9P1TUi_GeD_bsEZZuscxXw4Y2MgzpM" },
   { alt: "Plum", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuA7NTKV2ESyPiqIYxJFTrGQK0m5HId4SQEe3rKtUqSxxdH9_HQ7MDcXubjIh93npApnObZqxiYSoVz2GMiOZE28-amzAF29Srzyr7e2PxGBTmsX_Cmz2FryovBf1KOBDxt6ER7VfTwrwylECfYbnaDjaVKiInqoiQ_07uWeMSA1EBJsAvipefTANH0qNJeCcYS24FCuGWXHLhZhrDDQnSvY6SzgwvoYHbTtmT4Edd5d50j3BYFKvQ6LIlFpww0ChwB2G-NUQw7Nl8E" },
   { alt: "Eisai", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuA-35BM3Cz2J5YFZEmP1pD2yWrRo-CGWhWx0_Ieamml5sG26dn23RGWmtXJAuSX1FFMeKKBheuRCIfUgkKYtcTU1RObRQKgxlwhXXfS7n9jQ_HXKhSqagFuqXYISUMWRt813Yhp9XKmdagkVriOt66IsU08Yv3Cbb1oUEiTBK224UCBn1dl9I9kfVopLXlcaWOSVonoJJN-OmZyd7_RM_BHinj8VwZ_vBcnmQkbOiUpDS6jLNKnOHd9PGtIgn-DL5X-f2FYE_xpc0w" },
-  { alt: "HealthBasix", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuB1gbPth_J_F9QCFaDRXrgGg4N40qYYiiavfsoPHGdTpe2clT_-57UaEbBzOtLzeVJPdO6QGIQ0QfFGccuPJqy9CKXijvaxs76M6qO7k0ZOIfdZ9TtHRcGNx22kwOyKDRSbo1Z4njsGIShocoixZgBHTyO7MRuFyE6Xoy_eNn9X5KvvN_agbReEFVZtN4YXhaoKjJZ2fSSHVMVzhaTqWbNhNIOWh0YRqABvKh2oGDwjbbgWhQVyQ_UWvy2p1XhyzfHihe7RElYELVA" },
-  { alt: "Chaitanya", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0ccwt2iPkCzWjr8BE0LFXZT5utmMGOUStx0oN6MqKAqOAgQd_kBYhrAgtSwasUuQGajq9uNlzy43_Qlr1p6nmshdoCAWOPKomJnJXWCAHRFml6tDMDn5I7-Lu0Pynk85sD-yqYeyn_U0WOzizvno8S-JiUXRpQp3MDBGC96g7YxVD_pqw1YmKbRTGExrDb2pUtcrtyDJNUHMuIS8fvD1FsgF34lAU5Kx3QOfOtYQKT5RFvjzERfL_HtbDTRtWWxpRoX65Jt5On3A" },
-  { alt: "Ryan International", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaRcezCG7_UsORNLGPsEORLwFeCS46OoBPZ8jjzjWzfH8dq8uVJNtgGdUNRb4vGD6Ncg-cKG03v2kTzNBjSz4oGhXabyITTcoil03O417eD6cPvyb9FhtZU4LnSUOeggniZxrcHRy-bESpuDt4a0tTC7iopKV_YvHALjglkMXhT_KwEi33pFttn9S6BsAmV_53yM3AEdk9i-nOU0Mlr9CSeCTTz038SgcB5j1hTYvcDJC-cEP_-YKo7hp3GerpyHb7Vqup2AFZo6A" },
-  { alt: "Hari Vidya Bhawan", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuB1TfZdPLs7wbyUx0We6u6OvCkSQMAAhyAvN6Pd8T7q5imYL5sOraGSNOb6Yt0r_his6HZh1j6WS9jyWanJg6vULTOoksLmkZZ28CAdZ7-SvVMGGi3lHpjp8FcldwpXNB2ykNoGG1VX69SSGJnhpzo_1uIJN_cCWLC6t7dZlJyUEtmjSnnmmtZ27qMlt_-oXY66ljPjL5pR9Js_bogh3EUnjvP4S9s3-Wq99XK2GHHbJDlKhLvaJdTtmE7ULrKKiCAXFsy8Iuyhp8o" }
+  { alt: "Ryan International", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaRcezCG7_UsORNLGPsEORLwFeCS46OoBPZ8jjzjWzfH8dq8uVJNtgGdUNRb4vGD6Ncg-cKG03v2kTzNBjSz4oGhXabyITTcoil03O417eD6cPvyb9FhtZU4LnSUOeggniZxrcHRy-bESpuDt4a0tTC7iopKV_YvHALjglkMXhT_KwEi33pFttn9S6BsAmV_53yM3AEdk9i-nOU0Mlr9CSeCTTz038SgcB5j1hTYvcDJC-cEP_-YKo7hp3GerpyHb7Vqup2AFZo6A" }
 ];
 
 const clientLogos = clients.map(c => ({
   src: c.url,
-  alt: c.alt
+  alt: c.alt,
+  name: c.name,
+  type: c.type,
+  bg: c.bg,
+  text: c.text
 }));
 
 const fadeInUp = {
@@ -113,7 +150,7 @@ const faqs = [
   },
   {
     question: "How do I contact support or book a consultation?",
-    answer: "You can book directly by clicking 'Book Consultation Now', or reach our support team at +91 7008492909 or connect@impacthealth.co.in."
+    answer: "You can book directly by clicking 'Book Consultation Now', or reach our support team at +91 9667835909 or connect@impacthealth.co.in."
   }
 ];
 
@@ -148,7 +185,7 @@ export default function Home() {
             <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Our Platform</span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Smart Healthcare Solutions</h2>
             <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-4">
-              Experience high quality disease management with our engineering-first medical infrastructure.
+              Experience high quality disease management with our tailored patient first medical services.
             </p>
           </motion.div>
 
@@ -192,8 +229,18 @@ export default function Home() {
                   Comprehensive medical services including health insurance and unlimited consultations starting at just INR 199/- per month.
                 </p>
               </div>
-              <div className="pt-4 border-t border-white/10">
-                <span className="text-4xl font-extrabold font-display">INR 199</span><span className="text-slate-400 text-sm font-normal font-sans ml-1">/mo</span>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <div>
+                  <span className="text-3xl lg:text-4xl font-extrabold font-display">INR 199</span><span className="text-slate-400 text-sm font-normal font-sans ml-1">/mo</span>
+                </div>
+                <a
+                  href="https://www.threephih.in/threephih/index.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="bg-white text-primary text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-slate-100 transition-colors shadow-sm inline-flex items-center gap-1.5 font-sans"
+                >
+                  Explore App <ArrowRight className="w-3.5 h-3.5" />
+                </a>
               </div>
             </motion.div>
 
@@ -283,7 +330,7 @@ export default function Home() {
               </div>
 
               <div className="bg-white/90 backdrop-blur-sm p-6 lg:p-8 rounded-2xl border border-[#DDE0F5] shadow-ambient shadow-ambient-hover text-center">
-                <div className="text-4xl lg:text-5xl font-display font-extrabold text-primary mb-2">10k</div>
+                <div className="text-4xl lg:text-5xl font-display font-extrabold text-primary mb-2">2L+</div>
                 <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider font-mono">Patients Assisted</p>
               </div>
 
@@ -313,7 +360,6 @@ export default function Home() {
             variants={fadeInUp}
           >
             <div className="max-w-2xl">
-              <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Diagnostics &amp; Treatment</span>
               <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Our Services</h2>
               <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-4">
                 Experience our wide range of health &amp; wellness services available at more than 200+ cities across Pan India.
@@ -380,7 +426,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-left max-w-5xl mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -394,8 +440,7 @@ export default function Home() {
                 whileHover={{ y: -6, transition: { duration: 0.3 } }}
               >
                 <div>
-                  <div className={`w-28 h-28 rounded-full bg-slate-100 mx-auto mb-6 flex items-center justify-center overflow-hidden ${member.isFounder ? 'border-4 border-[#ECECFE]' : 'border-4 border-slate-50'
-                    } shadow-sm`}>
+                  <div className={`w-28 h-28 rounded-full bg-slate-100 mx-auto mb-6 flex items-center justify-center overflow-hidden border-4 border-[#ECECFE] shadow-sm`}>
                     <img
                       alt={member.name}
                       className="w-full h-full object-cover"
@@ -404,7 +449,7 @@ export default function Home() {
                     />
                   </div>
                   <h4 className="text-headline-md font-bold text-primary text-center mb-1 leading-tight">{member.name}</h4>
-                  <p className="text-xs font-bold text-surface-tint text-center uppercase tracking-widest font-sans mb-5">{member.role}</p>
+                  <p className="text-xs font-bold text-surface-tint text-center uppercase tracking-widest font-sans mb-5">({member.role})</p>
 
                   <p className="text-sm text-text-secondary text-center font-sans leading-relaxed mb-6">
                     {member.desc}
@@ -420,6 +465,63 @@ export default function Home() {
                   >
                     Connect &rarr;
                   </a>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          OUR ADVISORS SECTION
+       ═══════════════════════════════════════════ */}
+      <section className="py-20 lg:py-24 bg-[#F8F9FF] border-t border-[#DDE0F5]">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+
+          <motion.div
+            className="text-center mb-14"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Clinical Guidance</span>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Advisors</h2>
+            <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-4 max-w-2xl mx-auto">
+              Renowned medical advisors and clinical experts guiding our health initiatives and patient care standards.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-left"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            {advisors.map((advisor, idx) => (
+              <motion.div
+                key={idx}
+                className="bg-white p-6 rounded-2xl border border-[#DDE0F5] shadow-sm flex flex-col justify-between"
+                variants={fadeInUp}
+                whileHover={{ y: -4, transition: { duration: 0.3 } }}
+              >
+                <div>
+                  <div className="w-24 h-24 rounded-full bg-slate-100 mx-auto mb-5 flex items-center justify-center overflow-hidden border-2 border-primary/20 shadow-sm">
+                    <img
+                      alt={advisor.name}
+                      className="w-full h-full object-cover"
+                      src={advisor.image}
+                      loading="lazy"
+                    />
+                  </div>
+                  <h4 className="text-base font-bold text-primary text-center mb-1 leading-snug">{advisor.name}</h4>
+                  <p className="text-xs font-bold text-[#7e82f4] text-center font-sans mb-3">({advisor.role})</p>
+
+                  <p className="text-xs text-text-secondary text-center font-sans leading-relaxed">
+                    {advisor.desc}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -456,12 +558,23 @@ export default function Home() {
               fadeOutColor="#ffffff"
               ariaLabel="Our Happy Clients & Partners"
               renderItem={(logo, key) => (
-                <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="h-14 md:h-16 lg:h-[4.5rem] w-auto object-contain shrink-0 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 hover:scale-110"
-                  loading="lazy"
-                />
+                logo.type === 'badge' ? (
+                  <div
+                    key={key}
+                    className="h-11 px-5 rounded-xl font-display font-extrabold text-xs tracking-wider uppercase flex items-center justify-center shadow-sm shrink-0 hover:scale-105 transition-transform duration-300 border border-white/20"
+                    style={{ backgroundColor: logo.bg, color: logo.text }}
+                  >
+                    {logo.name}
+                  </div>
+                ) : (
+                  <img
+                    key={key}
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="h-12 md:h-14 w-auto object-contain shrink-0 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 hover:scale-110"
+                    loading="lazy"
+                  />
+                )
               )}
             />
           </div>
@@ -627,7 +740,7 @@ export default function Home() {
 
                 {/* Call Us Card */}
                 <motion.a
-                  href="tel:+917008492909"
+                  href="tel:+919667835909"
                   className="bg-white/90 backdrop-blur-sm rounded-2xl p-5 border border-[#DDE0F5]/60 flex items-center gap-5 shadow-[0_8px_30px_rgb(0,0,0,0.015)] hover:shadow-md transition-all duration-300 group"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.99 }}
@@ -637,7 +750,7 @@ export default function Home() {
                   </div>
                   <div className="space-y-0.5 text-left">
                     <p className="text-[10px] text-text-secondary/70 uppercase font-semibold font-sans tracking-[0.15em]">Call Us</p>
-                    <p className="font-display font-bold text-xl text-primary tracking-tight">+91 7008492909</p>
+                    <p className="font-display font-bold text-xl text-primary tracking-tight">+91 9667835909</p>
                   </div>
                 </motion.a>
 
