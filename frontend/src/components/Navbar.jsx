@@ -6,7 +6,7 @@ import Button from './Button';
 import logoImg from '../assets/cropped-Logo-candidate-1-2-187x103.png';
 import { useAdminState } from '../context/AdminStateContext';
 
-const PORTAL_URL = 'https://www.threephih.in/threephih/index.html';
+const PORTAL_URL = '/contact';
 
 export default function Navbar({ isAdmin, sidebarCollapsed }) {
   const { pathname } = useLocation();
@@ -520,13 +520,13 @@ function ClientNavbar() {
 
         {/* Desktop Buttons */}
         <div className="hidden lg:flex items-center gap-3">
-          <a href={PORTAL_URL} target="_blank" rel="noreferrer">
+          <Link to={PORTAL_URL}>
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button variant="ghost" className="px-4 py-2 text-xs text-[#030050] hover:bg-[#ECECFE]/40">
                 Login
               </Button>
             </motion.div>
-          </a>
+          </Link>
           <Link to="/admin">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button variant="primary" className="px-4 py-2 text-xs bg-[#030050] hover:opacity-90 text-white">
@@ -639,11 +639,11 @@ function ClientNavbar() {
             </div>
             <hr className="border-[#e5e7eb]" />
             <div className="flex flex-col gap-2">
-              <a href={PORTAL_URL} target="_blank" rel="noreferrer" className="w-full">
+              <Link to={PORTAL_URL} className="w-full">
                 <Button variant="secondary" className="w-full py-2.5 text-xs text-[#030050] border-[#e5e7eb] hover:bg-slate-50">
                   Login
                 </Button>
-              </a>
+              </Link>
               <Link to="/admin" className="w-full">
                 <Button variant="primary" className="w-full py-2.5 text-xs bg-[#030050] hover:opacity-90 text-white">
                   Admin Panel

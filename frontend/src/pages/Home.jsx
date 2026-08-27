@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Phone, Mail, ArrowRight, HeartPulse, Clock, Award, ShieldCheck, Stethoscope, UserCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 import LogoLoop from '../components/LogoLoop';
@@ -233,14 +234,12 @@ export default function Home() {
                 <div>
                   <span className="text-3xl lg:text-4xl font-extrabold font-display">INR 199</span><span className="text-slate-400 text-sm font-normal font-sans ml-1">/mo</span>
                 </div>
-                <a
-                  href="https://www.threephih.in/threephih/index.html"
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  to="/services"
                   className="bg-white text-primary text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-slate-100 transition-colors shadow-sm inline-flex items-center gap-1.5 font-sans"
                 >
                   Explore App <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                </Link>
               </div>
             </motion.div>
 
@@ -270,14 +269,12 @@ export default function Home() {
                 <h3 className="text-2xl lg:text-3xl font-display font-bold mb-2">Speak to a Doctor</h3>
                 <p className="text-slate-300 text-sm font-sans">Get unhindered access to medical queries instantly.</p>
               </div>
-              <a
-                href="https://www.threephih.in/threephih/index.html"
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                to="/contact"
                 className="z-10 bg-white text-primary font-sans font-bold text-sm px-6 py-3.5 rounded-lg hover:bg-slate-50 transition-all whitespace-nowrap shadow-sm text-center"
               >
                 Book Consultation Now
-              </a>
+              </Link>
             </motion.div>
 
           </div>
@@ -365,15 +362,13 @@ export default function Home() {
                 Experience our wide range of health &amp; wellness services available at more than 200+ cities across Pan India.
               </p>
             </div>
-            <a
-              href="https://www.threephih.in/threephih/index.html"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              to="/services"
               className="bg-primary text-white font-sans font-semibold text-sm px-6 py-3.5 rounded-lg flex items-center gap-2 group self-start md:self-auto hover:opacity-95 shadow-sm transition-all"
             >
               Explore Plans
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </Link>
           </motion.div>
 
           <motion.div
@@ -717,15 +712,13 @@ export default function Home() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                  <a
-                    href="https://www.threephih.in/threephih/index.html"
-                    target="_blank"
-                    rel="noreferrer"
+                  <Link
+                    to="/contact"
                     className="bg-primary text-white font-sans font-semibold text-sm px-8 py-4 rounded-xl flex items-center justify-center gap-2 shadow-sm hover:opacity-90 active:scale-[0.98] transition-all duration-200"
                   >
                     <span>Contact Us</span>
                     <ArrowRight className="w-4.5 h-4.5" />
-                  </a>
+                  </Link>
                   <a
                     href="#services"
                     className="bg-white border border-[#DDE0F5] text-primary hover:bg-[#ECECFE]/20 font-sans font-semibold text-sm px-8 py-4 rounded-xl shadow-sm active:scale-[0.98] transition-all duration-200 text-center"

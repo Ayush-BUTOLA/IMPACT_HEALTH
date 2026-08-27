@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import gsap from "gsap";
 import {
@@ -198,26 +199,18 @@ export default function HeroSlideshow() {
           {/* FIXED — CTAs, dots, metrics */}
           <div className="flex flex-col gap-7 mt-2">
             <div className="flex flex-wrap gap-3.5">
-              <motion.a
-                href="https://www.threephih.in/threephih/index.html"
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                to="/services"
                 className="inline-flex items-center gap-2 bg-navy text-white text-[14.5px] font-semibold px-7 py-3.5 rounded-xl hover:bg-navy-deep transition-colors font-sans shadow-sm"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
               >
                 Explore App <ArrowRight className="w-4 h-4" strokeWidth={2} />
-              </motion.a>
-              <motion.a
-                href="https://www.threephih.in/threephih/index.html"
-                target="_blank"
-                rel="noreferrer"
+              </Link>
+              <Link
+                to="/contact"
                 className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-navy text-[14.5px] font-semibold px-7 py-3.5 rounded-xl border-[1.5px] border-[#e6e7f2] hover:border-navy/30 transition-colors font-sans shadow-sm"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
               >
                 Talk to a doctor
-              </motion.a>
+              </Link>
             </div>
 
             <div className="flex items-center gap-2.5">

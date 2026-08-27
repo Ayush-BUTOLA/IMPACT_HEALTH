@@ -68,11 +68,11 @@ export default function CategoryPageLayout({ categoryKey, data }) {
                 className="flex flex-col sm:flex-row gap-4 pt-4"
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               >
-                <a href="https://www.threephih.in/threephih/index.html" target="_blank" rel="noreferrer">
+                <Link to="/contact">
                   <Button variant="primary" className="bg-[#0F4C81] text-white font-sans font-semibold text-sm px-8 py-4 rounded-lg shadow-sm w-full sm:w-auto">
                     {data.ctaText}
                   </Button>
-                </a>
+                </Link>
                 <a href="#services-list">
                   <Button variant="secondary" className="bg-white border border-gray-200 text-[#0F4C81] hover:bg-[#F8FBFF]/50 font-sans font-semibold text-sm px-8 py-4 rounded-lg w-full sm:w-auto">
                     Explore Solutions
@@ -218,11 +218,11 @@ export default function CategoryPageLayout({ categoryKey, data }) {
             </div>
 
             <div className="z-10 pt-4">
-              <a href="https://www.threephih.in/threephih/index.html" target="_blank" rel="noreferrer">
+              <Link to="/contact">
                 <Button variant="secondary" className="bg-white text-[#0F4C81] border border-transparent font-sans font-bold text-sm px-8 py-4 rounded-lg shadow-md hover:bg-slate-50 transition-all">
                   Schedule Consultation Now
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

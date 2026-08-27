@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import {
   Dna,
@@ -251,14 +252,12 @@ export default function PatientSupportProgram() {
                 variants={fadeUpVariants}
                 className="flex flex-col sm:flex-row gap-4 pt-4"
               >
-                <a
-                  href="https://www.threephih.in/threephih/index.html"
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  to="/contact"
                   className="bg-primary text-white font-sans font-semibold text-sm px-8 py-4 rounded-lg shadow-ambient hover:opacity-95 transition-opacity text-center"
                 >
                   Schedule Consultation
-                </a>
+                </Link>
                 <a
                   href="#psp-delivery-model"
                   onClick={scrollToTimeline}
@@ -778,20 +777,18 @@ export default function PatientSupportProgram() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <a
-                  href="https://www.threephih.in/threephih/index.html"
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  to="/contact"
                   className="bg-white text-primary font-sans font-bold text-sm px-8 py-4 rounded-xl hover:bg-slate-50 transition-colors shadow-sm text-center min-w-[200px]"
                 >
                   Schedule Consultation
-                </a>
-                <a
-                  href="#contact"
+                </Link>
+                <Link
+                  to="/contact"
                   className="bg-white/10 text-white border border-white/20 font-sans font-semibold text-sm px-8 py-4 rounded-xl hover:bg-white/25 transition-colors text-center min-w-[200px]"
                 >
                   Contact Us
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

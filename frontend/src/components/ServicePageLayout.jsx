@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import * as Icons from 'lucide-react';
 import Button from './Button';
@@ -159,7 +160,7 @@ export default function ServicePageLayout({ service }) {
                 variants={fadeUpVariants}
                 className="flex flex-col sm:flex-row gap-4 pt-4"
               >
-                <a href="https://www.threephih.in/threephih/index.html" target="_blank" rel="noreferrer">
+                <Link to="/contact">
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button 
                       variant="primary" 
@@ -168,7 +169,7 @@ export default function ServicePageLayout({ service }) {
                       Book Consultation
                     </Button>
                   </motion.div>
-                </a>
+                </Link>
                 <a href="#why-it-matters">
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button 
@@ -474,11 +475,11 @@ export default function ServicePageLayout({ service }) {
                   </div>
 
                   <div className="pt-4">
-                    <a href="https://www.threephih.in/threephih/index.html" target="_blank" rel="noreferrer" className="block w-full">
+                    <Link to="/contact" className="block w-full">
                       <Button variant="secondary" className="w-full bg-white hover:bg-[#0F766E] hover:text-white border border-[#0F766E]/20 text-[#0F766E] font-bold text-xs py-3 rounded-xl transition-all duration-300">
                         Select Package
                       </Button>
-                    </a>
+                    </Link>
                   </div>
                 </motion.div>
               ))}
@@ -861,7 +862,7 @@ export default function ServicePageLayout({ service }) {
 
             {/* Action CTA Buttons */}
             <div className="z-10 pt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <a href="https://www.threephih.in/threephih/index.html" target="_blank" rel="noreferrer">
+              <Link to="/contact">
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                   <Button 
                     variant="primary" 
@@ -870,7 +871,7 @@ export default function ServicePageLayout({ service }) {
                     Book Consultation
                   </Button>
                 </motion.div>
-              </a>
+              </Link>
 
               <a href="#why-it-matters">
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>

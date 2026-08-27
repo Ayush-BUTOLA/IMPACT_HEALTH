@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Phone, Mail, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 import DotGrid from "./backgrounds/DotGrid";
@@ -41,16 +42,12 @@ export default function CtaBand() {
                 your family's health goals.
               </p>
               <div className="flex flex-wrap gap-3 mt-6">
-                <motion.a
-                  href="https://www.threephih.in/threephih/index.html"
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  to="/contact"
                   className="inline-flex items-center gap-2 bg-navy text-white text-[14px] font-semibold px-6 py-3 rounded-xl hover:bg-navy-deep transition-all duration-200"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
                 >
                   <span>Contact Us</span> <ArrowRight className="w-4 h-4" strokeWidth={2} />
-                </motion.a>
+                </Link>
                 <motion.a
                   href="#services"
                   className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-navy text-[14px] font-semibold px-6 py-3 rounded-xl border-[1.5px] border-[#e6e7f2] hover:border-navy/30 transition-all duration-200"

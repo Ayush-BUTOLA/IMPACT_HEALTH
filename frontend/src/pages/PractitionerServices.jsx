@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Database,
@@ -20,7 +21,6 @@ import {
   ArrowRight,
   Layers
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 
 export default function PractitionerServices() {
@@ -464,7 +464,7 @@ export default function PractitionerServices() {
             </div>
 
             <div className="z-10 pt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <a href="https://www.threephih.in/threephih/index.html" target="_blank" rel="noreferrer">
+              <Link to="/contact">
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                   <Button
                     variant="primary"
@@ -473,7 +473,7 @@ export default function PractitionerServices() {
                     Schedule Demo / Consultation
                   </Button>
                 </motion.div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

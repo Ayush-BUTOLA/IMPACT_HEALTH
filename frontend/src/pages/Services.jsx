@@ -148,13 +148,13 @@ export default function Services() {
             </div>
 
             <div className="z-10 pt-4">
-              <a href="https://www.threephih.in/threephih/index.html" target="_blank" rel="noreferrer">
+              <Link to="/contact">
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                   <Button variant="secondary" className="bg-white text-[#0F4C81] border border-transparent font-sans font-bold text-sm px-8 py-4 rounded-lg shadow-md hover:bg-slate-50 transition-all">
                     Schedule Discovery Consultation
                   </Button>
                 </motion.div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
