@@ -219,7 +219,7 @@ export default function HeroSlideshow() {
                   key={i}
                   aria-label={"Go to slide " + (i + 1)}
                   onClick={() => setIndex(i)}
-                  className="h-1.5 rounded-full transition-all duration-300 cursor-pointer"
+                  className="h-1.5 rounded-full transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet focus-visible:ring-offset-2"
                   style={{
                     width: i === index ? 26 : 7,
                     background: i === index ? "var(--color-navy)" : "#c5c8e0",

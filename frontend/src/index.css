@@ -96,6 +96,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Browser Surfaces: Custom Text Selection & Focus-Visible Rings */
+::selection {
+  background-color: rgba(91, 91, 214, 0.2);
+  color: #16165a;
+}
+
+:focus-visible {
+  outline: 2px solid #5b5bd6;
+  outline-offset: 2px;
+}
+
 /* Typography Custom Configurations from DESIGN.md */
 
 .text-headline-xl {
