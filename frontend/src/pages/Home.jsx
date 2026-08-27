@@ -184,7 +184,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div ref={solutionsRef} className="grid grid-cols-1 md:grid-cols-12 gap-8 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 text-left">
 
             {/* One-Stop Solution Card */}
             <motion.div
@@ -308,7 +308,7 @@ export default function Home() {
             </motion.div>
 
             {/* Data Cards grid */}
-            <div ref={statsRef} className="lg:col-span-6 grid grid-cols-2 gap-6">
+            <div className="lg:col-span-6 grid grid-cols-2 gap-6">
 
               <div className="bg-white/90 backdrop-blur-sm p-6 lg:p-8 rounded-2xl border border-[#DDE0F5] shadow-ambient shadow-ambient-hover text-center">
                 <div className="text-4xl lg:text-5xl font-display font-extrabold text-primary mb-2">80%</div>
