@@ -441,9 +441,21 @@ function ClientNavbar() {
                   <span>{link.name}</span>
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isServicesOpen ? 'rotate-180 text-[#030050]' : ''}`} />
                 </button>
+              ) : link.path ? (
+                <Link
+                  to={link.path}
+                  onClick={() => {
+                    setIsOpen(false);
+                    setIsServicesOpen(false);
+                    window.scrollTo({ top: 0, behavior: 'instant' });
+                  }}
+                  className={getLinkClass(link)}
+                >
+                  {link.name}
+                </Link>
               ) : (
                 <a
-                  href={link.path || `#${link.id}`}
+                  href={`#${link.id}`}
                   onClick={(e) => handleNavClick(e, link)}
                   className={getLinkClass(link)}
                 >
@@ -622,10 +634,26 @@ function ClientNavbar() {
                 const isMobileActive = link.path
                   ? location.pathname === link.path
                   : activeSection === link.id;
-                return (
+                return link.path ? (
+                  <Link
+                    key={link.name}
+                    to={link.path}
+                    onClick={() => {
+                      setIsOpen(false);
+                      setIsServicesOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'instant' });
+                    }}
+                    className={`text-sm font-medium py-2.5 px-3 rounded-md block transition-all ${isMobileActive
+                      ? 'text-[#030050] bg-[#ECECFE]/60 font-semibold'
+                      : 'text-[#4A4A4A] hover:text-[#030050] hover:bg-[#ECECFE]/30'
+                      }`}
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
                   <a
-                    key={link.id || link.path}
-                    href={link.path || `#${link.id}`}
+                    key={link.id || link.name}
+                    href={`#${link.id}`}
                     onClick={(e) => handleNavClick(e, link)}
                     className={`text-sm font-medium py-2.5 px-3 rounded-md block transition-all ${isMobileActive
                       ? 'text-[#030050] bg-[#ECECFE]/60 font-semibold'

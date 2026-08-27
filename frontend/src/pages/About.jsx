@@ -349,7 +349,6 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            ref={valuesRef}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
             initial="hidden"
             whileInView="visible"
