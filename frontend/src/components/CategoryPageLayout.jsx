@@ -1,114 +1,163 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
 import * as Icons from 'lucide-react';
-import PremiumBackground from './PremiumBackground';
 import Button from './Button';
+import PageBackground from './PageBackground';
+import CtaBand from './CtaBand';
 import { servicesData } from '../data/servicesData';
 
-function ResolveIcon({ name, className = 'w-6 h-6' }) {
+function ResolveIcon({ name, className = 'w-5 h-5' }) {
   const IconComponent = Icons[name] || Icons.HelpCircle;
   return <IconComponent className={className} />;
 }
 
 export default function CategoryPageLayout({ categoryKey, data }) {
-  // Extract all subservices in this category from servicesData
   const categorySubservices = servicesData[categoryKey] 
     ? Object.values(servicesData[categoryKey]) 
     : [];
 
+  const themeVariant = categoryKey === 'school-health' ? 'school'
+    : categoryKey === 'corporate-health' ? 'corporate'
+    : categoryKey === 'patient-support' ? 'patients'
+    : 'practitioners';
+
   return (
-    <div className="relative w-full overflow-hidden bg-white">
-      <PremiumBackground />
+    <div className={`relative w-full overflow-hidden font-sans text-[#0F172A] theme-${themeVariant}`}>
+      <PageBackground variant={themeVariant} showInteractiveDots={true} />
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-20 md:pt-32 md:pb-28">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <motion.div 
-            className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center text-left"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
-            }}
-          >
-            {/* Left Content */}
-            <div className="lg:col-span-7 space-y-6">
-              <motion.div 
-                className="inline-flex items-center gap-2 bg-[#0F4C81]/10 border border-[#0F4C81]/15 text-[#0F4C81] px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider font-sans"
-                variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 } }}
-              >
-                <Icons.Activity className="w-3.5 h-3.5 animate-pulse" />
-                <span>Impact Health Services</span>
-              </motion.div>
+      {/* 1. Hero Section (7:5 Clinical Split Architecture) */}
+      <section className="pt-20 pb-16 sm:pt-24 sm:pb-20 border-b border-slate-200/70 bg-white/75 backdrop-blur-md relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+          
+          {/* Breadcrumb Navigation */}
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-slate-500 mb-6">
+            <Link to="/services" className="hover:text-[#0066FF] transition-colors">Services</Link>
+            <Icons.ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-slate-800 font-semibold">{data.title}</span>
+          </nav>
 
-              <motion.h1 
-                className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 tracking-tight leading-none"
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}
-              >
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            
+            {/* Left Narrative Column */}
+            <div className="lg:col-span-7 space-y-5">
+              
+              {/* Category Live Status Chip */}
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-blue-50/90 border border-blue-200/80 text-[#0066FF] text-xs font-mono font-semibold shadow-xs">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0066FF] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0066FF]"></span>
+                </span>
+                <span>Healthcare Infrastructure Division</span>
+              </div>
+
+              {/* Calibrated Editorial Headline */}
+              <h1 className="font-display font-bold text-3xl sm:text-5xl lg:text-6xl text-[#0B132B] tracking-[-0.03em] leading-[1.1]">
                 {data.title}
-              </motion.h1>
+              </h1>
 
-              <motion.p 
-                className="text-lg md:text-xl text-gray-600 leading-relaxed font-sans font-medium"
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              >
-                {data.subtitle}
-              </motion.p>
+              {/* Clinical Subtitle */}
+              {data.subtitle && (
+                <p className="text-base sm:text-lg font-semibold text-[#0066FF] tracking-[-0.01em]">
+                  {data.subtitle}
+                </p>
+              )}
 
-              <motion.p 
-                className="text-base text-gray-500 leading-relaxed font-sans opacity-95"
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              >
+              {/* Scannable Value Proposition */}
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans max-w-xl">
                 {data.description}
-              </motion.p>
+              </p>
 
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-4 pt-4"
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              >
+              {/* Dual Action Strip */}
+              <div className="flex flex-wrap items-center gap-3.5 pt-2">
                 <Link to="/contact">
-                  <Button variant="primary" className="bg-[#0F4C81] text-white font-sans font-semibold text-sm px-8 py-4 rounded-lg shadow-sm w-full sm:w-auto">
-                    {data.ctaText}
+                  <Button variant="royal" size="md" withArrow>
+                    {data.ctaText || "Book Consultation"}
                   </Button>
                 </Link>
                 <a href="#services-list">
-                  <Button variant="secondary" className="bg-white border border-gray-200 text-[#0F4C81] hover:bg-[#F8FBFF]/50 font-sans font-semibold text-sm px-8 py-4 rounded-lg w-full sm:w-auto">
-                    Explore Solutions
+                  <Button variant="secondary" size="md" className="bg-white hover:bg-slate-50 border-slate-200 text-[#0B132B]">
+                    Explore {categorySubservices.length} Solutions
                   </Button>
                 </a>
-              </motion.div>
+                <a 
+                  href="tel:+919667835909"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-mono font-semibold text-slate-600 hover:text-[#0066FF] transition-colors"
+                >
+                  <Icons.Phone className="w-3.5 h-3.5 text-[#0066FF]" />
+                  <span>Contact Us: +91 9667835909</span>
+                </a>
+              </div>
+
+              {/* Key Assurance Signals */}
+              <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-500 font-sans">
+                <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                  <Icons.ShieldCheck className="w-4 h-4 text-[#059669]" />
+                  100% Institutional Compliance
+                </span>
+                <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                  <Icons.UserCheck className="w-4 h-4 text-[#0066FF]" />
+                  Certified Clinical Practitioners
+                </span>
+                <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                  <Icons.Award className="w-4 h-4 text-[#059669]" />
+                  ISO 9001:2015 Standards
+                </span>
+              </div>
+
             </div>
 
-            {/* Right Image */}
-            <motion.div 
-              className="lg:col-span-5 relative"
-              variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1, transition: { duration: 1.2 } } }}
-            >
-              <div className="bg-white rounded-[32px] p-3 shadow-md border border-gray-200/40 overflow-hidden group">
-                <img 
-                  alt={data.title}
-                  className="w-full h-[320px] md:h-[400px] object-cover rounded-[24px] transform group-hover:scale-[1.03] transition-transform duration-700 ease-out"
-                  src={data.image}
-                  loading="eager"
-                />
+            {/* Right Hardware Bezel Visual Card */}
+            <div className="lg:col-span-5 relative">
+              <div className="bezel-outer p-2 shadow-xl bg-slate-100/90 rounded-3xl border border-slate-200/80">
+                <div className="bezel-inner rounded-[22px] overflow-hidden aspect-[4/3] bg-slate-100 relative shadow-inner">
+                  <img
+                    src={data.image}
+                    alt={data.title}
+                    className="w-full h-full object-cover select-none"
+                    loading="eager"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
+
+                  {/* Floating Top Verification Badge */}
+                  <div className="absolute top-3.5 left-3.5 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-slate-200/80 text-xs font-bold text-[#0B132B] shadow-md flex items-center gap-2">
+                    <Icons.ShieldCheck className="w-4 h-4 text-[#059669]" />
+                    <span>Accredited Healthcare Delivery</span>
+                  </div>
+
+                  {/* Floating Bottom Program Count Chip */}
+                  <div className="absolute bottom-3.5 left-3.5 right-3.5 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl border border-slate-200/80 shadow-md flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                      <span className="text-xs font-bold text-[#0B132B] truncate">{data.title}</span>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#0066FF] bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100 shrink-0">
+                      {categorySubservices.length} Programs
+                    </span>
+                  </div>
+
+                </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      {/* Overview Section */}
-      <section className="py-20 bg-[#F8FBFF] border-y border-gray-200/60 text-left">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5 space-y-4">
-              <span className="text-[#14B8A6] text-xs font-bold uppercase tracking-widest font-sans block">Healthcare Mandate</span>
-              <h2 className="text-3xl font-display font-bold text-gray-900 tracking-tight">Scope of Care</h2>
+      {/* 2. Scope of Care / Clinical Mandate Section */}
+      <section className="py-16 sm:py-20 bg-white/65 backdrop-blur-md border-b border-slate-200/70 text-left relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-4 space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-[#0066FF] text-xs font-mono font-semibold border border-blue-200/60">
+                <Icons.Activity className="w-3.5 h-3.5 text-[#0066FF]" />
+                <span>Healthcare Mandate</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#0B132B] tracking-tight">
+                Scope of Care &amp; Operational Standards
+              </h2>
             </div>
-            <div className="lg:col-span-7 bg-white rounded-[24px] border border-gray-200/40 p-8 shadow-sm font-sans">
-              <p className="text-sm text-gray-600 leading-relaxed">
+            <div className="lg:col-span-8 p-6 sm:p-8 rounded-3xl bg-white/95 backdrop-blur-sm border border-slate-200/80 shadow-xs">
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-sans">
                 {data.overview}
               </p>
             </div>
@@ -116,117 +165,69 @@ export default function CategoryPageLayout({ categoryKey, data }) {
         </div>
       </section>
 
-      {/* Services List Section */}
-      <section id="services-list" className="py-24 bg-white text-left">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="max-w-3xl mb-16 space-y-4">
-            <span className="text-[#2AA8FF] text-xs font-bold uppercase tracking-widest font-sans block">Clinical Solutions</span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 tracking-tight">Available Programs</h2>
-            <p className="text-sm text-gray-600 font-sans leading-relaxed">
-              Browse through our customized clinical, technology, and operational modules. Each program includes full-service tracking and professional certified personnel.
+      {/* 3. Subservices Grid */}
+      <section id="services-list" className="py-16 sm:py-24 text-left relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="max-w-3xl mb-14 space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-[#0066FF] text-xs font-mono font-semibold border border-blue-200/60">
+              <Icons.Layers className="w-3.5 h-3.5 text-[#0066FF]" />
+              <span>Standardized Solutions</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[#0B132B] tracking-tight">
+              Available Clinical Programs
+            </h2>
+            <p className="text-sm text-slate-600 font-sans leading-relaxed">
+              Explore customized clinical, technology, and operational modules. Each program includes turnkey deployment, certified personnel, real-time logging, and emergency protocol oversight.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 font-sans">
-            {categorySubservices.map((sub, idx) => (
-              <motion.div
-                key={sub.id}
-                className="bg-white rounded-[24px] border border-gray-200/60 p-8 shadow-[0_4px_20px_-4px_rgba(15,76,129,0.03)] hover:-translate-y-1.5 hover:border-[#0F4C81] hover:shadow-[0_12px_35px_-8px_rgba(15,76,129,0.08)] transition-all duration-300 flex flex-col justify-between group cursor-pointer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.05 }}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-sans">
+            {categorySubservices.map((sub) => (
+              <div 
+                key={sub.id} 
+                className="bezel-outer p-1.5 rounded-3xl bg-slate-100/90 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300/80 transition-all duration-200 flex flex-col group"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-[16px] bg-[#0F4C81]/5 text-[#0F4C81] flex items-center justify-center mb-6">
-                    {sub.features && sub.features[0] ? (
-                      <ResolveIcon name={sub.features[0].icon} className="w-6 h-6" />
-                    ) : (
-                      <Icons.Activity className="w-6 h-6" />
-                    )}
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#0F4C81] transition-colors mb-2">
-                    {sub.title}
-                  </h3>
-                  <p className="text-xs text-gray-600 leading-relaxed mb-8">
-                    {sub.description}
-                  </p>
-                </div>
+                <div className="bezel-inner rounded-[22px] p-6 sm:p-7 bg-white flex flex-col justify-between h-full space-y-5">
+                  <div className="space-y-3.5">
+                    <div className="flex items-center justify-between">
+                      <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 text-[#0066FF] flex items-center justify-center shadow-xs group-hover:scale-105 group-hover:bg-[#0066FF] group-hover:text-white transition-all duration-200">
+                        {sub.features && sub.features[0] ? (
+                          <ResolveIcon name={sub.features[0].icon} className="w-5 h-5" />
+                        ) : (
+                          <Icons.Activity className="w-5 h-5" />
+                        )}
+                      </div>
+                      <span className="text-[11px] font-mono font-semibold text-slate-400">
+                        {sub.deliverables ? `${sub.deliverables.length} Deliverables` : 'Clinical Standard'}
+                      </span>
+                    </div>
 
-                <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
-                  <Link 
-                    to={`/services/${categoryKey}/${sub.id}`}
-                    className="text-xs font-semibold text-[#0F4C81] flex items-center gap-1 hover:underline w-full justify-between"
-                  >
-                    <span>View program details</span>
-                    <Icons.ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
-                  </Link>
+                    <h3 className="text-lg font-display font-bold text-[#0B132B] group-hover:text-[#0066FF] transition-colors leading-snug">
+                      {sub.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
+                      {sub.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-100">
+                    <Link to={`/services/${categoryKey}/${sub.id}`}>
+                      <Button variant="ghost" size="sm" className="w-full justify-between text-xs font-bold text-[#0066FF] hover:bg-blue-50" withArrow>
+                        <span>View Program Protocol</span>
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* Highlights & Benefits Checklist */}
-      <section className="py-20 bg-[#F8FBFF] border-y border-gray-200/60 text-left font-sans">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <span className="text-[#14B8A6] text-xs font-bold uppercase tracking-widest block">Value &amp; SLA Delivery</span>
-              <h2 className="text-3xl font-display font-bold text-gray-900 tracking-tight">Clinical Standards</h2>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                We coordinate healthcare services through professional networks to ensure full compliance and continuous quality loops.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {data.highlights.map((h, i) => (
-                <div key={i} className="bg-white rounded-2xl border border-gray-200/40 p-6 shadow-sm flex flex-col gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#14B8A6]/10 text-[#14B8A6] flex items-center justify-center shrink-0">
-                    <Icons.Check className="w-4 h-4 stroke-[3]" />
-                  </div>
-                  <p className="text-xs text-gray-600 leading-relaxed font-semibold">
-                    {h}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div 
-            className="rounded-[32px] p-8 md:p-16 text-center text-white relative overflow-hidden shadow-md flex flex-col items-center justify-center gap-6"
-            style={{
-              background: 'linear-gradient(135deg, #0F4C81 0%, #14B8A6 100%)',
-            }}
-          >
-            <div className="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full -ml-36 -mt-36 filter blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#2AA8FF]/20 rounded-full -mr-36 -mb-36 filter blur-3xl pointer-events-none" />
-
-            <div className="max-w-2xl space-y-4 z-10">
-              <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight">
-                Get Started with {data.title}
-              </h2>
-              <p className="text-sm md:text-base text-slate-100 font-sans leading-relaxed opacity-90">
-                Setup custom deployments, schedule consultation programs, or migrate to digital scheduling databases today.
-              </p>
-            </div>
-
-            <div className="z-10 pt-4">
-              <Link to="/contact">
-                <Button variant="secondary" className="bg-white text-[#0F4C81] border border-transparent font-sans font-bold text-sm px-8 py-4 rounded-lg shadow-md hover:bg-slate-50 transition-all">
-                  Schedule Consultation Now
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 4. Consultation CTA */}
+      <CtaBand />
     </div>
   );
 }

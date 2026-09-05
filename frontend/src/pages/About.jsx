@@ -1,625 +1,767 @@
-import { useEffect } from 'react';
-import { motion } from 'motion/react';
-import { 
-  Users, 
-  ShieldCheck, 
-  HeartHandshake, 
-  Globe, 
-  Coins, 
-  Clock, 
-  Activity, 
-  GraduationCap, 
-  Building 
-} from 'lucide-react';
-import cert1 from '../assets/1.png';
-import cert2 from '../assets/2.png';
-import yourStoryLogo from '../assets/5bee83f7a69edda26bc5b891_YourStory_Logo-New-01-1024x346.png';
-import missionGirlImg from '../assets/mission_healthcare_impact.jpg';
-import Aurora from '../components/backgrounds/Aurora';
-
-const fadeInUp = {
-  hidden: { opacity: 1, y: 0 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 1 },
-  visible: { opacity: 1 }
-};
+import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
+import { ChevronDown, ArrowRight, Sparkles, ShieldCheck, Heart, Stethoscope, Award, Users, CheckCircle2 } from 'lucide-react';
 
 export default function About() {
   useEffect(() => {
-    document.title = "About Us | Impact Health";
-    
-    // Smooth scroll to top on mount
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  const coreValues = [
+  // FAQ Accordion State
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  // 4 FAQs from the design
+  const faqs = [
     {
-      title: "Respect",
-      icon: <HeartHandshake className="w-8 h-8 text-surface-tint" />,
-      desc: "We respect every individual and community and appreciate valuable concrete concerns in the future."
+      title: 'Serving India',
+      answer:
+        'Impact Health operates across 200+ cities in India, ensuring families in both metropolitan hubs and tier-2/tier-3 regional districts receive doorstep diagnostics, fast sample collection, and tele-triage consultations.',
     },
     {
-      title: "Quality",
-      icon: <ShieldCheck className="w-8 h-8 text-surface-tint" />,
-      desc: "We constantly keep ourselves and quality, communication and review the dedicated quality care."
+      title: 'Clinical Ethics',
+      answer:
+        'Our medical practitioners and clinical advisors are evaluated strictly by patient health recovery, diagnostic precision, and trust earned. We enforce a zero-commission policy with no pharmaceutical sales targets or unnecessary test quotas.',
     },
     {
-      title: "Patient Care",
-      icon: <Users className="w-8 h-8 text-surface-tint" />,
-      desc: "We keep striving towards the highly quality outcome and diseases remedies with better patient care."
-    }
+      title: 'Accredited Labs',
+      answer:
+        'Every diagnostic partner in our network holds verified NABL accreditation and ISO 9001:2015 certification. We follow strict cold-chain sample logistics with barcoded tracking to guarantee uncompromising report accuracy.',
+    },
+    {
+      title: 'Doctor Selection',
+      answer:
+        'All physicians on our panel hold verified MBBS or MD degrees with active Medical Council registration. They undergo rigorous pediatric, chronic illness, and triage protocol training before handling patient consultations.',
+    },
+  ];
+
+  // Core Values from the design
+  const values = [
+    {
+      name: 'Respect',
+      desc: 'Every patient, regardless of geography or income, is treated with absolute dignity and compassionate care.',
+    },
+    {
+      name: 'Quality',
+      desc: 'Zero shortcuts in diagnostic testing protocols, NABL laboratory accreditation, or doctor qualifications.',
+    },
+    {
+      name: 'Patient Care',
+      desc: 'We evaluate our clinical success strictly by patient health recovery and long-term trust, never by volume quotas.',
+    },
+  ];
+
+  // 3 Key Programs
+  const programs = [
+    {
+      tag: 'EDUCATION',
+      title: 'School Health Program',
+      desc: 'Preventive screenings, growth monitoring, and nutritional counseling for over 40,000 students nationwide.',
+      image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop',
+      fallback: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+      tag: 'WORKPLACE',
+      title: 'Corporate Wellness',
+      desc: 'On-site wellness camps, executive health checks, and ongoing occupational health management for modern enterprises.',
+      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop',
+      fallback: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+      tag: 'COMPLIANCE',
+      title: 'Food Handler Sanitisation',
+      desc: 'FSSAI-compliant medical screening, typhoid vaccination, and routine diagnostic certification for kitchen and hospitality staff.',
+      image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=800&auto=format&fit=crop',
+      fallback: 'https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=800&auto=format&fit=crop',
+    },
+  ];
+
+  // 4 Stats for the banner
+  const stats = [
+    { value: '~60%', label: 'average out-of-pocket cost reduction for covered families' },
+    { value: '200+', label: 'Indian cities with active doorstep phlebotomy coverage' },
+    { value: '400+', label: 'daily physician consultations across Pan-India' },
+    { value: 'TECH', label: 'proprietary digital triage and clinical logistics engine' },
+  ];
+
+  // 3 Origin Story Metrics
+  const originMetrics = [
+    { num: '01', stat: '400+', unit: '/ DAILY', desc: 'Doctor consultations conducted daily across 200+ Indian cities.' },
+    { num: '02', stat: '40,000+', unit: '', desc: 'Students screened under preventive School Health programs.' },
+    { num: '03', stat: 'PAN-INDIA', unit: '', desc: 'Accredited phlebotomy network reaching tier-2 & tier-3 hubs.' },
+  ];
+
+  // Ticker items
+  const tickerItems = [
+    'Convenient',
+    'For everyone',
+    'Accessible',
+    'Affordable',
+    'Convenient',
+    'For everyone',
+    'Accessible',
+    'Affordable',
+    'Convenient',
+    'For everyone',
+    'Accessible',
+    'Affordable',
   ];
 
   return (
-    <div id="about-page" className="w-full bg-white relative overflow-hidden">
+    <div className="min-h-screen bg-[#FBF9F4] text-[#1A1816] font-sans selection:bg-[#C6F035] selection:text-black relative overflow-hidden">
+      <Helmet>
+        <title>About Impact Health | Affordable Healthcare Across 200+ Indian Cities</title>
+        <meta name="description" content="Learn about Impact Health — our mission to make quality healthcare accessible and affordable for every Indian family. Doctor consultations, home diagnostics & more." />
+        <meta property="og:title" content="About Impact Health | Our Mission & Team" />
+        <meta property="og:description" content="Trusted by 2L+ patients. Impact Health provides affordable doctor consultations, home blood tests & medicine delivery across 200+ cities in India." />
+      </Helmet>
       
-      {/* ═══════════════════════════════════════════
-          HERO BANNER with Aurora Background
-       ═══════════════════════════════════════════ */}
-      <section className="relative h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Aurora background */}
-        <Aurora
-          colorStops={['#030050', '#0d0489', '#7e82f4']}
-          amplitude={1.2}
-          speed={0.6}
-          blend={0.7}
-        />
-
-        {/* Dark overlay for text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent pointer-events-none z-[1]"></div>
-
+      {/* ────────────────────────────────────────────────────────────
+          WARM LIGHT EDITORIAL AMBIENCE
+          (Warm cream/linen canvas #FBF9F4 + soft honey & olive radiance)
+          ──────────────────────────────────────────────────────────── */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+        {/* Soft amber top radiance */}
         <motion.div
-          className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full text-center md:text-left"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight leading-tight max-w-3xl">
-            Empowering Healthcare through Innovation
-          </h1>
-        </motion.div>
-      </section>
+          animate={{ scale: [1, 1.05, 1], opacity: [0.06, 0.09, 0.06] }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-40 left-1/4 w-[850px] h-[850px] rounded-full bg-gradient-to-br from-[#F59E0B] via-[#D97706]/60 to-transparent blur-[160px]"
+        />
+        {/* Soft olive/warm mid radiance */}
+        <motion.div
+          animate={{ scale: [1, 1.08, 1], opacity: [0.06, 0.08, 0.06] }}
+          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+          className="absolute top-[35%] -right-40 w-[750px] h-[750px] rounded-full bg-gradient-to-bl from-[#84CC16] via-[#EAB308]/60 to-transparent blur-[150px]"
+        />
+        {/* Soft warm sand lower radiance */}
+        <div className="absolute top-[70%] -left-32 w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-[#D97706]/5 via-[#FBBF24]/4 to-transparent blur-[160px]" />
+        {/* Fine warm paper dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: 'radial-gradient(#1A1816 1.2px, transparent 1.2px)',
+            backgroundSize: '36px 36px',
+          }}
+        />
+      </div>
 
-      {/* ═══════════════════════════════════════════
-          MISSION & ABOUT US
-       ═══════════════════════════════════════════ */}
-      {/* ═══════════════════════════════════════════
-          OUR ORIGIN & MISSION
-       ═══════════════════════════════════════════ */}
-      <section className="py-20 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      {/* Outer Content Shell */}
+      <div className="relative z-10">
+
+        {/* ────────────────────────────────────────────────────────────
+            SECTION 1: HERO SECTION
+            "Healthcare, without the barriers."
+            ──────────────────────────────────────────────────────────── */}
+        <section className="pt-28 sm:pt-36 lg:pt-40 pb-20 sm:pb-24 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto relative">
+          
+          {/* Top-Right Background Rotating Concentric Radar Rings in Warm Sand/Gold */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
+            className="absolute -top-10 right-0 sm:right-10 w-[380px] sm:w-[540px] h-[380px] sm:h-[540px] pointer-events-none opacity-40 select-none will-change-transform"
+          >
+            <svg viewBox="0 0 540 540" className="w-full h-full stroke-[#C5B392]/50" fill="none">
+              <circle cx="440" cy="100" r="80" strokeWidth="1" strokeDasharray="3 4" />
+              <circle cx="440" cy="100" r="150" strokeWidth="1" />
+              <circle cx="440" cy="100" r="230" strokeWidth="1" strokeDasharray="4 6" />
+              <circle cx="440" cy="100" r="310" strokeWidth="1" />
+              <circle cx="440" cy="100" r="400" strokeWidth="1" strokeDasharray="3 5" />
+              <circle cx="440" cy="100" r="490" strokeWidth="1" />
+            </svg>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             
-            {/* Left: Mission Girl Image with circle container */}
+            {/* Left Column: Heading + Story */}
+            <div className="lg:col-span-7 space-y-6">
+              
+              {/* Overline Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-flex items-center gap-2"
+              >
+                <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.22em] text-[#4D7C0F] uppercase">
+                  IMPACT HEALTH &bull; REDUCE HEALTHCARE EXPENDITURE
+                </span>
+              </motion.div>
+
+              {/* Main Headline with Staggered Entrance */}
+              <motion.h1
+                initial={{ opacity: 0, y: 22 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="font-serif-editorial text-5xl sm:text-7xl lg:text-[84px] text-[#141414] font-normal leading-[1.05] tracking-tight"
+              >
+                Healthcare,<br />
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block italic font-serif-editorial text-[#4D7C0F]"
+                >
+                  without
+                </motion.span>{' '}
+                the<br />
+                barriers.
+              </motion.h1>
+
+              {/* Mission Subtext */}
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-sm sm:text-base text-[#524E48] font-sans leading-relaxed max-w-lg pt-4 font-normal"
+              >
+                Impact Health exists to eliminate friction from everyday healthcare in India, delivering affordable, accessible, and high-quality clinical care at scale.
+              </motion.p>
+            </div>
+
+            {/* Right Column: Hero Medical Team Photo Card with Hover Lift */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.75, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -6, transition: { duration: 0.28 } }}
+                className="relative w-full max-w-md rounded-2xl sm:rounded-3xl overflow-hidden border border-[#E3DDD1] bg-white shadow-xl shadow-stone-300/40 group cursor-pointer will-change-transform"
+              >
+                {/* Authentic Clinical Team Photograph */}
+                <div className="aspect-[4/3] w-full overflow-hidden bg-stone-200">
+                  <img
+                    src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1200&auto=format&fit=crop"
+                    alt="Impact Health Clinical Team"
+                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    onError={(e) => {
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=1200&auto=format&fit=crop';
+                    }}
+                  />
+                </div>
+
+                {/* Bottom Overlay Label with subtle pulse */}
+                <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-[#1A1816]/90 backdrop-blur-md border border-white/20 flex items-center gap-2 shadow-lg">
+                  <span className="w-2 h-2 rounded-full bg-[#C6F035] animate-pulse" />
+                  <span className="text-[10px] sm:text-xs font-mono font-semibold tracking-wider text-white uppercase">
+                    OFFICIAL MEDICAL TEAM
+                  </span>
+                </div>
+              </motion.div>
+            </div>
+
+          </div>
+        </section>
+
+
+        {/* ────────────────────────────────────────────────────────────
+            SECTION 2: INFINITE EDITORIAL TICKER RIBBON (Interactive Hover Slowdown)
+            "Convenient ✦ For everyone ✦ Accessible ✦ Affordable ✦"
+            ──────────────────────────────────────────────────────────── */}
+        <section className="py-5 border-y border-[#E5E0D6] bg-[#F2EDE2]/70 backdrop-blur-md overflow-hidden relative select-none">
+          <div className="flex whitespace-nowrap overflow-hidden">
+            <div className="animate-ticker-marquee flex items-center gap-8 sm:gap-12 shrink-0 pr-8 sm:pr-12">
+              {[...tickerItems, ...tickerItems].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-8 sm:gap-12">
+                  <span className="font-serif-editorial text-lg sm:text-2xl italic tracking-wide text-[#262422] hover:text-[#4D7C0F] transition-colors">
+                    {item}
+                  </span>
+                  <span className="text-[#D97706] text-xs sm:text-sm">✦</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+
+        {/* ────────────────────────────────────────────────────────────
+            SECTION 3: ORIGIN STORY SPLIT (Scroll Staggered Reveal)
+            "Born from a simple, uncomfortable question."
+            ──────────────────────────────────────────────────────────── */}
+        <section className="py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            
+            {/* Left Column: Bold Serif Title */}
             <motion.div
-              className="lg:col-span-5 flex justify-center"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 space-y-4"
             >
-              <div className="flex flex-col items-center max-w-[360px]">
-                <div className="relative group rounded-full overflow-hidden shadow-ambient border border-[#DDE0F5] bg-white p-3 transition-transform duration-500 hover:scale-[1.02] w-72 h-72 md:w-80 md:h-80">
-                  {/* Decorative glow */}
-                  <div className="absolute -inset-1 bg-gradient-to-tr from-[#7e82f4] to-[#ECECFE] rounded-full opacity-20 blur-md group-hover:opacity-35 transition-opacity duration-500"></div>
-                  
-                  <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-50">
-                    <img 
-                      src={missionGirlImg} 
-                      alt="On a mission to impact 1 million lives with Quality Care & Services by 2028"
-                      className="w-full h-full object-cover"
-                    />
+              <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#4D7C0F]">
+                ORIGIN STORY
+              </span>
+              <h2 className="font-serif-editorial text-4xl sm:text-5xl lg:text-6xl text-[#141414] font-normal leading-[1.1]">
+                Born from a<br />
+                simple,<br />
+                uncomfortable<br />
+                question.
+              </h2>
+            </motion.div>
+
+            {/* Right Column: Question + Story + 3 Metric Cards */}
+            <div className="lg:col-span-7 space-y-8">
+              
+              {/* Question in Rich Healthcare Teal */}
+              <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="font-serif-editorial text-2xl sm:text-3xl lg:text-4xl text-[#007A6C] font-normal leading-snug"
+              >
+                Why does where you live still determine whether you get care?
+              </motion.h3>
+
+              {/* Narrative Text */}
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                className="text-sm sm:text-base text-[#524E48] font-sans leading-relaxed font-normal"
+              >
+                For millions of Indian families, even routine clinical care requires endless travel, loss of daily wages, and catastrophic out-of-pocket costs. We built Impact Health to reverse this — bringing hospital-grade doctor consultations, accredited diagnostics, and preventative programs directly to schools, workplaces, and communities nationwide.
+              </motion.p>
+
+              {/* 3 Metric / Pillar Cards in a Row */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                {originMetrics.map((m, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.5, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }}
+                    className="p-6 rounded-2xl bg-[#F4EFE6] border border-[#E3DDD1] hover:border-[#C5B392] hover:shadow-lg transition-colors cursor-pointer"
+                  >
+                    <div className="text-xs font-mono font-bold text-[#4D7C0F] mb-2">{m.num}</div>
+                    <div className="text-2xl font-bold font-sans text-[#141414] tracking-tight">
+                      {m.stat} {m.unit && <span className="text-xs font-normal text-[#78716C]">{m.unit}</span>}
+                    </div>
+                    <p className="text-xs text-[#615C55] mt-2.5 leading-relaxed font-sans">
+                      {m.desc}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        {/* ────────────────────────────────────────────────────────────
+            SECTION 4: HIGH-CONTRAST ELECTRIC LIME STAT BANNER (Animated Stagger)
+            (~60% • 200+ • 400+ • TECH)
+            ──────────────────────────────────────────────────────────── */}
+        <section className="bg-[#C6F035] text-black py-14 sm:py-18 relative overflow-hidden shadow-sm">
+          <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+            
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 items-start">
+              {stats.map((s, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.55, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ scale: 1.04, transition: { duration: 0.2 } }}
+                  className="space-y-2 cursor-pointer will-change-transform"
+                >
+                  <div className="font-serif-editorial text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black leading-none">
+                    {s.value}
+                  </div>
+                  <p className="text-xs sm:text-sm font-semibold text-black/85 leading-snug font-sans">
+                    {s.label}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+
+        {/* ────────────────────────────────────────────────────────────
+            SECTION 5: PROGRAMS THAT SHOW UP (Staggered Cards with Lift)
+            (3 Vertical Cards: School Health, Corporate Wellness, Food Handler)
+            ──────────────────────────────────────────────────────────── */}
+        <section className="py-24 sm:py-32 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
+          
+          {/* Header Row */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="space-y-3 mb-14"
+          >
+            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#4D7C0F]">
+              WHAT WE DO
+            </span>
+
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+              <h2 className="font-serif-editorial text-4xl sm:text-5xl lg:text-6xl text-[#141414] font-normal leading-tight">
+                Programs that <span className="italic font-serif-editorial text-[#C2410C]">show up.</span>
+              </h2>
+              <p className="text-sm sm:text-base text-[#524E48] font-sans max-w-md lg:text-right leading-relaxed font-normal">
+                From tier-2 classrooms to industrial kitchens, we bring accredited clinical care to where people actually live and work.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* 3 Vertical Program Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {programs.map((p, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -8, transition: { duration: 0.28 } }}
+                className="rounded-2xl sm:rounded-3xl overflow-hidden bg-[#F4EFE6] border border-[#E3DDD1] hover:border-[#C5B392] hover:shadow-2xl transition-all duration-300 flex flex-col group cursor-pointer will-change-transform"
+              >
+                <div className="aspect-[4/3] w-full overflow-hidden bg-stone-200 relative">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    onError={(e) => {
+                      e.currentTarget.src = p.fallback;
+                    }}
+                  />
+                </div>
+                <div className="p-6 sm:p-7 space-y-3 flex-1 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-[#4D7C0F] bg-[#ECFCCB] px-2.5 py-0.5 rounded-full inline-block">
+                      {p.tag}
+                    </span>
+                    <h3 className="font-serif-editorial text-2xl text-[#141414] font-normal leading-snug group-hover:text-[#4D7C0F] transition-colors">
+                      {p.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#524E48] leading-relaxed font-sans">
+                      {p.desc}
+                    </p>
                   </div>
                 </div>
-                
-                <div className="mt-6 px-3 text-center">
-                  <p className="text-base md:text-lg font-display font-bold text-primary leading-snug">
-                    On a mission to impact 1 million lives with Quality Care & Services by 2028
+              </motion.div>
+            ))}
+          </div>
+
+        </section>
+
+
+        {/* ────────────────────────────────────────────────────────────
+            SECTION 6: CORE VALUES (Slide-In Rows with Shift on Hover)
+            (— Respect • — Quality • — Patient Care)
+            ──────────────────────────────────────────────────────────── */}
+        <section className="py-20 sm:py-28 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E5E0D6]">
+          
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-10"
+          >
+            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#4D7C0F]">
+              CORE VALUES
+            </span>
+          </motion.div>
+
+          <div className="divide-y divide-[#E5E0D6]">
+            {values.map((val, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="py-10 sm:py-14 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-baseline group cursor-pointer"
+              >
+                {/* Title with dash and subtle slide on hover */}
+                <div className="lg:col-span-5">
+                  <h3 className="font-serif-editorial text-3xl sm:text-5xl lg:text-6xl text-[#141414] group-hover:text-[#4D7C0F] group-hover:translate-x-3 transition-all duration-300 font-normal">
+                    — {val.name}
+                  </h3>
+                </div>
+
+                {/* Description */}
+                <div className="lg:col-span-7">
+                  <p className="text-sm sm:text-base lg:text-lg text-[#524E48] font-sans leading-relaxed font-normal">
+                    {val.desc}
                   </p>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+
+        </section>
+
+
+        {/* ────────────────────────────────────────────────────────────
+            SECTION 7: FOUNDER SPOTLIGHT & QUOTE (Smooth Scale & Text Reveal)
+            (Anshuman Sahoo • CEO Quote)
+            ──────────────────────────────────────────────────────────── */}
+        <section className="py-20 sm:py-28 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E5E0D6]">
+          
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-10"
+          >
+            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#4D7C0F]">
+              FROM THE FOUNDER
+            </span>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            
+            {/* Left: Founder Headshot Card with Hover Lift */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.28 } }}
+              className="lg:col-span-4 flex justify-center lg:justify-start cursor-pointer"
+            >
+              <div className="relative w-full max-w-[280px] sm:max-w-xs rounded-2xl sm:rounded-3xl overflow-hidden border border-[#E3DDD1] shadow-xl bg-white group">
+                <img
+                  src="/team/anshuman_sahoo.jpg"
+                  alt="Anshuman Sahoo - Founder & CEO"
+                  className="w-full aspect-[4/5] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
               </div>
             </motion.div>
 
-            {/* Right: Origin story & Pillars */}
+            {/* Right: Large Editorial Quote */}
             <motion.div
-              className="lg:col-span-7 space-y-8 text-left"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-8 space-y-8"
             >
-              <div>
-                <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Who We Are</span>
-                <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Our Origin Story</h2>
-              </div>
-              
-              <div className="text-body-md text-text-secondary leading-relaxed font-sans space-y-4">
-                <p>
-                  Impact Health was born out of a major issue: a lack of access to quality and affordable care on time. Even when India has numerous good hospitals, affordability for basic medical care or primary care is a challenge for many.
-                </p>
-                <p className="font-semibold text-primary">
-                  Our core focus is built on three key pillars:
-                </p>
-              </div>
+              <blockquote className="font-serif-editorial text-2xl sm:text-4xl lg:text-5xl text-[#141414] font-normal leading-[1.25]">
+                &ldquo;Healthcare should not be a privilege of geography or income.{' '}
+                <span className="italic font-serif-editorial text-[#4D7C0F] bg-[#ECFCCB]/70 px-1.5 py-0.5 rounded">
+                  Every person deserves care that is within reach &mdash;
+                </span>{' '}
+                physically, financially, and emotionally.&rdquo;
+              </blockquote>
 
-              {/* Pillars grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2">
-                <div className="bg-[#F8F9FF] p-5 rounded-2xl border border-[#DDE0F5] hover:border-[#7e82f4]/40 transition-colors duration-300">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-[#DDE0F5] flex items-center justify-center mb-4 text-[#7e82f4]">
-                    <Globe className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-display font-bold text-primary mb-1 text-base">Accessible</h4>
-                  <p className="text-xs text-text-secondary leading-normal">Making premium care within reach for everyone.</p>
-                </div>
-                
-                <div className="bg-[#F8F9FF] p-5 rounded-2xl border border-[#DDE0F5] hover:border-[#7e82f4]/40 transition-colors duration-300">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-[#DDE0F5] flex items-center justify-center mb-4 text-[#7e82f4]">
-                    <Coins className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-display font-bold text-primary mb-1 text-base">Affordable</h4>
-                  <p className="text-xs text-text-secondary leading-normal">Lowering primary and basic medical costs.</p>
-                </div>
-
-                <div className="bg-[#F8F9FF] p-5 rounded-2xl border border-[#DDE0F5] hover:border-[#7e82f4]/40 transition-colors duration-300">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-[#DDE0F5] flex items-center justify-center mb-4 text-[#7e82f4]">
-                    <Clock className="w-5 h-5" />
-                  </div>
-                  <h4 className="font-display font-bold text-primary mb-1 text-base">Convenient</h4>
-                  <p className="text-xs text-text-secondary leading-normal">Providing care on time, exactly when needed.</p>
-                </div>
+              <div className="space-y-1 pt-2">
+                <p className="text-xs sm:text-sm font-mono font-bold tracking-[0.18em] text-[#4D7C0F] uppercase">
+                  ANSHUMAN SAHOO &bull; FOUNDER &amp; CHIEF EXECUTIVE OFFICER
+                </p>
+                <p className="text-xs text-[#78716C] font-sans">
+                  Impact Health Technologies Private Limited
+                </p>
               </div>
             </motion.div>
 
           </div>
-        </div>
-      </section>
 
-      {/* ═══════════════════════════════════════════
-          OUR IMPACT & SCALE
-       ═══════════════════════════════════════════ */}
-      <section className="py-20 lg:py-24 bg-[#F8F9FF] border-y border-[#DDE0F5]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+        </section>
+
+
+        {/* ────────────────────────────────────────────────────────────
+            SECTION 8: FREQUENTLY ASKED QUESTIONS (Staggered Card Entrance)
+            (Accordion: Serving India, Clinical Ethics, Accredited Labs, Doctor Selection)
+            ──────────────────────────────────────────────────────────── */}
+        <section className="py-20 sm:py-28 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E5E0D6]">
+          
           <motion.div
-            className="max-w-3xl mx-auto mb-16"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.5 }}
+            className="mb-10"
           >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Proven Numbers</span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Our Impact & Scale</h2>
-            <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-4">
-              Over the years, Impact Health has worked intensively to build a tech-enabled supply chain model to reduce the unwanted costs in healthcare services and enhance care in each Indian city as per Metropolitan standards.
-            </p>
+            <span className="text-xs font-mono font-bold uppercase tracking-[0.2em] text-[#4D7C0F]">
+              FREQUENTLY ASKED QUESTIONS
+            </span>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <motion.div 
-              className="bg-white p-8 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-all duration-300"
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                  className={`rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer ${
+                    isOpen
+                      ? 'bg-white border-[#84CC16] shadow-md'
+                      : 'bg-[#F4EFE6] border-[#E3DDD1] hover:border-[#C5B392]'
+                  }`}
+                >
+                  <button
+                    onClick={() => toggleFaq(idx)}
+                    className="w-full p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
+                  >
+                    <span className="font-serif-editorial text-xl sm:text-2xl text-[#141414] font-normal">
+                      {faq.title}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                      className="shrink-0 text-[#4D7C0F]"
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                    </motion.div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        <div className="px-6 pb-6 pt-2 text-xs sm:text-sm text-[#524E48] font-sans leading-relaxed border-t border-stone-200/60">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Subtext Link */}
+          <div className="mt-8 text-center sm:text-left">
+            <p className="text-xs text-[#78716C] font-sans">
+              Have questions about our institutional partnerships or community programs?{' '}
+              <Link to="/contact" className="text-[#4D7C0F] hover:underline font-semibold ml-1">
+                Reach our team directly &rarr;
+              </Link>
+            </p>
+          </div>
+
+        </section>
+
+
+        {/* ────────────────────────────────────────────────────────────
+            SECTION 9: "Let's talk." CTA & CONTACT FOOTER STRIP (Staggered Word Entrance)
+            (Large Serif Title • Bhubaneswar, Mumbai, Delhi • Contact info)
+            ──────────────────────────────────────────────────────────── */}
+        <section className="pt-24 sm:pt-32 pb-16 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto border-t border-[#E5E0D6]">
+          
+          {/* Giant Title */}
+          <div className="mb-14 sm:mb-20">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif-editorial text-6xl sm:text-8xl lg:text-9xl text-[#141414] font-normal tracking-tight"
+            >
+              Let&apos;s{' '}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.92 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-block italic font-serif-editorial text-[#4D7C0F]"
+              >
+                talk.
+              </motion.span>
+            </motion.h2>
+          </div>
+
+          {/* 3 Contact Columns with Staggered Fade Up */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 pt-8 border-t border-[#E5E0D6]">
+            
+            {/* Column 1: Locations */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
+              className="space-y-2"
             >
-              <div className="text-4xl lg:text-5xl font-display font-extrabold text-[#e16957] mb-2 font-black group-hover:scale-105 transition-transform">~60%</div>
-              <h4 className="font-display font-bold text-primary mb-2">Cost Reduction</h4>
-              <p className="text-xs text-text-secondary font-sans leading-relaxed">
-                Reduced out-of-pocket expenditure of patients on healthcare.
+              <p className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#4D7C0F]">
+                VISIT
+              </p>
+              <p className="text-sm sm:text-base text-[#524E48] font-sans leading-relaxed">
+                Bhubaneswar &bull; Mumbai &bull; Delhi NCR
               </p>
             </motion.div>
 
-            <motion.div 
-              className="bg-white p-8 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-all duration-300"
+            {/* Column 2: Email */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
+              className="space-y-2"
             >
-              <div className="text-4xl lg:text-5xl font-display font-extrabold text-[#7e82f4] mb-2 font-black group-hover:scale-105 transition-transform">200+</div>
-              <h4 className="font-display font-bold text-primary mb-2">Indian Cities</h4>
-              <p className="text-xs text-text-secondary font-sans leading-relaxed">
-                Pathology service live with Metropolitan standards.
+              <p className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#4D7C0F]">
+                EMAIL
               </p>
+              <a
+                href="mailto:connect@impacthealth.co.in"
+                className="text-sm sm:text-base text-[#524E48] hover:text-[#141414] transition-colors font-sans block font-medium"
+              >
+                connect@impacthealth.co.in
+              </a>
             </motion.div>
 
-            <motion.div 
-              className="bg-white p-8 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-all duration-300"
+            {/* Column 3: Phone */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
+              className="space-y-2"
             >
-              <div className="text-4xl lg:text-5xl font-display font-extrabold text-[#e16957] mb-2 font-black group-hover:scale-105 transition-transform">400+</div>
-              <h4 className="font-display font-bold text-primary mb-2">Daily Consults</h4>
-              <p className="text-xs text-text-secondary font-sans leading-relaxed">
-                Patients consulted daily with quality diagnostics.
+              <p className="text-[11px] font-mono font-bold uppercase tracking-[0.2em] text-[#4D7C0F]">
+                CALL
               </p>
-            </motion.div>
-
-            <motion.div 
-              className="bg-white p-8 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col items-center justify-center text-center group hover:-translate-y-1 transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="w-12 h-12 rounded-2xl bg-[#ECECFE]/60 flex items-center justify-center mb-3 text-primary">
-                <Activity className="w-6 h-6 text-[#7e82f4]" />
-              </div>
-              <h4 className="font-display font-bold text-primary mb-2">Tech Supply Chain</h4>
-              <p className="text-xs text-text-secondary font-sans leading-relaxed">
-                Built-in tech framework to minimize service costs.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          TARGETED PROGRAMS
-       ═══════════════════════════════════════════ */}
-      <section className="py-20 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <motion.div
-            className="max-w-3xl mx-auto mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Grassroots Care</span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Targeted Wellness Programs</h2>
-            <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-4">
-              We believe in addressing health issues from the grassroots level. Our curated health and wellness programs are designed to holistically identify issues early, saving lives through timely diagnosis.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Program 1 */}
-            <motion.div
-              className="bg-white p-8 rounded-3xl border border-[#DDE0F5] hover:border-[#7e82f4]/35 shadow-ambient hover:shadow-lg transition-all duration-300 flex flex-col text-left group"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <div className="w-14 h-14 rounded-2xl bg-[#ECECFE]/60 flex items-center justify-center mb-6 text-[#7e82f4] group-hover:bg-[#7e82f4] group-hover:text-white transition-colors duration-300">
-                <GraduationCap className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-primary mb-3">School Health Program</h3>
-              <p className="text-sm text-text-secondary leading-relaxed font-sans">
-                One of the most advanced and detailed assessment programs for school children across Pan India. We enable early detection and timely diagnosis of childhood diseases directly at school campuses.
-              </p>
-            </motion.div>
-
-            {/* Program 2 */}
-            <motion.div
-              className="bg-white p-8 rounded-3xl border border-[#DDE0F5] hover:border-[#7e82f4]/35 shadow-ambient hover:shadow-lg transition-all duration-300 flex flex-col text-left group"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="w-14 h-14 rounded-2xl bg-[#ECECFE]/60 flex items-center justify-center mb-6 text-[#7e82f4] group-hover:bg-[#7e82f4] group-hover:text-white transition-colors duration-300">
-                <Building className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-primary mb-3">Corporate Wellness</h3>
-              <p className="text-sm text-text-secondary leading-relaxed font-sans">
-                A single-umbrella solution for corporates and companies. We manage complete corporate wellness pathways, ranging from initial pre-employment checkups to comprehensive retirement planning.
-              </p>
-            </motion.div>
-
-            {/* Program 3 */}
-            <motion.div
-              className="bg-white p-8 rounded-3xl border border-[#DDE0F5] hover:border-[#7e82f4]/35 shadow-ambient hover:shadow-lg transition-all duration-300 flex flex-col text-left group"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <div className="w-14 h-14 rounded-2xl bg-[#ECECFE]/60 flex items-center justify-center mb-6 text-[#7e82f4] group-hover:bg-[#7e82f4] group-hover:text-white transition-colors duration-300">
-                <ShieldCheck className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-display font-bold text-primary mb-3">Food Safety Vaccinations</h3>
-              <p className="text-sm text-text-secondary leading-relaxed font-sans">
-                We run one of the largest vaccination drives in the country for food handlers. This massive operation ensures the safety and well-being of the food service workforce, protecting the general public.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          OUR CORE VALUES
-       ═══════════════════════════════════════════ */}
-      <section className="py-24 lg:py-28 bg-[#F8F9FF] border-y border-[#DDE0F5]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <motion.div
-            className="max-w-3xl mx-auto mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">What Drives Us</span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Our Core Values</h2>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            {coreValues.map((val, idx) => (
-              <motion.div 
-                key={idx}
-                className="bg-white p-8 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col items-center text-center"
-                variants={fadeInUp}
-                whileHover={{ y: -6, transition: { duration: 0.3 } }}
+              <a
+                href="tel:+919667835909"
+                className="text-sm sm:text-base text-[#524E48] hover:text-[#141414] transition-colors font-sans block font-medium"
               >
-                <div className="w-16 h-16 rounded-2xl bg-[#ECECFE]/60 flex items-center justify-center mb-6">
-                  {val.icon}
-                </div>
-                <h3 className="text-xl font-display font-bold text-primary mb-4">{val.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed font-sans">{val.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+                +91 96678 35909
+              </a>
+            </motion.div>
 
-      {/* ═══════════════════════════════════════════
-          FOUNDER QUOTE SECTION
-       ═══════════════════════════════════════════ */}
-      <section className="py-24 lg:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <motion.div
-            className="bg-[#fcf8ff] rounded-3xl border border-[#DDE0F5]/60 p-8 md:p-14 lg:p-16 shadow-ambient"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              
-              {/* Left: Founder Photo */}
-              <div className="lg:col-span-4 flex justify-center">
-                <motion.div
-                  className="relative w-64 h-64 md:w-72 md:h-72 rounded-2xl overflow-hidden border-4 border-[#ECECFE] shadow-sm"
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <img 
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfJxEo37U3qLZFlVZ_UIAkSntqR90rI0JVu1YHmNhUT9831Q9sluiEtuN7fxBLBr2JgAqZxsbwglc9QCK4xey5EEuo3076qEKDhCvH9XFcE_OrEG0obzicQvD0g9xO-Jc8ifgrxdkPWF6MXLAqsKYlFjTb9D5s0gOF2M-NR2rxMgead12dNMeCOwKJg_XrvQBv_GSrJNgxBs67RpiZvsyjbPLgdoK3OagfzCgYdEfeoMRKr_1JsI2VaB6D9ZFmr-UrLO_aPBom_DM"
-                    alt="Anshuman Sahoo"
-                    className="w-full h-full object-cover"
-                  />
-                </motion.div>
-              </div>
+          </div>
 
-              {/* Right: Quotes & Description */}
-              <div className="lg:col-span-8 text-left space-y-6 relative">
-                {/* Big decorative quotes icon */}
-                <div className="text-6xl md:text-8xl font-serif text-primary/10 absolute -top-8 -left-4 pointer-events-none">&ldquo;</div>
-                
-                <div className="space-y-6 relative z-10 font-sans">
-                  <p className="text-lg md:text-xl font-display font-medium text-primary italic leading-relaxed">
-                    "I thank everyone who has been a part of our journey and motivated and pushed us towards suggested the maps of impacting lives of people. We constantly strive to perfection with our earnest efforts towards patient care and centers."
-                  </p>
-                  <p className="text-sm md:text-base text-text-secondary leading-relaxed font-sans">
-                    "We at Impact Health live by the principles of providing excellence to the services and working towards impacting the lives of people for a better future today and tomorrow."
-                  </p>
-                  
-                  <div className="pt-4 border-t border-[#DDE0F5]">
-                    <h4 className="font-display font-bold text-lg text-primary">Anshuman Sahoo</h4>
-                    <p className="text-xs font-bold text-surface-tint uppercase tracking-widest font-sans mt-0.5">Founder &amp; CEO</p>
-                  </div>
-                </div>
-              </div>
-
+          {/* Copyright Sub-strip */}
+          <div className="mt-16 pt-8 border-t border-stone-300/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#8C857B]">
+            <p>&copy; {new Date().getFullYear()} Impact Health Technologies Pvt. Ltd. All rights reserved.</p>
+            <div className="flex items-center gap-4">
+              <Link to="/privacy-policy" className="hover:text-[#141414] transition-colors">Privacy Policy</Link>
+              <span>&bull;</span>
+              <Link to="/contact" className="hover:text-[#141414] transition-colors">Contact Support</Link>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
 
-      {/* ═══════════════════════════════════════════
-          AWARDS & RECOGNITION
-       ═══════════════════════════════════════════ */}
-      <section className="py-24 lg:py-28 bg-[#F8F9FF] border-t border-[#DDE0F5]">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <motion.div
-            className="mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Recognitions</span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Awards &amp; Recognition</h2>
-          </motion.div>
+        </section>
 
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            {/* Award 1 */}
-            <motion.div
-              className="bg-white p-6 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col justify-between"
-              variants={fadeInUp}
-              whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-            >
-              <div className="relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-4 flex items-center justify-center aspect-[4/3] mb-6">
-                <img 
-                  src={cert1} 
-                  alt="DIPP recognized startup by Startup India"
-                  className="max-h-full max-w-full object-contain shadow-sm"
-                />
-              </div>
-              <p className="text-sm font-semibold text-primary font-sans leading-relaxed text-center">
-                DIPP recognized startup by Startup India, Government of India.
-              </p>
-            </motion.div>
-
-            {/* Award 2 */}
-            <motion.div
-              className="bg-white p-6 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col justify-between"
-              variants={fadeInUp}
-              whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-            >
-              <div className="relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-4 flex items-center justify-center aspect-[4/3] mb-6">
-                <img 
-                  src={cert2} 
-                  alt="Recognized as Solution based Healthcare Startup by Startup Odisha"
-                  className="max-h-full max-w-full object-contain shadow-sm"
-                />
-              </div>
-              <p className="text-sm font-semibold text-primary font-sans leading-relaxed text-center">
-                Recognized as Solution based Healthcare Startup by Startup Odisha, Government of Odisha.
-              </p>
-            </motion.div>
-
-            {/* Award 3 */}
-            <motion.div
-              className="bg-white p-6 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col justify-between text-center"
-              variants={fadeInUp}
-              whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-            >
-              <div className="relative overflow-hidden rounded-xl bg-indigo-50/50 border border-indigo-100 p-6 flex flex-col items-center justify-center aspect-[4/3] mb-6 text-primary">
-                <ShieldCheck className="w-16 h-16 text-[#7e82f4] mb-2" />
-                <span className="font-display font-extrabold text-lg text-primary">ISO 9001:2015</span>
-                <span className="text-[11px] text-surface-tint font-bold uppercase tracking-wider">Certified Healthcare</span>
-              </div>
-              <p className="text-sm font-semibold text-primary font-sans leading-relaxed text-center">
-                ISO 9001:2015 Certified Healthcare Supply &amp; Clinical Management Standards.
-              </p>
-            </motion.div>
-
-            {/* Award 4 */}
-            <motion.div
-              className="bg-white p-6 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col justify-between text-center"
-              variants={fadeInUp}
-              whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
-            >
-              <div className="relative overflow-hidden rounded-xl bg-amber-50/50 border border-amber-100 p-6 flex flex-col items-center justify-center aspect-[4/3] mb-6 text-amber-600">
-                <Activity className="w-16 h-16 text-amber-500 mb-2" />
-                <span className="font-display font-extrabold text-lg text-amber-900">Health-Tech 2024</span>
-                <span className="text-[11px] text-amber-700 font-bold uppercase tracking-wider">Excellence Award</span>
-              </div>
-              <p className="text-sm font-semibold text-primary font-sans leading-relaxed text-center">
-                National Healthcare Innovation &amp; Affordable Care Delivery Excellence Recognition.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════
-          MEDIA & PRESS
-       ═══════════════════════════════════════════ */}
-      <section className="py-24 bg-white border-t border-[#DDE0F5]/60">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <motion.div
-            className="mb-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Featured In</span>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Media &amp; Press</h2>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            {/* YourStory Logo */}
-            <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
-              variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
-            >
-              <img 
-                src={yourStoryLogo} 
-                alt="YourStory Logo"
-                className="max-h-20 w-auto object-contain"
-              />
-            </motion.div>
-
-            {/* The Startup Lab Logo */}
-            <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
-              variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
-            >
-              <div className="flex flex-col text-left font-sans font-black text-2xl tracking-tight leading-none uppercase">
-                <span className="text-[#000000]">THE</span>
-                <span className="text-[#E11D48] mt-1">STARTUP</span>
-                <span className="text-[#000000] mt-1">LAB<span className="text-[#E11D48]">.</span></span>
-              </div>
-            </motion.div>
-
-            {/* Economic Times */}
-            <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
-              variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
-            >
-              <div className="font-serif font-black text-xl text-[#030050] tracking-tight text-center">
-                THE ECONOMIC TIMES
-                <span className="block text-[10px] font-sans font-semibold text-surface-tint uppercase tracking-widest mt-1">Health &amp; Tech</span>
-              </div>
-            </motion.div>
-
-            {/* Financial Express */}
-            <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
-              variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
-            >
-              <div className="font-display font-black text-xl text-[#0d0489] tracking-tight text-center">
-                FINANCIAL EXPRESS
-                <span className="block text-[10px] font-sans font-semibold text-surface-tint uppercase tracking-widest mt-1">Healthcare Spotlight</span>
-              </div>
-            </motion.div>
-
-            {/* Inc42 */}
-            <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
-              variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
-            >
-              <div className="font-sans font-black text-3xl text-[#1E293B] tracking-tight flex items-center gap-1">
-                Inc<span className="text-[#7e82f4]">42</span>
-              </div>
-            </motion.div>
-
-            {/* Business Standard */}
-            <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
-              variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
-            >
-              <div className="font-serif font-bold text-lg text-[#0F172A] tracking-normal text-center">
-                Business Standard
-                <span className="block text-[10px] font-sans font-semibold text-emerald-600 uppercase tracking-widest mt-1">Startup Feature</span>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
+      </div>
     </div>
   );
 }

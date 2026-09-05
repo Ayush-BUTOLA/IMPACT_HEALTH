@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from 'react-helmet-async';
 import { useParams, Link } from "react-router-dom";
 import {
   BookOpen,
@@ -10,10 +11,12 @@ import {
   ArrowLeft,
   Stethoscope,
   CheckCircle2,
-  FolderOpen
+  FolderOpen,
+  ArrowUpRight
 } from "lucide-react";
 import apiService from "../api/apiService";
 import BlogDetail from "./BlogDetail";
+import Button from "../components/Button";
 
 export default function Blog() {
   const { slug } = useParams();
@@ -26,7 +29,6 @@ export default function Blog() {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
-  // If slug is present, render single blog detail view directly
   if (slug) {
     return <BlogDetail />;
   }
@@ -67,42 +69,59 @@ export default function Blog() {
   };
 
   return (
-    <div className="w-full bg-slate-50 min-h-screen py-12 md:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Header Hero */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <span className="px-4 py-1.5 rounded-full bg-indigo-100 text-[#1D2A72] text-xs font-extrabold uppercase tracking-wider">
-            Verified Physician Publications
-          </span>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-[#1D2A72] tracking-tight">
-            Impact Health Insights & Research
-          </h1>
-          <p className="text-base text-slate-600">
-            Authoritative healthcare articles, clinical guidelines, and wellness strategies published by licensed medical doctors.
-          </p>
-        </div>
+    <div className="w-full bg-[#F8FAFC] min-h-screen font-sans text-[#0F172A]">
+      <Helmet>
+        <title>Health &amp; Wellness Blog | Expert Medical Articles by Physicians | Impact Health</title>
+        <meta name="description" content="Read expert health articles, disease management guides &amp; wellness tips authored by licensed physicians at Impact Health. Covering nutrition, mental health, diagnostics &amp; more." />
+        <meta property="og:title" content="Impact Health Blog | Physician-Authored Medical Guidance" />
+        <meta property="og:description" content="Expert health articles from licensed doctors on disease management, nutrition, mental health &amp; preventive care." />
+      </Helmet>
+      
+      {/* 1. Header Hero */}
+      <section className="pt-16 pb-12 sm:pt-20 sm:pb-16 border-b border-slate-200/80 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+          <div className="max-w-3xl space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-[#0066FF] text-xs font-semibold">
+              <Stethoscope className="w-4 h-4 text-[#0066FF]" />
+              <span className="font-mono uppercase tracking-wider">Physician Publications</span>
+            </div>
 
-        {/* Search & Category Filter Bar */}
-        <div className="bg-white p-4 md:p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            <h1 className="font-display font-bold text-3xl sm:text-5xl text-[#0B132B] tracking-[-0.03em] leading-tight">
+              Medical Insights &amp; Clinical Research
+            </h1>
+
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
+              Authoritative healthcare guidance, disease management protocols, and wellness research authored by licensed medical physicians.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Filter & Search Bar */}
+      <section className="py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+            
             {/* Search Input */}
-            <div className="relative w-full md:w-96">
-              <Search className="w-4 h-4 text-slate-400 absolute left-4 top-3.5" />
+            <div className="relative w-full md:w-80">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3 pointer-events-none" />
               <input
                 type="text"
-                placeholder="Search articles by medical topic or keyword..."
+                placeholder="Search medical topics..."
                 value={search}
                 onChange={(e) => { setSearch(e.target.value); setPage(0); }}
-                className="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-[#5A67F2]"
+                className="w-full pl-10 pr-4 py-2 text-xs bg-slate-50 border border-slate-200 rounded-full text-[#0B132B] focus:bg-white focus:outline-none focus:border-[#0066FF] transition"
               />
             </div>
 
-            {/* Category Tabs */}
-            <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 custom-scrollbar">
+            {/* Category Pills */}
+            <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
               <button
                 onClick={() => { setSelectedCategory(''); setPage(0); }}
-                className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer ${
-                  selectedCategory === '' ? 'bg-[#1D2A72] text-white shadow-md shadow-[#1D2A72]/20' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition cursor-pointer select-none ${
+                  selectedCategory === ''
+                    ? 'bg-[#0B132B] text-white shadow-sm'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
                 All Articles
@@ -111,90 +130,101 @@ export default function Blog() {
                 <button
                   key={cat.id}
                   onClick={() => { setSelectedCategory(cat.slug); setPage(0); }}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer ${
-                    selectedCategory === cat.slug ? 'bg-[#1D2A72] text-white shadow-md shadow-[#1D2A72]/20' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition cursor-pointer select-none ${
+                    selectedCategory === cat.slug
+                      ? 'bg-[#0B132B] text-white shadow-sm'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
                 >
                   {cat.name}
                 </button>
               ))}
             </div>
+
           </div>
         </div>
+      </section>
 
-        {/* Blog Cards Grid */}
-        {loading ? (
-          <div className="py-24 text-center text-slate-400 font-semibold text-sm">Loading published articles...</div>
-        ) : blogs.length === 0 ? (
-          <div className="bg-white rounded-3xl border border-slate-200 p-16 text-center space-y-3">
-            <BookOpen className="w-12 h-12 text-slate-300 mx-auto" />
-            <h3 className="text-lg font-bold text-[#1D2A72]">No Published Articles Found</h3>
-            <p className="text-sm text-slate-500 max-w-md mx-auto">There are no published articles matching your criteria at this time.</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogs.map((blog) => (
-              <div
-                key={blog.id}
-                className="bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col justify-between"
-              >
-                <div>
-                  {/* Featured Header Image */}
-                  <div className="relative h-52 bg-slate-900 overflow-hidden">
-                    {blog.featuredImage ? (
-                      <img src={blog.featuredImage} alt={blog.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-slate-400 text-xs font-semibold">Impact Health</div>
-                    )}
-                    <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#1D2A72]/90 backdrop-blur-md text-white font-extrabold text-[10px] uppercase tracking-wider">
-                      {blog.category?.name}
-                    </span>
-                  </div>
+      {/* 3. Articles Grid */}
+      <section className="pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {loading ? (
+            <div className="py-24 text-center text-slate-400 font-semibold text-xs font-mono">
+              Fetching published clinical articles...
+            </div>
+          ) : blogs.length === 0 ? (
+            <div className="bezel-outer max-w-lg mx-auto">
+              <div className="bezel-inner p-12 text-center space-y-3">
+                <BookOpen className="w-10 h-10 text-slate-300 mx-auto" />
+                <h3 className="font-display font-bold text-base text-[#0B132B]">No Articles Found</h3>
+                <p className="text-xs text-slate-500">No published articles match the current filter or search criteria.</p>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {blogs.map((blog) => (
+                <div key={blog.id} className="bezel-outer group">
+                  <div className="bezel-inner p-5 flex flex-col justify-between h-full space-y-5 text-left">
+                    <div className="space-y-4">
+                      
+                      {/* Image Thumbnail */}
+                      <div className="relative rounded-xl overflow-hidden aspect-[16/10] bg-slate-900">
+                        {blog.featuredImage ? (
+                          <img
+                            src={blog.featuredImage}
+                            alt={blog.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-slate-400 text-xs font-semibold">
+                            Impact Health Research
+                          </div>
+                        )}
+                        <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#0B132B]/90 backdrop-blur-md text-white font-bold text-[10px] uppercase font-mono">
+                          {blog.category?.name}
+                        </span>
+                      </div>
 
-                  {/* Card Content */}
-                  <div className="p-6 space-y-3">
-                    <h3 className="font-extrabold text-[#1D2A72] text-lg leading-snug hover:text-[#5A67F2] transition line-clamp-2">
-                      <Link to={`/blogs/${blog.slug}`}>{blog.title}</Link>
-                    </h3>
+                      {/* Title & Desc */}
+                      <div className="space-y-1.5">
+                        <h3 className="font-display font-bold text-base text-[#0B132B] group-hover:text-[#0066FF] transition-colors leading-snug line-clamp-2">
+                          <Link to={`/blogs/${blog.slug}`}>{blog.title}</Link>
+                        </h3>
+                        <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                          {blog.shortDescription}
+                        </p>
+                      </div>
 
-                    <p className="text-xs text-slate-500 leading-relaxed line-clamp-3">
-                      {blog.shortDescription}
-                    </p>
+                    </div>
 
-                    {/* Author Doctor Meta */}
+                    {/* Author Meta & Action */}
                     <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-7 h-7 rounded-full bg-[#1D2A72] text-white flex items-center justify-center font-bold text-xs overflow-hidden">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-full bg-[#0B132B] text-white flex items-center justify-center font-bold text-[10px] overflow-hidden">
                           {blog.author?.profileImage ? (
                             <img src={blog.author.profileImage} alt="" className="w-full h-full object-cover" />
                           ) : (
-                            <Stethoscope className="w-3.5 h-3.5" />
+                            <Stethoscope className="w-3 h-3" />
                           )}
                         </div>
-                        <span className="text-xs font-bold text-[#1D2A72]">{blog.author?.name}</span>
+                        <span className="text-xs font-bold text-[#0B132B]">{blog.author?.name}</span>
                       </div>
 
-                      <span className="text-[11px] text-slate-400 font-medium">
-                        {blog.publishedAt ? new Date(blog.publishedAt).toLocaleDateString() : 'Recently'}
-                      </span>
+                      <Link to={`/blogs/${blog.slug}`}>
+                        <Button variant="ghost" size="sm" className="text-xs px-2.5 py-1" withArrow>
+                          <span>Read</span>
+                        </Button>
+                      </Link>
                     </div>
+
                   </div>
                 </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
 
-                {/* Read More Footer */}
-                <div className="p-4 bg-slate-50 border-t border-slate-100">
-                  <Link
-                    to={`/blogs/${blog.slug}`}
-                    className="w-full py-2.5 rounded-xl bg-white border border-slate-200 text-[#1D2A72] font-bold text-xs hover:bg-[#1D2A72] hover:text-white transition text-center flex items-center justify-center gap-1.5 shadow-sm"
-                  >
-                    Read Article <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
     </div>
   );
 }

@@ -48,11 +48,11 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private User seedAdminUser() {
-        return userRepository.findByEmail("admin@impacthealth.com").orElseGet(() -> {
+        return userRepository.findByEmail("admin001@admin.co.in").orElseGet(() -> {
             User admin = User.builder()
                     .name("System Admin")
-                    .email("admin@impacthealth.com")
-                    .password("admin123")
+                    .email("admin001@admin.co.in")
+                    .password("admin111")
                     .role(Role.ADMIN)
                     .build();
             return userRepository.save(admin);

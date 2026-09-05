@@ -15,6 +15,8 @@ import CorporateHealthServices from './pages/CorporateHealthServices';
 import PatientSupportServices from './pages/PatientSupportServices';
 import PractitionerServices from './pages/PractitionerServices';
 import ServicePage from './pages/ServicePage';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 // Admin Pages
 import Dashboard from './admin/pages/Dashboard';
@@ -25,6 +27,7 @@ import Drafts from './admin/pages/Drafts';
 import Categories from './admin/pages/Categories';
 import MediaLibrary from './admin/pages/MediaLibrary';
 import Settings from './admin/pages/Settings';
+import AdminProtectedRoute from './components/AdminProtectedRoute';
 
 // Doctor Pages
 import DoctorDashboard from './doctor/pages/DoctorDashboard';
@@ -54,17 +57,19 @@ function AnimatedRoutes() {
           <Route path="/blogs" element={<PageTransition><Blog /></PageTransition>} />
           <Route path="/blogs/:slug" element={<PageTransition><Blog /></PageTransition>} />
           <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+          <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
+          <Route path="/signup" element={<PageTransition><Signup /></PageTransition>} />
           <Route path="/privacy-policy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
 
-          {/* Admin CMS Routes */}
-          <Route path="/admin" element={<PageTransition><Dashboard /></PageTransition>} />
-          <Route path="/admin/blogs" element={<PageTransition><AllBlogs /></PageTransition>} />
-          <Route path="/admin/pending" element={<PageTransition><PendingApprovals /></PageTransition>} />
-          <Route path="/admin/review/:id" element={<PageTransition><BlogReviewPage /></PageTransition>} />
-          <Route path="/admin/drafts" element={<PageTransition><Drafts /></PageTransition>} />
-          <Route path="/admin/categories" element={<PageTransition><Categories /></PageTransition>} />
-          <Route path="/admin/media" element={<PageTransition><MediaLibrary /></PageTransition>} />
-          <Route path="/admin/settings" element={<PageTransition><Settings /></PageTransition>} />
+          {/* Admin CMS Routes (Protected with admin001@admin.co.in) */}
+          <Route path="/admin" element={<PageTransition><AdminProtectedRoute><Dashboard /></AdminProtectedRoute></PageTransition>} />
+          <Route path="/admin/blogs" element={<PageTransition><AdminProtectedRoute><AllBlogs /></AdminProtectedRoute></PageTransition>} />
+          <Route path="/admin/pending" element={<PageTransition><AdminProtectedRoute><PendingApprovals /></AdminProtectedRoute></PageTransition>} />
+          <Route path="/admin/review/:id" element={<PageTransition><AdminProtectedRoute><BlogReviewPage /></AdminProtectedRoute></PageTransition>} />
+          <Route path="/admin/drafts" element={<PageTransition><AdminProtectedRoute><Drafts /></AdminProtectedRoute></PageTransition>} />
+          <Route path="/admin/categories" element={<PageTransition><AdminProtectedRoute><Categories /></AdminProtectedRoute></PageTransition>} />
+          <Route path="/admin/media" element={<PageTransition><AdminProtectedRoute><MediaLibrary /></AdminProtectedRoute></PageTransition>} />
+          <Route path="/admin/settings" element={<PageTransition><AdminProtectedRoute><Settings /></AdminProtectedRoute></PageTransition>} />
 
           {/* Doctor Portal Routes */}
           <Route path="/doctor/blogs" element={<PageTransition><DoctorDashboard /></PageTransition>} />

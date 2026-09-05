@@ -16,12 +16,6 @@
   padding-bottom: calc(var(--logoloop-logoHeight) * 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  .logoloop {
-    --logoloop-fadeColorAuto: #0b0b0b;
-  }
-}
-
 .logoloop__track {
   display: flex;
   width: max-content;
@@ -89,7 +83,7 @@
 
 .logoloop--scale-hover .logoloop__item:hover img,
 .logoloop--scale-hover .logoloop__item:hover .logoloop__node {
-  transform: scale(1.2);
+  transform: scale(1.15);
   transform-origin: center center;
 }
 
@@ -120,7 +114,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: clamp(24px, 8%, 120px);
+  width: clamp(24px, 8%, 100px);
   pointer-events: none;
   z-index: 10;
 }
@@ -130,7 +124,7 @@
   background: linear-gradient(
     to right,
     var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(255, 255, 255, 0) 100%
   );
 }
 
@@ -139,7 +133,7 @@
   background: linear-gradient(
     to left,
     var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(255, 255, 255, 0) 100%
   );
 }
 
@@ -148,7 +142,7 @@
   left: 0;
   right: 0;
   width: 100%;
-  height: clamp(24px, 8%, 120px);
+  height: clamp(24px, 8%, 100px);
 }
 
 .logoloop--vertical.logoloop--fade::before {
@@ -157,7 +151,7 @@
   background: linear-gradient(
     to bottom,
     var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(255, 255, 255, 0) 100%
   );
 }
 
@@ -167,7 +161,7 @@
   background: linear-gradient(
     to top,
     var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(255, 255, 255, 0) 100%
   );
 }
 

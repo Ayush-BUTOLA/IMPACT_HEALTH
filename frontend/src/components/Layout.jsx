@@ -48,6 +48,20 @@ export default function Layout({ children }) {
     );
   }
 
+  const isAuthPage = pathname === '/login' || pathname === '/signup';
+
+  if (isAuthPage) {
+    return (
+      <div className="min-h-screen w-full font-sans antialiased text-[#0F172A] relative">
+        <ScrollToTop />
+        <main className="w-full min-h-screen">
+          {children}
+        </main>
+        <ToastContainer />
+      </div>
+    );
+  }
+
   // Client layout
   return (
     <div className="flex flex-col min-h-screen bg-background text-text-secondary">

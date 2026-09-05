@@ -1,69 +1,30 @@
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import gsap from 'gsap';
 
 export default function TransitionOverlay() {
-  const overlayRef = useRef(null);
   const location = useLocation();
-  const [isFirstMount, setIsFirstMount] = useState(true);
+  const [animating, setAnimating] = useState(false);
   const prevPathRef = useRef(location.pathname);
 
   useEffect(() => {
-    // Skip animation on first mount
-    if (isFirstMount) {
-      setIsFirstMount(false);
-      prevPathRef.current = location.pathname;
-      return;
-    }
-
-    // Only animate if pathname actually changed
     if (prevPathRef.current === location.pathname) return;
     prevPathRef.current = location.pathname;
 
-    const overlay = overlayRef.current;
-    if (!overlay) return;
+    setAnimating(true);
+    const timer = setTimeout(() => {
+      setAnimating(false);
+    }, 300);
 
-    const tl = gsap.timeline();
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
-    tl.set(overlay, {
-      display: 'block',
-      scaleY: 0,
-      transformOrigin: 'bottom center',
-    })
-      .to(overlay, {
-        scaleY: 1,
-        duration: 0.4,
-        ease: 'power3.inOut',
-      })
-      .set(overlay, {
-        transformOrigin: 'top center',
-      })
-      .to(overlay, {
-        scaleY: 0,
-        duration: 0.4,
-        ease: 'power3.inOut',
-        delay: 0.05,
-      })
-      .set(overlay, {
-        display: 'none',
-      });
-
-    return () => tl.kill();
-  }, [location.pathname, isFirstMount]);
+  if (!animating) return null;
 
   return (
     <div
-      ref={overlayRef}
-      className="transition-overlay"
+      className="fixed top-0 inset-x-0 h-[2.5px] z-[9999] bg-[#0066FF] animate-pulse pointer-events-none transition-opacity duration-300"
       style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 9999,
-        background: 'linear-gradient(135deg, #030050 0%, #0d0489 50%, #7e82f4 100%)',
-        display: 'none',
-        pointerEvents: 'none',
-        transformOrigin: 'bottom center',
-        transform: 'scaleY(0)',
+        boxShadow: '0 0 10px rgba(0, 102, 255, 0.6)'
       }}
     />
   );

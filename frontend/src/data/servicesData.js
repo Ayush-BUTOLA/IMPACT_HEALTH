@@ -11,7 +11,7 @@ export const servicesData = {
       id: "medical-room",
       category: "school-health",
       categoryName: "School Health Services",
-      title: "Medical Room Services",
+      title: "Medical Room",
       heroHeadline: "Empowering Schools with Gold-Standard Campus Infirmaries",
       subtitle: "Dedicated clinical infrastructure and certified medical staff for your campus",
       description: "Impact Health transforms ordinary school medical rooms into fully equipped healthcare centres staffed with trained professionals, emergency infrastructure, and standardized medical protocols.",
@@ -21,7 +21,7 @@ export const servicesData = {
       floatingBadges: [
         { text: "Pediatric Certified Nurses", icon: "UserCheck" },
         { text: "100% Safety Compliant", icon: "ShieldCheck" },
-        { text: "24/7 Tele-triage", icon: "PhoneCall" }
+        { text: "Tele-triage Support", icon: "PhoneCall" }
       ],
       whyMatters: {
         title: "Why Campus Medical Infrastructure Matters",
@@ -31,7 +31,7 @@ export const servicesData = {
           { number: "< 15m", label: "Average Triage & Response Time", icon: "Clock" },
           { number: "100%", label: "Adherence to School Health Mandates", icon: "Award" },
           { number: "0-Delay", label: "On-Campus Pediatric Care", icon: "Zap" },
-          { number: "24/7", label: "Parent Notification System", icon: "Bell" }
+          { number: "Automated", label: "Parent Notification System", icon: "Bell" }
         ]
       },
       solutionTimeline: [
@@ -155,7 +155,7 @@ export const servicesData = {
       id: "health-education",
       category: "school-health",
       categoryName: "School Health Services",
-      title: "Health Education & Awareness",
+      title: "Health Education and Awareness",
       heroHeadline: "Inspiring Healthier Choices Through Dynamic Health Education",
       subtitle: "Empowering students and educators with actionable health insights",
       description: "Interactive wellness education that empowers students to make informed decisions about physical, mental, and emotional health.",
@@ -534,7 +534,7 @@ export const servicesData = {
           { number: "50%", label: "Mental Health Conditions Begin By Age 14", icon: "AlertCircle" },
           { number: "1-on-1", label: "Confidential Student Counseling", icon: "Users" },
           { number: "100%", label: "Age-Appropriate SEL Modules", icon: "BookOpen" },
-          { number: "24/7", label: "Crisis Intervention Protocols", icon: "ShieldAlert" }
+          { number: "Rapid", label: "Crisis Intervention Protocols", icon: "ShieldAlert" }
         ]
       },
       corePillarsTitle: "Core Pillars of Our Mental Health Ecosystem",
@@ -574,7 +574,7 @@ export const servicesData = {
         { step: "02", title: "Implementation", desc: "Deploy non-invasive screenings and roll out age-tailored SEL classroom modules.", icon: "BookOpen" },
         { step: "03", title: "Counseling", desc: "Provide confidential 1-on-1 sessions with licensed child psychologists on-campus or via tele-health.", icon: "Users" },
         { step: "04", title: "Reporting", desc: "Deliver anonymized campus wellness indicators and confidential individual guidance.", icon: "FileText" },
-        { step: "05", title: "Continuous Support", desc: "Maintain 24/7 crisis intervention readiness and host ongoing teacher/parent workshops.", icon: "HeartHandshake" }
+        { step: "05", title: "Continuous Support", desc: "Maintain crisis intervention readiness and host ongoing teacher/parent workshops.", icon: "HeartHandshake" }
       ],
       deliverables: [
         {
@@ -641,7 +641,7 @@ export const servicesData = {
       id: "emergency-services",
       category: "school-health",
       categoryName: "School Health Services",
-      title: "Ambulance and Emergency Services",
+      title: "Ambulance & Emergency Services",
       heroHeadline: "Rapid Emergency Response. Uncompromised Protection for Schools.",
       subtitle: "Safeguarding Students When Every Second Counts",
       description: "Impact Health delivers dedicated, high-speed medical emergency response systems and specialised paediatric ambulance networks directly to school campuses across India.",
@@ -650,7 +650,7 @@ export const servicesData = {
       secondaryCtaText: "Contact Us",
       floatingBadges: [
         { text: "Pediatric ALS Ambulance Network", icon: "Siren" },
-        { text: "24/7 Priority Emergency Hotline", icon: "PhoneCall" },
+        { text: "Priority Emergency Hotline", icon: "PhoneCall" },
         { text: "Direct Tertiary ER Routing", icon: "Zap" }
       ],
       overviewText: "Medical emergencies on school premises, whether severe sports injuries, allergic reactions, asthma attacks, or sudden illnesses, require immediate, specialised care. Standard emergency response services often lack pediatric-trained paramedics or dedicated campus integration. Impact Health’s School Emergency & Ambulance Program bridges this critical gap. We integrate rapid-response pediatric medical dispatch, certified on-campus first responders, and direct tertiary hospital routing into your school’s safety framework.",
@@ -661,7 +661,7 @@ export const servicesData = {
         stats: [
           { number: "> 80%", label: "Complications Stabilized in Golden Hour", icon: "ShieldCheck" },
           { number: "< 10m", label: "Target Emergency Response SLA", icon: "Zap" },
-          { number: "24/7", label: "Central Medical Command Dispatch", icon: "PhoneCall" },
+          { number: "Rapid", label: "Central Medical Command Dispatch", icon: "PhoneCall" },
           { number: "0-Delay", label: "Pre-Approved Tertiary Hospital Admission", icon: "Award" }
         ]
       },
@@ -683,7 +683,7 @@ export const servicesData = {
           image: "https://images.unsplash.com/photo-1584515979963-22877af2e1ad?w=600&auto=format&fit=crop&q=80"
         },
         {
-          feature: "24/7 Dedicated Emergency Hotline",
+          feature: "Dedicated Emergency Hotline",
           whatWeProvide: "Priority SOS line linked directly to Impact Health’s central medical command dashboard",
           impactOnStudents: "Instant dispatch and real-time tele-triage guidance for staff",
           icon: "PhoneCall",
@@ -699,7 +699,7 @@ export const servicesData = {
       ],
       solutionTimeline: [
         { step: "01", title: "Site & Corridor Audit", desc: "Map campus evacuation routes, nearest tertiary pediatric ERs, and emergency access lanes.", icon: "MapPin" },
-        { step: "02", title: "Ambulance Integration", desc: "Deploy pediatric ALS ambulances and connect 24/7 emergency SOS dispatch triggers.", icon: "Siren" },
+        { step: "02", title: "Ambulance Integration", desc: "Deploy pediatric ALS ambulances and connect emergency SOS dispatch triggers.", icon: "Siren" },
         { step: "03", title: "First Responder Drills", desc: "Train sports coaches, teachers, and campus security in immediate emergency protocols.", icon: "ShieldAlert" },
         { step: "04", title: "Live Tele-Triage Support", desc: "Connect school nurses with ER emergency physicians via instant command dashboard.", icon: "PhoneCall" },
         { step: "05", title: "Hospital Admission Handover", desc: "Execute zero-wait ER entry with digital medical logs sent ahead of ambulance arrival.", icon: "Building2" }
@@ -718,7 +718,7 @@ export const servicesData = {
           image: "https://images.unsplash.com/photo-1584515979963-22877af2e1ad?w=600&auto=format&fit=crop&q=80"
         },
         {
-          title: "24/7 Command SOS Hotline",
+          title: "Command SOS Hotline",
           description: "Direct priority dispatch hotlines bypassing standard call queues for instant ambulance activation.",
           icon: "PhoneCall",
           image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&auto=format&fit=crop&q=80"
@@ -750,7 +750,7 @@ export const servicesData = {
       ],
       howWeWork: [
         { step: "01", title: "Emergency Audit & Mapping", desc: "Identify campus vulnerability zones, evacuation routes, and partner hospital networks.", icon: "Search" },
-        { step: "02", title: "Ambulance Placement & SOS Link", desc: "Deploy pediatric ALS ambulances and connect school command buttons to 24/7 hotline.", icon: "Siren" },
+        { step: "02", title: "Ambulance Placement & SOS Link", desc: "Deploy pediatric ALS ambulances and connect school command buttons to dedicated hotline.", icon: "Siren" },
         { step: "03", title: "Campus First Responder Training", desc: "Train sports coaches, teachers, and nursing staff in emergency CPR and triage.", icon: "Users" },
         { step: "04", title: "Continuous Emergency Drills", desc: "Conduct unannounced quarterly mock drills to ensure sub-10-minute response readiness.", icon: "RefreshCw" }
       ],
@@ -771,7 +771,7 @@ export const servicesData = {
       id: "pre-employment-checkups",
       category: "corporate-health",
       categoryName: "Corporate Health Services",
-      title: "Pre-Employment Health Checkups",
+      title: "Pre-employment & Annual Health Checkups",
       heroHeadline: "Smart Onboarding Starts with Strategic Health Risk Management.",
       subtitle: "Optimise Hiring Decisions & Protect Workplace Productivity",
       description: "Impact Health delivers streamlined, high-accuracy pre-employment health checkups and corporate wellness solutions tailored for modern enterprises across India.",
@@ -914,7 +914,7 @@ export const servicesData = {
       id: "annual-checkups",
       category: "corporate-health",
       categoryName: "Corporate Health Services",
-      title: "Annual Employee Health Checkups",
+      title: "Annual Health Checkups",
       subtitle: "Proactive health monitoring for employee wellness",
       description: "Comprehensive annual screenings and health checkups conducted on-site or at partnered clinics to identify risks early and support productivity.",
       image: "https://images.unsplash.com/photo-1579684275673-b8617a2247fb?w=800&auto=format&fit=crop&q=80",
@@ -986,7 +986,7 @@ export const servicesData = {
           { number: "100%", label: "FSSAI Statutory Audit Compliance", icon: "ShieldCheck" },
           { number: "200+", label: "Cities Covered for Food Handler Drives", icon: "MapPin" },
           { number: "0-Downtime", label: "Shift-Aligned Micro Camp Execution", icon: "Clock" },
-          { number: "24/7", label: "Digital EMR & Auto Renewal Alerts", icon: "Bell" }
+          { number: "Automated", label: "Digital EMR & Auto Renewal Alerts", icon: "Bell" }
         ]
       },
       corePillarsTitle: "Core Pillars of Our Emergency & Compliance Framework",
@@ -1118,7 +1118,7 @@ export const servicesData = {
       id: "employee-wellness",
       category: "corporate-health",
       categoryName: "Corporate Health Services",
-      title: "Employee Wellness Program",
+      title: "Employee Wellness Programs",
       heroHeadline: "Empower Your Workforce with Preventive, Accessible & Tech-Driven Healthcare.",
       subtitle: "Tailored Corporate Health Solutions to Reduce Absenteeism and Boost Performance",
       description: "Impact Health seamlessly combines health technology, on-field logistics, and dedicated medical support across 200+ Indian cities to keep your team healthy, engaged, and productive while cutting healthcare expenses by up to 60%.",
@@ -1128,7 +1128,7 @@ export const servicesData = {
       floatingBadges: [
         { text: "200+ Cities Covered", icon: "MapPin" },
         { text: "Up to 60% Cost Reduction", icon: "TrendingDown" },
-        { text: "24/7 Dedicated Care Team", icon: "PhoneCall" }
+        { text: "Dedicated Care Team", icon: "PhoneCall" }
       ],
       overviewText: "Modern workplaces demand more than basic insurance, requiring continuous, accessible care. Impact Health seamlessly combines health technology, on-field logistics, and dedicated medical support across 200+ Indian cities to keep your team healthy, engaged, and productive.",
       whyMatters: {
@@ -1138,7 +1138,7 @@ export const servicesData = {
         stats: [
           { number: "200+", label: "Cities Covered for Pan-India Support", icon: "MapPin" },
           { number: "60%", label: "Cost Reduction on Out-of-Pocket Care", icon: "TrendingDown" },
-          { number: "24/7", label: "Dedicated Care & Virtual Teleconsults", icon: "PhoneCall" },
+          { number: "Dedicated", label: "Care & Virtual Teleconsults", icon: "PhoneCall" },
           { number: "70%", label: "Discounts on Scans, Labs & Diagnostics", icon: "Award" }
         ]
       },
@@ -1147,7 +1147,7 @@ export const servicesData = {
       corePillars: [
         {
           feature: "Unlimited Doctor Consultations",
-          whatWeProvide: "24/7 virtual tele-consultations across 16+ specialties and priority physical clinic/hospital bookings",
+          whatWeProvide: "Virtual tele-consultations across 16+ specialties and priority physical clinic/hospital bookings",
           impactOnStudents: "Timely medical advice without taking long leaves, reducing absenteeism",
           icon: "PhoneCall",
           image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&auto=format&fit=crop&q=80"
@@ -1182,7 +1182,7 @@ export const servicesData = {
           desc: "Ensure your workforce gets timely advice without taking long leaves.",
           icon: "PhoneCall",
           points: [
-            "24/7 virtual tele-consultations across 16+ specialties.",
+            "Virtual tele-consultations across 16+ specialties.",
             "Priority bookings for physical consultations at partner clinics and hospitals.",
             "Dedicated care team assigned to each employee and their families."
           ]
@@ -1221,7 +1221,7 @@ export const servicesData = {
       solutionTimeline: [
         { step: "01", title: "Customized Plan Design", desc: "Analyze workforce size, location distribution, and wellness goals to build a scalable program.", icon: "Settings" },
         { step: "02", title: "Seamless Onboarding", desc: "Quick employee onboarding via the Impact Health Mobile App with dedicated support managers.", icon: "Smartphone" },
-        { step: "03", title: "Continuous Engagement", desc: "Employees access 24/7 teleconsultations, home lab tests, and wellness tracking on demand.", icon: "PhoneCall" },
+        { step: "03", title: "Continuous Engagement", desc: "Employees access teleconsultations, home lab tests, and wellness tracking on demand.", icon: "PhoneCall" },
         { step: "04", title: "Data Insights & Analytics", desc: "HR teams receive anonymized health analytics to track engagement, identify risk factors, and optimize ROI.", icon: "BarChart3" }
       ],
       deliverables: [
@@ -1246,14 +1246,14 @@ export const servicesData = {
       ],
       benefits: [
         { title: "Up to 60% Cost Savings", desc: "Lower out-of-pocket medical expenses and reduce emergency hospitalization claims.", icon: "TrendingDown" },
-        { title: "Reduced Absenteeism", desc: "24/7 teleconsults and early diagnostics keep employees healthy and present.", icon: "Clock" },
+        { title: "Reduced Absenteeism", desc: "Timely teleconsults and early diagnostics keep employees healthy and present.", icon: "Clock" },
         { title: "Pan-India Coverage", desc: "Consistent healthcare access across 200+ cities for distributed and remote teams.", icon: "MapPin" },
         { title: "Family Peace of Mind", desc: "Extends quality medical care to spouses, children, and elderly parents.", icon: "Heart" }
       ],
       howWeWork: [
         { step: "01", title: "Custom Design", desc: "Tailor wellness plan to team demographics.", icon: "Settings" },
         { step: "02", title: "App Onboarding", desc: "Employees register on mobile app.", icon: "Smartphone" },
-        { step: "03", title: "24/7 Access", desc: "Instant teleconsults & home sample pickups.", icon: "PhoneCall" },
+        { step: "03", title: "On-Demand Access", desc: "Instant teleconsults & home sample pickups.", icon: "PhoneCall" },
         { step: "04", title: "HR Analytics", desc: "Review anonymized wellness engagement reports.", icon: "BarChart3" }
       ],
       faqs: [
@@ -1374,7 +1374,7 @@ export const servicesData = {
       id: "in-clinic-consultations",
       category: "patient-support",
       categoryName: "Patient Support Programs",
-      title: "In-Clinic / At-Hospital Consultations",
+      title: "In-clinic / At-hospital Consultations",
       subtitle: "Personal care at trusted clinical locations",
       description: "Book priority in-person appointments at our partner clinics and hospitals, ensuring minimal waiting times and coordinated care.",
       image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&auto=format&fit=crop&q=80",
@@ -1476,7 +1476,7 @@ export const servicesData = {
       id: "second-opinion",
       category: "patient-support",
       categoryName: "Patient Support Programs",
-      title: "Medical Second Opinions",
+      title: "Second Opinion",
       subtitle: "Clear answers for complex health decisions",
       description: "Consultations with medical specialists to review health assessments, treatment plans, and help guide your decisions.",
       image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&auto=format&fit=crop&q=80",
@@ -1527,7 +1527,7 @@ export const servicesData = {
       id: "home-care",
       category: "patient-support",
       categoryName: "Patient Support Programs",
-      title: "Home Care Services",
+      title: "Home Care",
       subtitle: "Professional care, at home",
       description: "Qualified nursing, physical therapy, and personal care assistance delivered in your home, tailored to support recovery and comfort.",
       image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&auto=format&fit=crop&q=80",
@@ -1566,11 +1566,11 @@ export const servicesData = {
         { step: "02", title: "Assessment", desc: "Our nursing supervisor reviews the home environment and creates a care plan." },
         { step: "03", title: "Implementation", desc: "Deploy certified caregivers to your home and begin the care program." },
         { step: "04", title: "Monitoring", desc: "Conduct regular evaluations by nursing supervisors to adjust care as needed." },
-        { step: "05", title: "Support", desc: "Access 24/7 care coordination support for questions or schedule changes." }
+        { step: "05", title: "Support", desc: "Access dedicated care coordination support for questions or schedule changes." }
       ],
       faqs: [
         { question: "How do you verify the background of your home caregivers?", answer: "All our nurses, physical therapists, and care assistants undergo rigorous background checks, qualification verification, and reference audits before joining." },
-        { question: "Can you provide 24/7 home nursing care?", answer: "Yes, we can arrange 12-hour or 24-hour nursing shifts for patients requiring continuous clinical monitoring or post-operative support." },
+        { question: "Can you provide round-the-clock home nursing care?", answer: "Yes, we can arrange 12-hour or 24-hour nursing shifts for patients requiring continuous clinical monitoring or post-operative support." },
         { question: "How is the home care plan developed?", answer: "Our nursing supervisor coordinates with your primary doctor to review instructions and create a customized care plan for the home." }
       ]
     },
@@ -1578,7 +1578,7 @@ export const servicesData = {
       id: "elderly-care",
       category: "patient-support",
       categoryName: "Patient Support Programs",
-      title: "Elderly Care Programs",
+      title: "Elderly Care",
       subtitle: "Dedicated care and support for seniors",
       description: "Comprehensive care plans for elderly patients, including health monitoring, medication management, and daily support.",
       image: "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?w=800&auto=format&fit=crop&q=80",
@@ -1629,7 +1629,7 @@ export const servicesData = {
       id: "vaccinations-at-home",
       category: "patient-support",
       categoryName: "Patient Support Programs",
-      title: "Vaccinations at Home",
+      title: "Vaccinations at home",
       subtitle: "Essential immunizations, delivered conveniently",
       description: "Professional immunization services conducted in your home, covering pediatric, adult, and travel vaccine requirements.",
       image: "https://images.unsplash.com/photo-1628498063057-51a64b0b8c9c?w=800&auto=format&fit=crop&q=80",
@@ -1680,7 +1680,7 @@ export const servicesData = {
       id: "medicines",
       category: "patient-support",
       categoryName: "Patient Support Programs",
-      title: "Pharmacy Delivery Services",
+      title: "Medicines",
       subtitle: "Prescriptions delivered directly to you",
       description: "Convenient prescription refills and health essentials delivered directly to your home, with optional pharmacist counseling.",
       image: "https://images.unsplash.com/photo-1586015555751-63bb77f4322a?w=800&auto=format&fit=crop&q=80",
@@ -1737,7 +1737,7 @@ export const servicesData = {
       id: "cme-programs",
       category: "practitioner-support",
       categoryName: "For Practitioners",
-      title: "Continuing Medical Education (CME) Programs",
+      title: "CME Programs",
       heroHeadline: "Stay at the Forefront of Medical Advancements with Accredited, Evidence-Based Learning",
       subtitle: "INTERSECTION 2: CLINICAL ADVANCEMENT",
       description: "Structured educational modules, clinical workshops, and certifications to help medical professionals stay current with advancements.",
@@ -1757,7 +1757,7 @@ export const servicesData = {
         stats: [
           { number: "40%", label: "Time Saved on Admin Tasks", icon: "Clock" },
           { number: "100%", label: "Accredited CME Certifications", icon: "Award" },
-          { number: "24/7", label: "Digital Portal & Case Libraries", icon: "BookOpen" },
+          { number: "Online", label: "Digital Portal & Case Libraries", icon: "BookOpen" },
           { number: "Multi-Speciality", label: "Tumour Boards & Roundtables", icon: "Users" }
         ]
       },
@@ -1883,7 +1883,7 @@ export const servicesData = {
         { step: "01", title: "Workflow Audit & Setup", desc: "Analyze clinic layout, patient volume, and custom template requirements.", icon: "Search" },
         { step: "02", title: "Data Migration & Customization", desc: "Securely import legacy paper/digital records into encrypted cloud infrastructure.", icon: "Database" },
         { step: "03", title: "Staff Training & Go-Live", desc: "On-site or virtual training for doctors, receptionists, and pharmacy staff.", icon: "UserCheck" },
-        { step: "04", title: "Ongoing Support & Updates", desc: "24/7 dedicated IT helpdesk and continuous software updates.", icon: "ShieldCheck" }
+        { step: "04", title: "Ongoing Support & Updates", desc: "Dedicated IT helpdesk and continuous software updates.", icon: "ShieldCheck" }
       ],
       deliverables: [
         { title: "Cloud EMR System", description: "Intuitive interface for fast charting and digital prescription writing.", icon: "FileText" },
@@ -1989,7 +1989,7 @@ export const servicesData = {
       id: "trainings-leadership",
       category: "practitioner-support",
       categoryName: "For Practitioners",
-      title: "Practitioner Trainings & Leadership",
+      title: "Trainings & Leadership Program",
       heroHeadline: "Transition from Practitioner to Healthcare Leader with Strategic Management Development",
       subtitle: "INTERSECTION 4: CAREER EVOLUTION",
       description: "Structured workshops, clinic leadership training, and communications modules to support healthcare team development.",
@@ -2084,7 +2084,7 @@ export const categoriesData = {
       "100% compliant with student health board guidelines.",
       "NABL-certified specialist screenings on-site.",
       "Pediatric-first-aid and BLS certified nursing staff.",
-      "Dedicated 24/7 priority emergency response loops."
+      "Dedicated priority emergency response loops."
     ],
     ctaText: "Request School Campus Audit"
   },
@@ -2105,7 +2105,7 @@ export const categoriesData = {
   },
   "patient-support": {
     id: "patient-support",
-    title: "Patient Support Programs (For Patients)",
+    title: "Patient Support Programs",
     subtitle: "Experienced primary and specialized home healthcare",
     description: "Unlimited consultations, lab sample collections at home, medical second opinions, specialized home care nursing, senior care, and home vaccinations.",
     image: "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?w=800&auto=format&fit=crop&q=80",
@@ -2135,3 +2135,13 @@ export const categoriesData = {
   }
 };
 
+
+// Expose Practitioner services under patient-support as well to ensure dual-track URL resolution
+if (servicesData["patient-support"] && servicesData["practitioner-support"]) {
+  Object.assign(servicesData["patient-support"], {
+    "cme-programs": servicesData["practitioner-support"]["cme-programs"],
+    "emr-hims": servicesData["practitioner-support"]["emr-hims"],
+    "marketing-patient-services": servicesData["practitioner-support"]["marketing-patient-services"],
+    "trainings-leadership": servicesData["practitioner-support"]["trainings-leadership"],
+  });
+}

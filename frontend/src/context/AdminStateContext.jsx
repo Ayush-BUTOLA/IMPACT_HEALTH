@@ -3,6 +3,11 @@ import { dummyBlogs } from '../data/dummyBlogs';
 
 const AdminStateContext = createContext(null);
 
+export const ADMIN_CREDENTIALS = {
+  email: "admin001@admin.co.in",
+  password: "admin111"
+};
+
 export const useAdminState = () => {
   const context = useContext(AdminStateContext);
   if (!context) {
@@ -12,6 +17,15 @@ export const useAdminState = () => {
 };
 
 export const AdminStateProvider = ({ children }) => {
+  // Admin authentication state (synced with localStorage for session persistence)
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(() => {
+    try {
+      return localStorage.getItem("ih_admin_auth") === "true";
+    } catch {
+      return false;
+    }
+  });
+
   // Main blogs state (includes published, draft, archived)
   const [blogs, setBlogs] = useState(dummyBlogs);
   
@@ -211,6 +225,34 @@ export const AdminStateProvider = ({ children }) => {
     triggerToast("Settings saved successfully!");
   };
 
+  // Admin Auth Actions
+  const loginAdmin = (email, password) => {
+    if (
+      email.trim().toLowerCase() === ADMIN_CREDENTIALS.email.toLowerCase() &&
+      password === ADMIN_CREDENTIALS.password
+    ) {
+      setIsAdminAuthenticated(true);
+      try {
+        localStorage.setItem("ih_admin_auth", "true");
+      } catch (e) {
+        console.error(e);
+      }
+      triggerToast("Welcome! Admin access granted.", "success");
+      return true;
+    }
+    return false;
+  };
+
+  const logoutAdmin = () => {
+    setIsAdminAuthenticated(false);
+    try {
+      localStorage.removeItem("ih_admin_auth");
+    } catch (e) {
+      console.error(e);
+    }
+    triggerToast("Logged out of Admin Portal", "info");
+  };
+
   return (
     <AdminStateContext.Provider value={{
       blogs,
@@ -230,7 +272,11 @@ export const AdminStateProvider = ({ children }) => {
       deleteCategory,
       addMediaItem,
       deleteMediaItem,
-      updateSettings
+      updateSettings,
+      isAdminAuthenticated,
+      loginAdmin,
+      logoutAdmin,
+      ADMIN_CREDENTIALS
     }}>
       {children}
     </AdminStateContext.Provider>
