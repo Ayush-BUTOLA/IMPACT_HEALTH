@@ -1,2 +1,8 @@
 testsprite_tests/tmp/
 testsprite_tests/tmp/config.json
+.agents/
+.zcode/
+cloudflared.exe
+SKILLS.md
+REQUIRED_IMAGES.md
+skills/

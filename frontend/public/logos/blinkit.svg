@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <rect width="200" height="48" rx="8" fill="#F8CB46"/>
+  <g transform="translate(24, 8)">
+    <text x="0" y="24" font-family="'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-weight="900" font-size="26" fill="#000000" letter-spacing="-0.5">blink<tspan fill="#0C831F">it</tspan></text>
+  </g>
+</svg>

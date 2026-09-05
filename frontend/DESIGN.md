@@ -1,86 +1,63 @@
-# Impact Health Design System & Architecture Guidelines
+# Impact Health — Design System & Visual Architecture
 
-This document outlines the UI/UX design language and Clean Architecture pattern for "Impact Health".
-
-## 1. Design System & Aesthetics
-
-### Color System
-Consistent with premium, modern healthcare platforms, the following palette is implemented:
-- **Primary Blue (`#0F4C81`)**: Trustworthy, corporate, enterprise-grade blue.
-- **Secondary Teal (`#14B8A6`)**: Clean, accessible, modern healthcare branding teal.
-- **Accent Blue (`#2AA8FF`)**: High-contrast, dynamic action accent blue.
-- **Background (`#FFFFFF`)**: Pure clean canvas.
-- **Alternate Background (`#F8FBFF`)**: Soft, cool-gray-blue backdrop for content grouping.
-- **Text (`#111827`)**: Rich charcoal-slate for maximum readability.
-- **Secondary Text (`#4B5563`)**: Comfortable contrast for descriptions.
-- **Border (`#E5E7EB`)**: Subtle, crisp separator.
-
-### Background Pattern & Depth
-The premium healthcare background features a white base with soft sky blue radial gradients and a tiny dotted grid pattern:
-- **Dots**: Tiny circular dots (`1.5px`) spaced `24px` apart, with `10%` opacity and colored `#A7D8FF`.
-- **Gradients**: Multiple soft radial overlays blending from top-left toward center.
-- **Depth**: Subtle shadowing on sections, avoiding large shapes, noise, or glassmorphism.
-
-### Typography
-- **Primary Font**: `Inter` or `Manrope` for maximum readability.
-- **Headings**: Large, bold, display-grade styles with comfortable line height (`leading-tight`, `tracking-tight`).
-- **Body**: Relaxed body copy (`text-body-md` / `text-body-lg`) with generous line-height (`1.6`).
-
-### Card Style
-Premium, enterprise-grade white cards:
-- **Border Radius**: `24px` (`rounded-3xl` / `1.5rem`).
-- **Background**: Pure white.
-- **Border**: Soft border (`border border-[#E5E7EB]/50`).
-- **Shadow**: Custom light ambient shadow.
-- **Hover Effects**:
-  - Lift vertically by `6px` (`-translate-y-1.5`).
-  - Increased shadow depth for hover state.
-  - Border transition to primary blue (`border-[#0F4C81]`).
-  - Arrows slide slightly (`translate-x-1`).
-
-### Animations
-Subtle, high-performance interactions powered by `motion/react`:
-- **Hero**: Fade Up animation on load.
-- **Cards**: Fade Up + Staggered entrance for lists.
-- **Images**: Soft fade + scale effect (`scale-100` -> `scale-103`).
-- **Timeline**: Grow-line animation tracking reading progress.
-- **FAQ**: Smooth, fluid accordion expand/collapse.
-- **Buttons**: Micro-scale interaction on hover/click (`scale-100` -> `scale-103`).
+## 1. Design Philosophy & Aesthetic Principles
+Impact Health’s frontend architecture combines Swiss editorial clarity with medical-grade precision and responsive warmth.
+- **Zero AI-Slop**: Every element serves an authentic clinical or informational purpose. No generic placeholder cards or redundant gradients.
+- **Content Integrity**: All headings, service descriptions, statistical data, partner lists, leadership bios, and FAQs are 100% locked and verbatim.
+- **Double-Bezel Architecture**: Clean container framing (`.bezel-outer` and `.bezel-inner`) gives elements a tactile, high-end feel.
+- **Micro-Interactions**: Gentle spring easing (`cubic-bezier(0.16, 1, 0.3, 1)`) with `active:scale-[0.98]` tactile button feedback. Respects `prefers-reduced-motion`.
 
 ---
 
-## 2. Reusable Layout Layout System
+## 2. Four Audience Visual Worlds
 
-Every service page utilizes a consistent 8-section layout:
+### 1. School Health Services (`.theme-school`)
+- **Tone**: Approachable, educational, safe, student-focused.
+- **Palette**: Emerald (`#059669`) & Cyan/Teal (`#0D9488`), soft mint washes (`#F0FDFA`).
+- **Layout**: Structured tables for campus pillars, clear pediatric health checkup timelines, and accessible safety tags.
 
-1. **Hero**: Large Title, Subtitle, Short Description, CTA Button, and high-quality imagery.
-2. **Overview**: Detailed description of the service, who it is for, and why it matters.
-3. **Key Features**: Grid of premium rounded cards highlighting core service elements.
-4. **Benefits**: Split two-column layout showing a clinical context image and a benefits list.
-5. **How It Works**: Interactive timeline mapping the journey (Consultation → Assessment → Implementation → Monitoring → Support).
-6. **Why Choose Impact Health**: Grid of 4 structured cards (Certified Professionals, Customized Solutions, Trusted Network, Continuous Support).
-7. **FAQ**: Smooth, accessible accordion accordion list.
-8. **CTA**: A modern gradient banner prompting consultation booking.
+### 2. Corporate Health Services (`.theme-corporate`)
+- **Tone**: Structured, enterprise-grade, precise, executive.
+- **Palette**: Steel Slate (`#0B132B`) & Sky Blue (`#0284C7`), crisp grids (`#F0F9FF`).
+- **Layout**: Occupational compliance checklists, annual corporate health package cards, and workplace wellness milestones.
+
+### 3. Patients & Families (`.theme-patients`)
+- **Tone**: Reassuring, human-first, accessible, warm.
+- **Palette**: Primary Blue (`#0066FF`), soft sapphire washes (`#EFF6FF`), dark slate typography.
+- **Layout**: Clear pricing badges (starting at INR 199/- per month), seamless doctor-connect options, and 24/7 care coordination highlights.
+
+### 4. Healthcare Practitioners (`.theme-practitioners`)
+- **Tone**: Clinical authority, high-precision, diagnostic rigor.
+- **Palette**: Indigo/Sapphire (`#4F46E5`), clinical purples (`#EEF2FF`).
+- **Layout**: EMR integration highlights, CME accreditation frameworks, and specialized physician tools.
 
 ---
 
-## 3. Clean Architecture Implementation
+## 3. Page-Aware Background Layering
+The `PageBackground` component adapts subtly per route:
+- **Home**: Light atmospheric wash (`#F0F7FF`) with subtle 30px dot grid and soft radial focus.
+- **About**: Architectural subtle grid with warm slate lighting.
+- **Services Directory**: Neutral gateway with category accent highlights.
+- **School Health**: Soft teal/emerald ambient aura with 32px radial grid.
+- **Corporate Health**: Precision dual-axis linear grid (`#0284C7` at 48px).
+- **Patient Support**: Reassuring soft blue mesh with warm ambient depth.
+- **Contact**: Clean, distraction-free neutral canvas.
 
-The services module is structured under a modular Clean Architecture pattern:
+---
 
-```mermaid
-graph TD
-    A[Router: App.jsx] -->|Loads Route| B[Page: ServicePage.jsx]
-    B -->|Resolves Service ID & Meta| C[Data: servicesData.js]
-    B -->|Binds Data to UI| D[Component: ServicePageLayout.jsx]
-    D -->|Renders Layout Components| E[UI Components]
-    E --> F[Accordion / FAQ]
-    E --> G[Timeline / HowItWorks]
-    E --> H[Card / FeatureGrid]
-```
+## 4. Typography Scale & Hierarchy
+- **Font Stack**: System sans-serif with geometric display headlines (`font-display font-bold`), clean body text (`font-sans`), and tabular numbers / badges (`font-mono`).
+- **Heading 1**: 48px–64px bold, tracking `-0.03em`, leading `1.12`.
+- **Heading 2**: 32px–40px bold, tracking `-0.02em`, leading `1.2`.
+- **Heading 3**: 20px–24px bold, tracking tight.
+- **Body Regular**: 14px–16px, leading `1.6`, high contrast (`#0F172A` / `#475569`).
+- **Badges / Mono Labels**: 11px–12px uppercase, tracking `0.08em`–`0.14em`.
 
-### Key Modules:
-- **`src/data/servicesData.js`**: Contains data objects for all 23 subservices. This prevents code duplication and keeps content isolated from rendering logic.
-- **`src/components/ServicePageLayout.jsx`**: The presentation template containing pure markup, responsive layouts, and Tailwind 4 styles.
-- **`src/pages/ServicePage.jsx`**: The controller page that reads `:category` and `:serviceId` from react-router, sets SEO headers, and passes data to the layout.
-- **`src/components/Navbar.jsx`**: Upgraded to provide a gorgeous Stripe-like hover dropdown for quick access to any service.
+---
+
+## 5. Verified Core Information (Content Lock)
+- **Support Contact**: `connect@impacthealth.co.in` | `+91 9667835909`
+- **Headquarters**: `473/B1/P, Kokila Lane-4, Pokhariput, Bhubaneswar, Odisha 751020`
+- **Grievance Officer**: Ashish Rawat (`ashish.rawat@impacthealth.co.in`, Mayur Vihar Phase III, New Delhi - 110096)
+- **Leadership**: Anshuman Sahoo (CEO), Ashish Rawat (CIO), Dr. Gunjan D. Khare (MO)
+- **Scale Metrics**: 80% Preventable Cases, 200+ Service Cities, 2L+ Patients Assisted, 1M+ Consultations, ~60% Cost Reduction, 400+ Daily Consults.

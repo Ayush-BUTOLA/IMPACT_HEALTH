@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impact Health — Navbar Redesign Visual Options</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: #0B132B;
+      color: #F8FAFC;
+      padding: 40px 20px 80px;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #7FB5FF;
+      background: rgba(0, 102, 255, 0.15);
+      border: 1px solid rgba(0, 102, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+    p.subtitle {
+      font-size: 16px;
+      color: #94A3B8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+    .card {
+      background: #111C44;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      border-color: rgba(0, 102, 255, 0.5);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .card-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pill-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(0, 102, 255, 0.2);
+      color: #7FB5FF;
+      border: 1px solid rgba(0, 102, 255, 0.4);
+    }
+    .desc {
+      font-size: 14px;
+      color: #94A3B8;
+      margin-bottom: 20px;
+    }
+    .img-wrap {
+      background: #060B18;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .img-wrap:hover img {
+      transform: scale(1.01);
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .feat {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: #CBD5E1;
+    }
+    .feat span {
+      color: #0066FF;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Impact Health Design Exploration</span>
+      <h1>Select Your Preferred Navbar Concept</h1>
+      <p class="subtitle">Review the 3 visual options below. Each option replaces the red button with clinical royal blue (#0066FF) and modernizes the services navigation.</p>
+    </header>
+
+    <div class="grid">
+      
+      <!-- Option 1 -->
+      <div class="card" id="option-1">
+        <div class="card-header">
+          <div class="card-title">
+            <span>Option 1: Clinical Prestige</span>
+            <span class="pill-tag">Recommended</span>
+          </div>
+        </div>
+        <p class="desc">Floating frosted glassmorphism header, deep navy utility bar with live pulsing status indicator, and a balanced 4-quadrant double-bezel mega-menu for services.</p>
+        <div class="img-wrap">
+          <img src="/options/option1.jpg" alt="Option 1: Clinical Prestige">
+        </div>
+        <div class="features">
+          <div class="feat"><span>✓</span> Frosted glass (backdrop-blur-xl) on scroll</div>
+          <div class="feat"><span>✓</span> Double-bezel cards in Services dropdown</div>
+          <div class="feat"><span>✓</span> Clinical royal blue pill CTA button</div>
+          <div class="feat"><span>✓</span> Live pulsing 24/7 Helpline indicator</div>
+        </div>
+      </div>
+
+      <!-- Option 2 -->
+      <div class="card" id="option-2">
+        <div class="card-header">
+          <div class="card-title">
+            <span>Option 2: Modern Minimalist Floating Island</span>
+            <span class="pill-tag" style="background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(16, 185, 129, 0.3);">Consumer Focused</span>
+          </div>
+        </div>
+        <p class="desc">Apple Health-style floating island pill with a dual-action "Patient Portal" ghost button beside the primary "Book Consultation" royal blue button, and clean 4-column divider flyout.</p>
+        <div class="img-wrap">
+          <img src="/options/option2.jpg" alt="Option 2: Modern Minimalist Floating Island">
+        </div>
+        <div class="features">
+          <div class="feat"><span>✓</span> Centered floating island capsule</div>
+          <div class="feat"><span>✓</span> Dual-action CTA: Patient Portal + Book</div>
+          <div class="feat"><span>✓</span> Column-divided flyout directory</div>
+          <div class="feat"><span>✓</span> High breathing room, zero clutter</div>
+        </div>
+      </div>
+
+      <!-- Option 3 -->
+      <div class="card" id="option-3">
+        <div class="card-header">
+          <div class="card-title">
+            <span>Option 3: Dual-Tier Institutional Command Center</span>
+            <span class="pill-tag" style="background: rgba(245, 158, 11, 0.15); color: #FBBF24; border-color: rgba(245, 158, 11, 0.3);">Enterprise & Hospital</span>
+          </div>
+        </div>
+        <p class="desc">Full-width authoritative enterprise header featuring a high-density operational telemetry bar, emergency quick-dial hotline chip, and metric badges in the mega-menu.</p>
+        <div class="img-wrap">
+          <img src="/options/option3.jpg" alt="Option 3: Dual-Tier Institutional Command Center">
+        </div>
+        <div class="features">
+          <div class="feat"><span>✓</span> Live operational badges (200+ Cities)</div>
+          <div class="feat"><span>✓</span> Direct Emergency 24/7 quick-dial chip</div>
+          <div class="feat"><span>✓</span> Enterprise metric tiles in dropdown</div>
+          <div class="feat"><span>✓</span> Maximum institutional authority</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
