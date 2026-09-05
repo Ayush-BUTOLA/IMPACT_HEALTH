@@ -1,7 +1,0 @@
-[
-  {
-    "id": "TC001",
-    "title": "get_published_blog_posts_with_filters",
-    "description": "Test the GET /api/public/blogs endpoint to retrieve only published blog posts with pagination, search keywords, and category filtering. Verify the response status is 200 and the returned data contains only blogs with PUBLISHED status and correct pagination metadata."
-  }
-]

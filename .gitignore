@@ -1,8 +1,61 @@
-testsprite_tests/tmp/
-testsprite_tests/tmp/config.json
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Build Outputs
+dist/
+dist-ssr/
+target/
+*.local
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Agent & AI Tooling Caches
 .agents/
+.impeccable/
 .zcode/
-cloudflared.exe
+skills/
+skills-lock.json
 SKILLS.md
 REQUIRED_IMAGES.md
-skills/
+
+# Automated Test Artifacts
+testsprite_tests/
+frontend/testsprite_tests/
+
+# Screenshots & Temporary Media
+redesign_screenshots/
+*.png.bak
+
+# Binaries & Executables
+*.exe
+cloudflared.exe
+*.dll
+*.so
+*.dylib
+
+# OS Junk
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
