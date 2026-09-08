@@ -79,13 +79,13 @@ public class BlogService {
 
     public List<BlogDTO> getDoctorBlogs(Long doctorId) {
         Doctor doctor = getDoctorById(doctorId);
-        return blogRepository.findByAuthorOrderByIdDesc(doctor).stream()
+        return blogRepository.findByAuthorOrderByIdDescWithDetails(doctor).stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
 
     public BlogDTO getBlogById(Long id) {
-        Blog blog = blogRepository.findById(id)
+        Blog blog = blogRepository.findByIdWithDetails(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Blog not found with ID: " + id));
         return mapToDTO(blog);
     }
@@ -165,69 +165,6 @@ public class BlogService {
         blogRepository.delete(blog);
     }
 
-    // ADMIN METHODS
-
-    public Page<BlogDTO> getAdminBlogs(BlogStatus status, Long categoryId, Long authorId, String search, Pageable pageable) {
-        return blogRepository.findAdminBlogs(status, categoryId, authorId, search, pageable)
-                .map(this::mapToDTO);
-    }
-
-    public List<BlogDTO> getPendingBlogs() {
-        return blogRepository.findByStatusOrderByIdDesc(BlogStatus.PENDING).stream()
-                .map(this::mapToDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Transactional
-    public BlogDTO approveBlog(Long id) {
-        Blog blog = blogRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Blog not found with ID: " + id));
-
-        if (blog.getStatus() != BlogStatus.PENDING) {
-            throw new BadRequestException("Only PENDING blogs can be approved.");
-        }
-
-        blog.setStatus(BlogStatus.PUBLISHED);
-        blog.setPublishedAt(LocalDateTime.now());
-        blog.setRejectionReason(null);
-        return mapToDTO(blogRepository.save(blog));
-    }
-
-    @Transactional
-    public BlogDTO rejectBlog(Long id, String reason) {
-        Blog blog = blogRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Blog not found with ID: " + id));
-
-        if (reason == null || reason.isBlank()) {
-            throw new BadRequestException("Rejection reason is required.");
-        }
-
-        blog.setStatus(BlogStatus.REJECTED);
-        blog.setRejectionReason(reason);
-        return mapToDTO(blogRepository.save(blog));
-    }
-
-    @Transactional
-    public BlogDTO requestChanges(Long id, String reason) {
-        Blog blog = blogRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Blog not found with ID: " + id));
-
-        if (reason == null || reason.isBlank()) {
-            throw new BadRequestException("Change request reason/message is required.");
-        }
-
-        blog.setStatus(BlogStatus.CHANGES_REQUESTED);
-        blog.setRejectionReason(reason);
-        return mapToDTO(blogRepository.save(blog));
-    }
-
-    @Transactional
-    public void deleteAdminBlog(Long id) {
-        Blog blog = blogRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Blog not found with ID: " + id));
-        blogRepository.delete(blog);
-    }
-
     // PUBLIC METHODS
 
     public Page<BlogDTO> getPublicBlogs(String category, String search, Pageable pageable) {
@@ -236,7 +173,7 @@ public class BlogService {
     }
 
     public BlogDTO getPublicBlogBySlug(String slug) {
-        Blog blog = blogRepository.findBySlugAndStatus(slug, BlogStatus.PUBLISHED)
+        Blog blog = blogRepository.findBySlugAndStatusWithDetails(slug, BlogStatus.PUBLISHED)
                 .orElseThrow(() -> new ResourceNotFoundException("Published blog not found with slug: " + slug));
         return mapToDTO(blog);
     }

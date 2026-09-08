@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import CategoryPageLayout from '../components/CategoryPageLayout';
 import { categoriesData } from '../data/servicesData';
 

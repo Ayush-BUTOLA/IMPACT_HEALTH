@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function StatusBadge({ status }) {
   let bgClass = 'bg-slate-100 text-slate-600 border-slate-200';
   let label = 'Unknown';

@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { UploadCloud, Image as ImageIcon, X, RefreshCw } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { UploadCloud, X, RefreshCw } from 'lucide-react';
 
 export default function ImageUploader({ value, onChange, label = "Featured Image" }) {
   const [isDragOver, setIsDragOver] = useState(false);

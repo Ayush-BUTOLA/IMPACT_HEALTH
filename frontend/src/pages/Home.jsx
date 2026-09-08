@@ -1,37 +1,53 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, ArrowRight, HeartPulse, Clock, Award, ShieldCheck, Stethoscope, UserCheck } from 'lucide-react';
+import { Phone, Mail, ArrowRight, HeartPulse, Clock } from 'lucide-react';
 import { motion } from 'motion/react';
-import LogoLoop from '../components/LogoLoop';
-import ShinyText from '../components/ShinyText';
 import HeroSlideshow from '../components/HeroSlideshow';
 import Aurora from '../components/backgrounds/Aurora';
 import DotGrid from '../components/backgrounds/DotGrid';
+import DoctorAvatar from '../components/DoctorAvatar';
 
-import carouselDoctor from '../assets/carousel_doctor_stethoscope.jpg';
-import carouselBloodTest from '../assets/carousel_blood_test_home.jpg';
-import medicineDelivery from '../assets/medicine_delivery_guy.jpg';
+// Real Photos from Drive
+import doctorCheckupPulse from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.13_PM.jpeg';
+import healthCampVitals from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.08_PM.jpeg';
+import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
+
+// Real Client Logos from Drive
+import zomatoLogo from '../assets/drive/clients/zomato-logo-transparent-background-701751694712227nvjxqt9tkj.png';
+import bharatBiotechLogo from '../assets/drive/clients/bharat-biotech-logo.jpg';
+import zydusLogo from '../assets/drive/clients/Zydus_Logo.jpg';
+import eisaiLogo from '../assets/drive/clients/4523.T-587fe547.png';
+import healthiansLogo from '../assets/drive/clients/Healthianslogo2x.jpeg';
+import coreDiagnosticsLogo from '../assets/drive/clients/cropped-cropped-Core-Diagnostics-Logo-Light.jpg';
+import garbagudiLogo from '../assets/drive/clients/garbagudi_logo.jpeg';
+import chaitanyaLogo from '../assets/drive/clients/chaitanya_india_micro_finance_logo.jpeg';
+import rakkshakLogo from '../assets/drive/clients/rakkshak_logo.jpeg';
+import tcisLogo from '../assets/drive/clients/TCIS-logo3.png';
+import indiraGandhiLogo from '../assets/drive/clients/indira-gandhi.png';
+import mSchoolLogo from '../assets/drive/clients/M-school-logo.png';
+import fisLogo from '../assets/drive/clients/FIS-LOGO.jpg';
+import fbLogo from '../assets/drive/clients/FB_Logo.jpg';
 
 const services = [
   {
-    category: "Consultations",
+    category: "Consultations & Care",
     title: "Inclinic & Virtual Doctor Consultations",
     desc: "Get unlimited doctor consultations both virtually over call and at clinic/hospital locations across 200+ network centers.",
-    image: carouselDoctor,
+    image: doctorCheckupPulse,
     alt: "Inclinic & Virtual Doctor Consultations"
   },
   {
-    category: "Diagnostics Test",
-    title: "Blood Tests at home & Radiology tests at our 200+ network centres",
-    desc: "Avail free blood sample collection at home along with X-Rays, Scans and diagnostic tests at partnered labs and hospitals.",
-    image: carouselBloodTest,
-    alt: "Blood Tests at home & Radiology tests at our 200+ network centres"
+    category: "Diagnostics & OHC",
+    title: "On-Campus Medical Rooms & Health Screening Camps",
+    desc: "Gold-standard campus infirmaries, school wellness setups, and digital student health assessments with pediatric care.",
+    image: healthCampVitals,
+    alt: "On-Campus Medical Rooms & Health Screening Camps"
   },
   {
-    category: "Home Delivery",
-    title: "Medicines delivered at home",
-    desc: "Get genuine prescribed medicines delivered directly to your doorstep with priority care and adherence support.",
-    image: medicineDelivery,
-    alt: "Medicines delivered at home"
+    category: "Corporate & Workplace",
+    title: "Corporate Health Centers & Workplace Wellness",
+    desc: "On-site OHC clinics, pre-employment checkups, and annual health screenings trusted by leading corporate organizations.",
+    image: corporateOhc,
+    alt: "Corporate Health Centers & Workplace Wellness"
   }
 ];
 
@@ -64,55 +80,51 @@ const advisors = [
     name: "Dr. Romil Lotta",
     role: "General Physician",
     desc: "MBBS from Mayo. PMO at Ministry of Housing & Urban Affairs, Govt. of India.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBtEiQwb2R_suc6-2rYt6_IblbXvLjE0aDj24NdGGaAa_sTYnB57vM9vjCW2tCx2Je3dwHiRKGqut13IHXHJrqpWulI2tHpEX4SN5t7sZPurcp393MQinICsnLmCr3y_rWXqvwuJGd1hhMftotr3io2yUsKhWoWLHP8IEGAQzh-9jQLnPE9U12B6D4WHp9znFYkX1-yRDmGFBtUvrl9-nP_MjOSUTC3XEbNlHWwNaVufTGKllnFvS3ScpYP0GfMlDEnejwfVevGuZM"
+    image: null
   },
   {
     name: "Dr. Lalasa Palli",
     role: "Pediatrician",
     desc: "Expert Pediatric Specialist focusing on child healthcare, growth monitoring, and preventive wellness.",
-    image: "https://images.unsplash.com/photo-1594824813566-7885a3964478?w=400&fit=crop&q=80"
+    image: null
   },
   {
     name: "Dr. Azad Dash",
     role: "Pediatrician",
     desc: "Senior Pediatrician specializing in campus health programs and childhood preventive healthcare.",
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&fit=crop&q=80"
+    image: null
   },
   {
     name: "Dr. Abhishek Miland Deshmukh",
     role: "Dermatologist",
     desc: "Consultant Dermatologist providing comprehensive clinical skin health consultations.",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&fit=crop&q=80"
+    image: null
   },
   {
     name: "Dr. Sonti Kiran Kumar",
     role: "Internal Medicine",
     desc: "Internal Medicine Specialist dedicated to chronic disease management and adult care.",
-    image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&fit=crop&q=80"
+    image: null
   }
 ];
 
 const clients = [
-  { name: "Zomato", alt: "Zomato", type: "badge", bg: "#E23744", text: "#FFFFFF" },
-  { name: "Blinkit", alt: "Blinkit", type: "badge", bg: "#F7C600", text: "#000000" },
-  { name: "Bistro", alt: "Bistro", type: "badge", bg: "#1E293B", text: "#FFFFFF" },
-  { name: "Ravees International School", alt: "Ravees International School", type: "badge", bg: "#0284C7", text: "#FFFFFF" },
-  { name: "Meluha International School", alt: "Meluha International School", type: "badge", bg: "#0D9488", text: "#FFFFFF" },
-  { name: "IRIS Florets", alt: "IRIS Florets", type: "badge", bg: "#9333EA", text: "#FFFFFF" },
-  { alt: "Ayu Health", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuCn0SqoFYyTCoGKvOBQS__y_Zn4Kh5_qpLuQQwcvKrnK0WhyBIA94JaihTcmOVxRlO7HX_PbdTH1wSup1MOIi39RXoyVcLWiNLXj9Hk8ZI0_a2EoRfGRcLU1ngXv2hJyZPiq6HMUUCZ2RM8pCFMYLb5L9pBEkfyR3v2mGLrtvLv8tGJAmzsb4pn6iqo2onf1mDFvMgykrtKAThQxmuyUuOE2oD2YNtnQ5Dd7OLudv7C07I-A9P1TUi_GeD_bsEZZuscxXw4Y2MgzpM" },
-  { alt: "Plum", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuA7NTKV2ESyPiqIYxJFTrGQK0m5HId4SQEe3rKtUqSxxdH9_HQ7MDcXubjIh93npApnObZqxiYSoVz2GMiOZE28-amzAF29Srzyr7e2PxGBTmsX_Cmz2FryovBf1KOBDxt6ER7VfTwrwylECfYbnaDjaVKiInqoiQ_07uWeMSA1EBJsAvipefTANH0qNJeCcYS24FCuGWXHLhZhrDDQnSvY6SzgwvoYHbTtmT4Edd5d50j3BYFKvQ6LIlFpww0ChwB2G-NUQw7Nl8E" },
-  { alt: "Eisai", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuA-35BM3Cz2J5YFZEmP1pD2yWrRo-CGWhWx0_Ieamml5sG26dn23RGWmtXJAuSX1FFMeKKBheuRCIfUgkKYtcTU1RObRQKgxlwhXXfS7n9jQ_HXKhSqagFuqXYISUMWRt813Yhp9XKmdagkVriOt66IsU08Yv3Cbb1oUEiTBK224UCBn1dl9I9kfVopLXlcaWOSVonoJJN-OmZyd7_RM_BHinj8VwZ_vBcnmQkbOiUpDS6jLNKnOHd9PGtIgn-DL5X-f2FYE_xpc0w" },
-  { alt: "Ryan International", url: "https://lh3.googleusercontent.com/aida-public/AB6AXuBaRcezCG7_UsORNLGPsEORLwFeCS46OoBPZ8jjzjWzfH8dq8uVJNtgGdUNRb4vGD6Ncg-cKG03v2kTzNBjSz4oGhXabyITTcoil03O417eD6cPvyb9FhtZU4LnSUOeggniZxrcHRy-bESpuDt4a0tTC7iopKV_YvHALjglkMXhT_KwEi33pFttn9S6BsAmV_53yM3AEdk9i-nOU0Mlr9CSeCTTz038SgcB5j1hTYvcDJC-cEP_-YKo7hp3GerpyHb7Vqup2AFZo6A" }
+  { name: "Zomato", alt: "Zomato", url: zomatoLogo },
+  { name: "Bharat Biotech", alt: "Bharat Biotech", url: bharatBiotechLogo },
+  { name: "Zydus Healthcare", alt: "Zydus Healthcare", url: zydusLogo },
+  { name: "Eisai", alt: "Eisai Pharmaceuticals", url: eisaiLogo },
+  { name: "Healthians", alt: "Healthians Diagnostics", url: healthiansLogo },
+  { name: "Core Diagnostics", alt: "Core Diagnostics", url: coreDiagnosticsLogo },
+  { name: "Garbagudi", alt: "Garbagudi IVF", url: garbagudiLogo },
+  { name: "Chaitanya India", alt: "Chaitanya India Micro Finance", url: chaitanyaLogo },
+  { name: "Rakkshak", alt: "Rakkshak", url: rakkshakLogo },
+  { name: "The Cambridge International School", alt: "TCIS", url: tcisLogo },
+  { name: "Indira Gandhi Institutions", alt: "Indira Gandhi Institutions", url: indiraGandhiLogo },
+  { name: "Meluha International School", alt: "Meluha International School", url: mSchoolLogo },
+  { name: "FIS", alt: "FIS", url: fisLogo },
+  { name: "FB Group", alt: "FB Group", url: fbLogo }
 ];
 
-const clientLogos = clients.map(c => ({
-  src: c.url,
-  alt: c.alt,
-  name: c.name,
-  type: c.type,
-  bg: c.bg,
-  text: c.text
-}));
 
 const fadeInUp = {
   hidden: { opacity: 1, y: 0 },
@@ -261,12 +273,14 @@ export default function Home() {
                 <h3 className="text-2xl lg:text-3xl font-display font-bold mb-2">Speak to a Doctor</h3>
                 <p className="text-slate-300 text-sm font-sans">Get unhindered access to medical queries instantly.</p>
               </div>
-              <Link
-                to="/contact"
+              <a
+                href="https://www.threephih.in/threephih/patientlogin.php"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="z-10 bg-white text-primary font-sans font-bold text-sm px-6 py-3.5 rounded-lg hover:bg-slate-50 transition-all whitespace-nowrap shadow-sm text-center"
               >
                 Book Consultation Now
-              </Link>
+              </a>
             </motion.div>
 
           </div>
@@ -494,14 +508,11 @@ export default function Home() {
                 whileHover={{ y: -4, transition: { duration: 0.3 } }}
               >
                 <div>
-                  <div className="w-24 h-24 rounded-full bg-slate-100 mx-auto mb-5 flex items-center justify-center overflow-hidden border-2 border-primary/20 shadow-sm">
-                    <img
-                      alt={advisor.name}
-                      className="w-full h-full object-cover"
-                      src={advisor.image}
-                      loading="lazy"
-                    />
-                  </div>
+                  <DoctorAvatar
+                    name={advisor.name}
+                    src={advisor.image}
+                    alt={advisor.name}
+                  />
                   <h4 className="text-base font-bold text-primary text-center mb-1 leading-snug">{advisor.name}</h4>
                   <p className="text-xs font-bold text-[#7e82f4] text-center font-sans mb-3">({advisor.role})</p>
 
@@ -519,51 +530,51 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           CLIENTS & PARTNERS
        ═══════════════════════════════════════════ */}
-      <section id="clients" className="py-24 lg:py-28 bg-white border-t border-[#DDE0F5]/60">
+      <section id="clients" className="py-20 lg:py-24 bg-[#FAFBFF] border-t border-[#DDE0F5]/60">
         <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
           <motion.div
-            className="mb-14"
+            className="mb-14 max-w-2xl mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
           >
             <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Trusted Partnerships</span>
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-primary">Our Happy Clients &amp; Partners</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Our Happy Clients &amp; Partners</h2>
+            <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-3">
+              Trusted by leading enterprises, educational institutions, and healthcare leaders nationwide.
+            </p>
           </motion.div>
-          <div className="relative overflow-hidden py-4">
-            <LogoLoop
-              logos={clientLogos}
-              speed={50}
-              direction="left"
-              logoHeight={64}
-              gap={96}
-              hoverSpeed={0}
-              scaleOnHover
-              fadeOut
-              fadeOutColor="#ffffff"
-              ariaLabel="Our Happy Clients & Partners"
-              renderItem={(logo, key) => (
-                logo.type === 'badge' ? (
-                  <div
-                    key={key}
-                    className="h-11 px-5 rounded-xl font-display font-extrabold text-xs tracking-wider uppercase flex items-center justify-center shadow-sm shrink-0 hover:scale-105 transition-transform duration-300 border border-white/20"
-                    style={{ backgroundColor: logo.bg, color: logo.text }}
-                  >
-                    {logo.name}
-                  </div>
-                ) : (
+
+          {/* Grid displaying all clients & partners */}
+          <motion.div
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-5"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            {clients.map((client, idx) => (
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="bg-white rounded-2xl p-4 border border-[#DDE0F5] hover:border-[#7e82f4]/40 shadow-ambient flex flex-col items-center justify-center min-h-[110px] md:min-h-[120px] transition-all duration-300 group"
+              >
+                <div className="h-12 md:h-14 flex items-center justify-center w-full px-2">
                   <img
-                    key={key}
-                    src={logo.src}
-                    alt={logo.alt}
-                    className="h-12 md:h-14 w-auto object-contain shrink-0 opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500 hover:scale-110"
+                    src={client.url}
+                    alt={client.alt || client.name}
+                    className="max-h-full max-w-full object-contain filter contrast-105 group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />
-                )
-              )}
-            />
-          </div>
+                </div>
+                <span className="text-[11px] font-semibold text-text-secondary/75 mt-2 font-sans truncate max-w-full group-hover:text-primary transition-colors">
+                  {client.name}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 

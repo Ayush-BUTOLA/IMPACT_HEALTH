@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Stethoscope,
   Activity,
   HeartHandshake,
   Pill,
-  CheckCircle2,
   ChevronRight,
   X,
   PhoneCall,
@@ -24,6 +23,10 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
+import doctorCheckup from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.18_PM_2.jpeg';
+import bloodTestHome from '../assets/drive/about/blood_test_at_home.jpg';
+import vaccineImg from '../assets/drive/corporate/Vaccination.jpg';
+import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
 
 export default function PatientSupportServices() {
   const [activeCircleIndex, setActiveCircleIndex] = useState(0);
@@ -41,7 +44,7 @@ export default function PatientSupportServices() {
       title: "Consultations & Expert Opinions",
       subtitle: "Whether you need quick advice from home or an in-person physical examination, we coordinate your entire consultation journey.",
       icon: <Stethoscope className="w-6 h-6 text-white" />,
-      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&auto=format&fit=crop&q=80",
+      image: doctorCheckup,
       themeColor: "from-[#0F766E] to-[#14B8A6]",
       badgeColor: "bg-[#0F766E]/10 text-[#0F766E]",
       services: [
@@ -68,7 +71,7 @@ export default function PatientSupportServices() {
       title: "Diagnostics & Lab Services",
       subtitle: "Accurate diagnostics form the bedrock of effective treatment. We ensure your testing is timely, painless, and transparent.",
       icon: <Activity className="w-6 h-6 text-white" />,
-      image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&auto=format&fit=crop&q=80",
+      image: bloodTestHome,
       themeColor: "from-[#0D9488] to-[#2DD4BF]",
       badgeColor: "bg-[#0D9488]/10 text-[#0D9488]",
       services: [
@@ -95,7 +98,7 @@ export default function PatientSupportServices() {
       title: "At-Home Care & Elderly Support",
       subtitle: "Complex care doesn't always require a hospital stay. We bring trained nurses, preventive care, and eldercare professionals to your doorstep.",
       icon: <HeartHandshake className="w-6 h-6 text-white" />,
-      image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&auto=format&fit=crop&q=80",
+      image: vaccineImg,
       themeColor: "from-[#0F766E] to-[#0284C7]",
       badgeColor: "bg-[#0284C7]/10 text-[#0284C7]",
       services: [
@@ -122,7 +125,7 @@ export default function PatientSupportServices() {
       title: "Pharmacy & Medicines",
       subtitle: "Genuine Medications Delivered Without the Hassle. Never miss a dose with our integrated pharmacy network and automated medication workflows.",
       icon: <Pill className="w-6 h-6 text-white" />,
-      image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&auto=format&fit=crop&q=80",
+      image: corporateOhc,
       themeColor: "from-[#0D9488] to-[#10B981]",
       badgeColor: "bg-[#10B981]/10 text-[#10B981]",
       services: [

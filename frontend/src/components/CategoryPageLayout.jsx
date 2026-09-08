@@ -1,15 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import * as Icons from 'lucide-react';
+import { Activity, ArrowRight, Check } from 'lucide-react';
 import PremiumBackground from './PremiumBackground';
 import Button from './Button';
+import DynamicIcon from './DynamicIcon';
 import { servicesData } from '../data/servicesData';
-
-function ResolveIcon({ name, className = 'w-6 h-6' }) {
-  const IconComponent = Icons[name] || Icons.HelpCircle;
-  return <IconComponent className={className} />;
-}
 
 export default function CategoryPageLayout({ categoryKey, data }) {
   // Extract all subservices in this category from servicesData
@@ -39,7 +34,7 @@ export default function CategoryPageLayout({ categoryKey, data }) {
                 className="inline-flex items-center gap-2 bg-[#0F4C81]/10 border border-[#0F4C81]/15 text-[#0F4C81] px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider font-sans"
                 variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 } }}
               >
-                <Icons.Activity className="w-3.5 h-3.5 animate-pulse" />
+                <Activity className="w-3.5 h-3.5 animate-pulse" />
                 <span>Impact Health Services</span>
               </motion.div>
 
@@ -140,9 +135,9 @@ export default function CategoryPageLayout({ categoryKey, data }) {
                 <div>
                   <div className="w-12 h-12 rounded-[16px] bg-[#0F4C81]/5 text-[#0F4C81] flex items-center justify-center mb-6">
                     {sub.features && sub.features[0] ? (
-                      <ResolveIcon name={sub.features[0].icon} className="w-6 h-6" />
+                      <DynamicIcon name={sub.features[0].icon} className="w-6 h-6" />
                     ) : (
-                      <Icons.Activity className="w-6 h-6" />
+                      <Activity className="w-6 h-6" />
                     )}
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#0F4C81] transition-colors mb-2">
@@ -159,7 +154,7 @@ export default function CategoryPageLayout({ categoryKey, data }) {
                     className="text-xs font-semibold text-[#0F4C81] flex items-center gap-1 hover:underline w-full justify-between"
                   >
                     <span>View program details</span>
-                    <Icons.ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+                    <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
                   </Link>
                 </div>
               </motion.div>
@@ -184,7 +179,7 @@ export default function CategoryPageLayout({ categoryKey, data }) {
               {data.highlights.map((h, i) => (
                 <div key={i} className="bg-white rounded-2xl border border-gray-200/40 p-6 shadow-sm flex flex-col gap-3">
                   <div className="w-8 h-8 rounded-full bg-[#14B8A6]/10 text-[#14B8A6] flex items-center justify-center shrink-0">
-                    <Icons.Check className="w-4 h-4 stroke-[3]" />
+                    <Check className="w-4 h-4 stroke-[3]" />
                   </div>
                   <p className="text-xs text-gray-600 leading-relaxed font-semibold">
                     {h}
@@ -218,11 +213,18 @@ export default function CategoryPageLayout({ categoryKey, data }) {
             </div>
 
             <div className="z-10 pt-4">
-              <Link to="/contact">
-                <Button variant="secondary" className="bg-white text-[#0F4C81] border border-transparent font-sans font-bold text-sm px-8 py-4 rounded-lg shadow-md hover:bg-slate-50 transition-all">
+              <a 
+                href="https://www.threephih.in/threephih/masterLogin.html"
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <button 
+                  type="button"
+                  className="bg-white text-[#0F4C81] border border-transparent font-sans font-bold text-sm px-8 py-4 rounded-lg shadow-md hover:bg-slate-50 transition-all cursor-pointer inline-flex items-center justify-center"
+                >
                   Schedule Consultation Now
-                </Button>
-              </Link>
+                </button>
+              </a>
             </div>
           </div>
         </div>

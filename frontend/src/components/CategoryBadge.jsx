@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function CategoryBadge({ category }) {
   let colorStyle = {
     bg: 'bg-[#1D2A72]/5',

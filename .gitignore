@@ -1,2 +1,23 @@
-testsprite_tests/tmp/
-testsprite_tests/tmp/config.json
+# Dependencies & Builds
+node_modules/
+dist/
+target/
+**/target/
+
+# Temporary & Scratch Workspaces
+scratch/
+redesign_screenshots/
+.impeccable/
+
+# Automated QA & Test Reports
+testsprite_tests/
+frontend/testsprite_tests/
+
+# Logs & Environment
+*.log
+npm-debug.log*
+yarn-debug.log*
+.env
+.env.local
+.DS_Store
+.vscode/

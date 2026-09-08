@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { motion } from 'motion/react';
 import {
   ArrowLeft,
   Upload,
@@ -10,8 +9,7 @@ import {
   Trash2,
   AlertCircle,
   Stethoscope,
-  Image as ImageIcon,
-  CheckCircle2
+  Image as ImageIcon
 } from 'lucide-react';
 import apiService from '../../api/apiService';
 
@@ -39,43 +37,47 @@ export default function DoctorBlogEditor() {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    fetchCategories();
-    if (isEditing) {
-      fetchBlogForEdit();
-    }
-  }, [id]);
+    let isMounted = true;
 
-  const fetchCategories = async () => {
-    try {
-      const data = await apiService.getPublicCategories();
-      setCategories(Array.isArray(data) ? data : []);
-      if (data.length > 0 && !categoryId) {
-        setCategoryId(data[0].id);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    apiService.getPublicCategories()
+      .then((data) => {
+        if (!isMounted) return;
+        const cats = Array.isArray(data) ? data : [];
+        setCategories(cats);
+        if (cats.length > 0 && !categoryId) {
+          setCategoryId(cats[0].id);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
 
-  const fetchBlogForEdit = async () => {
-    setLoading(true);
-    try {
-      const blog = await apiService.getBlogById(id);
-      setTitle(blog.title || '');
-      setShortDescription(blog.shortDescription || '');
-      setCategoryId(blog.category?.id || '');
-      setContent(blog.content || '');
-      setFeaturedImage(blog.featuredImage || '');
-      setAdminNote(blog.rejectionReason || '');
-      if (blog.images) {
-        setAdditionalImages(blog.images.map(img => img.imagePath));
-      }
-    } catch (err) {
-      alert('Failed to load blog for editing');
-    } finally {
-      setLoading(false);
+    if (id) {
+      apiService.getBlogById(id)
+        .then((blog) => {
+          if (!isMounted) return;
+          setTitle(blog.title || '');
+          setShortDescription(blog.shortDescription || '');
+          setCategoryId(blog.category?.id || '');
+          setContent(blog.content || '');
+          setFeaturedImage(blog.featuredImage || '');
+          setAdminNote(blog.rejectionReason || '');
+          if (blog.images) {
+            setAdditionalImages(blog.images.map((img) => img.imagePath));
+          }
+        })
+        .catch(() => {
+          alert('Failed to load blog for editing');
+        })
+        .finally(() => {
+          if (isMounted) setLoading(false);
+        });
     }
-  };
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id, categoryId]);
 
   const handleFeaturedUpload = async (e) => {
     const file = e.target.files[0];
@@ -102,7 +104,7 @@ export default function DoctorBlogEditor() {
         urls.push(res.url);
       }
       setAdditionalImages(prev => [...prev, ...urls]);
-    } catch (err) {
+    } catch {
       alert('Failed to upload gallery image');
     } finally {
       setUploadingGallery(false);

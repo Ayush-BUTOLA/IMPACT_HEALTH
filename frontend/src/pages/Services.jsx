@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Activity, ShieldCheck, HeartHandshake, Award, ArrowRight, Check } from 'lucide-react';
@@ -148,13 +148,17 @@ export default function Services() {
             </div>
 
             <div className="z-10 pt-4">
-              <Link to="/contact">
+              <a 
+                href="https://www.threephih.in/threephih/patientlogin.php"
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                   <Button variant="secondary" className="bg-white text-[#0F4C81] border border-transparent font-sans font-bold text-sm px-8 py-4 rounded-lg shadow-md hover:bg-slate-50 transition-all">
                     Schedule Discovery Consultation
                   </Button>
                 </motion.div>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

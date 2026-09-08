@@ -7,15 +7,11 @@ import {
   ClipboardList,
   Truck,
   BarChart3,
-  ArrowRight,
   CheckCircle2,
   Users,
   MapPin,
   Activity,
-  Building2,
-  Sparkles,
-  ShieldAlert,
-  ArrowUpRight
+  Building2
 } from 'lucide-react';
 import DotGrid from '../components/backgrounds/DotGrid';
 import Aurora from '../components/backgrounds/Aurora';
@@ -252,12 +248,14 @@ export default function PatientSupportProgram() {
                 variants={fadeUpVariants}
                 className="flex flex-col sm:flex-row gap-4 pt-4"
               >
-                <Link
-                  to="/contact"
+                <a
+                  href="https://www.threephih.in/threephih/patientlogin.php"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-primary text-white font-sans font-semibold text-sm px-8 py-4 rounded-lg shadow-ambient hover:opacity-95 transition-opacity text-center"
                 >
                   Schedule Consultation
-                </Link>
+                </a>
                 <a
                   href="#psp-delivery-model"
                   onClick={scrollToTimeline}
@@ -777,12 +775,14 @@ export default function PatientSupportProgram() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <Link
-                  to="/contact"
+                <a
+                  href="https://www.threephih.in/threephih/patientlogin.php"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-white text-primary font-sans font-bold text-sm px-8 py-4 rounded-xl hover:bg-slate-50 transition-colors shadow-sm text-center min-w-[200px]"
                 >
                   Schedule Consultation
-                </Link>
+                </a>
                 <Link
                   to="/contact"
                   className="bg-white/10 text-white border border-white/20 font-sans font-semibold text-sm px-8 py-4 rounded-xl hover:bg-white/25 transition-colors text-center min-w-[200px]"

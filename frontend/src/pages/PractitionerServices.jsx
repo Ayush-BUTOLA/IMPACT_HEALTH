@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -8,7 +8,6 @@ import {
   Sparkles,
   ChevronRight,
   X,
-  CheckCircle2,
   Clock,
   Activity,
   ShieldCheck,
@@ -18,10 +17,13 @@ import {
   Building2,
   Share2,
   MessageSquare,
-  ArrowRight,
-  Layers
+  ArrowRight
 } from 'lucide-react';
 import Button from '../components/Button';
+import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
+import awardsFelicitation from '../assets/drive/about/awards_felicitation.jpg';
+import corporateCamp from '../assets/drive/corporate/WhatsApp_Image_2026-07-29_at_6.37.07_PM_1.jpeg';
+import award1 from '../assets/drive/about/award1.jpg';
 
 export default function PractitionerServices() {
   const [activeIntersectionIndex, setActiveIntersectionIndex] = useState(0);
@@ -40,7 +42,7 @@ export default function PractitionerServices() {
       path: "/services/practitioner-support/emr-hims",
       subtitle: "Seamless clinical documentation and smart health records tailored for modern practice.",
       icon: <Database className="w-6 h-6 text-white" />,
-      image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&auto=format&fit=crop&q=80",
+      image: corporateOhc,
       themeColor: "from-[#0F766E] to-[#14B8A6]",
       badgeColor: "bg-[#0F766E]/10 text-[#0F766E]",
       bullets: [
@@ -68,7 +70,7 @@ export default function PractitionerServices() {
       path: "/services/practitioner-support/cme-programs",
       subtitle: "Stay at the forefront of medical advancements with accredited, evidence-based learning.",
       icon: <Award className="w-6 h-6 text-white" />,
-      image: "https://images.unsplash.com/photo-1544717302-de2938b81485?w=800&auto=format&fit=crop&q=80",
+      image: awardsFelicitation,
       themeColor: "from-[#0D9488] to-[#2DD4BF]",
       badgeColor: "bg-[#0D9488]/10 text-[#0D9488]",
       bullets: [
@@ -96,7 +98,7 @@ export default function PractitionerServices() {
       path: "/services/practitioner-support/marketing-patient-services",
       subtitle: "Expand your clinical reach and deliver exceptional patient engagement.",
       icon: <TrendingUp className="w-6 h-6 text-white" />,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+      image: corporateCamp,
       themeColor: "from-[#0F766E] to-[#0284C7]",
       badgeColor: "bg-[#0284C7]/10 text-[#0284C7]",
       bullets: [
@@ -124,7 +126,7 @@ export default function PractitionerServices() {
       path: "/services/practitioner-support/trainings-leadership",
       subtitle: "Transition from practitioner to healthcare leader with strategic management development.",
       icon: <Sparkles className="w-6 h-6 text-white" />,
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80",
+      image: award1,
       themeColor: "from-[#0D9488] to-[#10B981]",
       badgeColor: "bg-[#10B981]/10 text-[#10B981]",
       bullets: [
@@ -464,7 +466,11 @@ export default function PractitionerServices() {
             </div>
 
             <div className="z-10 pt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <Link to="/contact">
+              <a 
+                href="https://www.threephih.in/threephih/patientlogin.php"
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                   <Button
                     variant="primary"
@@ -473,7 +479,7 @@ export default function PractitionerServices() {
                     Schedule Demo / Consultation
                   </Button>
                 </motion.div>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

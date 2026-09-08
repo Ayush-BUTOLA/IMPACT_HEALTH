@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -13,8 +13,7 @@ import {
   XCircle,
   Stethoscope,
   X,
-  FileText,
-  Sparkles
+  FileText
 } from 'lucide-react';
 import apiService from '../../api/apiService';
 
@@ -23,12 +22,7 @@ export default function DoctorDashboard() {
   const [loading, setLoading] = useState(true);
   const [selectedRejectReason, setSelectedRejectReason] = useState(null);
 
-  useEffect(() => {
-    fetchDoctorBlogs();
-  }, []);
-
   const fetchDoctorBlogs = async () => {
-    setLoading(true);
     try {
       const data = await apiService.getDoctorBlogs();
       setBlogs(Array.isArray(data) ? data : []);
@@ -39,11 +33,30 @@ export default function DoctorDashboard() {
     }
   };
 
+  useEffect(() => {
+    let isMounted = true;
+    apiService.getDoctorBlogs()
+      .then((data) => {
+        if (isMounted) setBlogs(Array.isArray(data) ? data : []);
+      })
+      .catch((err) => {
+        console.error('Error fetching doctor blogs:', err);
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const handleSubmitBlog = async (id, title) => {
     if (!window.confirm(`Submit "${title}" to Admin for approval?`)) return;
     try {
       await apiService.submitBlog(id);
       alert('Blog submitted for admin approval!');
+      setLoading(true);
       fetchDoctorBlogs();
     } catch (err) {
       alert('Failed to submit blog: ' + (err.response?.data?.message || err.message));
@@ -54,8 +67,9 @@ export default function DoctorDashboard() {
     if (!window.confirm(`Are you sure you want to delete draft "${title}"?`)) return;
     try {
       await apiService.deleteBlog(id);
+      setLoading(true);
       fetchDoctorBlogs();
-    } catch (err) {
+    } catch {
       alert('Failed to delete blog');
     }
   };
@@ -91,10 +105,10 @@ export default function DoctorDashboard() {
         return (
           <div className="pt-3 border-t border-slate-100">
             <Link
-              to={`/admin/review/${blog.id}`}
+              to={`/doctor/blogs/edit/${blog.id}`}
               className="w-full py-2 rounded-xl bg-slate-100 text-[#1D2A72] font-bold text-xs hover:bg-slate-200 transition text-center flex items-center justify-center gap-1.5"
             >
-              <Eye className="w-3.5 h-3.5" /> View In Review State
+              <Eye className="w-3.5 h-3.5" /> View Submitted Post
             </Link>
           </div>
         );

@@ -1,4 +1,4 @@
-const API_BASE_URL = `${import.meta.env.VITE_API_URL}/api`;
+const API_BASE_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:8080'}/api`;
 
 async function request(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
@@ -19,10 +19,10 @@ async function request(endpoint, options = {}) {
   const response = await fetch(url, config);
 
   if (!response.ok) {
-    let errorData = {};
+    let errorData;
     try {
       errorData = await response.json();
-    } catch (e) {
+    } catch {
       errorData = { message: response.statusText };
     }
     const error = new Error(errorData.message || 'API request failed');
@@ -99,63 +99,7 @@ export const apiService = {
     });
   },
 
-  // Admin Blog APIs
-  getAdminBlogs: async (params = {}) => {
-    const query = new URLSearchParams();
-    if (params.status) query.append('status', params.status);
-    if (params.categoryId) query.append('categoryId', params.categoryId);
-    if (params.authorId) query.append('authorId', params.authorId);
-    if (params.search) query.append('search', params.search);
-    if (params.page !== undefined) query.append('page', params.page);
-    if (params.size !== undefined) query.append('size', params.size);
 
-    const queryString = query.toString() ? `?${query.toString()}` : '';
-    return await request(`/admin/blogs${queryString}`);
-  },
-
-  getPendingBlogs: async () => {
-    return await request('/admin/blogs/pending');
-  },
-
-  approveBlog: async (id) => {
-    return await request(`/admin/blogs/${id}/approve`, {
-      method: 'POST',
-    });
-  },
-
-  rejectBlog: async (id, reason) => {
-    return await request(`/admin/blogs/${id}/reject`, {
-      method: 'POST',
-      body: JSON.stringify({ reason }),
-    });
-  },
-
-  requestChanges: async (id, reason) => {
-    return await request(`/admin/blogs/${id}/request-changes`, {
-      method: 'POST',
-      body: JSON.stringify({ reason }),
-    });
-  },
-
-  deleteAdminBlog: async (id) => {
-    return await request(`/admin/blogs/${id}`, {
-      method: 'DELETE',
-    });
-  },
-
-  // Admin Category APIs
-  createCategory: async (categoryData) => {
-    return await request('/admin/categories', {
-      method: 'POST',
-      body: JSON.stringify(categoryData),
-    });
-  },
-
-  deleteCategory: async (id) => {
-    return await request(`/admin/categories/${id}`, {
-      method: 'DELETE',
-    });
-  },
 
   // Image Upload API
   uploadImage: async (file) => {

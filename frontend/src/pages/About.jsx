@@ -13,8 +13,18 @@ import {
 } from 'lucide-react';
 import cert1 from '../assets/1.png';
 import cert2 from '../assets/2.png';
-import yourStoryLogo from '../assets/5bee83f7a69edda26bc5b891_YourStory_Logo-New-01-1024x346.png';
-import missionGirlImg from '../assets/mission_healthcare_impact.jpg';
+import awardImg1 from '../assets/drive/about/award1.jpg';
+import awardImg2 from '../assets/drive/about/award2.jpg';
+import awardsFelicitation from '../assets/drive/about/awards_felicitation.jpg';
+import yourStoryLogo from '../assets/drive/about/yourstory_logo.png';
+import radioOneLogo from '../assets/drive/about/radio_one_logo.jpg';
+import startupLabLogo from '../assets/drive/about/startup_lab_logo.png';
+import iccLogo from '../assets/drive/about/indian_chamber_of_commerce.jpg';
+import startupIndiaLogo from '../assets/drive/about/startup_india.png';
+import missionDoctorCheckup from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.13_PM.jpeg';
+import schoolMedicalRoom from '../assets/drive/school/WhatsApp_Image_2023-02-23_at_11.48.43_AM.jpg';
+import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
+import corporateVaccine from '../assets/drive/corporate/Vaccination.jpg';
 import Aurora from '../components/backgrounds/Aurora';
 
 const fadeInUp = {
@@ -108,7 +118,7 @@ export default function About() {
                   
                   <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-50">
                     <img 
-                      src={missionGirlImg} 
+                      src={missionDoctorCheckup} 
                       alt="On a mission to impact 1 million lives with Quality Care & Services by 2028"
                       className="w-full h-full object-cover"
                     />
@@ -278,55 +288,85 @@ export default function About() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Program 1 */}
+            {/* Program 1: School Health */}
             <motion.div
-              className="bg-white p-8 rounded-3xl border border-[#DDE0F5] hover:border-[#7e82f4]/35 shadow-ambient hover:shadow-lg transition-all duration-300 flex flex-col text-left group"
+              className="bg-white rounded-3xl border border-[#DDE0F5] hover:border-[#7e82f4]/35 shadow-ambient hover:shadow-lg transition-all duration-300 flex flex-col text-left group overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div className="w-14 h-14 rounded-2xl bg-[#ECECFE]/60 flex items-center justify-center mb-6 text-[#7e82f4] group-hover:bg-[#7e82f4] group-hover:text-white transition-colors duration-300">
-                <GraduationCap className="w-7 h-7" />
+              <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+                <img 
+                  src={schoolMedicalRoom} 
+                  alt="School Health Program Infirmary" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-md flex items-center justify-center text-[#7e82f4] shadow-sm">
+                  <GraduationCap className="w-5 h-5" />
+                </div>
               </div>
-              <h3 className="text-xl font-display font-bold text-primary mb-3">School Health Program</h3>
-              <p className="text-sm text-text-secondary leading-relaxed font-sans">
-                One of the most advanced and detailed assessment programs for school children across Pan India. We enable early detection and timely diagnosis of childhood diseases directly at school campuses.
-              </p>
+              <div className="p-7">
+                <h3 className="text-xl font-display font-bold text-primary mb-3">School Health Program</h3>
+                <p className="text-sm text-text-secondary leading-relaxed font-sans">
+                  One of the most advanced and detailed assessment programs for school children across Pan India. We enable early detection and timely diagnosis of childhood diseases directly at school campuses.
+                </p>
+              </div>
             </motion.div>
 
-            {/* Program 2 */}
+            {/* Program 2: Corporate Wellness */}
             <motion.div
-              className="bg-white p-8 rounded-3xl border border-[#DDE0F5] hover:border-[#7e82f4]/35 shadow-ambient hover:shadow-lg transition-all duration-300 flex flex-col text-left group"
+              className="bg-white rounded-3xl border border-[#DDE0F5] hover:border-[#7e82f4]/35 shadow-ambient hover:shadow-lg transition-all duration-300 flex flex-col text-left group overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="w-14 h-14 rounded-2xl bg-[#ECECFE]/60 flex items-center justify-center mb-6 text-[#7e82f4] group-hover:bg-[#7e82f4] group-hover:text-white transition-colors duration-300">
-                <Building className="w-7 h-7" />
+              <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+                <img 
+                  src={corporateOhc} 
+                  alt="Corporate Occupational Health Center" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-md flex items-center justify-center text-[#7e82f4] shadow-sm">
+                  <Building className="w-5 h-5" />
+                </div>
               </div>
-              <h3 className="text-xl font-display font-bold text-primary mb-3">Corporate Wellness</h3>
-              <p className="text-sm text-text-secondary leading-relaxed font-sans">
-                A single-umbrella solution for corporates and companies. We manage complete corporate wellness pathways, ranging from initial pre-employment checkups to comprehensive retirement planning.
-              </p>
+              <div className="p-7">
+                <h3 className="text-xl font-display font-bold text-primary mb-3">Corporate Wellness</h3>
+                <p className="text-sm text-text-secondary leading-relaxed font-sans">
+                  A single-umbrella solution for corporates and companies. We manage complete corporate wellness pathways, ranging from initial pre-employment checkups to comprehensive retirement planning.
+                </p>
+              </div>
             </motion.div>
 
-            {/* Program 3 */}
+            {/* Program 3: Food Safety Vaccinations */}
             <motion.div
-              className="bg-white p-8 rounded-3xl border border-[#DDE0F5] hover:border-[#7e82f4]/35 shadow-ambient hover:shadow-lg transition-all duration-300 flex flex-col text-left group"
+              className="bg-white rounded-3xl border border-[#DDE0F5] hover:border-[#7e82f4]/35 shadow-ambient hover:shadow-lg transition-all duration-300 flex flex-col text-left group overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <div className="w-14 h-14 rounded-2xl bg-[#ECECFE]/60 flex items-center justify-center mb-6 text-[#7e82f4] group-hover:bg-[#7e82f4] group-hover:text-white transition-colors duration-300">
-                <ShieldCheck className="w-7 h-7" />
+              <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+                <img 
+                  src={corporateVaccine} 
+                  alt="Food Safety Vaccination Drive" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-md flex items-center justify-center text-[#7e82f4] shadow-sm">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
               </div>
-              <h3 className="text-xl font-display font-bold text-primary mb-3">Food Safety Vaccinations</h3>
-              <p className="text-sm text-text-secondary leading-relaxed font-sans">
-                We run one of the largest vaccination drives in the country for food handlers. This massive operation ensures the safety and well-being of the food service workforce, protecting the general public.
-              </p>
+              <div className="p-7">
+                <h3 className="text-xl font-display font-bold text-primary mb-3">Food Safety Vaccinations</h3>
+                <p className="text-sm text-text-secondary leading-relaxed font-sans">
+                  We run one of the largest vaccination drives in the country for food handlers. This massive operation ensures the safety and well-being of the food service workforce, protecting the general public.
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -488,33 +528,37 @@ export default function About() {
 
             {/* Award 3 */}
             <motion.div
-              className="bg-white p-6 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col justify-between text-center"
+              className="bg-white p-6 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col justify-between"
               variants={fadeInUp}
               whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
             >
-              <div className="relative overflow-hidden rounded-xl bg-indigo-50/50 border border-indigo-100 p-6 flex flex-col items-center justify-center aspect-[4/3] mb-6 text-primary">
-                <ShieldCheck className="w-16 h-16 text-[#7e82f4] mb-2" />
-                <span className="font-display font-extrabold text-lg text-primary">ISO 9001:2015</span>
-                <span className="text-[11px] text-surface-tint font-bold uppercase tracking-wider">Certified Healthcare</span>
+              <div className="relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-4 flex items-center justify-center aspect-[4/3] mb-6">
+                <img 
+                  src={awardImg1} 
+                  alt="National Healthcare Innovation & Excellence Recognition"
+                  className="max-h-full max-w-full object-contain shadow-sm rounded-lg"
+                />
               </div>
               <p className="text-sm font-semibold text-primary font-sans leading-relaxed text-center">
-                ISO 9001:2015 Certified Healthcare Supply &amp; Clinical Management Standards.
+                National Healthcare Innovation &amp; Affordable Care Delivery Excellence Recognition.
               </p>
             </motion.div>
 
             {/* Award 4 */}
             <motion.div
-              className="bg-white p-6 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col justify-between text-center"
+              className="bg-white p-6 rounded-2xl border border-[#DDE0F5]/60 shadow-ambient flex flex-col justify-between"
               variants={fadeInUp}
               whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
             >
-              <div className="relative overflow-hidden rounded-xl bg-amber-50/50 border border-amber-100 p-6 flex flex-col items-center justify-center aspect-[4/3] mb-6 text-amber-600">
-                <Activity className="w-16 h-16 text-amber-500 mb-2" />
-                <span className="font-display font-extrabold text-lg text-amber-900">Health-Tech 2024</span>
-                <span className="text-[11px] text-amber-700 font-bold uppercase tracking-wider">Excellence Award</span>
+              <div className="relative overflow-hidden rounded-xl bg-slate-50 border border-slate-100 p-4 flex items-center justify-center aspect-[4/3] mb-6">
+                <img 
+                  src={awardImg2} 
+                  alt="Healthcare Leadership and Clinical Operational Standards Award"
+                  className="max-h-full max-w-full object-contain shadow-sm rounded-lg"
+                />
               </div>
               <p className="text-sm font-semibold text-primary font-sans leading-relaxed text-center">
-                National Healthcare Innovation &amp; Affordable Care Delivery Excellence Recognition.
+                Healthcare Leadership &amp; Clinical Management Standards Honor.
               </p>
             </motion.div>
           </motion.div>
@@ -546,75 +590,80 @@ export default function About() {
           >
             {/* YourStory Logo */}
             <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
+              className="h-36 bg-white rounded-2xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm hover:shadow-md transition-all group"
               variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
+              whileHover={{ scale: 1.02 }}
             >
               <img 
                 src={yourStoryLogo} 
-                alt="YourStory Logo"
-                className="max-h-20 w-auto object-contain"
+                alt="YourStory Feature"
+                className="max-h-16 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity"
               />
             </motion.div>
 
             {/* The Startup Lab Logo */}
             <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
+              className="h-36 bg-white rounded-2xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm hover:shadow-md transition-all group"
               variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
+              whileHover={{ scale: 1.02 }}
             >
-              <div className="flex flex-col text-left font-sans font-black text-2xl tracking-tight leading-none uppercase">
-                <span className="text-[#000000]">THE</span>
-                <span className="text-[#E11D48] mt-1">STARTUP</span>
-                <span className="text-[#000000] mt-1">LAB<span className="text-[#E11D48]">.</span></span>
-              </div>
+              <img 
+                src={startupLabLogo} 
+                alt="The Startup Lab Feature"
+                className="max-h-16 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity"
+              />
             </motion.div>
 
-            {/* Economic Times */}
+            {/* Radio One 94.3 */}
             <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
+              className="h-36 bg-white rounded-2xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm hover:shadow-md transition-all group"
               variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
+              whileHover={{ scale: 1.02 }}
             >
-              <div className="font-serif font-black text-xl text-[#030050] tracking-tight text-center">
-                THE ECONOMIC TIMES
-                <span className="block text-[10px] font-sans font-semibold text-surface-tint uppercase tracking-widest mt-1">Health &amp; Tech</span>
-              </div>
+              <img 
+                src={radioOneLogo} 
+                alt="94.3 Radio One Spotlight"
+                className="max-h-20 w-auto object-contain rounded-lg opacity-85 group-hover:opacity-100 transition-opacity"
+              />
             </motion.div>
 
-            {/* Financial Express */}
+            {/* Indian Chamber of Commerce */}
             <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
+              className="h-36 bg-white rounded-2xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm hover:shadow-md transition-all group"
               variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
+              whileHover={{ scale: 1.02 }}
             >
-              <div className="font-display font-black text-xl text-[#0d0489] tracking-tight text-center">
-                FINANCIAL EXPRESS
-                <span className="block text-[10px] font-sans font-semibold text-surface-tint uppercase tracking-widest mt-1">Healthcare Spotlight</span>
-              </div>
+              <img 
+                src={iccLogo} 
+                alt="Indian Chamber of Commerce (ICC) Recognition"
+                className="max-h-20 w-auto object-contain rounded-lg opacity-85 group-hover:opacity-100 transition-opacity"
+              />
             </motion.div>
 
-            {/* Inc42 */}
+            {/* Startup India */}
             <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
+              className="h-36 bg-white rounded-2xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm hover:shadow-md transition-all group"
               variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
+              whileHover={{ scale: 1.02 }}
             >
-              <div className="font-sans font-black text-3xl text-[#1E293B] tracking-tight flex items-center gap-1">
-                Inc<span className="text-[#7e82f4]">42</span>
-              </div>
+              <img 
+                src={startupIndiaLogo} 
+                alt="Startup India Recognition"
+                className="max-h-16 w-auto object-contain opacity-85 group-hover:opacity-100 transition-opacity"
+              />
             </motion.div>
 
-            {/* Business Standard */}
+            {/* Awards Felicitation Ceremony */}
             <motion.div
-              className="h-36 bg-white rounded-xl border border-[#DDE0F5]/60 flex items-center justify-center p-6 shadow-sm cursor-pointer"
+              className="h-36 bg-white rounded-2xl border border-[#DDE0F5]/60 flex items-center justify-center p-3 shadow-sm hover:shadow-md transition-all group overflow-hidden"
               variants={fadeInUp}
-              whileHover={{ shadow: '0 10px 25px -5px rgba(3, 0, 80, 0.08)', scale: 1.02 }}
+              whileHover={{ scale: 1.02 }}
             >
-              <div className="font-serif font-bold text-lg text-[#0F172A] tracking-normal text-center">
-                Business Standard
-                <span className="block text-[10px] font-sans font-semibold text-emerald-600 uppercase tracking-widest mt-1">Startup Feature</span>
-              </div>
+              <img 
+                src={awardsFelicitation} 
+                alt="Healthcare Leadership Felicitation Ceremony"
+                className="w-full h-full object-cover rounded-xl opacity-90 group-hover:opacity-100 transition-opacity"
+              />
             </motion.div>
           </motion.div>
         </div>

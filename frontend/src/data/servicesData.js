@@ -1,4 +1,23 @@
 // Detailed healthcare copy for all 23 subservices of Impact Health
+
+// Real photos from Drive for School Health, Corporate, Patient & Practitioner Programs
+import schoolRoom1 from '../assets/drive/school/WhatsApp_Image_2023-02-23_at_11.48.43_AM.jpg';
+import schoolRoom2 from '../assets/drive/school/WhatsApp_Image_2023-02-23_at_9.54.44_AM.jpg';
+import schoolRoom3 from '../assets/drive/school/WhatsApp_Image_2023-02-23_at_9.54.48_AM.jpg';
+import schoolCheckup1 from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.18_PM_2.jpeg';
+import schoolCheckup2 from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.11_PM.jpeg';
+import schoolCheckup3 from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.13_PM_1.jpeg';
+import schoolCheckup4 from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.16_PM.jpeg';
+import schoolEdu1 from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.06_PM.jpeg';
+import schoolNutri1 from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.14_PM.jpeg';
+import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
+import corporateVaccine from '../assets/drive/corporate/Vaccination.jpg';
+import corporateCamp from '../assets/drive/corporate/WhatsApp_Image_2026-07-29_at_6.37.07_PM_1.jpeg';
+import bloodTestHome from '../assets/drive/about/blood_test_at_home.jpg';
+import awardsFelicitation from '../assets/drive/about/awards_felicitation.jpg';
+import award1 from '../assets/drive/about/award1.jpg';
+import award2 from '../assets/drive/about/award2.jpg';
+
 export const servicesData = {
   // ==========================================
   // SCHOOL HEALTH SERVICES
@@ -15,7 +34,7 @@ export const servicesData = {
       heroHeadline: "Empowering Schools with Gold-Standard Campus Infirmaries",
       subtitle: "Dedicated clinical infrastructure and certified medical staff for your campus",
       description: "Impact Health transforms ordinary school medical rooms into fully equipped healthcare centres staffed with trained professionals, emergency infrastructure, and standardized medical protocols.",
-      image: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=800&auto=format&fit=crop&q=80",
+      image: schoolRoom1,
       ctaText: "Book Consultation",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
@@ -26,7 +45,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why Campus Medical Infrastructure Matters",
         description: "School infirmaries serve as the front line of student health and safety. Immediate on-campus clinical support prevents minor health issues from escalating, provides rapid stabilization during emergencies, and instills complete trust among parents and staff.",
-        image: "https://images.unsplash.com/photo-1579684389782-64d84b5e905d?w=800&auto=format&fit=crop&q=80",
+        image: schoolRoom2,
         stats: [
           { number: "< 15m", label: "Average Triage & Response Time", icon: "Clock" },
           { number: "100%", label: "Adherence to School Health Mandates", icon: "Award" },
@@ -159,7 +178,7 @@ export const servicesData = {
       heroHeadline: "Inspiring Healthier Choices Through Dynamic Health Education",
       subtitle: "Empowering students and educators with actionable health insights",
       description: "Interactive wellness education that empowers students to make informed decisions about physical, mental, and emotional health.",
-      image: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&auto=format&fit=crop&q=80",
+      image: schoolEdu1,
       ctaText: "Book Consultation",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
@@ -170,7 +189,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why Preventive Health Education Matters",
         description: "Health education equips children with essential lifelong habits. By addressing nutrition, mental wellness, digital balance, and emergency readiness early, schools cultivate confident, resilient individuals capable of making smart lifestyle choices.",
-        image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80",
+        image: schoolCheckup3,
         stats: [
           { number: "94%", label: "Student Knowledge Retention Rate", icon: "Brain" },
           { number: "100%", label: "Teacher First-Aid Certification", icon: "Award" },
@@ -302,7 +321,7 @@ export const servicesData = {
       heroHeadline: "360° Annual School Health Screenings",
       subtitle: "Comprehensive annual health assessments that identify medical concerns early",
       description: "Comprehensive annual health assessments that identify medical concerns early and support healthy growth.",
-      image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&auto=format&fit=crop&q=80",
+      image: schoolCheckup1,
       ctaText: "Book Consultation",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
@@ -313,7 +332,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why Annual Health Screenings Matter",
         description: "Unidentified visual impairment, dental caries, or growth delays frequently present as learning difficulties. Annual 360° health screenings catch hidden medical conditions early, allowing for timely treatment and ensuring every student can thrive academically.",
-        image: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&auto=format&fit=crop&q=80",
+        image: schoolCheckup2,
         stats: [
           { number: "15%", label: "Hidden Vision & Dental Defects Identified", icon: "Eye" },
           { number: "100%", label: "Encrypted Student Digital Records", icon: "Lock" },
@@ -409,7 +428,7 @@ export const servicesData = {
       heroHeadline: "Nurturing Healthy Bodies. Empowering Bright Minds.",
       subtitle: "A complete school nutrition ecosystem",
       description: "A complete school nutrition ecosystem combining health monitoring, dietary guidance, preventive care, and wellness education.",
-      image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&auto=format&fit=crop&q=80",
+      image: schoolNutri1,
       ctaText: "Book Consultation",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
@@ -420,7 +439,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why School Nutrition Ecosystems Matter",
         description: "Optimal nutrition is the fuel for cognitive performance, memory retention, and physical immunity. Our holistic program transforms campus food environments, audits canteen meals, and guides families to build healthy eating habits for life.",
-        image: "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?w=800&auto=format&fit=crop&q=80",
+        image: schoolCheckup4,
         stats: [
           { number: "88%", label: "Boost in Afternoon Classroom Concentration", icon: "Zap" },
           { number: "100%", label: "FSSAI Food Safety & Quality Compliance", icon: "ShieldCheck" },
@@ -517,7 +536,7 @@ export const servicesData = {
       heroHeadline: "Nurturing Minds. Building Emotional Resilience for Tomorrow.",
       subtitle: "Prioritising Mental Well-Being in Schools",
       description: "Impact Health brings proactive mental health care, early psychological screening, and social-emotional learning directly into school environments across India.",
-      image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&auto=format&fit=crop&q=80",
+      image: schoolCheckup3,
       ctaText: "Book Consultation",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
@@ -529,7 +548,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why Early Mental Health Intervention Matters",
         description: "According to global studies, 50% of all mental health conditions begin by age 14, yet most go unrecognised until crisis points occur. Our program focuses on early identification, stigma reduction, and preventative emotional care before academic or personal performance suffers.",
-        image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&auto=format&fit=crop&q=80",
+        image: schoolCheckup1,
         stats: [
           { number: "50%", label: "Mental Health Conditions Begin By Age 14", icon: "AlertCircle" },
           { number: "1-on-1", label: "Confidential Student Counseling", icon: "Users" },
@@ -645,7 +664,7 @@ export const servicesData = {
       heroHeadline: "Rapid Emergency Response. Uncompromised Protection for Schools.",
       subtitle: "Safeguarding Students When Every Second Counts",
       description: "Impact Health delivers dedicated, high-speed medical emergency response systems and specialised paediatric ambulance networks directly to school campuses across India.",
-      image: "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=800&auto=format&fit=crop&q=80",
+      image: schoolRoom3,
       ctaText: "Book Consultation",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
@@ -657,7 +676,7 @@ export const servicesData = {
       whyMatters: {
         title: "The Golden Hour Standard",
         description: "Over 80% of school medical complications are stabilised effectively when professional, pediatric-trained intervention arrives within the first 10 minutes. Our rapid response matrix ensures seamless care from classroom to emergency room.",
-        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&auto=format&fit=crop&q=80",
+        image: schoolRoom1,
         stats: [
           { number: "> 80%", label: "Complications Stabilized in Golden Hour", icon: "ShieldCheck" },
           { number: "< 10m", label: "Target Emergency Response SLA", icon: "Zap" },
@@ -775,7 +794,7 @@ export const servicesData = {
       heroHeadline: "Smart Onboarding Starts with Strategic Health Risk Management.",
       subtitle: "Optimise Hiring Decisions & Protect Workplace Productivity",
       description: "Impact Health delivers streamlined, high-accuracy pre-employment health checkups and corporate wellness solutions tailored for modern enterprises across India.",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop&q=80",
+      image: corporateOhc,
       ctaText: "Onboard Candidates",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
@@ -787,7 +806,7 @@ export const servicesData = {
       whyMatters: {
         title: "Efficiency Meets Compliance",
         description: "Streamline your HR onboarding pipeline with customised health panels, automated candidate scheduling, and digital medical clearance reports delivered within 24 to 48 hours.",
-        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&auto=format&fit=crop&q=80",
+        image: corporateCamp,
         stats: [
           { number: "24-48h", label: "Digital Report Turnaround Time", icon: "Clock" },
           { number: "1,000+", label: "Certified Partner Diagnostic Centres", icon: "MapPin" },
@@ -917,7 +936,7 @@ export const servicesData = {
       title: "Annual Employee Health Checkups",
       subtitle: "Proactive health monitoring for employee wellness",
       description: "Comprehensive annual screenings and health checkups conducted on-site or at partnered clinics to identify risks early and support productivity.",
-      image: "https://images.unsplash.com/photo-1579684275673-b8617a2247fb?w=800&auto=format&fit=crop&q=80",
+      image: corporateCamp,
       ctaText: "Book Corporate Campaign",
       overview: {
         introduction: "Prevent chronic disease build-up across your organization. Our Annual Checkup program offers flexible options: on-site diagnostic camps that minimize downtime, or testing at premium partnered clinics for remote and distributed workforces.",
@@ -947,7 +966,7 @@ export const servicesData = {
         { title: "Early Condition Detection", desc: "Catches hypertension and diabetes early.", icon: "Search" },
         { title: "Zero Workflow Disruption", desc: "20-minute on-site diagnostic appointments.", icon: "Clock" }
       ],
-      benefitsImage: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&auto=format&fit=crop&q=80",
+      benefitsImage: corporateOhc,
       timeline: [
         { step: "01", title: "Consultation", desc: "Select checkup packages, check employee census, and set testing dates." },
         { step: "02", title: "Assessment", desc: "Conduct office site inspections for camp placement and open digital bookings." },
@@ -969,7 +988,7 @@ export const servicesData = {
       heroHeadline: "Specialised Health & FSSAI Compliance Solutions for Food Service Enterprises",
       subtitle: "Bridging the Gap Between Employee Wellness and Regulatory Compliance",
       description: "Impact Health partners with leading food-tech platforms, q-commerce operators, dark kitchens, retail food chains, and enterprise cafeterias to provide seamless, end-to-end medical services tailored to FSSAI mandates.",
-      image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&auto=format&fit=crop&q=80",
+      image: corporateVaccine,
       ctaText: "Request a Consultation",
       secondaryCtaText: "Schedule an On-Site Audit",
       floatingBadges: [
@@ -981,7 +1000,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why Food Service Leaders Trust Impact Health",
         description: "100% FSSAI Alignment: Built strictly around regulatory guidelines to guarantee zero compliance friction during audits. Pan-India On-Ground Capabilities: Proven track record executing large-scale, multi-city health and vaccination drives with zero operational downtime.",
-        image: "https://images.unsplash.com/photo-1598425237654-4fc758e50a93?w=800&auto=format&fit=crop&q=80",
+        image: corporateCamp,
         stats: [
           { number: "100%", label: "FSSAI Statutory Audit Compliance", icon: "ShieldCheck" },
           { number: "200+", label: "Cities Covered for Food Handler Drives", icon: "MapPin" },
@@ -1122,7 +1141,7 @@ export const servicesData = {
       heroHeadline: "Empower Your Workforce with Preventive, Accessible & Tech-Driven Healthcare.",
       subtitle: "Tailored Corporate Health Solutions to Reduce Absenteeism and Boost Performance",
       description: "Impact Health seamlessly combines health technology, on-field logistics, and dedicated medical support across 200+ Indian cities to keep your team healthy, engaged, and productive while cutting healthcare expenses by up to 60%.",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
+      image: corporateCamp,
       ctaText: "Launch Wellness Program",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
@@ -1134,7 +1153,7 @@ export const servicesData = {
       whyMatters: {
         title: "Key Metrics & Corporate Value Proposition",
         description: "Lower out-of-pocket medical expenses, reduce emergency claims, and provide round-the-clock access to dedicated care managers and medical professionals for your entire workforce.",
-        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80",
+        image: corporateOhc,
         stats: [
           { number: "200+", label: "Cities Covered for Pan-India Support", icon: "MapPin" },
           { number: "60%", label: "Cost Reduction on Out-of-Pocket Care", icon: "TrendingDown" },
@@ -1275,7 +1294,7 @@ export const servicesData = {
       title: "Doctor Consultations",
       subtitle: "Experienced medical care, focused on you",
       description: "Direct access to primary care physicians and specialists, providing personalized care and clear guidance for your health concerns.",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop&q=80",
+      image: schoolCheckup1,
       ctaText: "Schedule Consultation",
       overview: {
         introduction: "We focus on accessible primary care. Impact Health connects you with qualified physicians and medical specialists, providing comprehensive consultations that prioritize your long-term health and clear communication.",
@@ -1305,7 +1324,7 @@ export const servicesData = {
         "Secure, electronic medical records for easy access.",
         "Coordinated referrals to trusted specialists when required."
       ],
-      benefitsImage: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=800&auto=format&fit=crop&q=80",
+      benefitsImage: schoolCheckup2,
       timeline: [
         { step: "01", title: "Consultation", desc: "Select your medical concern, find available doctors, and book a time slot." },
         { step: "02", title: "Assessment", desc: "Our doctor reviews your medical history, symptoms, and lifestyle indicators." },
@@ -1326,7 +1345,7 @@ export const servicesData = {
       title: "Teleconsultations",
       subtitle: "Experienced medical advice, from the comfort of home",
       description: "Secure, virtual consultations with qualified doctors via video or phone, providing care when and where you need it.",
-      image: "https://images.unsplash.com/photo-1584515979963-22877af2e1ad?w=800&auto=format&fit=crop&q=80",
+      image: corporateOhc,
       ctaText: "Book Video Call",
       overview: {
         introduction: "Access medical care without the travel. Our Teleconsultation services provide secure, virtual appointments with experienced doctors, allowing you to discuss symptoms, review tests, and update prescriptions easily.",
@@ -1356,7 +1375,7 @@ export const servicesData = {
         "Ideal for follow-ups and management of chronic conditions.",
         "Secure access to prescriptions and care instructions."
       ],
-      benefitsImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&auto=format&fit=crop&q=80",
+      benefitsImage: schoolCheckup1,
       timeline: [
         { step: "01", title: "Consultation", desc: "Select virtual consultation, choose a doctor, and pick an appointment slot." },
         { step: "02", title: "Assessment", desc: "Upload any recent test results and connect with the doctor via our secure video link." },
@@ -1377,7 +1396,7 @@ export const servicesData = {
       title: "In-Clinic / At-Hospital Consultations",
       subtitle: "Personal care at trusted clinical locations",
       description: "Book priority in-person appointments at our partner clinics and hospitals, ensuring minimal waiting times and coordinated care.",
-      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&auto=format&fit=crop&q=80",
+      image: corporateOhc,
       ctaText: "Book Clinic Visit",
       overview: {
         introduction: "We help streamline your in-person medical visits. Impact Health coordinates priority appointments at NABL-accredited partner clinics and leading hospitals, reducing waiting times and ensuring your medical records are shared with the clinic beforehand.",
@@ -1407,7 +1426,7 @@ export const servicesData = {
         "Care coordination throughout your clinic or hospital visit.",
         "Seamless integration with your digital health records."
       ],
-      benefitsImage: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&auto=format&fit=crop&q=80",
+      benefitsImage: corporateCamp,
       timeline: [
         { step: "01", title: "Consultation", desc: "Select clinic/hospital option, choose specialty, and pick an appointment slot." },
         { step: "02", title: "Assessment", desc: "Confirm booking details and check details with our care coordinator." },
@@ -1428,7 +1447,7 @@ export const servicesData = {
       title: "Lab Tests & Diagnostics",
       subtitle: "Accurate diagnostics, close to home",
       description: "Convenient home sample collection and test scheduling at NABL-accredited diagnostic centers, with secure digital reports.",
-      image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&auto=format&fit=crop&q=80",
+      image: bloodTestHome,
       ctaText: "Schedule Lab Test",
       overview: {
         introduction: "We focus on reliable, convenient diagnostics. Impact Health coordinates home sample collection or priority scheduling at NABL-accredited laboratories, ensuring accurate processing and delivering clear digital reports directly to you.",
@@ -1458,7 +1477,7 @@ export const servicesData = {
         "Secure digital access to reports on our platform.",
         "Visual trends help monitor health changes over time."
       ],
-      benefitsImage: "https://images.unsplash.com/photo-1582718039702-f220550c184f?w=800&auto=format&fit=crop&q=80",
+      benefitsImage: bloodTestHome,
       timeline: [
         { step: "01", title: "Consultation", desc: "Select required tests, upload prescription, and choose a time slot." },
         { step: "02", title: "Assessment", desc: "Verify testing requirements (e.g. fasting details) with our team." },
@@ -1479,7 +1498,7 @@ export const servicesData = {
       title: "Medical Second Opinions",
       subtitle: "Clear answers for complex health decisions",
       description: "Consultations with medical specialists to review health assessments, treatment plans, and help guide your decisions.",
-      image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&auto=format&fit=crop&q=80",
+      image: awardsFelicitation,
       ctaText: "Request Review",
       overview: {
         introduction: "Confirming your treatment path brings peace of mind. Our Medical Second Opinion service connects you with leading specialists to review your records, verify assessments, and discuss treatment options clearly.",
@@ -1509,7 +1528,7 @@ export const servicesData = {
         "Connects you with leading medical specialists.",
         "Supports informed decisions for complex medical procedures."
       ],
-      benefitsImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop&q=80",
+      benefitsImage: award1,
       timeline: [
         { step: "01", title: "Consultation", desc: "Select medical specialty, outline concerns, and upload recent reports." },
         { step: "02", title: "Assessment", desc: "Our medical board reviews your records and matches you with a specialist." },
@@ -1530,7 +1549,7 @@ export const servicesData = {
       title: "Home Care Services",
       subtitle: "Professional care, at home",
       description: "Qualified nursing, physical therapy, and personal care assistance delivered in your home, tailored to support recovery and comfort.",
-      image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&auto=format&fit=crop&q=80",
+      image: bloodTestHome,
       ctaText: "Request Home Care",
       overview: {
         introduction: "Recover comfortably in familiar surroundings. Impact Health's Home Care services deploy certified nurses, physical therapists, and care assistants to provide post-operative support, wound care, and personal assistance.",
@@ -1560,7 +1579,7 @@ export const servicesData = {
         "Customized care plans tailored to individual recovery needs.",
         "Experienced assistance supports family caregivers."
       ],
-      benefitsImage: "https://images.unsplash.com/photo-1584515980115-be8606f7aa53?w=800&auto=format&fit=crop&q=80",
+      benefitsImage: corporateOhc,
       timeline: [
         { step: "01", title: "Consultation", desc: "Assess care requirements, review medical notes, and discuss schedules." },
         { step: "02", title: "Assessment", desc: "Our nursing supervisor reviews the home environment and creates a care plan." },
@@ -1581,7 +1600,7 @@ export const servicesData = {
       title: "Elderly Care Programs",
       subtitle: "Dedicated care and support for seniors",
       description: "Comprehensive care plans for elderly patients, including health monitoring, medication management, and daily support.",
-      image: "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?w=800&auto=format&fit=crop&q=80",
+      image: bloodTestHome,
       ctaText: "Explore Senior Care",
       overview: {
         introduction: "We focus on supportive, dedicated senior care. Impact Health provides comprehensive support for elderly patients, including regular wellness check-ins, medication management, mobility support, and coordination of medical appointments.",
@@ -1611,7 +1630,7 @@ export const servicesData = {
         "Peace of mind and support for family members.",
         "Coordination of medical appointments and transport."
       ],
-      benefitsImage: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&auto=format&fit=crop&q=80",
+      benefitsImage: corporateCamp,
       timeline: [
         { step: "01", title: "Consultation", desc: "Discuss senior health needs, daily activities, and family preferences." },
         { step: "02", title: "Assessment", desc: "Our coordinator conducts a wellness review to outline care options." },
@@ -1632,7 +1651,7 @@ export const servicesData = {
       title: "Vaccinations at Home",
       subtitle: "Essential immunizations, delivered conveniently",
       description: "Professional immunization services conducted in your home, covering pediatric, adult, and travel vaccine requirements.",
-      image: "https://images.unsplash.com/photo-1628498063057-51a64b0b8c9c?w=800&auto=format&fit=crop&q=80",
+      image: corporateVaccine,
       ctaText: "Schedule Vaccine",
       overview: {
         introduction: "We help make immunizations simple. Impact Health's home vaccination service coordinates delivery of key pediatric, adult, and travel vaccines, administered by trained nurses using temperature-controlled cold chains.",
@@ -1662,7 +1681,7 @@ export const servicesData = {
         "Administered by experienced nurses following safety rules.",
         "Easy access to digital vaccination records."
       ],
-      benefitsImage: "https://images.unsplash.com/photo-1584515979963-22877af2e1ad?w=800&auto=format&fit=crop&q=80",
+      benefitsImage: corporateCamp,
       timeline: [
         { step: "01", title: "Consultation", desc: "Select vaccine types, upload prescriptions, and book a delivery time." },
         { step: "02", title: "Assessment", desc: "Verify vaccine availability, health conditions, and confirm guidelines." },
@@ -1683,7 +1702,7 @@ export const servicesData = {
       title: "Pharmacy Delivery Services",
       subtitle: "Prescriptions delivered directly to you",
       description: "Convenient prescription refills and health essentials delivered directly to your home, with optional pharmacist counseling.",
-      image: "https://images.unsplash.com/photo-1586015555751-63bb77f4322a?w=800&auto=format&fit=crop&q=80",
+      image: corporateOhc,
       ctaText: "Order Prescription",
       overview: {
         introduction: "We help manage your pharmacy orders. Impact Health coordinates the fulfillment and home delivery of prescriptions and health essentials, offering automated refill reminders and optional virtual counseling with a pharmacist.",
@@ -1713,7 +1732,7 @@ export const servicesData = {
         "All orders are verified by certified pharmacists.",
         "Access to virtual pharmacist counseling for questions."
       ],
-      benefitsImage: "https://images.unsplash.com/photo-1607619056574-7b8d304f2c38?w=800&auto=format&fit=crop&q=80",
+      benefitsImage: corporateVaccine,
       timeline: [
         { step: "01", title: "Consultation", desc: "Upload prescription, select items, and confirm delivery details." },
         { step: "02", title: "Assessment", desc: "Our pharmacist reviews the order and verifies dosage instructions." },
@@ -1741,7 +1760,7 @@ export const servicesData = {
       heroHeadline: "Stay at the Forefront of Medical Advancements with Accredited, Evidence-Based Learning",
       subtitle: "INTERSECTION 2: CLINICAL ADVANCEMENT",
       description: "Structured educational modules, clinical workshops, and certifications to help medical professionals stay current with advancements.",
-      image: "https://images.unsplash.com/photo-1544717302-de2938b81485?w=800&auto=format&fit=crop&q=80",
+      image: awardsFelicitation,
       ctaText: "Enroll in CME Course",
       secondaryCtaText: "Request Workshop Info",
       floatingBadges: [
@@ -1753,7 +1772,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why Practitioners Choose Impact Health CME",
         description: "When Technology (EMR), Education (CME), Growth (Marketing), and Leadership (Trainings) converge, doctors gain higher clinical expertise, zero administrative overhead, and sustainable practice growth.",
-        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=80",
+        image: award1,
         stats: [
           { number: "40%", label: "Time Saved on Admin Tasks", icon: "Clock" },
           { number: "100%", label: "Accredited CME Certifications", icon: "Award" },
@@ -1825,7 +1844,7 @@ export const servicesData = {
       heroHeadline: "Seamless Clinical Documentation & Smart Health Records Tailored for Modern Practice",
       subtitle: "INTERSECTION 1: DIGITAL INFRASTRUCTURE",
       description: "Comprehensive Electronic Medical Record (EMR) and Hospital Information Management Systems (HIMS) to streamline clinic workflows.",
-      image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&auto=format&fit=crop&q=80",
+      image: corporateOhc,
       ctaText: "Request System Demo",
       secondaryCtaText: "Contact IT Team",
       floatingBadges: [
@@ -1837,7 +1856,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why Doctors Upgrade to Impact Health EMR / HIMS",
         description: "When Technology (EMR), Education (CME), Growth (Marketing), and Leadership (Trainings) converge, doctors gain: Less Administrative Overhead (spend 40% more time on actual care), Higher Patient Outcomes, and Sustainable Practice Growth.",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
+        image: award2,
         stats: [
           { number: "40%", label: "Reduction in Paperwork Overhead", icon: "Clock" },
           { number: "100%", label: "Data Encryption & Privacy Compliance", icon: "Lock" },
@@ -1909,7 +1928,7 @@ export const servicesData = {
       heroHeadline: "Expand Your Clinical Reach & Deliver Exceptional Patient Engagement",
       subtitle: "INTERSECTION 3: PRACTICE GROWTH",
       description: "Professional branding, ethical digital marketing, and patient service platforms to help practitioners connect with their community.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+      image: corporateCamp,
       ctaText: "Grow Your Practice",
       secondaryCtaText: "Schedule Strategy Call",
       floatingBadges: [
@@ -1921,7 +1940,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why Practitioners Partner with Impact Health for Growth",
         description: "When Technology (EMR), Education (CME), Growth (Marketing), and Leadership (Trainings) converge, doctors gain sustainable practice growth, verified online reputation, and automated patient retention.",
-        image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80",
+        image: award1,
         stats: [
           { number: "3x", label: "Increased Patient Engagement", icon: "TrendingUp" },
           { number: "100%", label: "Ethical Medical Code Compliance", icon: "ShieldCheck" },
@@ -1993,7 +2012,7 @@ export const servicesData = {
       heroHeadline: "Transition from Practitioner to Healthcare Leader with Strategic Management Development",
       subtitle: "INTERSECTION 4: CAREER EVOLUTION",
       description: "Structured workshops, clinic leadership training, and communications modules to support healthcare team development.",
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop&q=80",
+      image: awardsFelicitation,
       ctaText: "Explore Leadership Modules",
       secondaryCtaText: "Inquire for Team Training",
       floatingBadges: [
@@ -2005,7 +2024,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why Healthcare Leaders Train with Impact Health",
         description: "When Technology (EMR), Education (CME), Growth (Marketing), and Leadership (Trainings) converge, doctors gain the skills to lead clinical teams, publish groundbreaking real-world evidence, and build future-ready healthcare organizations.",
-        image: "https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?w=800&auto=format&fit=crop&q=80",
+        image: award2,
         stats: [
           { number: "Executive", label: "Healthcare Management Curricula", icon: "Users" },
           { number: "RWE", label: "Real-World Evidence Trial Mentorship", icon: "FileText" },
@@ -2078,7 +2097,7 @@ export const categoriesData = {
     title: "School Health Services",
     subtitle: "Nurturing safe, healthy, and happy learning environments",
     description: "Deploying on-campus clinical rooms, safety programs, adolescent wellness courses, and emergency protocols directly onto your school grounds.",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&auto=format&fit=crop&q=80",
+    image: schoolRoom1,
     overview: "We provide comprehensive pediatric healthcare frameworks on campuses. From fully-stocked medical rooms and child-friendly nursing staff to mental wellness counseling and health screenings, we partner with schools to keep campuses safe and healthy.",
     highlights: [
       "100% compliant with student health board guidelines.",
@@ -2093,7 +2112,7 @@ export const categoriesData = {
     title: "Corporate Health Services",
     subtitle: "Workplace wellness and diagnostic screening campaigns",
     description: "Proactive fitness certificates, FSSAI compliance checkups, on-site diagnostics camps, and holistic workplace wellness frameworks.",
-    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&auto=format&fit=crop&q=80",
+    image: corporateOhc,
     overview: "Support workforce productivity and meet compliance requirements easily. We coordinate pre-employment health checks, annual screening campaigns, FSSAI food-handler compliance checks, and holistic mental and physical employee wellness programs.",
     highlights: [
       "Pan-India diagnostics network covering 200+ cities.",
@@ -2108,7 +2127,7 @@ export const categoriesData = {
     title: "Patient Support Programs (For Patients)",
     subtitle: "Experienced primary and specialized home healthcare",
     description: "Unlimited consultations, lab sample collections at home, medical second opinions, specialized home care nursing, senior care, and home vaccinations.",
-    image: "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?w=800&auto=format&fit=crop&q=80",
+    image: bloodTestHome,
     overview: "Professional healthcare customized for your family. We manage doctor consultations, teleconsultations, NABL laboratory screenings, post-operative home nursing care, dedicated senior support loops, and cold-chain home vaccinations.",
     highlights: [
       "Home blood collection by certified phlebotomists.",
@@ -2123,7 +2142,7 @@ export const categoriesData = {
     title: "For Practitioners",
     subtitle: "Digital tools and clinical development for doctors",
     description: "Continuing Medical Education (CME) credits, secure HIMS and EMR software installations, ethical patient services, and medical leadership programs.",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&auto=format&fit=crop&q=80",
+    image: awardsFelicitation,
     overview: "Empowering clinical teams with modern healthcare tools. We provide certified medical education programs, custom clinic scheduling software, secure patient data platforms, and clinic operations training.",
     highlights: [
       "Certified CME programs valid for medical credentials.",

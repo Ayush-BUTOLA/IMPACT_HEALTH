@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import gsap from "gsap";
@@ -14,11 +14,11 @@ import {
 } from "lucide-react";
 import Aurora from "./backgrounds/Aurora";
 
-import carouselDoctor from '../assets/carousel_doctor_stethoscope.jpg';
-import carouselNurse from '../assets/carousel_nurse_patient.jpg';
-import carouselFamily from '../assets/carousel_happy_family.jpg';
-import carouselTelemedicine from '../assets/carousel_telemedicine_call.jpg';
-import carouselBloodTest from '../assets/carousel_blood_test_home.jpg';
+import doctorConsultation from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.18_PM_2.jpeg';
+import nurseCare from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.06_PM.jpeg';
+import healthCampVitals from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.08_PM.jpeg';
+import telemedicineDoctor from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.18_PM.jpeg';
+import bloodTestHome from '../assets/drive/about/blood_test_at_home.jpg';
 
 const SLIDES = [
   {
@@ -27,8 +27,8 @@ const SLIDES = [
     accent: "Doctor Consultations",
     tail: ".",
     sub: "Connect with verified doctors anytime, whether virtually from home or at top network clinics across 200+ cities.",
-    caption: "Primary Care Physician",
-    image: carouselDoctor,
+    caption: "Inclinic Doctor Consultation",
+    image: doctorConsultation,
     toastIcon: Stethoscope,
     toastTitle: "Doctor Consult Active",
     toastSub: "Dr. Gunjan D. Khare · Ready for consultation",
@@ -39,11 +39,11 @@ const SLIDES = [
     accent: "Expert Nurses",
     tail: ".",
     sub: "Compassionate bedside nursing care, regular vitals checkups, and post-hospitalization support tailored for patient recovery.",
-    caption: "Home & Bedside Nursing",
-    image: carouselNurse,
+    caption: "Attentive Bedside Care",
+    image: nurseCare,
     toastIcon: HeartPulse,
-    toastTitle: "Nurse Care Visit",
-    toastSub: "Monthly vitals check · Regular monitoring",
+    toastTitle: "Dedicated Nursing Care",
+    toastSub: "Vitals check & patient recovery monitoring",
   },
   {
     badge: "Trusted by 2L+ patients across 200+ Indian cities",
@@ -51,23 +51,23 @@ const SLIDES = [
     accent: "Medical Services",
     tail: ".",
     sub: "One smart health membership for your family with unlimited consultations, lab tests, and dedicated care teams.",
-    caption: "Family Health Plan",
-    image: carouselFamily,
+    caption: "Comprehensive Health Screening",
+    image: healthCampVitals,
     toastIcon: ShieldCheck,
-    toastTitle: "Care plan active",
-    toastSub: "2L+ Patients Protected · 24/7 Support",
+    toastTitle: "Patient-First Care Plan",
+    toastSub: "2L+ Patients Protected · Pan-India Network",
   },
   {
     badge: "Care that fits your schedule",
     lead: "Connect with a doctor",
-    accent: "over call (Telemedicine)",
+    accent: "over call",
     tail: ".",
     sub: "Instant video visits, digital prescriptions, and follow-up consultations with experienced physicians from your home.",
-    caption: "24/7 Tele-Consultation",
-    image: carouselTelemedicine,
+    caption: "Digital Health & Telemedicine",
+    image: telemedicineDoctor,
     toastIcon: Video,
-    toastTitle: "Video call active",
-    toastSub: "Doctor on call · Instant connect",
+    toastTitle: "Tele-Consultation Active",
+    toastSub: "Instant connect with verified specialist",
   },
   {
     badge: "Diagnostics made simple",
@@ -75,8 +75,8 @@ const SLIDES = [
     accent: "at home",
     tail: ".",
     sub: "Book lab tests at home with doorstep sample collection and digital report delivery directly to your phone.",
-    caption: "Doorstep Blood Sample Collection",
-    image: carouselBloodTest,
+    caption: "Doorstep Sample Collection",
+    image: bloodTestHome,
     toastIcon: Droplet,
     toastTitle: "Home Blood Sample",
     toastSub: "Lipid + HbA1c · Report ready in 18h",
@@ -205,12 +205,14 @@ export default function HeroSlideshow() {
               >
                 Explore App <ArrowRight className="w-4 h-4" strokeWidth={2} />
               </Link>
-              <Link
-                to="/contact"
+              <a
+                href="https://www.threephih.in/threephih/patientlogin.php"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-navy text-[14.5px] font-semibold px-7 py-3.5 rounded-xl border-[1.5px] border-[#e6e7f2] hover:border-navy/30 transition-colors font-sans shadow-sm"
               >
                 Talk to a doctor
-              </Link>
+              </a>
             </div>
 
             <div className="flex items-center gap-2.5">
@@ -278,7 +280,7 @@ export default function HeroSlideshow() {
                 </div>
 
                 {/* contextual toast */}
-                <div 
+                <div
                   className="absolute left-4 right-4 bottom-4 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3 flex items-center gap-3 shadow-md border border-white/20"
                 >
                   <div className="w-9 h-9 rounded-xl bg-violet-soft flex items-center justify-center shrink-0">

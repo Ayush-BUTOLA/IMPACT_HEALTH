@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -24,17 +24,14 @@ public class DataInitializer implements CommandLineRunner {
     @Transactional
     public void run(String... args) throws Exception {
         seedCategories();
-        User admin = seedAdminUser();
-        Doctor doctorElena = seedDoctorElena();
-        Doctor doctorMarcus = seedDoctorMarcus();
-        seedInitialBlogs(doctorElena, doctorMarcus);
+        seedAdminUser();
+        Doctor doctorSapana = seedDoctorSapana();
+        seedInitialBlogs(doctorSapana);
     }
 
     private void seedCategories() {
         if (categoryRepository.count() == 0) {
-            List<String> categories = Arrays.asList(
-                    "Mental Health", "Child Health", "Nutrition", "Wellness", "Healthcare", "Lifestyle", "General"
-            );
+            List<String> categories = Collections.singletonList("Disease and Diagnosis");
 
             for (String catName : categories) {
                 String slug = catName.toLowerCase().replace(" ", "-");
@@ -59,11 +56,11 @@ public class DataInitializer implements CommandLineRunner {
         });
     }
 
-    private Doctor seedDoctorElena() {
-        User user = userRepository.findByEmail("elena.rostova@impacthealth.com").orElseGet(() -> {
+    private Doctor seedDoctorSapana() {
+        User user = userRepository.findByEmail("sapana.patel@impacthealth.com").orElseGet(() -> {
             User u = User.builder()
-                    .name("Dr. Elena Rostova")
-                    .email("elena.rostova@impacthealth.com")
+                    .name("Dr. Sapana v Patel")
+                    .email("sapana.patel@impacthealth.com")
                     .password("doctor123")
                     .role(Role.DOCTOR)
                     .build();
@@ -73,84 +70,31 @@ public class DataInitializer implements CommandLineRunner {
         return doctorRepository.findByUser(user).orElseGet(() -> {
             Doctor d = Doctor.builder()
                     .user(user)
-                    .name("Dr. Elena Rostova")
-                    .email("elena.rostova@impacthealth.com")
-                    .specialization("Cardiology & Preventative Health")
-                    .profileImage("https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&q=80")
+                    .name("Dr. Sapana v Patel")
+                    .email("sapana.patel@impacthealth.com")
+                    .specialization("MBBS, DNB · Consultant Pathologist")
+                    .profileImage(null)
                     .build();
             return doctorRepository.save(d);
         });
     }
 
-    private Doctor seedDoctorMarcus() {
-        User user = userRepository.findByEmail("marcus.vance@impacthealth.com").orElseGet(() -> {
-            User u = User.builder()
-                    .name("Dr. Marcus Vance")
-                    .email("marcus.vance@impacthealth.com")
-                    .password("doctor123")
-                    .role(Role.DOCTOR)
-                    .build();
-            return userRepository.save(u);
-        });
-
-        return doctorRepository.findByUser(user).orElseGet(() -> {
-            Doctor d = Doctor.builder()
-                    .user(user)
-                    .name("Dr. Marcus Vance")
-                    .email("marcus.vance@impacthealth.com")
-                    .specialization("Pediatrics & Adolescent Care")
-                    .profileImage("https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&q=80")
-                    .build();
-            return doctorRepository.save(d);
-        });
-    }
-
-    private void seedInitialBlogs(Doctor doctorElena, Doctor doctorMarcus) {
+    private void seedInitialBlogs(Doctor doctorSapana) {
         if (blogRepository.count() == 0) {
-            BlogCategory wellness = categoryRepository.findByName("Wellness").orElse(null);
-            BlogCategory childHealth = categoryRepository.findByName("Child Health").orElse(null);
-            BlogCategory mentalHealth = categoryRepository.findByName("Mental Health").orElse(null);
+            BlogCategory diseaseAndDiagnosis = categoryRepository.findByName("Disease and Diagnosis").orElse(null);
 
-            // 1. Published Blog
-            if (wellness != null) {
+            // Verified CBC Test Blog
+            if (diseaseAndDiagnosis != null) {
                 blogRepository.save(Blog.builder()
-                        .author(doctorElena)
-                        .category(wellness)
-                        .title("Understanding Cardiovascular Health in Modern Times")
-                        .slug("understanding-cardiovascular-health-in-modern-times")
-                        .shortDescription("Key strategies and preventive measures for maintaining cardiovascular health amidst stressful routines.")
-                        .content("<p>Cardiovascular disease remains one of the primary health concerns worldwide. Early prevention, routine screenings, and lifestyle modifications can significantly lower risks.</p><h3>Key Habits for Heart Health</h3><ul><li>Regular 30-minute moderate aerobic exercise</li><li>Balanced diet rich in omega-3 fatty acids and fiber</li><li>Stress management techniques including mindfulness and adequate sleep</li></ul>")
-                        .featuredImage("https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&w=800&q=80")
+                        .author(doctorSapana)
+                        .category(diseaseAndDiagnosis)
+                        .title("Complete Hemogram (CBC) Test")
+                        .slug("complete-hemogram-cbc-test")
+                        .shortDescription("A Complete Hemogram / Complete Blood Count (CBC) is a blood test used to evaluate your overall health and disease conditions that affect your blood cells such as anemia, infections, inflammations, leukemia, etc.")
+                        .content("<div class=\"space-y-6\"><section class=\"space-y-3\"><h2 class=\"text-2xl font-extrabold text-[#1D2A72]\">What is the CBC Test?</h2><p class=\"text-slate-600 leading-relaxed text-base\">A <strong>Complete Hemogram / Complete Blood Count (CBC)</strong> is a blood test used to evaluate your overall health and disease conditions that affect your blood cells such as anemia, infections, inflammations, leukemia, etc..</p></section><section class=\"space-y-3\"><h2 class=\"text-2xl font-extrabold text-[#1D2A72]\">When is it required?</h2><p class=\"text-slate-600 leading-relaxed text-base\">Your doctor may ask you to get tested if you have any signs and symptoms that may be related to a condition that affects blood cells. It is also a very common blood test and can be done as a part of routine health examination.</p></section><section class=\"space-y-3\"><h2 class=\"text-2xl font-extrabold text-[#1D2A72]\">Why is it done?</h2><ul class=\"list-disc pl-5 space-y-2 text-slate-600 text-base\"><li>Your doctor may order it to review your overall health for preventive care or early detection and diagnosis.</li><li>Your doctor may also order CBC if you are experiencing fatigue, weakness, fever or bleeding. A complete blood test would help in diagnosing the cause of these symptoms.</li><li>A complete Hemogram test could also be ordered by your doctor if you are taking any medication or treatment that affects the blood count.</li></ul></section><section class=\"space-y-4\"><h2 class=\"text-2xl font-extrabold text-[#1D2A72]\">What diseases can CBC detect?</h2><p class=\"text-slate-600 leading-relaxed text-base\">A Complete Hemogram can assist physicians in diagnosing and monitoring a wide variety of medical conditions, including:</p><div class=\"grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2\"><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Anemia</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Inflammation</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Autoimmune diseases</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Dehydration</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Bone marrow disorders</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Infections</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Hemoglobin abnormalities</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Leukemia</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Low platelets count</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Thalassemia</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Sickle sick disease</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Cancer</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Lymphoma</div><div class=\"p-3 rounded-xl bg-slate-50 border border-slate-100 text-slate-800 font-medium text-sm\">Nutritional deficiencies (such as iron, folate etc.)</div></div></section><section class=\"p-6 rounded-2xl bg-indigo-50/60 border border-indigo-100 space-y-2\"><h2 class=\"text-xl font-extrabold text-[#1D2A72]\">How much does it cost?</h2><p class=\"text-slate-700 font-medium text-base\">The average cost of CBC is between the range of <span class=\"font-extrabold text-[#1D2A72] text-lg\">INR 200 – 400</span>.</p></section><section class=\"p-6 rounded-2xl bg-amber-50/80 border border-amber-200/70 space-y-2\"><h3 class=\"text-sm font-extrabold text-amber-900 uppercase tracking-wider\">Disclaimer</h3><p class=\"text-xs text-amber-800 leading-relaxed\">All images, graphics, information, and representations are for the purpose of general information and awareness; and the information has been medically verified by registered doctors. However, this information cannot be used to establish an end result of a certain medical condition. For understanding and accuracy of your medical concern contact your physician.</p></section></div>")
+                        .featuredImage("https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80")
                         .status(BlogStatus.PUBLISHED)
-                        .publishedAt(LocalDateTime.now().minusDays(3))
-                        .build());
-            }
-
-            // 2. Pending Blog (ready for admin review testing)
-            if (childHealth != null) {
-                blogRepository.save(Blog.builder()
-                        .author(doctorMarcus)
-                        .category(childHealth)
-                        .title("Essential Childhood Immunization & Nutrition Guide")
-                        .slug("essential-childhood-immunization-nutrition-guide")
-                        .shortDescription("A comprehensive guide for parents on tracking vaccinations and promoting balanced child growth.")
-                        .content("<p>Ensuring your child receives vaccinations according to the recommended schedule is the single most effective way to protect against preventable childhood illnesses.</p><p>Proper nutrition during early development years lays the groundwork for robust immune defense and cognitive progression.</p>")
-                        .featuredImage("https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80")
-                        .status(BlogStatus.PENDING)
-                        .build());
-            }
-
-            // 3. Draft Blog
-            if (mentalHealth != null) {
-                blogRepository.save(Blog.builder()
-                        .author(doctorElena)
-                        .category(mentalHealth)
-                        .title("Mindfulness and Stress Reduction Techniques for Professionals")
-                        .slug("mindfulness-stress-reduction-professionals")
-                        .shortDescription("Practical daily routines to relieve anxiety and enhance focus in fast-paced workplaces.")
-                        .content("<p>Workplace burnout is an increasing challenge. Practicing micro-meditations and structured breathing exercises can restore mental clarity.</p>")
-                        .featuredImage("https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80")
-                        .status(BlogStatus.DRAFT)
+                        .publishedAt(LocalDateTime.now().minusMonths(6))
                         .build());
             }
         }

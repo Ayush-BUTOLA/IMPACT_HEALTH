@@ -1,70 +1,74 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   BookOpen,
   Search,
-  Calendar,
-  Clock,
-  User,
-  ArrowRight,
-  ArrowLeft,
-  Stethoscope,
-  CheckCircle2,
-  FolderOpen
+  ArrowRight
 } from "lucide-react";
 import apiService from "../api/apiService";
-import BlogDetail from "./BlogDetail";
+import { FALLBACK_CATEGORIES, getFallbackBlogs } from "../data/blogsData";
+
+function getDoctorInitials(name) {
+  if (!name) return 'MD';
+  const cleaned = name.replace(/^Dr\.?\s+/i, '').trim();
+  const parts = cleaned.split(/\s+/).filter(Boolean);
+  if (parts.length >= 2) {
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+  return cleaned.slice(0, 2).toUpperCase() || 'MD';
+}
 
 export default function Blog() {
-  const { slug } = useParams();
-
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [page, setPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(1);
-
-  // If slug is present, render single blog detail view directly
-  if (slug) {
-    return <BlogDetail />;
-  }
 
   useEffect(() => {
-    fetchPublicCategories();
+    let isMounted = true;
+    apiService.getPublicCategories()
+      .then(cats => {
+        if (isMounted) {
+          if (Array.isArray(cats) && cats.length > 0) {
+            setCategories(cats);
+          } else {
+            setCategories(FALLBACK_CATEGORIES);
+          }
+        }
+      })
+      .catch(() => {
+        if (isMounted) setCategories(FALLBACK_CATEGORIES);
+      });
+    return () => { isMounted = false; };
   }, []);
 
   useEffect(() => {
-    fetchPublicBlogs();
-  }, [search, selectedCategory, page]);
-
-  const fetchPublicCategories = async () => {
-    try {
-      const cats = await apiService.getPublicCategories();
-      setCategories(Array.isArray(cats) ? cats : []);
-    } catch (err) {
-      console.warn('Backend categories endpoint offline');
-    }
-  };
-
-  const fetchPublicBlogs = async () => {
-    setLoading(true);
-    try {
-      const res = await apiService.getPublicBlogs({
-        category: selectedCategory || undefined,
-        search: search.trim() || undefined,
-        page,
-        size: 9
+    let isMounted = true;
+    apiService.getPublicBlogs({
+      category: selectedCategory || undefined,
+      search: search.trim() || undefined,
+      size: 12
+    })
+      .then(res => {
+        if (isMounted) {
+          if (res?.content && res.content.length > 0) {
+            setBlogs(res.content);
+          } else {
+            setBlogs(getFallbackBlogs({ category: selectedCategory, search }));
+          }
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          setBlogs(getFallbackBlogs({ category: selectedCategory, search }));
+        }
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
       });
-      setBlogs(res.content || []);
-      setTotalPages(res.totalPages || 1);
-    } catch (err) {
-      console.warn('Backend public blogs endpoint offline');
-    } finally {
-      setLoading(false);
-    }
-  };
+    return () => { isMounted = false; };
+  }, [selectedCategory, search]);
 
   return (
     <div className="w-full bg-slate-50 min-h-screen py-12 md:py-16">
@@ -92,7 +96,7 @@ export default function Blog() {
                 type="text"
                 placeholder="Search articles by medical topic or keyword..."
                 value={search}
-                onChange={(e) => { setSearch(e.target.value); setPage(0); }}
+                onChange={(e) => setSearch(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-[#5A67F2]"
               />
             </div>
@@ -100,7 +104,7 @@ export default function Blog() {
             {/* Category Tabs */}
             <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 custom-scrollbar">
               <button
-                onClick={() => { setSelectedCategory(''); setPage(0); }}
+                onClick={() => setSelectedCategory('')}
                 className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer ${
                   selectedCategory === '' ? 'bg-[#1D2A72] text-white shadow-md shadow-[#1D2A72]/20' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
@@ -110,7 +114,7 @@ export default function Blog() {
               {categories.map((cat) => (
                 <button
                   key={cat.id}
-                  onClick={() => { setSelectedCategory(cat.slug); setPage(0); }}
+                  onClick={() => setSelectedCategory(cat.slug)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition cursor-pointer ${
                     selectedCategory === cat.slug ? 'bg-[#1D2A72] text-white shadow-md shadow-[#1D2A72]/20' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
@@ -164,11 +168,11 @@ export default function Blog() {
                     {/* Author Doctor Meta */}
                     <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
-                        <div className="w-7 h-7 rounded-full bg-[#1D2A72] text-white flex items-center justify-center font-bold text-xs overflow-hidden">
+                        <div className="w-7 h-7 rounded-full bg-[#EDF3FC] border border-[#D4E2F5] text-[#030050] flex items-center justify-center font-bold text-[10px] select-none shrink-0 overflow-hidden">
                           {blog.author?.profileImage ? (
                             <img src={blog.author.profileImage} alt="" className="w-full h-full object-cover" />
                           ) : (
-                            <Stethoscope className="w-3.5 h-3.5" />
+                            <span>{getDoctorInitials(blog.author?.name)}</span>
                           )}
                         </div>
                         <span className="text-xs font-bold text-[#1D2A72]">{blog.author?.name}</span>

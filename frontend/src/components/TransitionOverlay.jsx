@@ -1,17 +1,17 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 
 export default function TransitionOverlay() {
   const overlayRef = useRef(null);
   const location = useLocation();
-  const [isFirstMount, setIsFirstMount] = useState(true);
+  const isFirstMountRef = useRef(true);
   const prevPathRef = useRef(location.pathname);
 
   useEffect(() => {
     // Skip animation on first mount
-    if (isFirstMount) {
-      setIsFirstMount(false);
+    if (isFirstMountRef.current) {
+      isFirstMountRef.current = false;
       prevPathRef.current = location.pathname;
       return;
     }
@@ -49,7 +49,7 @@ export default function TransitionOverlay() {
       });
 
     return () => tl.kill();
-  }, [location.pathname, isFirstMount]);
+  }, [location.pathname]);
 
   return (
     <div

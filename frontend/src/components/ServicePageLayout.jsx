@@ -1,14 +1,47 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import * as Icons from 'lucide-react';
+import { Sparkles, Award, CheckCircle2, ChevronDown } from 'lucide-react';
 import Button from './Button';
+import DynamicIcon from './DynamicIcon';
+
+// Drive assets for deliverables and cards
+import schoolMedicalRoom from '../assets/drive/school/WhatsApp_Image_2023-02-23_at_11.48.43_AM.jpg';
+import doctorCheckup from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.18_PM_2.jpeg';
+import schoolCheckup2 from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.11_PM.jpeg';
+import schoolCheckup3 from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.13_PM_1.jpeg';
+import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
+import corporateVaccine from '../assets/drive/corporate/Vaccination.jpg';
+import corporateCamp from '../assets/drive/corporate/WhatsApp_Image_2026-07-29_at_6.37.07_PM_1.jpeg';
+import bloodTestHome from '../assets/drive/about/blood_test_at_home.jpg';
+import awardsFelicitation from '../assets/drive/about/awards_felicitation.jpg';
+import award1 from '../assets/drive/about/award1.jpg';
+
+const driveImagePool = [
+  doctorCheckup,
+  schoolMedicalRoom,
+  corporateOhc,
+  corporateVaccine,
+  corporateCamp,
+  bloodTestHome,
+  awardsFelicitation,
+  schoolCheckup2,
+  schoolCheckup3,
+  award1
+];
+
+const resolveDeliverableImage = (img, idx, fallback) => {
+  if (img && typeof img === 'string' && !img.includes('unsplash.com')) {
+    return img;
+  }
+  if (img && typeof img !== 'string') {
+    return img;
+  }
+  return driveImagePool[idx % driveImagePool.length] || fallback;
+};
 
 // Dynamic Lucide Icon Resolver with safe fallback
-function ResolveIcon({ name, className = 'w-6 h-6' }) {
-  const IconComponent = Icons[name] || Icons.HelpCircle;
-  return <IconComponent className={className} />;
-}
+const ResolveIcon = DynamicIcon;
 
 export default function ServicePageLayout({ service }) {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
@@ -160,26 +193,31 @@ export default function ServicePageLayout({ service }) {
                 variants={fadeUpVariants}
                 className="flex flex-col sm:flex-row gap-4 pt-4"
               >
-                <Link to="/contact">
+                <a 
+                  href="https://www.threephih.in/threephih/masterLogin.html"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
+                >
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button 
-                      variant="primary" 
-                      className="bg-[#0F766E] hover:bg-[#0D645E] text-white font-sans font-bold text-sm px-8 py-4 rounded-2xl shadow-lg shadow-[#0F766E]/20 hover:shadow-xl hover:shadow-[#0F766E]/30 transition-all duration-300 w-full sm:w-auto text-center"
+                    <button 
+                      type="button"
+                      className="w-full sm:w-auto inline-flex items-center justify-center bg-[#0F766E] hover:bg-[#0D645E] text-white font-sans font-bold text-sm px-8 py-4 rounded-2xl shadow-lg shadow-[#0F766E]/20 hover:shadow-xl hover:shadow-[#0F766E]/30 transition-all duration-300 cursor-pointer text-center"
                     >
                       Book Consultation
-                    </Button>
-                  </motion.div>
-                </Link>
-                <a href="#why-it-matters">
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button 
-                      variant="secondary" 
-                      className="bg-white text-[#0F766E] border border-[#0F766E]/20 hover:bg-[#F8FCFC] font-sans font-bold text-sm px-8 py-4 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 w-full sm:w-auto text-center"
-                    >
-                      Contact Us
-                    </Button>
+                    </button>
                   </motion.div>
                 </a>
+                <Link to="/contact" className="w-full sm:w-auto">
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <button 
+                      type="button"
+                      className="w-full sm:w-auto inline-flex items-center justify-center bg-white text-[#0F766E] border border-[#0F766E]/20 hover:bg-[#F8FCFC] font-sans font-bold text-sm px-8 py-4 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer text-center"
+                    >
+                      Contact Us
+                    </button>
+                  </motion.div>
+                </Link>
               </motion.div>
             </div>
 
@@ -236,7 +274,7 @@ export default function ServicePageLayout({ service }) {
               className="space-y-4"
             >
               <span className="inline-flex items-center gap-2 bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#0F766E] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest font-sans">
-                <Icons.Sparkles className="w-3.5 h-3.5 text-[#14B8A6]" />
+                <Sparkles className="w-3.5 h-3.5 text-[#14B8A6]" />
                 {service.subtitle || "Prioritising Mental Well-Being in Schools"}
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-[#0F172A] tracking-tight leading-tight">
@@ -278,7 +316,7 @@ export default function ServicePageLayout({ service }) {
                 {/* Floating highlight badge */}
                 <div className="absolute -bottom-6 -right-4 md:bottom-6 md:-right-6 bg-gradient-to-r from-[#0F766E] to-[#14B8A6] text-white p-5 rounded-2xl shadow-xl flex items-center gap-4 max-w-xs">
                   <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-white shrink-0">
-                    <Icons.Award className="w-6 h-6" />
+                    <Award className="w-6 h-6" />
                   </div>
                   <div>
                     <p className="text-sm font-bold">Gold-Standard</p>
@@ -373,7 +411,7 @@ export default function ServicePageLayout({ service }) {
                       </td>
                       <td className="py-6 px-6 align-top">
                         <div className="inline-flex items-start gap-2 bg-[#0F766E]/08 border border-[#0F766E]/15 text-[#0F766E] px-4 py-3 rounded-2xl font-semibold text-xs sm:text-sm leading-relaxed">
-                          <Icons.CheckCircle2 className="w-4 h-4 text-[#14B8A6] shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-4 h-4 text-[#14B8A6] shrink-0 mt-0.5" />
                           <span>{pillar.impactOnStudents}</span>
                         </div>
                       </td>
@@ -404,7 +442,7 @@ export default function ServicePageLayout({ service }) {
                   </div>
 
                   <div className="bg-[#0F766E]/08 border border-[#0F766E]/15 p-3.5 rounded-2xl flex items-start gap-2.5">
-                    <Icons.CheckCircle2 className="w-4 h-4 text-[#14B8A6] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#14B8A6] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[#0F766E] block">Impact on Students</span>
                       <p className="text-xs font-semibold text-[#0F172A] leading-snug">{pillar.impactOnStudents}</p>
@@ -533,7 +571,7 @@ export default function ServicePageLayout({ service }) {
                       <div className="space-y-2.5 pt-2 border-t border-gray-100 font-sans">
                         {offering.points.map((pt, pIdx) => (
                           <div key={pIdx} className="flex items-start gap-2.5">
-                            <Icons.CheckCircle2 className="w-4 h-4 text-[#14B8A6] shrink-0 mt-1" />
+                            <CheckCircle2 className="w-4 h-4 text-[#14B8A6] shrink-0 mt-1" />
                             <p className="text-xs text-[#334155] leading-relaxed font-medium">
                               {pt}
                             </p>
@@ -629,42 +667,52 @@ export default function ServicePageLayout({ service }) {
             {deliverables.map((item, idx) => (
               <motion.div
                 key={idx}
-                className="bg-[#F8FCFC] rounded-[32px] border border-[#0F766E]/10 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#0F766E]/30 transition-all duration-500 group flex flex-col justify-between"
+                className="bg-white rounded-3xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-[0_16px_36px_-6px_rgba(15,118,110,0.12)] hover:border-[#0F766E]/40 transition-all duration-300 group flex flex-col justify-between"
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
               >
                 {/* Healthcare Illustration with Zoom Effect */}
-                <div className="relative h-48 sm:h-52 overflow-hidden bg-slate-100">
+                <div className="relative h-52 sm:h-56 overflow-hidden bg-slate-100">
                   <img 
                     alt={item.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
-                    src={item.image}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                    src={resolveDeliverableImage(item.image, idx, service.image)}
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/70 via-[#0F172A]/20 to-transparent" />
                   
-                  {/* Floating Icon Badge */}
-                  <div className="absolute bottom-4 left-4 w-11 h-11 rounded-2xl bg-white/90 backdrop-blur-md border border-[#0F766E]/20 text-[#0F766E] flex items-center justify-center shadow-md">
-                    <ResolveIcon name={item.icon} className="w-5 h-5" />
+                  {/* Floating Icon Badge & Index Indicator */}
+                  <div className="absolute bottom-3.5 left-4 flex items-center gap-2.5">
+                    <div className="w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md border border-white/60 text-[#0F766E] flex items-center justify-center shadow-md">
+                      <ResolveIcon name={item.icon} className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <div className="absolute top-3.5 right-4 px-2.5 py-1 rounded-lg bg-black/40 backdrop-blur-md text-white font-mono text-[11px] font-bold tracking-wider">
+                    {String(idx + 1).padStart(2, '0')}
                   </div>
                 </div>
 
                 {/* Card Content */}
-                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between text-left space-y-3">
+                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between text-left">
                   <div>
-                    <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#0F766E] transition-colors leading-snug">
+                    <h3 className="text-lg sm:text-[19px] font-display font-bold text-[#0F172A] group-hover:text-[#0F766E] transition-colors leading-snug tracking-tight">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-[#64748B] leading-relaxed font-sans mt-2">
+                    <p className="text-sm text-slate-600 leading-relaxed font-sans mt-2.5">
                       {item.description}
                     </p>
                   </div>
 
-                  <div className="pt-4 flex items-center gap-2 text-xs font-bold text-[#0F766E] group-hover:text-[#14B8A6] transition-colors">
-                    <span>Explore details</span>
-                    <Icons.ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+                  <div className="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-1.5 text-teal-700 font-semibold bg-teal-50 px-2.5 py-1 rounded-full text-[11px] font-sans">
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+                      Clinical Protocol
+                    </span>
+                    <span className="text-[11px] text-slate-400 font-sans font-medium">
+                      Verified Care
+                    </span>
                   </div>
                 </div>
               </motion.div>
@@ -807,7 +855,7 @@ export default function ServicePageLayout({ service }) {
                       {faq.question}
                     </span>
                     <div className={`w-8 h-8 rounded-full border border-[#0F766E]/20 flex items-center justify-center text-[#0F766E] transform ${isOpen ? 'rotate-180 bg-[#0F766E] text-white border-[#0F766E]' : 'bg-[#F8FCFC]'} transition-all duration-300 shrink-0`}>
-                      <Icons.ChevronDown className="w-4 h-4" />
+                      <ChevronDown className="w-4 h-4" />
                     </div>
                   </button>
                   
@@ -862,27 +910,32 @@ export default function ServicePageLayout({ service }) {
 
             {/* Action CTA Buttons */}
             <div className="z-10 pt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <Link to="/contact">
+              <a 
+                href="https://www.threephih.in/threephih/masterLogin.html"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto"
+              >
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <Button 
-                    variant="primary" 
-                    className="bg-white text-[#0F766E] hover:bg-teal-50 font-sans font-bold text-sm px-9 py-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto text-center"
+                  <button 
+                    type="button"
+                    className="w-full sm:w-auto inline-flex items-center justify-center font-sans font-bold text-sm px-9 py-4 rounded-2xl bg-white text-[#0F766E] hover:bg-teal-50 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer text-center"
                   >
                     Book Consultation
-                  </Button>
-                </motion.div>
-              </Link>
-
-              <a href="#why-it-matters">
-                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <Button 
-                    variant="secondary" 
-                    className="bg-teal-800/40 hover:bg-teal-800/60 text-white border border-white/20 font-sans font-bold text-sm px-9 py-4 rounded-2xl shadow-md transition-all duration-300 w-full sm:w-auto text-center"
-                  >
-                    Contact Us
-                  </Button>
+                  </button>
                 </motion.div>
               </a>
+
+              <Link to="/contact" className="w-full sm:w-auto">
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <button 
+                    type="button"
+                    className="w-full sm:w-auto inline-flex items-center justify-center font-sans font-bold text-sm px-9 py-4 rounded-2xl bg-teal-900/40 hover:bg-teal-900/60 text-white border border-white/30 shadow-md transition-all duration-300 cursor-pointer text-center"
+                  >
+                    Contact Us
+                  </button>
+                </motion.div>
+              </Link>
             </div>
           </div>
         </div>
