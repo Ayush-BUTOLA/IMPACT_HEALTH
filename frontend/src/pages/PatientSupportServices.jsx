@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import {
   Stethoscope,
   Activity,
   HeartHandshake,
   Pill,
   ChevronRight,
-  X,
   PhoneCall,
   Calendar,
   Award,
@@ -30,7 +29,6 @@ import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
 
 export default function PatientSupportServices() {
   const [activeCircleIndex, setActiveCircleIndex] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     document.title = "For Patients - Healthcare That Revolves Around You | Impact Health";
@@ -152,7 +150,6 @@ export default function PatientSupportServices() {
 
   const handleNodeClick = (index) => {
     setActiveCircleIndex(index);
-    setIsModalOpen(true);
   };
 
   return (
@@ -338,13 +335,6 @@ export default function PatientSupportServices() {
                     <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full ${circle.badgeColor}`}>
                       {circle.number}
                     </span>
-                    <button
-                      onClick={() => handleNodeClick(idx)}
-                      className="text-xs font-bold text-[#0F766E] hover:underline flex items-center gap-1"
-                    >
-                      <span>View Full Details</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
                   </div>
 
                   <h3 className="text-2xl font-display font-extrabold text-[#0F172A] group-hover:text-[#0F766E] transition-colors">
@@ -407,69 +397,6 @@ export default function PatientSupportServices() {
           </div>
         </div>
       </section>
-
-      {/* ═══════════════════════════════════════════
-          MODAL DRAWER FOR CIRCLE DETAILS
-       ═══════════════════════════════════════════ */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-md">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white max-w-2xl w-full rounded-3xl shadow-2xl overflow-hidden relative border border-[#0F766E]/20 text-left"
-            >
-              {/* Modal Header */}
-              <div className={`p-8 bg-gradient-to-r ${currentCircle.themeColor} text-white relative`}>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="absolute top-6 right-6 w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-
-                <span className="text-xs font-bold uppercase tracking-widest text-teal-200 block mb-1">
-                  {currentCircle.number}
-                </span>
-                <h3 className="text-2xl font-display font-extrabold">{currentCircle.title}</h3>
-                <p className="text-xs text-teal-50 font-sans mt-2 leading-relaxed max-w-lg">
-                  {currentCircle.subtitle}
-                </p>
-              </div>
-
-              {/* Modal Body */}
-              <div className="p-8 space-y-4 max-h-[60vh] overflow-y-auto font-sans">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#0F766E]">Key Services Included:</h4>
-                <div className="space-y-4">
-                  {currentCircle.services.map((srv, idx) => (
-                    <div key={idx} className="bg-[#F8FCFC] p-5 rounded-2xl border border-[#0F766E]/10 flex items-start gap-4">
-                      <div className="p-2.5 rounded-xl bg-white text-[#0F766E] shadow-sm shrink-0 mt-0.5">
-                        {srv.icon}
-                      </div>
-                      <div>
-                        <h5 className="text-sm font-bold text-[#0F172A]">{srv.title}</h5>
-                        <p className="text-xs text-[#64748B] leading-relaxed mt-1">{srv.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-4 flex justify-end">
-                  <Button
-                    variant="primary"
-                    onClick={() => setIsModalOpen(false)}
-                    className="bg-[#0F766E] hover:bg-[#0D645E] text-white font-sans font-bold text-xs px-6 py-3 rounded-xl shadow-sm"
-                  >
-                    Close Overview
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
     </div>
   );

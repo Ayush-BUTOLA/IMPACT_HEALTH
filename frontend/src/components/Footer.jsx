@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { MapPin, Phone, Mail } from 'lucide-react';
 
+const logoImg = '/logo.png';
+
 const COLS = [
   {
     head: "Navigation",
@@ -72,12 +74,15 @@ export default function Footer() {
           
           {/* Brand Column */}
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg border-[1.5px] border-white/40 flex items-center justify-center font-display font-extrabold text-[13px] text-white">
-                IH
+            <Link to="/" className="shrink-0 inline-block">
+              <div className="bg-white rounded-xl px-3 py-2 inline-flex items-center">
+                <img
+                  src={logoImg}
+                  alt="Impact Health"
+                  className="h-[48px] w-auto object-contain"
+                />
               </div>
-              <span className="font-display font-extrabold text-[15px] text-white">Impact Health</span>
-            </div>
+            </Link>
             <p className="text-[13px] leading-relaxed text-white/50 max-w-[280px] font-sans">
               Accessible, high-quality disease management and smart health solutions
               tailored for your family.

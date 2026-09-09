@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight, Activity, ShieldCheck, HeartHandshake, Award } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import logoImg from '../assets/cropped-Logo-candidate-1-2-187x103.png';
+const logoImg = '/logo.png';
 
 const MASTER_LOGIN_URL = 'https://www.threephih.in/threephih/masterLogin.html';
 
@@ -187,7 +187,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full transition-all duration-300 py-2 px-4 sm:px-6 lg:px-8 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-xs">
+    <header className="sticky top-0 z-50 w-full transition-all duration-300 py-2 px-4 sm:px-6 lg:px-8 bg-transparent backdrop-blur-sm border-b border-transparent">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         {/* Detached Logo (10% bigger, independent container) */}
         <Link
@@ -199,7 +199,7 @@ export default function Navbar() {
           <img
             src={logoImg}
             alt="Impact Health"
-            className="h-[62px] w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xs"
+            className="h-[72px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             onError={(e) => { e.target.style.display = 'none'; }}
           />
         </Link>

@@ -338,7 +338,7 @@ export default function Home() {
               </div>
 
               <div className="bg-white/90 backdrop-blur-sm p-6 lg:p-8 rounded-2xl border border-[#DDE0F5] shadow-ambient shadow-ambient-hover text-center">
-                <div className="text-4xl lg:text-5xl font-display font-extrabold text-tertiary-container mb-2">1M+</div>
+                <div className="text-4xl lg:text-5xl font-display font-extrabold text-tertiary-container mb-2">100k+</div>
                 <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider font-mono">Consultations</p>
               </div>
 

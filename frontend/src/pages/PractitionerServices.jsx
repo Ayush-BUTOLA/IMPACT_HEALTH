@@ -1,13 +1,14 @@
+
+
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import {
   Database,
   Award,
   TrendingUp,
   Sparkles,
   ChevronRight,
-  X,
   Clock,
   Activity,
   ShieldCheck,
@@ -27,7 +28,6 @@ import award1 from '../assets/drive/about/award1.jpg';
 
 export default function PractitionerServices() {
   const [activeIntersectionIndex, setActiveIntersectionIndex] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     document.title = "For Practitioners - Where Medical Excellence Meets Operational Innovation | Impact Health";
@@ -174,7 +174,6 @@ export default function PractitionerServices() {
 
   const handleNodeClick = (index) => {
     setActiveIntersectionIndex(index);
-    setIsModalOpen(true);
   };
 
   return (
@@ -232,11 +231,11 @@ export default function PractitionerServices() {
 
           {/* CIRCULAR ORBITAL CANVAS (DESKTOP) */}
           <div className="relative w-full max-w-4xl mx-auto aspect-square md:aspect-[16/10] flex items-center justify-center overflow-visible">
-            
+
             {/* SVG Connector Lines */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 600">
               <circle className="orbital-path" cx="500" cy="300" r="220" fill="none" stroke="#CBD5E1" strokeWidth="2" strokeDasharray="6 6" />
-              
+
               <line x1="500" y1="300" x2="500" y2="80" stroke="#0F766E" strokeWidth="1.5" strokeOpacity="0.4" />
               <line x1="500" y1="300" x2="720" y2="300" stroke="#0F766E" strokeWidth="1.5" strokeOpacity="0.4" />
               <line x1="500" y1="300" x2="500" y2="520" stroke="#0F766E" strokeWidth="1.5" strokeOpacity="0.4" />
@@ -260,9 +259,8 @@ export default function PractitionerServices() {
             {/* Node 1: Top (Digital Infrastructure) */}
             <button
               onClick={() => handleNodeClick(0)}
-              className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 md:-translate-y-8 z-20 group text-center cursor-pointer transition-all duration-300 ${
-                activeIntersectionIndex === 0 ? 'scale-110' : 'hover:scale-105'
-              }`}
+              className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 md:-translate-y-8 z-20 group text-center cursor-pointer transition-all duration-300 ${activeIntersectionIndex === 0 ? 'scale-110' : 'hover:scale-105'
+                }`}
             >
               <div className="bg-white p-4 rounded-2xl border-2 border-[#0F766E] shadow-xl flex items-center gap-3 min-w-[260px]">
                 <div className="w-10 h-10 rounded-xl bg-[#0F766E] text-white flex items-center justify-center shrink-0">
@@ -279,9 +277,8 @@ export default function PractitionerServices() {
             {/* Node 2: Right (Clinical Advancement) */}
             <button
               onClick={() => handleNodeClick(1)}
-              className={`absolute top-1/2 right-0 -translate-y-1/2 translate-x-4 md:translate-x-12 z-20 group text-center cursor-pointer transition-all duration-300 ${
-                activeIntersectionIndex === 1 ? 'scale-110' : 'hover:scale-105'
-              }`}
+              className={`absolute top-1/2 right-0 -translate-y-1/2 translate-x-4 md:translate-x-12 z-20 group text-center cursor-pointer transition-all duration-300 ${activeIntersectionIndex === 1 ? 'scale-110' : 'hover:scale-105'
+                }`}
             >
               <div className="bg-white p-4 rounded-2xl border-2 border-[#0D9488] shadow-xl flex items-center gap-3 min-w-[260px]">
                 <div className="w-10 h-10 rounded-xl bg-[#0D9488] text-white flex items-center justify-center shrink-0">
@@ -298,9 +295,8 @@ export default function PractitionerServices() {
             {/* Node 3: Bottom (Practice Growth) */}
             <button
               onClick={() => handleNodeClick(2)}
-              className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-4 md:translate-y-8 z-20 group text-center cursor-pointer transition-all duration-300 ${
-                activeIntersectionIndex === 2 ? 'scale-110' : 'hover:scale-105'
-              }`}
+              className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-4 md:translate-y-8 z-20 group text-center cursor-pointer transition-all duration-300 ${activeIntersectionIndex === 2 ? 'scale-110' : 'hover:scale-105'
+                }`}
             >
               <div className="bg-white p-4 rounded-2xl border-2 border-[#0284C7] shadow-xl flex items-center gap-3 min-w-[260px]">
                 <div className="w-10 h-10 rounded-xl bg-[#0284C7] text-white flex items-center justify-center shrink-0">
@@ -317,9 +313,8 @@ export default function PractitionerServices() {
             {/* Node 4: Left (Career Evolution) */}
             <button
               onClick={() => handleNodeClick(3)}
-              className={`absolute top-1/2 left-0 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-20 group text-center cursor-pointer transition-all duration-300 ${
-                activeIntersectionIndex === 3 ? 'scale-110' : 'hover:scale-105'
-              }`}
+              className={`absolute top-1/2 left-0 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-20 group text-center cursor-pointer transition-all duration-300 ${activeIntersectionIndex === 3 ? 'scale-110' : 'hover:scale-105'
+                }`}
             >
               <div className="bg-white p-4 rounded-2xl border-2 border-[#10B981] shadow-xl flex items-center gap-3 min-w-[260px]">
                 <div className="w-10 h-10 rounded-xl bg-[#10B981] text-white flex items-center justify-center shrink-0">
@@ -350,13 +345,6 @@ export default function PractitionerServices() {
                     <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full ${item.badgeColor}`}>
                       {item.intersection}
                     </span>
-                    <button
-                      onClick={() => handleNodeClick(idx)}
-                      className="text-xs font-bold text-[#0F766E] hover:underline flex items-center gap-1"
-                    >
-                      <span>Explore Overview</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
                   </div>
 
                   <h3 className="text-2xl font-display font-extrabold text-[#0F172A] group-hover:text-[#0F766E] transition-colors">
@@ -466,9 +454,9 @@ export default function PractitionerServices() {
             </div>
 
             <div className="z-10 pt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <a 
+              <a
                 href="https://www.threephih.in/threephih/patientlogin.php"
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
@@ -484,69 +472,6 @@ export default function PractitionerServices() {
           </div>
         </div>
       </section>
-
-      {/* ═══════════════════════════════════════════
-          MODAL DRAWER FOR INTERSECTION DETAILS
-       ═══════════════════════════════════════════ */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-md">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white max-w-2xl w-full rounded-3xl shadow-2xl overflow-hidden relative border border-[#0F766E]/20 text-left"
-            >
-              {/* Modal Header */}
-              <div className={`p-8 bg-gradient-to-r ${currentIntersection.themeColor} text-white relative`}>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="absolute top-6 right-6 w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-
-                <span className="text-[10px] font-bold uppercase tracking-widest text-teal-200 block mb-1">
-                  {currentIntersection.intersection}
-                </span>
-                <h3 className="text-2xl font-display font-extrabold">{currentIntersection.title}</h3>
-                <p className="text-xs text-teal-50 font-sans mt-2 leading-relaxed max-w-lg">
-                  {currentIntersection.subtitle}
-                </p>
-              </div>
-
-              {/* Modal Body */}
-              <div className="p-8 space-y-4 max-h-[60vh] overflow-y-auto font-sans">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#0F766E]">Key Program Deliverables:</h4>
-                <div className="space-y-4">
-                  {currentIntersection.bullets.map((b, idx) => (
-                    <div key={idx} className="bg-[#F8FCFC] p-5 rounded-2xl border border-[#0F766E]/10 flex items-start gap-4">
-                      <div className="p-2.5 rounded-xl bg-white text-[#0F766E] shadow-sm shrink-0 mt-0.5">
-                        {b.icon}
-                      </div>
-                      <div>
-                        <h5 className="text-sm font-bold text-[#0F172A]">{b.title}</h5>
-                        <p className="text-xs text-[#64748B] leading-relaxed mt-1">{b.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="pt-4 flex justify-end">
-                  <Button
-                    variant="primary"
-                    onClick={() => setIsModalOpen(false)}
-                    className="bg-[#0F766E] hover:bg-[#0D645E] text-white font-sans font-bold text-xs px-6 py-3 rounded-xl shadow-sm"
-                  >
-                    Close Overview
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
     </div>
   );
