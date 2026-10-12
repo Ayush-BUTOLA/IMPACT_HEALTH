@@ -454,20 +454,16 @@ export default function PractitionerServices() {
             </div>
 
             <div className="z-10 pt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <a
-                href="https://www.threephih.in/threephih/patientlogin.php"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link to="/contact" className="w-full sm:w-auto">
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                   <Button
                     variant="primary"
-                    className="bg-white text-[#0F766E] hover:bg-teal-50 font-sans font-bold text-sm px-9 py-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto text-center"
+                    className="bg-white text-[#0F766E] hover:bg-teal-50 font-sans font-bold text-sm px-9 py-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto text-center cursor-pointer"
                   >
-                    Schedule Demo / Consultation
+                    Contact Us
                   </Button>
                 </motion.div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

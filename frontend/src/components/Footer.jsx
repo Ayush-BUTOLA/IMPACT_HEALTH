@@ -18,7 +18,6 @@ const COLS = [
     head: "Patient Portal",
     links: [
       { name: "Privacy Policy", to: "/privacy-policy" },
-      { name: "Terms of Service", to: "/privacy-policy" },
       { name: "Patient Support", to: "/services/patient-support" },
       { name: "Doctor Login", to: "/doctor/blogs" }
     ]

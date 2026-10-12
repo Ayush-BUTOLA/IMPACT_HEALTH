@@ -208,23 +208,19 @@ export default function CategoryPageLayout({ categoryKey, data }) {
                 Get Started with {data.title}
               </h2>
               <p className="text-sm md:text-base text-slate-100 font-sans leading-relaxed opacity-90">
-                Setup custom deployments, schedule consultation programs, or migrate to digital scheduling databases today.
+                Connect with our specialist teams to setup custom deployments, schedule campus or workplace audits, and discuss organizational healthcare solutions.
               </p>
             </div>
 
             <div className="z-10 pt-4">
-              <a 
-                href="https://www.threephih.in/threephih/masterLogin.html"
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
+              <Link to="/contact">
                 <button 
                   type="button"
                   className="bg-white text-[#0F4C81] border border-transparent font-sans font-bold text-sm px-8 py-4 rounded-lg shadow-md hover:bg-slate-50 transition-all cursor-pointer inline-flex items-center justify-center"
                 >
-                  Schedule Consultation Now
+                  Contact Us
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

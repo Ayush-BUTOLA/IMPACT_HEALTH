@@ -46,6 +46,12 @@ const ResolveIcon = DynamicIcon;
 export default function ServicePageLayout({ service }) {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
+  // Check if this is a B2B service (School Health, Corporate Health, Practitioner Support)
+  const categoryKey = service.category || '';
+  const isB2B = categoryKey === 'school-health' || 
+                categoryKey === 'corporate-health' || 
+                categoryKey === 'practitioner-support';
+
   // Fallback defaults if specific properties are missing in older service entries
   const heroHeadline = service.heroHeadline || service.title;
   const whyMatters = service.whyMatters || {
@@ -193,31 +199,46 @@ export default function ServicePageLayout({ service }) {
                 variants={fadeUpVariants}
                 className="flex flex-col sm:flex-row gap-4 pt-4"
               >
-                <a 
-                  href="https://www.threephih.in/threephih/masterLogin.html"
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto"
-                >
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <button 
-                      type="button"
-                      className="w-full sm:w-auto inline-flex items-center justify-center bg-[#0F766E] hover:bg-[#0D645E] text-white font-sans font-bold text-sm px-8 py-4 rounded-2xl shadow-lg shadow-[#0F766E]/20 hover:shadow-xl hover:shadow-[#0F766E]/30 transition-all duration-300 cursor-pointer text-center"
+                {isB2B ? (
+                  <Link to="/contact" className="w-full sm:w-auto">
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                      <button 
+                        type="button"
+                        className="w-full sm:w-auto inline-flex items-center justify-center bg-[#0F766E] hover:bg-[#0D645E] text-white font-sans font-bold text-sm px-8 py-4 rounded-2xl shadow-lg shadow-[#0F766E]/20 hover:shadow-xl hover:shadow-[#0F766E]/30 transition-all duration-300 cursor-pointer text-center"
+                      >
+                        Contact Us
+                      </button>
+                    </motion.div>
+                  </Link>
+                ) : (
+                  <>
+                    <a 
+                      href="https://www.threephih.in/threephih/masterLogin.html"
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto"
                     >
-                      Book Consultation
-                    </button>
-                  </motion.div>
-                </a>
-                <Link to="/contact" className="w-full sm:w-auto">
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <button 
-                      type="button"
-                      className="w-full sm:w-auto inline-flex items-center justify-center bg-white text-[#0F766E] border border-[#0F766E]/20 hover:bg-[#F8FCFC] font-sans font-bold text-sm px-8 py-4 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer text-center"
-                    >
-                      Contact Us
-                    </button>
-                  </motion.div>
-                </Link>
+                      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                        <button 
+                          type="button"
+                          className="w-full sm:w-auto inline-flex items-center justify-center bg-[#0F766E] hover:bg-[#0D645E] text-white font-sans font-bold text-sm px-8 py-4 rounded-2xl shadow-lg shadow-[#0F766E]/20 hover:shadow-xl hover:shadow-[#0F766E]/30 transition-all duration-300 cursor-pointer text-center"
+                        >
+                          Book Consultation
+                        </button>
+                      </motion.div>
+                    </a>
+                    <Link to="/contact" className="w-full sm:w-auto">
+                      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                        <button 
+                          type="button"
+                          className="w-full sm:w-auto inline-flex items-center justify-center bg-white text-[#0F766E] border border-[#0F766E]/20 hover:bg-[#F8FCFC] font-sans font-bold text-sm px-8 py-4 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer text-center"
+                        >
+                          Contact Us
+                        </button>
+                      </motion.div>
+                    </Link>
+                  </>
+                )}
               </motion.div>
             </div>
 
@@ -898,44 +919,77 @@ export default function ServicePageLayout({ service }) {
 
             <div className="max-w-2xl space-y-4 z-10 text-center">
               <span className="inline-block px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold uppercase tracking-widest text-teal-100">
-                Transform Your Campus Healthcare
+                {categoryKey === 'corporate-health' 
+                  ? "Workplace Wellness & Compliance"
+                  : categoryKey === 'practitioner-support'
+                  ? "Clinical Excellence & Innovation"
+                  : categoryKey === 'patient-support'
+                  ? "Personalized Patient Care"
+                  : "Transform Your Campus Healthcare"}
               </span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight leading-tight">
-                Ready to Upgrade Your School&apos;s Health Services?
+                {categoryKey === 'corporate-health'
+                  ? "Ready to Upgrade Your Corporate Health Services?"
+                  : categoryKey === 'practitioner-support'
+                  ? "Ready to Transform Your Clinical Practice?"
+                  : categoryKey === 'patient-support'
+                  ? "Ready to Access Quality Patient Support?"
+                  : "Ready to Upgrade Your School's Health Services?"}
               </h2>
               <p className="text-sm md:text-base text-teal-50 font-sans leading-relaxed opacity-95 max-w-xl mx-auto">
-                Speak with our medical operations leads to design customized campus medical rooms, checkup schedules, and wellness education programs.
+                {categoryKey === 'corporate-health'
+                  ? "Speak with our corporate wellness leads to organize employee checkup schedules, on-site clinics, and certified diagnostic camps."
+                  : categoryKey === 'practitioner-support'
+                  ? "Connect with our practice development leads to deploy advanced EMR platforms, accredited CME programs, or practice growth solutions."
+                  : categoryKey === 'patient-support'
+                  ? "Speak with our patient care advisors to arrange home healthcare, diagnostics, and personalized care programs."
+                  : "Speak with our medical operations leads to design customized campus medical rooms, checkup schedules, and wellness education programs."}
               </p>
             </div>
 
             {/* Action CTA Buttons */}
             <div className="z-10 pt-4 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <a 
-                href="https://www.threephih.in/threephih/masterLogin.html"
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto"
-              >
-                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <button 
-                    type="button"
-                    className="w-full sm:w-auto inline-flex items-center justify-center font-sans font-bold text-sm px-9 py-4 rounded-2xl bg-white text-[#0F766E] hover:bg-teal-50 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer text-center"
+              {isB2B ? (
+                <Link to="/contact" className="w-full sm:w-auto">
+                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                    <button 
+                      type="button"
+                      className="w-full sm:w-auto inline-flex items-center justify-center font-sans font-bold text-sm px-9 py-4 rounded-2xl bg-white text-[#0F766E] hover:bg-teal-50 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer text-center"
+                    >
+                      Contact Us
+                    </button>
+                  </motion.div>
+                </Link>
+              ) : (
+                <>
+                  <a 
+                    href="https://www.threephih.in/threephih/masterLogin.html"
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto"
                   >
-                    Book Consultation
-                  </button>
-                </motion.div>
-              </a>
+                    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                      <button 
+                        type="button"
+                        className="w-full sm:w-auto inline-flex items-center justify-center font-sans font-bold text-sm px-9 py-4 rounded-2xl bg-white text-[#0F766E] hover:bg-teal-50 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer text-center"
+                      >
+                        Book Consultation
+                      </button>
+                    </motion.div>
+                  </a>
 
-              <Link to="/contact" className="w-full sm:w-auto">
-                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                  <button 
-                    type="button"
-                    className="w-full sm:w-auto inline-flex items-center justify-center font-sans font-bold text-sm px-9 py-4 rounded-2xl bg-teal-900/40 hover:bg-teal-900/60 text-white border border-white/30 shadow-md transition-all duration-300 cursor-pointer text-center"
-                  >
-                    Contact Us
-                  </button>
-                </motion.div>
-              </Link>
+                  <Link to="/contact" className="w-full sm:w-auto">
+                    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                      <button 
+                        type="button"
+                        className="w-full sm:w-auto inline-flex items-center justify-center font-sans font-bold text-sm px-9 py-4 rounded-2xl bg-teal-900/40 hover:bg-teal-900/60 text-white border border-white/30 shadow-md transition-all duration-300 cursor-pointer text-center"
+                      >
+                        Contact Us
+                      </button>
+                    </motion.div>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

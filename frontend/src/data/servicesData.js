@@ -35,7 +35,7 @@ export const servicesData = {
       subtitle: "Dedicated clinical infrastructure and certified medical staff for your campus",
       description: "Impact Health transforms ordinary school medical rooms into fully equipped healthcare centres staffed with trained professionals, emergency infrastructure, and standardized medical protocols.",
       image: schoolRoom1,
-      ctaText: "Book Consultation",
+      ctaText: "Contact Us",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
         { text: "Pediatric Certified Nurses", icon: "UserCheck" },
@@ -179,7 +179,7 @@ export const servicesData = {
       subtitle: "Empowering students and educators with actionable health insights",
       description: "Interactive wellness education that empowers students to make informed decisions about physical, mental, and emotional health.",
       image: schoolEdu1,
-      ctaText: "Book Consultation",
+      ctaText: "Contact Us",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
         { text: "Expert-Designed Curricula", icon: "BookOpen" },
@@ -322,7 +322,7 @@ export const servicesData = {
       subtitle: "Comprehensive annual health assessments that identify medical concerns early",
       description: "Comprehensive annual health assessments that identify medical concerns early and support healthy growth.",
       image: schoolCheckup1,
-      ctaText: "Book Consultation",
+      ctaText: "Contact Us",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
         { text: "Multi-Specialist Screening", icon: "Stethoscope" },
@@ -429,7 +429,7 @@ export const servicesData = {
       subtitle: "A complete school nutrition ecosystem",
       description: "A complete school nutrition ecosystem combining health monitoring, dietary guidance, preventive care, and wellness education.",
       image: schoolNutri1,
-      ctaText: "Book Consultation",
+      ctaText: "Contact Us",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
         { text: "Certified Clinical Dietitians", icon: "UserCheck" },
@@ -537,7 +537,7 @@ export const servicesData = {
       subtitle: "Prioritising Mental Well-Being in Schools",
       description: "Impact Health brings proactive mental health care, early psychological screening, and social-emotional learning directly into school environments across India.",
       image: schoolCheckup3,
-      ctaText: "Book Consultation",
+      ctaText: "Contact Us",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
         { text: "Licensed Child Psychologists", icon: "Brain" },
@@ -665,7 +665,7 @@ export const servicesData = {
       subtitle: "Safeguarding Students When Every Second Counts",
       description: "Impact Health delivers dedicated, high-speed medical emergency response systems and specialised paediatric ambulance networks directly to school campuses across India.",
       image: schoolRoom3,
-      ctaText: "Book Consultation",
+      ctaText: "Contact Us",
       secondaryCtaText: "Contact Us",
       floatingBadges: [
         { text: "Pediatric ALS Ambulance Network", icon: "Siren" },
@@ -937,7 +937,7 @@ export const servicesData = {
       subtitle: "Proactive health monitoring for employee wellness",
       description: "Comprehensive annual screenings and health checkups conducted on-site or at partnered clinics to identify risks early and support productivity.",
       image: corporateCamp,
-      ctaText: "Book Corporate Campaign",
+      ctaText: "Contact Us",
       overview: {
         introduction: "Prevent chronic disease build-up across your organization. Our Annual Checkup program offers flexible options: on-site diagnostic camps that minimize downtime, or testing at premium partnered clinics for remote and distributed workforces.",
         whoItIsFor: "Organizations looking to support employee wellness, lower healthcare costs, and build a positive workplace culture.",
@@ -989,7 +989,7 @@ export const servicesData = {
       subtitle: "Bridging the Gap Between Employee Wellness and Regulatory Compliance",
       description: "Impact Health partners with leading food-tech platforms, q-commerce operators, dark kitchens, retail food chains, and enterprise cafeterias to provide seamless, end-to-end medical services tailored to FSSAI mandates.",
       image: corporateVaccine,
-      ctaText: "Request a Consultation",
+      ctaText: "Contact Us",
       secondaryCtaText: "Schedule an On-Site Audit",
       floatingBadges: [
         { text: "100% FSSAI Statutory Alignment", icon: "ShieldCheck" },

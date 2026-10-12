@@ -10,6 +10,7 @@ import DoctorAvatar from '../components/DoctorAvatar';
 import doctorCheckupPulse from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.13_PM.jpeg';
 import healthCampVitals from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.08_PM.jpeg';
 import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
+import drRomilLottaImg from '../assets/drive/team/dr-romil-lotta-portrait.png';
 
 // Real Client Logos from Drive
 import zomatoLogo from '../assets/drive/clients/zomato-logo-transparent-background-701751694712227nvjxqt9tkj.png';
@@ -67,21 +68,15 @@ const teamMembers = [
     isFounder: true
   },
   {
-    name: "Dr. Gunjan D. Khare",
-    role: "MO",
-    desc: "Medical Officer heading clinical operations, quality assurance, and patient care protocols.",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&fit=crop&q=80",
+    name: "Dr. Romil Lotta",
+    role: "Advisor & CMO",
+    desc: "MBBS from Mayo Institute of Medical Sciences. PMO at Ministry of Housing & Urban Affairs, Government of India.",
+    image: drRomilLottaImg,
     isFounder: false
   }
 ];
 
 const advisors = [
-  {
-    name: "Dr. Romil Lotta",
-    role: "General Physician",
-    desc: "MBBS from Mayo. PMO at Ministry of Housing & Urban Affairs, Govt. of India.",
-    image: null
-  },
   {
     name: "Dr. Lalasa Palli",
     role: "Pediatrician",
@@ -188,9 +183,9 @@ export default function Home() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Smart Healthcare Solutions</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Healthcare Made Simple</h2>
             <p className="text-body-md text-[#4A4A4A] leading-relaxed font-sans mt-4">
-              Experience high quality disease management with our tailored patient first medical services.
+              Explore consultations, health checks, and ongoing care designed around your needs.
             </p>
           </motion.div>
 
@@ -333,7 +328,7 @@ export default function Home() {
               </div>
 
               <div className="bg-white/90 backdrop-blur-sm p-6 lg:p-8 rounded-2xl border border-[#DDE0F5] shadow-ambient shadow-ambient-hover text-center">
-                <div className="text-4xl lg:text-5xl font-display font-extrabold text-primary mb-2">2L+</div>
+                <div className="text-4xl lg:text-5xl font-display font-extrabold text-primary mb-2">200k+</div>
                 <p className="text-xs font-semibold text-text-secondary uppercase tracking-wider font-mono">Patients Assisted</p>
               </div>
 
@@ -451,20 +446,9 @@ export default function Home() {
                   <h4 className="text-headline-md font-bold text-primary text-center mb-1 leading-tight">{member.name}</h4>
                   <p className="text-xs font-bold text-surface-tint text-center uppercase tracking-widest font-sans mb-5">({member.role})</p>
 
-                  <p className="text-sm text-text-secondary text-center font-sans leading-relaxed mb-6">
+                  <p className="text-sm text-text-secondary text-center font-sans leading-relaxed">
                     {member.desc}
                   </p>
-                </div>
-
-                <div className="pt-4 border-t border-[#DDE0F5]/50 flex justify-center gap-4 text-slate-400">
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:text-primary transition-colors text-xs font-semibold font-sans uppercase tracking-wider"
-                  >
-                    Connect &rarr;
-                  </a>
                 </div>
               </motion.div>
             ))}
@@ -494,7 +478,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-left"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left max-w-6xl mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}

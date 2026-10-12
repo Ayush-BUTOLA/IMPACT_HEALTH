@@ -21,3 +21,4 @@ yarn-debug.log*
 .env.local
 .DS_Store
 .vscode/
+.agents/mcp_config.json

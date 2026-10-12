@@ -1,302 +1,434 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import gsap from "gsap";
 import {
   ArrowRight,
-  Video,
   HeartPulse,
   ShieldCheck,
   Stethoscope,
   Droplet,
-  CheckCircle2,
   Star,
+  Percent,
 } from "lucide-react";
 import Aurora from "./backgrounds/Aurora";
 
-import doctorConsultation from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.18_PM_2.jpeg';
-import nurseCare from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.06_PM.jpeg';
-import healthCampVitals from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.08_PM.jpeg';
-import telemedicineDoctor from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.18_PM.jpeg';
-import bloodTestHome from '../assets/drive/about/blood_test_at_home.jpg';
+import familyHealthcareSavings from "../assets/drive/family/family-healthcare-savings.png";
+import doctorConsultation from "../assets/drive/doctor-online-consultation.jpg";
+import nurseCare from "../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.06_PM.jpeg";
+import healthCampVitals from "../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.08_PM.jpeg";
+import bloodTestHome from "../assets/drive/about/blood_test_at_home.jpg";
 
 const SLIDES = [
   {
-    badge: "Pan-India Experienced Physicians",
-    lead: "Inclinic & Virtual",
-    accent: "Doctor Consultations",
-    tail: ".",
-    sub: "Connect with verified doctors anytime, whether virtually from home or at top network clinics across 200+ cities.",
-    caption: "Inclinic Doctor Consultation",
+    serviceLabel: "Family Savings",
+    badge: "Smart Family Health Plans",
+    lead: "Reduce your Healthcare",
+    accent: "expenditure by 60%.",
+    tail: "",
+    sub: "Smart healthcare coverage for your whole family. Enjoy unlimited doctor visits, routine health checkups, and significant savings on medical expenses.",
+    photoLabel: "Healthcare Savings Plan",
+    cardHeading: "Save Up to 60% on Family Health",
+    cardDescription: "Unlimited doctor consultations, lab tests & diagnostics covered.",
+    image: familyHealthcareSavings,
+    alt: "Happy Indian family saving up to 60% on comprehensive healthcare plans",
+    icon: Percent,
+    ctaText: "Explore Savings Plans",
+    ctaLink: "/patient-support-programs",
+    isExternal: false,
+  },
+  {
+    serviceLabel: "Doctor Consultation",
+    badge: "Verified Doctors across India",
+    lead: "Consult a Doctor Online",
+    accent: "or at a Clinic Near You",
+    tail: "",
+    sub: "Talk to a doctor on phone from home, or visit a partner clinic. Available in 200+ cities.",
+    photoLabel: "Online & Clinic Consultation",
+    cardHeading: "Consult Verified Specialists",
+    cardDescription: "Virtual call from home or in-clinic visits in 200+ cities.",
     image: doctorConsultation,
-    toastIcon: Stethoscope,
-    toastTitle: "Doctor Consult Active",
-    toastSub: "Dr. Gunjan D. Khare · Ready for consultation",
+    alt: "Patient consulting with verified specialist doctor online via tablet video call",
+    icon: Stethoscope,
+    ctaText: "Talk to a doctor",
+    ctaLink: "https://www.threephih.in/threephih/patientlogin.php",
+    isExternal: true,
   },
   {
-    badge: "Dedicated Clinical Care",
-    lead: "Patient Attended by",
-    accent: "Expert Nurses",
-    tail: ".",
-    sub: "Compassionate bedside nursing care, regular vitals checkups, and post-hospitalization support tailored for patient recovery.",
-    caption: "Attentive Bedside Care",
+    serviceLabel: "Nursing Care",
+    badge: "Compassionate Nursing Care",
+    lead: "Expert Nursing.",
+    accent: "Care That Feels Personal.",
+    tail: "",
+    sub: "From everyday care to recovery after a hospital stay, our nurses provide attentive support, regular health checks, and comfort for your loved ones.",
+    photoLabel: "Care with Compassion",
+    cardHeading: "Personalised Nursing Support",
+    cardDescription: "Regular health checks and support throughout recovery.",
     image: nurseCare,
-    toastIcon: HeartPulse,
-    toastTitle: "Dedicated Nursing Care",
-    toastSub: "Vitals check & patient recovery monitoring",
+    alt: "Healthcare nurse providing compassionate clinical bedside checkup",
+    icon: HeartPulse,
+    ctaText: "Enquire About Nursing Care",
+    ctaLink: "/services/patient-support",
+    isExternal: false,
   },
   {
-    badge: "Trusted by 2L+ patients across 200+ Indian cities",
-    lead: "Tailored patient first",
-    accent: "Medical Services",
-    tail: ".",
-    sub: "One smart health membership for your family with unlimited consultations, lab tests, and dedicated care teams.",
-    caption: "Comprehensive Health Screening",
+    serviceLabel: "Health Plans",
+    badge: "Care for You and Your Family",
+    lead: "Your Family’s Health.",
+    accent: "Our Personal Commitment.",
+    tail: "",
+    sub: "Doctor consultations, lab tests, and ongoing care—all brought together in one convenient health membership for your family.",
+    photoLabel: "Health Checks for Every Generation",
+    cardHeading: "Care That Puts You First",
+    cardDescription: "Personalised support for your family’s health needs.",
     image: healthCampVitals,
-    toastIcon: ShieldCheck,
-    toastTitle: "Patient-First Care Plan",
-    toastSub: "2L+ Patients Protected · Pan-India Network",
+    alt: "Comprehensive health checkup and family care screening",
+    icon: ShieldCheck,
+    ctaText: "Explore Health Plans",
+    ctaLink: "/patient-support-programs",
+    isExternal: false,
   },
   {
-    badge: "Care that fits your schedule",
-    lead: "Connect with a doctor",
-    accent: "over call",
-    tail: ".",
-    sub: "Instant video visits, digital prescriptions, and follow-up consultations with experienced physicians from your home.",
-    caption: "Digital Health & Telemedicine",
-    image: telemedicineDoctor,
-    toastIcon: Video,
-    toastTitle: "Tele-Consultation Active",
-    toastSub: "Instant connect with verified specialist",
-  },
-  {
-    badge: "Diagnostics made simple",
-    lead: "Patient getting blood test",
-    accent: "at home",
-    tail: ".",
-    sub: "Book lab tests at home with doorstep sample collection and digital report delivery directly to your phone.",
-    caption: "Doorstep Sample Collection",
+    serviceLabel: "Diagnostics",
+    badge: "Blood Tests & Health Checkups at Home",
+    lead: "Book Blood Tests at Home",
+    accent: "with Impact Health.",
+    tail: "",
+    sub: "Book blood tests and health checkup packages with convenient home sample collection. Our trained professionals collect your sample at your doorstep, and your lab reports are delivered directly to your phone.",
+    photoLabel: "Home Blood Sample Collection",
+    cardHeading: "Professional Sample Collection at Your Doorstep",
+    cardDescription: "Easy booking • Home collection • Digital lab reports",
     image: bloodTestHome,
-    toastIcon: Droplet,
-    toastTitle: "Home Blood Sample",
-    toastSub: "Lipid + HbA1c · Report ready in 18h",
+    alt: "Healthcare professional collecting a blood sample from a patient at home.",
+    icon: Droplet,
+    ctaText: "Book a Blood Test",
+    ctaLink: "/services/patient-support",
+    isExternal: false,
   },
 ];
 
 const METRICS = [
-  { value: "2L+", label: "Patients" },
+  { value: "200k+", label: "Patients" },
   { value: "200+", label: "Cities" },
-  { value: "4.9", label: "Care Rating", star: true },
+  { value: "4.9", label: "Rating", star: true },
 ];
 
-const INTERVAL = 5200;
-
-const slideTextVariants = {
-  initial: { opacity: 0, y: 20, filter: 'blur(4px)' },
-  animate: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-  exit: { opacity: 0, y: -10, filter: 'blur(4px)', transition: { duration: 0.3 } },
-};
+const INTERVAL = 6000;
 
 export default function HeroSlideshow() {
   const [index, setIndex] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const paused = useRef(false);
-  const imageContainerRef = useRef(null);
+  const sectionRef = useRef(null);
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
 
+  // Detect prefers-reduced-motion
   useEffect(() => {
-    const id = setInterval(() => {
-      if (!paused.current) setIndex((p) => (p + 1) % SLIDES.length);
-    }, INTERVAL);
-    return () => clearInterval(id);
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const onChange = (e) => setReducedMotion(e.matches);
+    if (mq.addEventListener) {
+      mq.addEventListener("change", mq);
+      return () => mq.removeEventListener("change", onChange);
+    }
   }, []);
 
-  // GSAP image transition
-  useEffect(() => {
-    const container = imageContainerRef.current;
-    if (!container) return;
+  const handleNext = useCallback(() => setIndex((p) => (p + 1) % SLIDES.length), []);
+  const handlePrev = useCallback(() => setIndex((p) => (p - 1 + SLIDES.length) % SLIDES.length), []);
+  const goTo = (i) => setIndex(i);
 
-    const panels = container.querySelectorAll('.hero-image-panel');
-    panels.forEach((panel, i) => {
-      if (i === index) {
-        gsap.to(panel, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-        });
-      } else {
-        gsap.to(panel, {
-          opacity: 0,
-          scale: 1.05,
-          duration: 0.6,
-          ease: 'power2.inOut',
-        });
-      }
+  // Keyboard navigation
+  const handleKeyDown = (e) => {
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      handleNext();
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      handlePrev();
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      goTo(0);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      goTo(SLIDES.length - 1);
+    }
+  };
+
+  // Touch swipe
+  const onTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+  const onTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+  const onTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const d = touchStartX.current - touchEndX.current;
+    if (d > 45) handleNext();
+    else if (d < -45) handlePrev();
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
+  // Auto-advance
+  useEffect(() => {
+    if (reducedMotion) return;
+    const id = setInterval(() => {
+      if (!paused.current) handleNext();
+    }, INTERVAL);
+    return () => clearInterval(id);
+  }, [index, reducedMotion, handleNext]);
+
+  // GSAP crossfade between image panels
+  useEffect(() => {
+    const container = sectionRef.current;
+    if (!container) return;
+    container.querySelectorAll(".hero-image-panel").forEach((panel) => {
+      const panelIndex = parseInt(panel.dataset.slide, 10);
+      const active = panelIndex === index;
+      gsap.to(panel, {
+        opacity: active ? 1 : 0,
+        scale: active ? 1 : reducedMotion ? 1 : 1.03,
+        duration: reducedMotion ? 0.2 : active ? 0.7 : 0.45,
+        ease: active ? "power3.out" : "power2.inOut",
+      });
     });
-  }, [index]);
+  }, [index, reducedMotion]);
 
   const slide = SLIDES[index];
 
+  const textVariants = reducedMotion
+    ? {
+        initial: { opacity: 0 },
+        animate: { opacity: 1, transition: { duration: 0.15 } },
+        exit: { opacity: 0, transition: { duration: 0.1 } },
+      }
+    : {
+        initial: { opacity: 0, y: 12, filter: "blur(2px)" },
+        animate: {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          transition: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
+        },
+        exit: { opacity: 0, y: -8, filter: "blur(2px)", transition: { duration: 0.2 } },
+      };
+
   return (
     <section
-      className="relative overflow-hidden bg-[#eaf4fd]/40"
+      className="relative overflow-hidden bg-[#eaf4fd]/45 text-navy py-10 sm:py-14 lg:py-20"
       onMouseEnter={() => (paused.current = true)}
       onMouseLeave={() => (paused.current = false)}
+      onFocusCapture={() => (paused.current = true)}
+      onBlurCapture={() => (paused.current = false)}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Impact Health Hero Showcase"
+      ref={sectionRef}
     >
-      {/* Aurora background for the hero */}
+      {/* Previous Aurora & Subtle Gradient Overlay */}
       <Aurora
-        colorStops={['#f4f5fd', '#ECECFE', '#eaf4fd']}
+        colorStops={["#f4f5fd", "#ECECFE", "#eaf4fd"]}
         amplitude={0.6}
         speed={0.3}
         blend={0.5}
-        style={{ opacity: 0.35 }}
+        style={{ opacity: 0.45 }}
       />
-
-      {/* Gradient overlay so content stays readable */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#f4f5fd]/80 via-[#eaf4fd]/60 to-transparent pointer-events-none z-[1]" />
 
-      <div className="mx-auto max-w-7xl px-6 md:px-12 py-16 lg:py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
-        {/* LEFT: rotating message and controls */}
-        <div className="flex flex-col text-left">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={index}
-              className="flex flex-col gap-5 min-h-[300px]"
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={{
-                initial: {},
-                animate: { transition: { staggerChildren: 0.08 } },
-                exit: { transition: { staggerChildren: 0.04 } },
-              }}
-            >
-              <motion.span
-                className="self-start inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-[#e6e7f2] rounded-full px-3.5 py-1.5 text-[12px] font-semibold text-navy shadow-sm font-sans"
-                variants={slideTextVariants}
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                {slide.badge}
-              </motion.span>
+      {/* Screen reader notification */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {`Slide ${index + 1} of ${SLIDES.length}: ${slide.lead} ${slide.accent}. ${slide.sub}`}
+      </div>
 
-              <motion.h1
-                className="font-display font-extrabold text-navy tracking-tight text-[44px] lg:text-[52px] leading-[1.04]"
-                variants={slideTextVariants}
-              >
-                {slide.lead}{" "}
-                <span className="text-violet">{slide.accent}</span>
-                {slide.tail}
-              </motion.h1>
-
-              <motion.p
-                className="text-[16px] leading-relaxed text-[#1a1a2e]/65 max-w-[480px] font-sans"
-                variants={slideTextVariants}
-              >
-                {slide.sub}
-              </motion.p>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* FIXED: CTAs, dots, metrics */}
-          <div className="flex flex-col gap-7 mt-2">
-            <div className="flex flex-wrap gap-3.5">
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 bg-navy text-white text-[14.5px] font-semibold px-7 py-3.5 rounded-xl hover:bg-navy-deep transition-colors font-sans shadow-sm"
-              >
-                Explore App <ArrowRight className="w-4 h-4" strokeWidth={2} />
-              </Link>
-              <a
-                href="https://www.threephih.in/threephih/patientlogin.php"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-navy text-[14.5px] font-semibold px-7 py-3.5 rounded-xl border-[1.5px] border-[#e6e7f2] hover:border-navy/30 transition-colors font-sans shadow-sm"
-              >
-                Talk to a doctor
-              </a>
-            </div>
-
-            <div className="flex items-center gap-2.5">
-              {SLIDES.map((_, i) => (
-                <button
-                  key={i}
-                  aria-label={"Go to slide " + (i + 1)}
-                  onClick={() => setIndex(i)}
-                  className="h-1.5 rounded-full transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet focus-visible:ring-offset-2"
-                  style={{
-                    width: i === index ? 26 : 7,
-                    background: i === index ? "var(--color-navy)" : "#c5c8e0",
-                  }}
-                />
-              ))}
-            </div>
-
-            <div className="flex items-center gap-9 pt-5 border-t border-[#e6e7f2]/85">
-              {METRICS.map((m) => (
-                <div key={m.label}>
-                  <div className="font-display font-extrabold text-[24px] text-navy flex items-center gap-1">
-                    {m.value}
-                    {m.star && <Star className="w-4 h-4 fill-violet text-violet" />}
-                  </div>
-                  <div className="text-[12px] text-muted uppercase tracking-wide mt-0.5 font-sans font-medium">
-                    {m.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT: GSAP-powered crossfading image panels */}
-        <div ref={imageContainerRef} className="relative h-[440px] lg:h-[480px]">
-          {SLIDES.map((s, i) => {
-            const ToastIcon = s.toastIcon;
-            const active = i === index;
-            return (
-              <div
-                key={i}
-                className="hero-image-panel absolute inset-0 rounded-[22px] overflow-hidden"
-                style={{
-                  opacity: i === 0 ? 1 : 0,
-                  boxShadow: "var(--shadow-lg)",
-                  pointerEvents: active ? "auto" : "none",
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        {/* Hero Main Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          {/* ════ LEFT COLUMN: Content & Interactive Controls ════ */}
+          <div className="lg:col-span-6 flex flex-col items-start">
+            {/* Slide Text Content */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                id={`hero-slide-${index}`}
+                role="tabpanel"
+                aria-labelledby={`service-tab-${index}`}
+                className="flex flex-col gap-4 w-full"
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={{
+                  initial: {},
+                  animate: { transition: { staggerChildren: reducedMotion ? 0 : 0.05 } },
+                  exit: { transition: { staggerChildren: reducedMotion ? 0 : 0.02 } },
                 }}
               >
-                {/* Background Image */}
-                <img
-                  src={s.image}
-                  alt={s.caption}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-
-                {/* Dark overlay to ensure text/chips stand out nicely */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030050]/50 via-transparent to-black/20 pointer-events-none"></div>
-
-                {/* caption chip */}
-                <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center bg-navy/85 backdrop-blur-sm text-white text-[11px] font-semibold px-3 py-1.5 rounded-full font-sans">
-                    {s.caption}
-                  </span>
-                </div>
-
-                {/* contextual toast */}
-                <div
-                  className="absolute left-4 right-4 bottom-4 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3 flex items-center gap-3 shadow-md border border-white/20"
+                {/* Badge: Green dot + slide.badge */}
+                <motion.div
+                  className="self-start inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-sm border border-[#e2e4f0] text-[13px] font-semibold text-navy font-sans shadow-xs"
+                  variants={textVariants}
                 >
-                  <div className="w-9 h-9 rounded-xl bg-violet-soft flex items-center justify-center shrink-0">
-                    <ToastIcon className="w-[18px] h-[18px] text-violet" strokeWidth={2} />
-                  </div>
-                  <div className="min-w-0 text-left">
-                    <div className="text-[13px] font-semibold text-navy font-sans">{s.toastTitle}</div>
-                    <div className="text-[11.5px] text-[#6b7280] truncate font-sans">{s.toastSub}</div>
-                  </div>
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500 ml-auto shrink-0" strokeWidth={2} />
-                </div>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
+                  <span>{slide.badge}</span>
+                </motion.div>
+
+                {/* Main Headline */}
+                <motion.h1
+                  className="font-display font-extrabold text-navy text-3xl sm:text-4xl lg:text-[46px] leading-[1.16] tracking-tight"
+                  variants={textVariants}
+                >
+                  <span>{slide.lead}</span>{" "}
+                  <span className="text-violet font-extrabold">{slide.accent}</span>
+                  {slide.tail}
+                </motion.h1>
+
+                {/* Subtitle description */}
+                <motion.p
+                  className="text-[#43465e] text-sm sm:text-base leading-relaxed max-w-lg font-sans"
+                  variants={textVariants}
+                >
+                  {slide.sub}
+                </motion.p>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Primary Action Button */}
+            <div className="mt-7">
+              {slide.isExternal ? (
+                <a
+                  href={slide.ctaLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 bg-navy text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-navy-deep active:scale-[0.98] transition-all font-sans text-sm shadow-md cursor-pointer"
+                >
+                  <span>{slide.ctaText}</span>
+                  <ArrowRight className="w-4 h-4 text-white" strokeWidth={2.2} />
+                </a>
+              ) : (
+                <Link
+                  to={slide.ctaLink}
+                  className="inline-flex items-center gap-2.5 bg-navy text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-navy-deep active:scale-[0.98] transition-all font-sans text-sm shadow-md cursor-pointer"
+                >
+                  <span>{slide.ctaText}</span>
+                  <ArrowRight className="w-4 h-4 text-white" strokeWidth={2.2} />
+                </Link>
+              )}
+            </div>
+
+            {/* ══ Option C Service Switcher Pills (inside the hero) ══ */}
+            {/* Active pill shows icon + full label. Inactive pills are compact icon-only circular buttons */}
+            <div className="mt-8 flex items-center gap-2.5 flex-wrap">
+              <div
+                role="tablist"
+                aria-label="Healthcare services"
+                onKeyDown={handleKeyDown}
+                className="flex items-center gap-2 flex-wrap"
+              >
+                {SLIDES.map((s, i) => {
+                  const active = i === index;
+                  const Icon = s.icon;
+                  return (
+                    <button
+                      key={s.serviceLabel}
+                      id={`service-tab-${i}`}
+                      type="button"
+                      role="tab"
+                      aria-selected={active}
+                      aria-controls={`hero-slide-${i}`}
+                      tabIndex={active ? 0 : -1}
+                      onClick={() => goTo(i)}
+                      className={`transition-all duration-200 cursor-pointer flex items-center justify-center font-sans ${
+                        active
+                          ? "bg-navy text-white px-4 py-2 rounded-full font-semibold text-xs sm:text-[13px] gap-2 shadow-sm"
+                          : "w-10 h-10 rounded-full bg-white/90 border border-[#d6d9ee] text-[#4f5373] hover:text-navy hover:border-navy/40 hover:bg-white shadow-xs"
+                      }`}
+                      title={s.serviceLabel}
+                    >
+                      <Icon className={active ? "w-4 h-4 text-white shrink-0" : "w-4 h-4 shrink-0"} strokeWidth={2} />
+                      {active && <span>{s.serviceLabel}</span>}
+                    </button>
+                  );
+                })}
               </div>
-            );
-          })}
+            </div>
+
+            {/* Bottom Stats Row: 2L+ Patients | 200+ Cities | 4.9 Rating */}
+            <div className="mt-10 pt-6 border-t border-[#d8dbee]/80 w-full max-w-md">
+              <div className="flex items-center gap-8 sm:gap-12">
+                {METRICS.map((m) => (
+                  <div key={m.label} className="text-left font-sans">
+                    <div className="font-display font-extrabold text-xl sm:text-2xl text-navy flex items-center gap-0.5 leading-none">
+                      <span>{m.value}</span>
+                      {m.star && (
+                        <Star className="w-4 h-4 fill-violet text-violet shrink-0 ml-0.5" />
+                      )}
+                    </div>
+                    <div className="text-xs text-[#707494] font-medium mt-1.5">
+                      {m.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* ════ RIGHT COLUMN: Significantly Larger Image Frame ════ */}
+          <div className="lg:col-span-6 w-full">
+            <div className="relative w-full h-[360px] sm:h-[440px] lg:h-[530px] rounded-[24px] overflow-hidden bg-white/50 border border-[#dde0f4] shadow-xl">
+              {/* Stack of cross-fading images */}
+              {SLIDES.map((s, i) => {
+                const Icon = s.icon;
+                const active = i === index;
+                return (
+                  <div
+                    key={s.serviceLabel}
+                    data-slide={i}
+                    className="hero-image-panel absolute inset-0 rounded-[24px] overflow-hidden"
+                    style={{ opacity: i === 0 ? 1 : 0, pointerEvents: active ? "auto" : "none" }}
+                  >
+                    <img
+                      src={s.image}
+                      alt={s.alt}
+                      className="w-full h-full object-cover"
+                      loading={i === 0 ? "eager" : "lazy"}
+                    />
+
+                    {/* Gradient shading overlay for text legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#030050]/75 via-transparent to-black/10 pointer-events-none" />
+
+                    {/* Top photo label badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-flex items-center bg-navy/85 backdrop-blur-sm text-white text-[11px] font-semibold px-3 py-1 rounded-full font-sans shadow-xs">
+                        {s.photoLabel}
+                      </span>
+                    </div>
+
+                    {/* Bottom floating consultation card matching Option C */}
+                    <div className="absolute left-4 right-4 sm:left-6 sm:right-6 bottom-5 bg-white/95 backdrop-blur-md rounded-2xl p-4 border border-white/60 shadow-lg flex items-center gap-3.5">
+                      <div className="w-10 h-10 rounded-xl bg-violet-soft flex items-center justify-center shrink-0 text-violet">
+                        <Icon className="w-5 h-5 text-violet" strokeWidth={2.2} />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-[14px] font-bold text-navy font-sans truncate">
+                          {s.cardHeading}
+                        </div>
+                        <div className="text-xs text-[#626682] font-sans truncate mt-0.5">
+                          {s.cardDescription}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
