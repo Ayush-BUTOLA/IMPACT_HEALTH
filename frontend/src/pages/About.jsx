@@ -11,20 +11,20 @@ import {
   GraduationCap, 
   Building 
 } from 'lucide-react';
-import cert1 from '../assets/1.png';
-import cert2 from '../assets/2.png';
-import awardImg1 from '../assets/drive/about/award1.jpg';
-import awardImg2 from '../assets/drive/about/award2.jpg';
-import awardsFelicitation from '../assets/drive/about/awards_felicitation.jpg';
-import yourStoryLogo from '../assets/drive/about/yourstory_logo.png';
-import radioOneLogo from '../assets/drive/about/radio_one_logo.jpg';
-import startupLabLogo from '../assets/drive/about/startup_lab_logo.png';
-import iccLogo from '../assets/drive/about/indian_chamber_of_commerce.jpg';
-import startupIndiaLogo from '../assets/drive/about/startup_india.png';
-import missionDoctorCheckup from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.13_PM.jpeg';
-import schoolMedicalRoom from '../assets/drive/school/WhatsApp_Image_2023-02-23_at_11.48.43_AM.jpg';
-import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
-import corporateVaccine from '../assets/drive/corporate/Vaccination.jpg';
+import cert1 from '../assets/certificates/iso-9001-certificate.png';
+import cert2 from '../assets/certificates/startup-india-certificate.png';
+import awardImg1 from '../assets/awards/award-1.jpg';
+import awardImg2 from '../assets/awards/award-2.jpg';
+import awardsFelicitation from '../assets/awards/awards-felicitation.jpg';
+import yourStoryLogo from '../assets/media/yourstory-logo.png';
+import radioOneLogo from '../assets/media/radio-one-logo.jpg';
+import startupLabLogo from '../assets/media/startup-lab-logo.png';
+import iccLogo from '../assets/media/indian-chamber-of-commerce.jpg';
+import startupIndiaLogo from '../assets/media/startup-india.png';
+import missionDoctorCheckup from '../assets/services/school/doctor-pulse-examination.jpeg';
+import schoolMedicalRoom from '../assets/services/school/school-infirmary-room-1.jpg';
+import corporateOhc from '../assets/services/corporate/ohc-opd-site.jpg';
+import corporateVaccine from '../assets/services/corporate/vaccination.jpg';
 import Aurora from '../components/backgrounds/Aurora';
 
 const fadeInUp = {

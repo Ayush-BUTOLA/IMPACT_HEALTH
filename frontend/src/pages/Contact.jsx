@@ -8,8 +8,9 @@ import {
   Mail,
   MapPin,
   Clock,
-  Send,
   ArrowRight,
+  Copy,
+  Check,
 } from "lucide-react";
 import DotGrid from "../components/backgrounds/DotGrid";
 
@@ -22,7 +23,7 @@ const REASONS = [
 const INFO = [
   { label: "Phone", value: "+91 9667835909", href: "tel:+919667835909", icon: Phone },
   { label: "Email", value: "connect@impacthealth.co.in", href: "mailto:connect@impacthealth.co.in", icon: Mail },
-  { label: "Address", value: "472/8/1/P, Kokila Lane 4, Pothariput, Bhubaneswar, 751020", icon: MapPin },
+  { label: "Address", value: "473/B1/P, Kokila Lane 4, Pokhariput, Bhubaneswar, 751020", icon: MapPin },
   { label: "Office Hours", value: "Mon - Fri: 9:00 AM - 6:00 PM IST", icon: Clock },
 ];
 
@@ -37,7 +38,8 @@ const staggerContainer = {
 };
 
 export default function Contact() {
-  const [sent, setSent] = useState(false);
+  const [draftState, setDraftState] = useState(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     document.title = "Contact Us | Impact Health";
@@ -54,13 +56,22 @@ export default function Contact() {
     const msg = formData.get("message");
 
     const mailtoSubject = encodeURIComponent(`Contact Inquiry from ${name}`);
-    const mailtoBody = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "N/A"}\nOrganization: ${org || "N/A"}\n\nMessage:\n${msg}`
-    );
+    const rawBody = `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "N/A"}\nOrganization: ${org || "N/A"}\n\nMessage:\n${msg}`;
+    const mailtoBody = encodeURIComponent(rawBody);
+    const mailtoUrl = `mailto:connect@impacthealth.co.in?subject=${mailtoSubject}&body=${mailtoBody}`;
     
-    // Open mail client dispatch
-    window.open(`mailto:connect@impacthealth.co.in?subject=${mailtoSubject}&body=${mailtoBody}`, "_blank");
-    setSent(true);
+    // Explicitly open default mail client with draft
+    window.open(mailtoUrl, "_blank");
+    setDraftState({ mailtoUrl, subject: `Contact Inquiry from ${name}`, body: rawBody });
+  };
+
+  const handleCopy = () => {
+    if (!draftState) return;
+    const textToCopy = `To: connect@impacthealth.co.in\nSubject: ${draftState.subject}\n\n${draftState.body}`;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    });
   };
 
   return (
@@ -160,29 +171,57 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h3 className="font-display font-extrabold text-navy text-[22px] mb-6">Send us a message</h3>
-            {sent ? (
+            <h3 className="font-display font-extrabold text-navy text-[22px] mb-2">Send us a message</h3>
+            <p className="text-xs text-[#6b7280] font-sans mb-6">
+              Submitting opens a pre-addressed email draft in your default mail application to our support desk.
+            </p>
+            {draftState ? (
               <motion.div
                 role="status"
                 aria-live="polite"
-                className="flex flex-col items-center text-center py-12 gap-3"
-                initial={{ opacity: 0, scale: 0.9 }}
+                className="flex flex-col items-center text-center py-8 gap-3"
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.4 }}
               >
-                <div className="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center mx-auto text-emerald-600">
-                  <Send className="w-6 h-6" strokeWidth={2} />
+                <div className="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center mx-auto text-violet">
+                  <Mail className="w-6 h-6" strokeWidth={2} />
                 </div>
-                <div className="font-display font-bold text-[20px] text-navy">Message Dispatched!</div>
-                <p className="text-[14px] text-[#6b7280] max-w-[420px] font-sans mx-auto mt-1 leading-relaxed">
-                  Your inquiry message has been sent to our support inbox at <strong className="text-navy">connect@impacthealth.co.in</strong>. A member of our patient care team will get back to you within 24 hours.
+                <div className="font-display font-bold text-[20px] text-navy">Email Draft Prepared!</div>
+                <p className="text-[14px] text-[#6b7280] max-w-[440px] font-sans mx-auto mt-1 leading-relaxed">
+                  We've opened your default email application addressed to <strong className="text-navy">connect@impacthealth.co.in</strong>. Please click <strong>Send</strong> in your mail application to submit your inquiry.
                 </p>
+
+                {/* Accessible Fallback Options */}
+                <div className="bg-white border border-[#e6e7f2] rounded-xl p-5 mt-4 text-left w-full max-w-[460px] mx-auto text-xs text-[#4f5373] space-y-3 shadow-xs">
+                  <div className="font-bold text-navy text-[13px]">Didn't see your email app open?</div>
+                  <p className="leading-relaxed">
+                    Some browsers or popup blockers restrict mail links. You can re-trigger the draft or copy the message directly:
+                  </p>
+                  <div className="flex flex-wrap gap-2.5 pt-1">
+                    <a
+                      href={draftState.mailtoUrl}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-navy text-white font-medium hover:bg-navy-deep transition-colors text-xs"
+                    >
+                      <Mail className="w-3.5 h-3.5" /> Re-open Email App
+                    </a>
+                    <button
+                      type="button"
+                      onClick={handleCopy}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white border border-[#d6d9ee] text-navy font-medium hover:bg-slate-50 transition-colors text-xs cursor-pointer"
+                    >
+                      {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copied ? "Copied to Clipboard!" : "Copy Email & Message"}
+                    </button>
+                  </div>
+                </div>
+
                 <button
                   type="button"
-                  onClick={() => setSent(false)}
-                  className="mt-4 text-xs font-bold text-violet hover:underline cursor-pointer"
+                  onClick={() => setDraftState(null)}
+                  className="mt-5 text-xs font-bold text-violet hover:underline cursor-pointer"
                 >
-                  Send another message
+                  Draft another inquiry
                 </button>
               </motion.div>
             ) : (
@@ -235,18 +274,18 @@ export default function Contact() {
                   name="message"
                   aria-label="Message"
                   data-testid="contact-message-input"
-                  placeholder="Message"
+                  placeholder="How can we help your family or organization?"
                   rows={5}
                   className="bg-white border border-[#e6e7f2] rounded-xl px-4 py-3 text-[13.5px] text-navy placeholder:text-[#6b7280] focus:outline-none focus:border-violet/50 focus:ring-2 focus:ring-violet/10 resize-none font-sans transition-all duration-200"
                 />
                 <motion.button
                   type="submit"
                   data-testid="contact-submit-btn"
-                  className="self-start inline-flex items-center gap-2 bg-navy text-white text-[14px] font-semibold px-7 py-3.5 rounded-xl hover:bg-navy-deep transition-colors font-sans cursor-pointer"
+                  className="self-start inline-flex items-center gap-2 bg-navy text-white text-[14px] font-semibold px-7 py-3.5 rounded-xl hover:bg-navy-deep transition-colors font-sans cursor-pointer focus:outline-none focus:ring-2 focus:ring-violet focus:ring-offset-2"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Send Message <ArrowRight className="w-4 h-4" strokeWidth={2} />
+                  Draft Email Inquiry <ArrowRight className="w-4 h-4" strokeWidth={2} />
                 </motion.button>
               </form>
             )}

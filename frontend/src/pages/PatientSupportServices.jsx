@@ -22,10 +22,10 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
-import doctorCheckup from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.18_PM_2.jpeg';
-import bloodTestHome from '../assets/drive/about/blood_test_at_home.jpg';
-import vaccineImg from '../assets/drive/corporate/Vaccination.jpg';
-import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
+import doctorCheckup from '../assets/services/school/school-doctor-checkup.jpeg';
+import bloodTestHome from '../assets/services/blood-test-home.jpg';
+import vaccineImg from '../assets/services/corporate/vaccination.jpg';
+import corporateOhc from '../assets/services/corporate/ohc-opd-site.jpg';
 
 export default function PatientSupportServices() {
   const [activeCircleIndex, setActiveCircleIndex] = useState(0);

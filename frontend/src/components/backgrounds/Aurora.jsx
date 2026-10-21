@@ -130,7 +130,7 @@ export default function Aurora({
     const container = containerRef.current;
     if (!container) return;
 
-    let renderer, gl, animationFrameId, resizeObserver;
+    let renderer, gl, animationFrameId, resizeObserver, intersectionObserver;
 
     try {
       renderer = new Renderer({
@@ -179,7 +179,27 @@ export default function Aurora({
         ];
       }
 
+      let isVisible = true;
+      if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+        intersectionObserver = new IntersectionObserver(([entry]) => {
+          const nowVisible = entry.isIntersecting;
+          if (nowVisible && !isVisible) {
+            isVisible = true;
+            if (!animationFrameId) {
+              animationFrameId = requestAnimationFrame(animate);
+            }
+          } else if (!nowVisible) {
+            isVisible = false;
+          }
+        });
+        intersectionObserver.observe(container);
+      }
+
       function animate(t) {
+        if (!isVisible) {
+          animationFrameId = null;
+          return;
+        }
         animationFrameId = requestAnimationFrame(animate);
         program.uniforms.uTime.value = t * 0.001 * speed;
         renderer.render({ scene: mesh });
@@ -196,6 +216,7 @@ export default function Aurora({
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       if (resizeObserver) resizeObserver.disconnect();
+      if (intersectionObserver) intersectionObserver.disconnect();
       if (gl && gl.canvas && gl.canvas.parentNode === container) {
         container.removeChild(gl.canvas);
       }

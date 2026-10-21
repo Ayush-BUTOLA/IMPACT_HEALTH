@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, ArrowRight, HeartPulse, Clock } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -7,26 +8,39 @@ import DotGrid from '../components/backgrounds/DotGrid';
 import DoctorAvatar from '../components/DoctorAvatar';
 
 // Real Photos from Drive
-import doctorCheckupPulse from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.13_PM.jpeg';
-import healthCampVitals from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.08_PM.jpeg';
-import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
-import drRomilLottaImg from '../assets/drive/team/dr-romil-lotta-portrait.png';
+import doctorCheckupPulse from '../assets/services/school/doctor-pulse-examination.jpeg';
+import healthCampVitals from '../assets/services/school/health-camp-vitals.jpeg';
+import corporateOhc from '../assets/services/corporate/ohc-opd-site.jpg';
+import drRomilLottaImg from '../assets/team/dr-romil-lotta-portrait.png';
 
 // Real Client Logos from Drive
-import zomatoLogo from '../assets/drive/clients/zomato-logo-transparent-background-701751694712227nvjxqt9tkj.png';
-import bharatBiotechLogo from '../assets/drive/clients/bharat-biotech-logo.jpg';
-import zydusLogo from '../assets/drive/clients/Zydus_Logo.jpg';
-import eisaiLogo from '../assets/drive/clients/4523.T-587fe547.png';
-import healthiansLogo from '../assets/drive/clients/Healthianslogo2x.jpeg';
-import coreDiagnosticsLogo from '../assets/drive/clients/cropped-cropped-Core-Diagnostics-Logo-Light.jpg';
-import garbagudiLogo from '../assets/drive/clients/garbagudi_logo.jpeg';
-import chaitanyaLogo from '../assets/drive/clients/chaitanya_india_micro_finance_logo.jpeg';
-import rakkshakLogo from '../assets/drive/clients/rakkshak_logo.jpeg';
-import tcisLogo from '../assets/drive/clients/TCIS-logo3.png';
-import indiraGandhiLogo from '../assets/drive/clients/indira-gandhi.png';
-import mSchoolLogo from '../assets/drive/clients/M-school-logo.png';
-import fisLogo from '../assets/drive/clients/FIS-LOGO.jpg';
-import fbLogo from '../assets/drive/clients/FB_Logo.jpg';
+import zomatoLogo from '../assets/clients/corporate/zomato.png';
+import bharatBiotechLogo from '../assets/clients/corporate/bharat-biotech.jpg';
+import zydusLogo from '../assets/clients/corporate/zydus-healthcare.jpg';
+import eisaiLogo from '../assets/clients/corporate/eisai.png';
+import healthiansLogo from '../assets/clients/corporate/healthians.jpeg';
+import coreDiagnosticsLogo from '../assets/clients/corporate/core-diagnostics.jpg';
+import garbagudiLogo from '../assets/clients/corporate/garbagudi.jpeg';
+import chaitanyaLogo from '../assets/clients/corporate/chaitanya-india.jpeg';
+import rakkshakLogo from '../assets/clients/corporate/rakkshak.jpeg';
+import tcisLogo from '../assets/clients/schools/the-cambridge-international-school.png';
+import indiraGandhiLogo from '../assets/clients/schools/indira-gandhi-institutions.png';
+import mSchoolLogo from '../assets/clients/schools/meluha-international-school.png';
+import fisLogo from '../assets/clients/schools/freedom-international-school.jpg';
+import fbLogo from '../assets/clients/schools/fb-group-amanora-school.jpg';
+import leMarcheLogo from '../assets/clients/corporate/le-marche.png';
+import blinkitLogo from '../assets/clients/corporate/blinkit.png';
+import bistroLogo from '../assets/clients/corporate/bistro.png';
+import kuremicLogo from '../assets/clients/corporate/kuremic.png';
+
+// School Partner Logos
+import hariVidyaBhavanLogo from '../assets/clients/schools/hari-vidya-bhavan-school.png';
+import motherDivineLogo from '../assets/clients/schools/mother-divine-school.png';
+import partapWorldSchoolLogo from '../assets/clients/schools/partap-world-school.png';
+import kendriyaVidyalayaLogo from '../assets/clients/schools/kendriya-vidyalaya.png';
+import raveesInternationalLogo from '../assets/clients/schools/ravees-international.png';
+import irisFloretsLogo from '../assets/clients/schools/iris-florets-world-school.png';
+import birlaOpenMindsLogo from '../assets/clients/schools/birla-open-minds-school.png';
 
 const services = [
   {
@@ -113,11 +127,25 @@ const clients = [
   { name: "Garbagudi", alt: "Garbagudi IVF", url: garbagudiLogo },
   { name: "Chaitanya India", alt: "Chaitanya India Micro Finance", url: chaitanyaLogo },
   { name: "Rakkshak", alt: "Rakkshak", url: rakkshakLogo },
-  { name: "The Cambridge International School", alt: "TCIS", url: tcisLogo },
+  { name: "Le Marche", alt: "Le Marche", url: leMarcheLogo },
+  { name: "Blinkit", alt: "Blinkit", url: blinkitLogo },
+  { name: "Bistro", alt: "Bistro by Blinkit", url: bistroLogo },
+  { name: "Kuremic", alt: "Kuremic", url: kuremicLogo }
+];
+
+const schoolPartners = [
+  { name: "The Cambridge International School", alt: "The Cambridge International School (TCIS)", url: tcisLogo },
   { name: "Indira Gandhi Institutions", alt: "Indira Gandhi Institutions", url: indiraGandhiLogo },
   { name: "Meluha International School", alt: "Meluha International School", url: mSchoolLogo },
-  { name: "FIS", alt: "FIS", url: fisLogo },
-  { name: "FB Group", alt: "FB Group", url: fbLogo }
+  { name: "FIS", alt: "Freedom International School (FIS)", url: fisLogo },
+  { name: "FB Group (Amanora School)", alt: "FB Group (Amanora School)", url: fbLogo },
+  { name: "Hari Vidya Bhavan School", alt: "Hari Vidya Bhavan School", url: hariVidyaBhavanLogo },
+  { name: "Mother Divine School", alt: "Mother Divine School", url: motherDivineLogo },
+  { name: "Partap World School", alt: "Partap World School", url: partapWorldSchoolLogo },
+  { name: "Kendriya Vidyalaya", alt: "Kendriya Vidyalaya", url: kendriyaVidyalayaLogo },
+  { name: "Ravees International", alt: "Ravees International School", url: raveesInternationalLogo },
+  { name: "Iris Florets World School", alt: "Iris Florets World School", url: irisFloretsLogo },
+  { name: "Birla Open Minds School", alt: "Birla Open Minds School", url: birlaOpenMindsLogo }
 ];
 
 
@@ -149,7 +177,7 @@ const testimonials = [
 const faqs = [
   {
     question: "What is included in the Patient Support Program?",
-    answer: "The program includes unlimited free doctor consultations (virtual & clinic), free blood tests at home, and a dedicated medical team."
+    answer: "The Patient Support Program provides assistance throughout your treatment journey, including help with doctor consultations, diagnostic tests, treatment coordination, and guidance from a dedicated medical support team, based on your program eligibility and applicable terms."
   },
   {
     question: "How much does the program cost?",
@@ -162,6 +190,10 @@ const faqs = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    document.title = "Impact Health | Reduce Healthcare Expenditure";
+  }, []);
+
   return (
     <div id="home" className="w-full bg-white relative overflow-hidden">
 
@@ -304,7 +336,7 @@ export default function Home() {
               viewport={{ once: true }}
               variants={fadeInUp}
             >
-              <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans">Statistical Insight</span>
+              <span className="text-[#4e51c0] text-xs font-bold uppercase tracking-widest font-sans">Statistical Insight</span>
               <blockquote className="text-headline-lg font-bold text-primary leading-snug">
                 "Worldwide, Chronic Diseases are the major causes of deaths and disabilities. In India, they account for 53% of all deaths."
               </blockquote>
@@ -413,7 +445,7 @@ export default function Home() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Expert Leadership</span>
+            <span className="text-[#4e51c0] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Expert Leadership</span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Our Team</h2>
             <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-4 max-w-2xl mx-auto">
               A passionate team of healthcare and technology professionals committed to making quality care accessible.
@@ -470,7 +502,7 @@ export default function Home() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Clinical Guidance</span>
+            <span className="text-[#4e51c0] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Clinical Guidance</span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Advisors</h2>
             <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-4 max-w-2xl mx-auto">
               Renowned medical advisors and clinical experts guiding our health initiatives and patient care standards.
@@ -498,7 +530,7 @@ export default function Home() {
                     alt={advisor.name}
                   />
                   <h4 className="text-base font-bold text-primary text-center mb-1 leading-snug">{advisor.name}</h4>
-                  <p className="text-xs font-bold text-[#7e82f4] text-center font-sans mb-3">({advisor.role})</p>
+                  <p className="text-xs font-bold text-[#4e51c0] text-center font-sans mb-3">({advisor.role})</p>
 
                   <p className="text-xs text-text-secondary text-center font-sans leading-relaxed">
                     {advisor.desc}
@@ -523,16 +555,16 @@ export default function Home() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Trusted Partnerships</span>
+            <span className="text-[#4e51c0] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Trusted Partnerships</span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Our Happy Clients &amp; Partners</h2>
             <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-3">
               Trusted by leading enterprises, educational institutions, and healthcare leaders nationwide.
             </p>
           </motion.div>
 
-          {/* Grid displaying all clients & partners */}
+          {/* Grid displaying corporate clients & partners */}
           <motion.div
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-5"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-5"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -553,12 +585,69 @@ export default function Home() {
                     loading="lazy"
                   />
                 </div>
-                <span className="text-[11px] font-semibold text-text-secondary/75 mt-2 font-sans truncate max-w-full group-hover:text-primary transition-colors">
+                <span
+                  title={client.name}
+                  className="text-[11px] font-semibold text-text-secondary/75 mt-2 font-sans truncate max-w-full group-hover:text-primary transition-colors text-center block"
+                >
                   {client.name}
                 </span>
               </motion.div>
             ))}
           </motion.div>
+
+          {/* School Partners Subsection */}
+          <div className="mt-16 lg:mt-20 pt-12 border-t border-[#DDE0F5]/80">
+            <motion.div
+              className="mb-10 max-w-2xl mx-auto"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <span className="text-[#4e51c0] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">
+                Education &amp; Campus Health
+              </span>
+              <h3 className="text-2xl md:text-3xl font-display font-bold text-primary">
+                School Partners
+              </h3>
+              <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-3">
+                Empowering schools with student health assessments, campus infirmary setups, and pediatric wellness programs.
+              </p>
+            </motion.div>
+
+            {/* Grid displaying school partners */}
+            <motion.div
+              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-5"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              {schoolPartners.map((school, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={fadeInUp}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                  className="bg-white rounded-2xl p-4 border border-[#DDE0F5] hover:border-[#7e82f4]/40 shadow-ambient flex flex-col items-center justify-center min-h-[110px] md:min-h-[120px] transition-all duration-300 group"
+                >
+                  <div className="h-12 md:h-14 flex items-center justify-center w-full px-2">
+                    <img
+                      src={school.url}
+                      alt={school.alt || school.name}
+                      className="max-h-full max-w-full object-contain filter contrast-105 group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                  <span
+                    title={school.name}
+                    className="text-[11px] font-semibold text-text-secondary/75 mt-2 font-sans truncate max-w-full group-hover:text-primary transition-colors text-center block"
+                  >
+                    {school.name}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -574,7 +663,7 @@ export default function Home() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Patient Stories</span>
+            <span className="text-[#4e51c0] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Patient Stories</span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">Testimonials</h2>
             <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-4 max-w-2xl mx-auto">
               Read how our dedicated care programs and personalized medical support improve the lives of our patients.
@@ -632,7 +721,7 @@ export default function Home() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <span className="text-[#7e82f4] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Got Questions?</span>
+            <span className="text-[#4e51c0] text-xs font-bold uppercase tracking-widest font-sans mb-3 block">Got Questions?</span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary">FAQ</h2>
             <p className="text-body-md text-text-secondary leading-relaxed font-sans mt-4">
               Find answers to common questions about our patient support programs, pricing, and health services.

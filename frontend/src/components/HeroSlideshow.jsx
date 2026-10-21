@@ -10,14 +10,16 @@ import {
   Droplet,
   Star,
   Percent,
+  Pause,
+  Play,
 } from "lucide-react";
 import Aurora from "./backgrounds/Aurora";
 
-import familyHealthcareSavings from "../assets/drive/family/family-healthcare-savings.png";
-import doctorConsultation from "../assets/drive/doctor-online-consultation.jpg";
-import nurseCare from "../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.06_PM.jpeg";
-import healthCampVitals from "../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.08_PM.jpeg";
-import bloodTestHome from "../assets/drive/about/blood_test_at_home.jpg";
+import familyHealthcareSavings from "../assets/services/family/family-healthcare-savings.jpg";
+import doctorConsultation from "../assets/services/doctor-online-consultation.jpg";
+import nurseCare from "../assets/services/school/nurse-care-student.jpeg";
+import healthCampVitals from "../assets/services/school/health-camp-vitals.jpeg";
+import bloodTestHome from "../assets/services/blood-test-home.jpg";
 
 const SLIDES = [
   {
@@ -117,26 +119,38 @@ const INTERVAL = 6000;
 
 export default function HeroSlideshow() {
   const [index, setIndex] = useState(0);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false
+  );
   const paused = useRef(false);
   const sectionRef = useRef(null);
   const touchStartX = useRef(null);
   const touchEndX = useRef(null);
 
-  // Detect prefers-reduced-motion
+  // Detect prefers-reduced-motion with legacy addListener fallback
   useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mq.matches);
     const onChange = (e) => setReducedMotion(e.matches);
     if (mq.addEventListener) {
-      mq.addEventListener("change", mq);
+      mq.addEventListener("change", onChange);
       return () => mq.removeEventListener("change", onChange);
+    } else if (mq.addListener) {
+      mq.addListener(onChange);
+      return () => mq.removeListener(onChange);
     }
   }, []);
 
   const handleNext = useCallback(() => setIndex((p) => (p + 1) % SLIDES.length), []);
   const handlePrev = useCallback(() => setIndex((p) => (p - 1 + SLIDES.length) % SLIDES.length), []);
   const goTo = (i) => setIndex(i);
+
+  const togglePlayPause = () => {
+    setIsPaused((prev) => !prev);
+  };
 
   // Keyboard navigation
   const handleKeyDown = (e) => {
@@ -171,14 +185,14 @@ export default function HeroSlideshow() {
     touchEndX.current = null;
   };
 
-  // Auto-advance
+  // Auto-advance (respects reducedMotion and accessible isPaused state)
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || isPaused) return;
     const id = setInterval(() => {
       if (!paused.current) handleNext();
     }, INTERVAL);
     return () => clearInterval(id);
-  }, [index, reducedMotion, handleNext]);
+  }, [index, reducedMotion, isPaused, handleNext]);
 
   // GSAP crossfade between image panels
   useEffect(() => {
@@ -197,23 +211,6 @@ export default function HeroSlideshow() {
   }, [index, reducedMotion]);
 
   const slide = SLIDES[index];
-
-  const textVariants = reducedMotion
-    ? {
-        initial: { opacity: 0 },
-        animate: { opacity: 1, transition: { duration: 0.15 } },
-        exit: { opacity: 0, transition: { duration: 0.1 } },
-      }
-    : {
-        initial: { opacity: 0, y: 12, filter: "blur(2px)" },
-        animate: {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          transition: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
-        },
-        exit: { opacity: 0, y: -8, filter: "blur(2px)", transition: { duration: 0.2 } },
-      };
 
   return (
     <section
@@ -242,7 +239,7 @@ export default function HeroSlideshow() {
 
       {/* Screen reader notification */}
       <div className="sr-only" aria-live="polite" aria-atomic="true">
-        {`Slide ${index + 1} of ${SLIDES.length}: ${slide.lead} ${slide.accent}. ${slide.sub}`}
+        {`Slide ${index + 1} of ${SLIDES.length}: ${slide.lead} ${slide.accent}. ${slide.sub} ${isPaused ? "(Slideshow paused)" : ""}`}
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
@@ -251,48 +248,35 @@ export default function HeroSlideshow() {
           {/* ════ LEFT COLUMN: Content & Interactive Controls ════ */}
           <div className="lg:col-span-6 flex flex-col items-start">
             {/* Slide Text Content */}
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={index}
-                id={`hero-slide-${index}`}
+                id="hero-active-slide"
                 role="tabpanel"
                 aria-labelledby={`service-tab-${index}`}
                 className="flex flex-col gap-4 w-full"
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={{
-                  initial: {},
-                  animate: { transition: { staggerChildren: reducedMotion ? 0 : 0.05 } },
-                  exit: { transition: { staggerChildren: reducedMotion ? 0 : 0.02 } },
-                }}
+                initial={{ opacity: 0, y: reducedMotion ? 0 : 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: reducedMotion ? 0 : -8 }}
+                transition={{ duration: reducedMotion ? 0.12 : 0.28, ease: "easeOut" }}
               >
                 {/* Badge: Green dot + slide.badge */}
-                <motion.div
-                  className="self-start inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-sm border border-[#e2e4f0] text-[13px] font-semibold text-navy font-sans shadow-xs"
-                  variants={textVariants}
-                >
+                <div className="self-start inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-sm border border-[#e2e4f0] text-[13px] font-semibold text-navy font-sans shadow-xs">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
                   <span>{slide.badge}</span>
-                </motion.div>
+                </div>
 
                 {/* Main Headline */}
-                <motion.h1
-                  className="font-display font-extrabold text-navy text-3xl sm:text-4xl lg:text-[46px] leading-[1.16] tracking-tight"
-                  variants={textVariants}
-                >
+                <h1 className="font-display font-extrabold text-navy text-3xl sm:text-4xl lg:text-[46px] leading-[1.16] tracking-tight">
                   <span>{slide.lead}</span>{" "}
                   <span className="text-violet font-extrabold">{slide.accent}</span>
                   {slide.tail}
-                </motion.h1>
+                </h1>
 
                 {/* Subtitle description */}
-                <motion.p
-                  className="text-[#43465e] text-sm sm:text-base leading-relaxed max-w-lg font-sans"
-                  variants={textVariants}
-                >
+                <p className="text-[#43465e] text-sm sm:text-base leading-relaxed max-w-lg font-sans">
                   {slide.sub}
-                </motion.p>
+                </p>
               </motion.div>
             </AnimatePresence>
 
@@ -303,7 +287,7 @@ export default function HeroSlideshow() {
                   href={slide.ctaLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 bg-navy text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-navy-deep active:scale-[0.98] transition-all font-sans text-sm shadow-md cursor-pointer"
+                  className="inline-flex items-center gap-2.5 bg-navy text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-navy-deep active:scale-[0.98] transition-all font-sans text-sm shadow-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-violet focus:ring-offset-2"
                 >
                   <span>{slide.ctaText}</span>
                   <ArrowRight className="w-4 h-4 text-white" strokeWidth={2.2} />
@@ -311,7 +295,7 @@ export default function HeroSlideshow() {
               ) : (
                 <Link
                   to={slide.ctaLink}
-                  className="inline-flex items-center gap-2.5 bg-navy text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-navy-deep active:scale-[0.98] transition-all font-sans text-sm shadow-md cursor-pointer"
+                  className="inline-flex items-center gap-2.5 bg-navy text-white font-semibold px-6 py-3.5 rounded-xl hover:bg-navy-deep active:scale-[0.98] transition-all font-sans text-sm shadow-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-violet focus:ring-offset-2"
                 >
                   <span>{slide.ctaText}</span>
                   <ArrowRight className="w-4 h-4 text-white" strokeWidth={2.2} />
@@ -319,9 +303,8 @@ export default function HeroSlideshow() {
               )}
             </div>
 
-            {/* ══ Option C Service Switcher Pills (inside the hero) ══ */}
-            {/* Active pill shows icon + full label. Inactive pills are compact icon-only circular buttons */}
-            <div className="mt-8 flex items-center gap-2.5 flex-wrap">
+            {/* ══ Option C Service Switcher Pills + Accessible Pause Button ══ */}
+            <div className="mt-8 flex items-center gap-3 flex-wrap">
               <div
                 role="tablist"
                 aria-label="Healthcare services"
@@ -338,13 +321,13 @@ export default function HeroSlideshow() {
                       type="button"
                       role="tab"
                       aria-selected={active}
-                      aria-controls={`hero-slide-${i}`}
+                      aria-controls="hero-active-slide"
                       tabIndex={active ? 0 : -1}
                       onClick={() => goTo(i)}
-                      className={`transition-all duration-200 cursor-pointer flex items-center justify-center font-sans ${
+                      className={`transition-all duration-200 cursor-pointer flex items-center justify-center font-sans focus:outline-none focus:ring-2 focus:ring-violet focus:ring-offset-2 ${
                         active
-                          ? "bg-navy text-white px-4 py-2 rounded-full font-semibold text-xs sm:text-[13px] gap-2 shadow-sm"
-                          : "w-10 h-10 rounded-full bg-white/90 border border-[#d6d9ee] text-[#4f5373] hover:text-navy hover:border-navy/40 hover:bg-white shadow-xs"
+                          ? "bg-navy text-white px-4 py-2.5 rounded-full font-semibold text-xs sm:text-[13px] gap-2 shadow-sm min-h-[44px]"
+                          : "w-11 h-11 rounded-full bg-white/90 border border-[#d6d9ee] text-[#4f5373] hover:text-navy hover:border-navy/40 hover:bg-white shadow-xs"
                       }`}
                       title={s.serviceLabel}
                     >
@@ -354,6 +337,22 @@ export default function HeroSlideshow() {
                   );
                 })}
               </div>
+
+              {/* Accessible Pause / Resume Button */}
+              <button
+                type="button"
+                onClick={togglePlayPause}
+                aria-label={isPaused ? "Resume auto-advancing slides" : "Pause auto-advancing slides"}
+                aria-pressed={isPaused}
+                className="w-11 h-11 rounded-full bg-white/90 border border-[#d6d9ee] text-[#4f5373] hover:text-navy hover:border-navy/40 hover:bg-white flex items-center justify-center transition-all cursor-pointer shadow-xs focus:outline-none focus:ring-2 focus:ring-violet focus:ring-offset-2 shrink-0"
+                title={isPaused ? "Resume rotation" : "Pause rotation"}
+              >
+                {isPaused ? (
+                  <Play className="w-3.5 h-3.5 fill-current shrink-0 text-navy" aria-hidden="true" />
+                ) : (
+                  <Pause className="w-3.5 h-3.5 fill-current shrink-0 text-navy" aria-hidden="true" />
+                )}
+              </button>
             </div>
 
             {/* Bottom Stats Row: 2L+ Patients | 200+ Cities | 4.9 Rating */}

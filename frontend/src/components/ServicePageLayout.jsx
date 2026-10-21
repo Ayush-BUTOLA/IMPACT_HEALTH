@@ -6,16 +6,16 @@ import Button from './Button';
 import DynamicIcon from './DynamicIcon';
 
 // Drive assets for deliverables and cards
-import schoolMedicalRoom from '../assets/drive/school/WhatsApp_Image_2023-02-23_at_11.48.43_AM.jpg';
-import doctorCheckup from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.18_PM_2.jpeg';
-import schoolCheckup2 from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.11_PM.jpeg';
-import schoolCheckup3 from '../assets/drive/school/WhatsApp_Image_2026-07-29_at_6.37.13_PM_1.jpeg';
-import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
-import corporateVaccine from '../assets/drive/corporate/Vaccination.jpg';
-import corporateCamp from '../assets/drive/corporate/WhatsApp_Image_2026-07-29_at_6.37.07_PM_1.jpeg';
-import bloodTestHome from '../assets/drive/about/blood_test_at_home.jpg';
-import awardsFelicitation from '../assets/drive/about/awards_felicitation.jpg';
-import award1 from '../assets/drive/about/award1.jpg';
+import schoolMedicalRoom from '../assets/services/school/school-infirmary-room-1.jpg';
+import doctorCheckup from '../assets/services/school/school-doctor-checkup.jpeg';
+import schoolCheckup2 from '../assets/services/school/school-health-screening.jpeg';
+import schoolCheckup3 from '../assets/services/school/school-eye-screening.jpeg';
+import corporateOhc from '../assets/services/corporate/ohc-opd-site.jpg';
+import corporateVaccine from '../assets/services/corporate/vaccination.jpg';
+import corporateCamp from '../assets/services/corporate/corporate-health-camp.jpeg';
+import bloodTestHome from '../assets/services/blood-test-home.jpg';
+import awardsFelicitation from '../assets/awards/awards-felicitation.jpg';
+import award1 from '../assets/awards/award-1.jpg';
 
 const driveImagePool = [
   doctorCheckup,

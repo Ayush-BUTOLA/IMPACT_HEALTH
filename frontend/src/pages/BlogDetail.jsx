@@ -35,6 +35,12 @@ export default function BlogDetail() {
     };
   }, [slug]);
 
+  useEffect(() => {
+    if (blog?.title) {
+      document.title = `${blog.title} | Impact Health`;
+    }
+  }, [blog]);
+
   if (loading) {
     return <div className="py-32 text-center text-slate-400 font-semibold text-sm">Loading medical article...</div>;
   }

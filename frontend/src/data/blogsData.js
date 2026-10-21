@@ -1,4 +1,4 @@
-import bloodTestHero from '../assets/drive/about/blood_test_at_home.jpg';
+import bloodTestHero from '../assets/services/blood-test-home.jpg';
 
 export const FALLBACK_CATEGORIES = [
   { id: 1, name: "Disease and Diagnosis", slug: "disease-and-diagnosis" },

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /doctor/
+
+Sitemap: https://impacthealth.co.in/sitemap.xml

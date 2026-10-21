@@ -21,10 +21,10 @@ import {
   ArrowRight
 } from 'lucide-react';
 import Button from '../components/Button';
-import corporateOhc from '../assets/drive/corporate/OHC___OPD_at_site.jpg';
-import awardsFelicitation from '../assets/drive/about/awards_felicitation.jpg';
-import corporateCamp from '../assets/drive/corporate/WhatsApp_Image_2026-07-29_at_6.37.07_PM_1.jpeg';
-import award1 from '../assets/drive/about/award1.jpg';
+import corporateOhc from '../assets/services/corporate/ohc-opd-site.jpg';
+import awardsFelicitation from '../assets/awards/awards-felicitation.jpg';
+import corporateCamp from '../assets/services/corporate/corporate-health-camp.jpeg';
+import award1 from '../assets/awards/award-1.jpg';
 
 export default function PractitionerServices() {
   const [activeIntersectionIndex, setActiveIntersectionIndex] = useState(0);

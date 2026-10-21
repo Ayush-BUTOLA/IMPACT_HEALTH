@@ -26,6 +26,7 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
+    document.title = "Healthcare Insights & Blogs | Impact Health";
     let isMounted = true;
     apiService.getPublicCategories()
       .then(cats => {
