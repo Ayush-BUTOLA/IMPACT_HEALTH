@@ -7,7 +7,6 @@ import schoolRoom3 from '../assets/services/school/school-infirmary-room-3.jpg';
 import schoolCheckup1 from '../assets/services/school/school-doctor-checkup.jpeg';
 import schoolCheckup2 from '../assets/services/school/school-health-screening.jpeg';
 import schoolCheckup3 from '../assets/services/school/school-eye-screening.jpeg';
-import schoolCheckup4 from '../assets/services/school/school-dental-checkup.jpeg';
 import schoolEdu1 from '../assets/services/school/nurse-care-student.jpeg';
 import schoolNutri1 from '../assets/services/school/student-nutrition-assessment.jpeg';
 import corporateOhc from '../assets/services/corporate/ohc-opd-site.jpg';
@@ -65,92 +64,94 @@ export const servicesData = {
           title: "Certified Pediatric-Friendly Nursing Staff",
           description: "Full-time registered nurses specially trained in pediatric care, emergency triage, and child psychology.",
           icon: "UserCheck",
-          image: "https://images.unsplash.com/photo-1584515979963-22877af2e1ad?w=600&auto=format&fit=crop&q=80"
+          image: "/png/001_certified-pediatric-friendly-nursing-staff.png"
         },
         {
           title: "Visiting Physicians",
           description: "Scheduled doctor visits for comprehensive physical evaluations and clinical oversight.",
           icon: "Stethoscope",
-          image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&auto=format&fit=crop&q=80"
+          image: "/png/002_visiting-physicians.png"
         },
         {
           title: "Pediatric Specialists",
           description: "Access to pediatric subspecialists for complex clinical evaluations and developmental concerns.",
           icon: "HeartHandshake",
-          image: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=600&auto=format&fit=crop&q=80"
+          image: "/png/003_pediatric-specialists.png"
         },
         {
           title: "Dental Doctors",
           description: "On-campus dental checks to identify early caries, oral hygiene needs, and preventive dental care.",
           icon: "Smile",
-          image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&auto=format&fit=crop&q=80"
+          image: "/png/004_dental-doctors.png"
         },
         {
           title: "Ophthalmologists",
           description: "Vision specialists to screen for refractive errors, amblyopia, and color vision deficiencies.",
           icon: "Eye",
-          image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop&q=80"
+          image: "/png/005_ophthalmologists.png"
         },
         {
           title: "Fully Stocked Medicines",
           description: "Pediatric-safe, state-approved pharmaceutical inventory with stringent expiration audit protocols.",
           icon: "Pill",
-          image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=600&auto=format&fit=crop&q=80"
+          image: "/png/006_fully-stocked-medicines.png"
         },
         {
           title: "Emergency Equipment",
           description: "Automated External Defibrillators (AEDs), oxygen cylinders, suction apparatus, and trauma kits.",
           icon: "Siren",
-          image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=600&auto=format&fit=crop&q=80"
+          image: "/png/007_emergency-equipment.png"
         },
         {
           title: "Diagnostic Tools",
           description: "Digital otoscopes, sphygmomanometers, blood glucometers, and pulse oximeters calibrated for children.",
           icon: "Activity",
-          image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&auto=format&fit=crop&q=80"
+          image: "/png/008_diagnostic-tools.png"
         },
         {
           title: "Standard Operating Procedures",
           description: "Rigorous clinical guidelines covering infection control, emergency transfer, and medication administration.",
           icon: "FileText",
-          image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=80"
+          image: "/png/009_standard-operating-procedures.png"
         },
         {
           title: "Parent Communication System",
           description: "Instant real-time SMS and App notifications whenever a student visits the campus infirmary.",
           icon: "MessageSquare",
-          image: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=600&auto=format&fit=crop&q=80"
+          image: "/png/010_parent-communication-system.png"
         },
         {
           title: "Digital Student Health Records",
           description: "Encrypted, HIPAA-compliant electronic medical record (EMR) software keeping lifelong health histories.",
           icon: "Database",
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80"
+          image: "/png/011_digital-student-health-records.png"
         },
         {
           title: "Monthly CPR Training",
           description: "Hands-on cardiopulmonary resuscitation workshops for sports staff, teachers, and senior students.",
           icon: "HeartPulse",
-          image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&auto=format&fit=crop&q=80"
+          image: "/png/012_monthly-cpr-training.png"
         },
         {
           title: "Basic Life Support Training",
           description: "Certified BLS training sessions empowering staff to respond effectively to critical accidents.",
           icon: "ShieldAlert",
-          image: "https://images.unsplash.com/photo-1512678018388-c41f15b4b73d?w=600&auto=format&fit=crop&q=80"
+          image: "/png/013_basic-life-support-training.png"
         },
         {
           title: "First Aid Workshops",
           description: "Interactive simulations teaching wound dressing, fracture immobilization, and burn treatment.",
           icon: "BriefcaseMedical",
-          image: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=600&auto=format&fit=crop&q=80"
+          image: "/png/014_first-aid-workshops.png"
         }
       ],
       benefits: [
         { title: "Immediate Emergency Care", desc: "Instant clinical stabilization for sudden acute illness or injuries.", icon: "Zap" },
         { title: "Better Student Safety", desc: "Comprehensive clinical infrastructure lowering campus risk profile.", icon: "ShieldCheck" },
         { title: "Parent Confidence", desc: "Complete transparency and instant alerts build lasting parental trust.", icon: "Heart" },
-        { title: "Reduced Emergency Response Time", desc: "Immediate on-site nurse intervention while emergency transport is en route.", icon: "Clock" },
+        { title: "Reduced Emergency Response Time", desc: "Immediate on-site nurse intervention while emergency transport is en route.", icon: "Clock",
+          image: "/png/027_emergency-response.png"
+        },
         { title: "Professional Healthcare Inside Campus", desc: "Transform school infirmaries into high-standard medical rooms.", icon: "Building2" }
       ],
       howWeWork: [
@@ -209,85 +210,85 @@ export const servicesData = {
           title: "Preventive Wellness",
           description: "Proactive lifestyle education focused on preventing chronic illness and boosting natural immunity.",
           icon: "Shield",
-          image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=80"
+          image: "/png/015_preventive-wellness.png"
         },
         {
           title: "Nutrition",
           description: "Fun, engaging lessons on balanced diets, macronutrients, and making healthy food choices.",
           icon: "Utensils",
-          image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=80"
+          image: "/png/016_nutrition.png"
         },
         {
           title: "Hygiene",
           description: "Essential personal hygiene, handwashing techniques, oral care, and sanitation best practices.",
           icon: "Sparkles",
-          image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop&q=80"
+          image: "/png/017_hygiene.png"
         },
         {
           title: "Active Lifestyle",
           description: "Encouraging regular physical exercise, posture awareness, and outdoor recreational habits.",
           icon: "Activity",
-          image: "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&auto=format&fit=crop&q=80"
+          image: "/png/018_active-lifestyle.png"
         },
         {
           title: "Mental Wellness",
           description: "Normalizing psychological wellbeing, emotional self-regulation, and open communication.",
           icon: "Brain",
-          image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=80"
+          image: "/png/019_mental-wellness.png"
         },
         {
           title: "Stress Management",
           description: "Practical coping strategies for exam anxiety, peer pressure, and academic workloads.",
           icon: "Smile",
-          image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80"
+          image: "/png/020_stress-management.png"
         },
         {
           title: "Mindfulness",
           description: "Guided breathing techniques, meditation routines, and focus-enhancement exercises.",
           icon: "Sun",
-          image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=80"
+          image: "/png/021_mindfulness.png"
         },
         {
           title: "Digital Detox",
           description: "Healthy screen time boundaries, online safety, and balancing digital life with real-world activity.",
           icon: "SmartphoneOff",
-          image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=80"
+          image: "/png/022_digital-detox.png"
         },
         {
           title: "Adolescent Health",
           description: "Age-sensitive guidance addressing physical growth, body changes, and teenage development.",
           icon: "Users",
-          image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80"
+          image: "/png/023_adolescent-health.png"
         },
         {
           title: "Body Positivity",
           description: "Building self-esteem, healthy body image, and mutual respect among peers.",
           icon: "Heart",
-          image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80"
+          image: "/png/024_body-positivity.png"
         },
         {
           title: "Hormonal Changes",
           description: "Scientific, empathetic orientation regarding pubertal transitions and emotional fluctuations.",
           icon: "Zap",
-          image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&auto=format&fit=crop&q=80"
+          image: "/png/025_hormonal-changes.png"
         },
         {
           title: "First Aid",
           description: "Practical emergency response skills for minor injuries, burns, cuts, and sprains.",
           icon: "BriefcaseMedical",
-          image: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=600&auto=format&fit=crop&q=80"
+          image: "/png/026_first-aid.png"
         },
         {
           title: "Emergency Response",
           description: "Training in fire safety, choking response, CPR awareness, and emergency evacuation.",
           icon: "Siren",
-          image: "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=600&auto=format&fit=crop&q=80"
+          image: "/png/027_emergency-response.png"
         },
         {
           title: "Community Health",
           description: "Understanding public health, sanitation, environmental hygiene, and disease prevention.",
           icon: "Globe",
-          image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?w=600&auto=format&fit=crop&q=80"
+          image: "/png/028_community-health.png"
         }
       ],
       benefits: [
@@ -352,49 +353,49 @@ export const servicesData = {
           title: "Pediatric Examination",
           description: "Systemic checkups covering ear, nose, throat, chest auscultation, and abdominal palpation by pediatricians.",
           icon: "Stethoscope",
-          image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&auto=format&fit=crop&q=80"
+          image: "/png/029_pediatric-examination.png"
         },
         {
           title: "Vital Signs",
           description: "Precise measurement of blood pressure, heart rate, oxygen saturation, and body temperature.",
           icon: "HeartPulse",
-          image: "https://images.unsplash.com/photo-1584515979963-22877af2e1ad?w=600&auto=format&fit=crop&q=80"
+          image: "/png/030_vital-signs.png"
         },
         {
           title: "Vision Screening",
           description: "Snellen chart visual acuity evaluation, color vision tests, and amblyopia screening by optometrists.",
           icon: "Eye",
-          image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop&q=80"
+          image: "/png/031_vision-screening.png"
         },
         {
           title: "Dental Screening",
           description: "Evaluation of dental caries, malocclusion, gum health, and oral hygiene recommendations.",
           icon: "Smile",
-          image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&auto=format&fit=crop&q=80"
+          image: "/png/032_dental-screening.png"
         },
         {
           title: "BMI Assessment",
           description: "Precise calculation of body mass index categorized using WHO pediatric growth charts.",
           icon: "Scale",
-          image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80"
+          image: "/png/033_bmi-assessment.png"
         },
         {
           title: "Growth Tracking",
           description: "Monitoring height-for-age, weight-for-age, and physical milestone progression over time.",
           icon: "TrendingUp",
-          image: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=600&auto=format&fit=crop&q=80"
+          image: "/png/034_growth-tracking.png"
         },
         {
           title: "Nutritional Assessment",
           description: "Identifying clinical signs of micronutrient deficiencies (iron, vitamin D, calcium) and diet counsel.",
           icon: "Apple",
-          image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=80"
+          image: "/png/035_nutritional-assessment.png"
         },
         {
           title: "Mental Health Evaluation",
           description: "Age-appropriate screening for anxiety indicators, behavioral changes, and attention milestones.",
           icon: "Brain",
-          image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80"
+          image: "/png/036_mental-health-evaluation.png"
         }
       ],
       benefits: [
@@ -439,7 +440,7 @@ export const servicesData = {
       whyMatters: {
         title: "Why School Nutrition Ecosystems Matter",
         description: "Optimal nutrition is the fuel for cognitive performance, memory retention, and physical immunity. Our holistic program transforms campus food environments, audits canteen meals, and guides families to build healthy eating habits for life.",
-        image: schoolCheckup4,
+        image: "/png/016_nutrition.png",
         stats: [
           { number: "88%", label: "Boost in Afternoon Classroom Concentration", icon: "Zap" },
           { number: "100%", label: "FSSAI Food Safety & Quality Compliance", icon: "ShieldCheck" },
@@ -459,49 +460,49 @@ export const servicesData = {
           title: "Anthropometric Screening",
           description: "Precise tracking of Height for Age, Weight for Height, and BMI trends to monitor physical growth curves.",
           icon: "Ruler",
-          image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=600&auto=format&fit=crop&q=80"
+          image: "/png/037_anthropometric-screening.png"
         },
         {
           title: "Deficiency Screening",
           description: "Targeted clinical checks for Anaemia, Vitamin A, Vitamin D, and calcium deficiencies in children.",
           icon: "Droplet",
-          image: "https://images.unsplash.com/photo-1579684389782-64d84b5e905d?w=600&auto=format&fit=crop&q=80"
+          image: "/png/038_deficiency-screening.png"
         },
         {
           title: "Personalised Nutrition",
           description: "Tailored diet counselling and meal plans for children with juvenile diabetes, allergies, or high BMI.",
           icon: "UserCheck",
-          image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&auto=format&fit=crop&q=80"
+          image: "/png/039_personalised-nutrition.png"
         },
         {
           title: "School Menu",
           description: "Scientific transformation of healthy canteens, ingredient audits, and FSSAI kitchen compliance.",
           icon: "UtensilsCrossed",
-          image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80"
+          image: "/png/040_school-menu.png"
         },
         {
           title: "Interactive Wellness",
           description: "Fun food education workshops, interactive meal logs, and active cooking demonstrations.",
           icon: "BookOpen",
-          image: "https://images.unsplash.com/photo-1507048685980-0923f9288407?w=600&auto=format&fit=crop&q=80"
+          image: "/png/041_interactive-wellness.png"
         },
         {
           title: "Student Ambassadors",
           description: "Peer-led health awareness initiatives empowering student leaders to champion healthy choices.",
           icon: "Award",
-          image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&auto=format&fit=crop&q=80"
+          image: "/png/042_student-ambassadors.png"
         },
         {
           title: "Parent Engagement",
           description: "Family dietary counselling sessions, healthy lunchbox guides, and home meal recipe recommendations.",
           icon: "HeartHandshake",
-          image: "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?w=600&auto=format&fit=crop&q=80"
+          image: "/png/043_parent-engagement.png"
         },
         {
           title: "Digital Dashboard",
           description: "Real-time parent health tracking dashboard with personalized nutritional recommendations.",
           icon: "LayoutDashboard",
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80"
+          image: "/png/044_digital-dashboard.png"
         }
       ],
       benefits: [
@@ -600,37 +601,37 @@ export const servicesData = {
           title: "Developmental & Emotional Screening",
           description: "Non-invasive behavioural assessments, stress profiling, and early ADHD/anxiety indicator mapping.",
           icon: "Brain",
-          image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&auto=format&fit=crop&q=80"
+          image: "/png/045_developmental-emotional-screening.png"
         },
         {
           title: "On-Campus & Tele-Counseling",
           description: "Access to licensed child psychologists and counsellors for safe, confidential 1-on-1 sessions.",
           icon: "Users",
-          image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80"
+          image: "/png/046_on-campus-tele-counseling.png"
         },
         {
           title: "Socio-Emotional Learning (SEL)",
           description: "Structured classroom modules on emotional regulation, empathy, self-awareness, and resilience.",
           icon: "Sparkles",
-          image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&auto=format&fit=crop&q=80"
+          image: "/png/047_socio-emotional-learning-sel.png"
         },
         {
           title: "Crisis Intervention Protocols",
           description: "Immediate, structured support frameworks providing rapid professional stabilisation during urgent distress.",
           icon: "ShieldAlert",
-          image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&auto=format&fit=crop&q=80"
+          image: "/png/048_crisis-intervention-protocols.png"
         },
         {
           title: "Teacher & Staff Workshops",
           description: "Training educators to recognize early warning signs of anxiety, depression, and trauma in students.",
           icon: "GraduationCap",
-          image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&auto=format&fit=crop&q=80"
+          image: "/png/049_teacher-staff-workshops.png"
         },
         {
           title: "Parent Guidance & Sessions",
           description: "Empathetic family consultation sessions to build supportive, resilient home environments for children.",
           icon: "HeartHandshake",
-          image: "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?w=600&auto=format&fit=crop&q=80"
+          image: "/png/050_parent-guidance-sessions.png"
         }
       ],
       benefits: [
@@ -728,37 +729,37 @@ export const servicesData = {
           title: "Pediatric Advanced Life Support (ALS)",
           description: "Ambulances equipped with pediatric ventilators, AEDs, suction machines, and emergency medication kits.",
           icon: "Siren",
-          image: "https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=600&auto=format&fit=crop&q=80"
+          image: "/png/051_pediatric-advanced-life-support-als.png"
         },
         {
           title: "Pediatric Emergency Paramedics",
           description: "Full-time certified emergency technicians trained in child airway management, trauma, and burn care.",
           icon: "UserCheck",
-          image: "https://images.unsplash.com/photo-1584515979963-22877af2e1ad?w=600&auto=format&fit=crop&q=80"
+          image: "/png/052_pediatric-emergency-paramedics.png"
         },
         {
           title: "24/7 Command SOS Hotline",
           description: "Direct priority dispatch hotlines bypassing standard call queues for instant ambulance activation.",
           icon: "PhoneCall",
-          image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&auto=format&fit=crop&q=80"
+          image: "/png/053_24-7-command-sos-hotline.png"
         },
         {
           title: "Pre-Hospital Tele-Triage",
           description: "Real-time audio-video guidance from ER specialists during transit to guide first aid stabilization.",
           icon: "Activity",
-          image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&auto=format&fit=crop&q=80"
+          image: "/png/054_pre-hospital-tele-triage.png"
         },
         {
           title: "Preferred Hospital Corridor",
           description: "Pre-arranged priority intake arrangements with top pediatric hospitals for immediate ICU/ER admission.",
           icon: "Building2",
-          image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&auto=format&fit=crop&q=80"
+          image: "/png/055_preferred-hospital-corridor.png"
         },
         {
           title: "Real-Time Parent Tracking",
           description: "Live GPS ambulance location and instant digital notifications sent to parents during emergency transit.",
           icon: "Bell",
-          image: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=600&auto=format&fit=crop&q=80"
+          image: "/png/056_real-time-parent-tracking.png"
         }
       ],
       benefits: [
@@ -896,19 +897,19 @@ export const servicesData = {
           title: "100% Paperless Process",
           description: "Digital health passports and automated fitness status notifications sent directly to HR teams.",
           icon: "FileText",
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80"
+          image: "/png/057_100-paperless-process.png"
         },
         {
           title: "Scalable Infrastructure",
           description: "Capabilities to handle single executive hires or high-volume seasonal onboarding drives seamlessly.",
           icon: "TrendingUp",
-          image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=80"
+          image: "/png/058_scalable-infrastructure.png"
         },
         {
           title: "Data Security & Privacy",
           description: "Strict compliance with data protection standards, employers receive fitness outcomes while candidate medical privacy remains safeguarded.",
           icon: "Lock",
-          image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop&q=80"
+          image: "/png/059_data-security-privacy.png"
         }
       ],
       benefits: [
@@ -947,17 +948,20 @@ export const servicesData = {
         {
           title: "On-Site Diagnostic Camps",
           description: "We bring professional clinical teams, medical setups, and diagnostics equipment directly to your offices.",
-          icon: "Calendar"
+          icon: "Calendar",
+          image: "/png/060_on-site-diagnostic-camps.png"
         },
         {
           title: "Remote Employee Testing",
           description: "Distributed teams can complete screenings at NABL-accredited partner clinics close to home.",
-          icon: "Home"
+          icon: "Home",
+          image: "/png/061_remote-employee-testing.png"
         },
         {
           title: "Corporate Health Insights",
           description: "Anonymized, aggregate reports outlining workforce health trends to guide future wellness efforts.",
-          icon: "BarChart3"
+          icon: "BarChart3",
+          image: "/png/062_corporate-health-insights.png"
         }
       ],
       benefits: [
@@ -1094,25 +1098,25 @@ export const servicesData = {
           title: "100% FSSAI Alignment",
           description: "Built strictly around regulatory guidelines to guarantee zero compliance friction during audits.",
           icon: "ShieldCheck",
-          image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&auto=format&fit=crop&q=80"
+          image: "/png/063_100-fssai-alignment.png"
         },
         {
           title: "Pan-India On-Ground Capabilities",
           description: "Proven track record executing large-scale, multi-city health and vaccination drives across 200+ cities.",
           icon: "MapPin",
-          image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format&fit=crop&q=80"
+          image: "/png/064_pan-india-on-ground-capabilities.png"
         },
         {
           title: "Zero Operational Downtime",
           description: "On-site deployment schedules crafted around your shift timings and peak business hours.",
           icon: "Clock",
-          image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&auto=format&fit=crop&q=80"
+          image: "/png/065_zero-operational-downtime.png"
         },
         {
           title: "End-to-End Execution",
           description: "From clinical staffing and diagnostics to waste disposal and digital reporting, we manage the entire lifecycle.",
           icon: "CheckCircle",
-          image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=80"
+          image: "/png/066_end-to-end-execution.png"
         }
       ],
       benefits: [
@@ -1248,19 +1252,19 @@ export const servicesData = {
           title: "Govt. Recognized Platform",
           description: "Solution-backed healthcare platform driving population health outcomes across corporate India.",
           icon: "Award",
-          image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=80"
+          image: "/png/067_govt-recognized-platform.png"
         },
         {
           title: "Pan-India Logistics",
           description: "Unified medical coverage across metro and Tier 2/Tier 3 cities for remote and hybrid workforces.",
           icon: "MapPin",
-          image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format&fit=crop&q=80"
+          image: "/png/068_pan-india-logistics.png"
         },
         {
           title: "EHR & Tech Integration",
           description: "Secure digital health records for seamless patient-physician coordination and continuous care loops.",
           icon: "Database",
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80"
+          image: "/png/069_ehr-tech-integration.png"
         }
       ],
       benefits: [
@@ -1305,17 +1309,20 @@ export const servicesData = {
         {
           title: "Experienced Medical Team",
           description: "Consultations with registered, certified doctors across various medical specialties.",
-          icon: "UserCheck"
+          icon: "UserCheck",
+          image: "/png/070_experienced-medical-team.png"
         },
         {
           title: "Comprehensive Care Checks",
           description: "Includes a thorough review of medical history, lifestyle indicators, and current medications.",
-          icon: "Activity"
+          icon: "Activity",
+          image: "/png/071_comprehensive-care-checks.png"
         },
         {
           title: "Integrated Health Records",
           description: "Prescriptions, test recommendations, and care notes are stored securely on our portal.",
-          icon: "ShieldAlert"
+          icon: "ShieldAlert",
+          image: "/png/072_integrated-health-records.png"
         }
       ],
       benefits: [
@@ -1356,17 +1363,20 @@ export const servicesData = {
         {
           title: "Secure Video Platform",
           description: "High-quality, private video connections compliant with patient data regulations.",
-          icon: "Video"
+          icon: "Video",
+          image: "/png/073_secure-video-platform.png"
         },
         {
           title: "Flexible Scheduling Options",
           description: "Book appointments that fit your schedule, with options for same-day reviews.",
-          icon: "Calendar"
+          icon: "Calendar",
+          image: "/png/074_flexible-scheduling-options.png"
         },
         {
           title: "Digital Prescription Delivery",
           description: "Receive signed prescriptions and care recommendations digitally after your call.",
-          icon: "FileText"
+          icon: "FileText",
+          image: "/png/075_digital-prescription-delivery.png"
         }
       ],
       benefits: [
@@ -1407,17 +1417,20 @@ export const servicesData = {
         {
           title: "Priority Appointment Booking",
           description: "Book designated time slots at partner clinics to reduce waiting room times.",
-          icon: "Clock"
+          icon: "Clock",
+          image: "/png/076_priority-appointment-booking.png"
         },
         {
           title: "Trusted Hospital Partners",
           description: "Access a vetted network of leading hospitals and specialized healthcare centers.",
-          icon: "Building2"
+          icon: "Building2",
+          image: "/png/077_trusted-hospital-partners.png"
         },
         {
           title: "Coordinated Medical Care",
           description: "Our care coordinators manage your referrals and share medical history with the clinic.",
-          icon: "Users"
+          icon: "Users",
+          image: "/png/078_coordinated-medical-care.png"
         }
       ],
       benefits: [
@@ -1458,17 +1471,20 @@ export const servicesData = {
         {
           title: "Home Sample Collection",
           description: "Certified phlebotomists collect samples at your home or office, following strict hygiene standards.",
-          icon: "Home"
+          icon: "Home",
+          image: "/png/079_home-sample-collection.png"
         },
         {
           title: "NABL-Accredited Laboratories",
           description: "All samples are processed at certified, quality-controlled diagnostic centers.",
-          icon: "Activity"
+          icon: "Activity",
+          image: "/png/080_nabl-accredited-laboratories.png"
         },
         {
           title: "Clear Digital Reports",
           description: "Access secure, digital reports with visual tracking trends for key markers over time.",
-          icon: "FileBarChart"
+          icon: "FileBarChart",
+          image: "/png/081_clear-digital-reports.png"
         }
       ],
       benefits: [
@@ -1509,17 +1525,20 @@ export const servicesData = {
         {
           title: "Leading Specialist Network",
           description: "Connect with senior physicians and surgeons across major medical specialties.",
-          icon: "Users"
+          icon: "Users",
+          image: "/png/082_leading-specialist-network.png"
         },
         {
           title: "Thorough Record Reviews",
           description: "Our specialists review your complete medical history, diagnostic scans, and treatment plans.",
-          icon: "ClipboardCheck"
+          icon: "ClipboardCheck",
+          image: "/png/083_thorough-record-reviews.png"
         },
         {
           title: "Detailed Opinion Reports",
           description: "Receive a written report summarizing findings, alternative treatments, and recommendations.",
-          icon: "FileText"
+          icon: "FileText",
+          image: "/png/084_detailed-opinion-reports.png"
         }
       ],
       benefits: [
@@ -1560,17 +1579,20 @@ export const servicesData = {
         {
           title: "Certified Nursing Support",
           description: "Registered nurses manage complex care, including wound dressing, infusions, and vitals monitoring.",
-          icon: "ShieldCheck"
+          icon: "ShieldCheck",
+          image: "/png/085_certified-nursing-support.png"
         },
         {
           title: "Physical Therapy & Rehabilitation",
           description: "Customized physical therapy plans to help restore mobility, strength, and balance.",
-          icon: "Accessibility"
+          icon: "Accessibility",
+          image: "/png/086_physical-therapy-rehabilitation.png"
         },
         {
           title: "Personal Care Assistance",
           description: "Trained care assistants help with daily activities, hygiene, and medication reminders.",
-          icon: "Heart"
+          icon: "Heart",
+          image: "/png/087_personal-care-assistance.png"
         }
       ],
       benefits: [
@@ -1821,9 +1843,15 @@ export const servicesData = {
         { step: "04", title: "Continuous Clinical Upgrades", desc: "Receive automated alerts for new speciality courses and regional tumour boards.", icon: "RefreshCw" }
       ],
       deliverables: [
-        { title: "Accredited Credits", description: "Certificates compliant with national & global medical education councils.", icon: "Award" },
-        { title: "Point-of-Care Tools", description: "Instant access to digital case studies and diagnostic protocols.", icon: "Activity" },
-        { title: "Specialist Network", description: "Direct collaboration with senior medical researchers and pharma teams.", icon: "Users" }
+        { title: "Accredited Credits", description: "Certificates compliant with national & global medical education councils.", icon: "Award",
+          image: "/png/088_accredited-credits.png"
+        },
+        { title: "Point-of-Care Tools", description: "Instant access to digital case studies and diagnostic protocols.", icon: "Activity",
+          image: "/png/089_point-of-care-tools.png"
+        },
+        { title: "Specialist Network", description: "Direct collaboration with senior medical researchers and pharma teams.", icon: "Users",
+          image: "/png/090_specialist-network.png"
+        }
       ],
       benefits: [
         { title: "Recognized Credits", desc: "Earn verified CME credits to maintain statutory medical credentials.", icon: "Award" },
@@ -1905,9 +1933,15 @@ export const servicesData = {
         { step: "04", title: "Ongoing Support & Updates", desc: "24/7 dedicated IT helpdesk and continuous software updates.", icon: "ShieldCheck" }
       ],
       deliverables: [
-        { title: "Cloud EMR System", description: "Intuitive interface for fast charting and digital prescription writing.", icon: "FileText" },
-        { title: "HIMS Operations Suite", description: "Automates appointment queues, billing, and clinic inventory.", icon: "Building2" },
-        { title: "Diagnostic Sync", description: "Instant lab report delivery directly into patient medical charts.", icon: "Share2" }
+        { title: "Cloud EMR System", description: "Intuitive interface for fast charting and digital prescription writing.", icon: "FileText",
+          image: "/png/091_cloud-emr-system.png"
+        },
+        { title: "HIMS Operations Suite", description: "Automates appointment queues, billing, and clinic inventory.", icon: "Building2",
+          image: "/png/092_hims-operations-suite.png"
+        },
+        { title: "Diagnostic Sync", description: "Instant lab report delivery directly into patient medical charts.", icon: "Share2",
+          image: "/png/093_diagnostic-sync.png"
+        }
       ],
       benefits: [
         { title: "40% Time Saved", desc: "Eliminate manual paperwork and spend more time focusing on patient care.", icon: "Clock" },
@@ -1989,9 +2023,15 @@ export const servicesData = {
         { step: "04", title: "Retention Monitoring", desc: "Review monthly patient engagement metrics, review feedback, and optimize ROI.", icon: "TrendingUp" }
       ],
       deliverables: [
-        { title: "Clinic Website & Booking", description: "Fast, responsive web design with direct booking calendar integration.", icon: "Sparkles" },
-        { title: "PSP Integration", description: "Empower patients with doorstep lab tests and nursing support under your guidance.", icon: "Activity" },
-        { title: "Automated Reminders", description: "WhatsApp & SMS follow-ups for lab tests, refills, and checkups.", icon: "MessageSquare" }
+        { title: "Clinic Website & Booking", description: "Fast, responsive web design with direct booking calendar integration.", icon: "Sparkles",
+          image: "/png/094_clinic-website-booking.png"
+        },
+        { title: "PSP Integration", description: "Empower patients with doorstep lab tests and nursing support under your guidance.", icon: "Activity",
+          image: "/png/095_psp-integration.png"
+        },
+        { title: "Automated Reminders", description: "WhatsApp & SMS follow-ups for lab tests, refills, and checkups.", icon: "MessageSquare",
+          image: "/png/096_automated-reminders.png"
+        }
       ],
       benefits: [
         { title: "Ethical Outreach", desc: "Build patient trust through compliant, education-focused communication.", icon: "ShieldCheck" },
@@ -2073,9 +2113,15 @@ export const servicesData = {
         { step: "04", title: "Certification & Peer Mentorship", desc: "Receive executive credentials and join our ongoing healthcare leader alumni network.", icon: "Award" }
       ],
       deliverables: [
-        { title: "Leadership Certification", description: "Executive credentials validating healthcare management and governance skills.", icon: "Award" },
-        { title: "RWE Mentorship", description: "Expert guidance from protocol design to journal submission.", icon: "FileText" },
-        { title: "Communication Toolkits", description: "Practical frameworks for patient consent, crisis handling, and medico-legal safety.", icon: "MessageSquare" }
+        { title: "Leadership Certification", description: "Executive credentials validating healthcare management and governance skills.", icon: "Award",
+          image: "/png/097_leadership-certification.png"
+        },
+        { title: "RWE Mentorship", description: "Expert guidance from protocol design to journal submission.", icon: "FileText",
+          image: "/png/098_rwe-mentorship.png"
+        },
+        { title: "Communication Toolkits", description: "Practical frameworks for patient consent, crisis handling, and medico-legal safety.", icon: "MessageSquare",
+          image: "/png/099_communication-toolkits.png"
+        }
       ],
       benefits: [
         { title: "Transition to Leader", desc: "Gain executive tools to manage departments, multi-specialty clinics, or hospitals.", icon: "Users" },

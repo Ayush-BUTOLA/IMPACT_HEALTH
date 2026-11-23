@@ -31,7 +31,7 @@ const driveImagePool = [
 ];
 
 const resolveDeliverableImage = (img, idx, fallback) => {
-  if (img && typeof img === 'string' && !img.includes('unsplash.com')) {
+  if (img && typeof img === 'string') {
     return img;
   }
   if (img && typeof img !== 'string') {

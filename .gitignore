@@ -8,6 +8,7 @@ target/
 scratch/
 redesign_screenshots/
 .impeccable/
+.opencode/
 
 # Automated QA & Test Reports
 testsprite_tests/
