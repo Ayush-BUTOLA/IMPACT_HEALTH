@@ -8,9 +8,6 @@ import DotGrid from '../components/backgrounds/DotGrid';
 import DoctorAvatar from '../components/DoctorAvatar';
 
 // Real Photos from Drive
-import doctorCheckupPulse from '../assets/services/school/doctor-pulse-examination.jpeg';
-import healthCampVitals from '../assets/services/school/health-camp-vitals.jpeg';
-import corporateOhc from '../assets/services/corporate/ohc-opd-site.jpg';
 import drRomilLottaImg from '../assets/team/dr-romil-lotta-portrait.png';
 
 // Real Client Logos from Drive
@@ -47,21 +44,21 @@ const services = [
     category: "Consultations & Care",
     title: "Inclinic & Virtual Doctor Consultations",
     desc: "Get unlimited doctor consultations both virtually over call and at clinic/hospital locations across 200+ network centers.",
-    image: doctorCheckupPulse,
+    image: "/png/070_experienced-medical-team.png",
     alt: "Inclinic & Virtual Doctor Consultations"
   },
   {
     category: "Diagnostics & OHC",
     title: "On-Campus Medical Rooms & Health Screening Camps",
     desc: "Gold-standard campus infirmaries, school wellness setups, and digital student health assessments with pediatric care.",
-    image: healthCampVitals,
+    image: "/png/002_visiting-physicians.png",
     alt: "On-Campus Medical Rooms & Health Screening Camps"
   },
   {
     category: "Corporate & Workplace",
     title: "Corporate Health Centers & Workplace Wellness",
     desc: "On-site OHC clinics, pre-employment checkups, and annual health screenings trusted by leading corporate organizations.",
-    image: corporateOhc,
+    image: "/png/060_on-site-diagnostic-camps.png",
     alt: "Corporate Health Centers & Workplace Wellness"
   }
 ];

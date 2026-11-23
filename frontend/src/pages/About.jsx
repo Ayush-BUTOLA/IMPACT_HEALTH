@@ -22,9 +22,6 @@ import startupLabLogo from '../assets/media/startup-lab-logo.png';
 import iccLogo from '../assets/media/indian-chamber-of-commerce.jpg';
 import startupIndiaLogo from '../assets/media/startup-india.png';
 import missionDoctorCheckup from '../assets/services/school/doctor-pulse-examination.jpeg';
-import schoolMedicalRoom from '../assets/services/school/school-infirmary-room-1.jpg';
-import corporateOhc from '../assets/services/corporate/ohc-opd-site.jpg';
-import corporateVaccine from '../assets/services/corporate/vaccination.jpg';
 import Aurora from '../components/backgrounds/Aurora';
 
 const fadeInUp = {
@@ -298,7 +295,7 @@ export default function About() {
             >
               <div className="relative h-48 w-full overflow-hidden bg-slate-100">
                 <img 
-                  src={schoolMedicalRoom} 
+                  src="/png/001_certified-pediatric-friendly-nursing-staff.png" 
                   alt="School Health Program Infirmary" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                 />
@@ -325,7 +322,7 @@ export default function About() {
             >
               <div className="relative h-48 w-full overflow-hidden bg-slate-100">
                 <img 
-                  src={corporateOhc} 
+                  src="/png/060_on-site-diagnostic-camps.png" 
                   alt="Corporate Occupational Health Center" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                 />
@@ -352,7 +349,7 @@ export default function About() {
             >
               <div className="relative h-48 w-full overflow-hidden bg-slate-100">
                 <img 
-                  src={corporateVaccine} 
+                  src="/png/063_100-fssai-alignment.png" 
                   alt="Food Safety Vaccination Drive" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                 />
